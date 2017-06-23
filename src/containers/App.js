@@ -4,11 +4,10 @@ import {
   Route
 } from 'react-router-dom';
 
-import logo from 'logo.svg';
 import 'App.css';
 import 'styles/style.css';
 import { Header, Footer } from 'components';
-import { NoMatch } from 'containers';
+import { Home } from 'containers';
 
 class App extends Component {
   render() {
@@ -16,7 +15,7 @@ class App extends Component {
       <Router>
         <div>
           <Header/>
-          <Route component={NoMatch}/>
+          <Route exact path="/" component={Home}/>
           <Footer/>
         </div>
       </Router>

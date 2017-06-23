@@ -1,5 +1,9 @@
+import App from './App';
+import Home from './Home';
 import NoMatch from './NoMatch';
 
 export {
-    NoMatch
+    App,
+    Home,
+    NoMatch,
 };
