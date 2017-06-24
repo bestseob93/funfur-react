@@ -7,12 +7,16 @@ class Header extends Component {
                 <nav className="navbar navbar-default navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header page-scroll">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            {/*<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                 <span className="sr-only">Toggle navigation</span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
-                            </button>
+                            </button>*/}
+                            <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks">
+                                <i className="fa fa-facebook"></i>
+                            </a>
+                            <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a>
                             <a className="navbar-brand" href="/">뻔뻐</a>
                         </div>
                         <div id="navbar" className="navbar-collapse collapse">

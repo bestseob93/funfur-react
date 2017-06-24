@@ -65,6 +65,10 @@ footer {
                 font-size: 20px;
                 font-family: 'Open Sans', helvetica, arial, sans-serif;
                 color: $text-color;
+                text-decoration: none !important;
+            }
+            a:hover {
+                color: $funfur-color;
             }
         }
     }

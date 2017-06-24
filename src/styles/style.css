@@ -49,7 +49,10 @@ footer ul li {
   footer ul li a {
     font-size: 20px;
     font-family: 'Open Sans', helvetica, arial, sans-serif;
-    color: #676a6c; }
+    color: #676a6c;
+    text-decoration: none !important; }
+  footer ul li a:hover {
+    color: #fdd831; }
 
 footer .funfur-line {
   width: 100%;
@@ -57,7 +60,63 @@ footer .funfur-line {
   margin: 40px 0;
   border-bottom: 2px solid #fdd831; }
 
+div.navbar-header {
+  background-color: #fdd831 !important;
+  border: 0; }
+
+.navbar {
+  border: 0 !important; }
+
+a.navbar-brand {
+  color: #fff !important;
+  margin: 0 !important; }
+
+a.navbar-toggle {
+  background-color: #fdd831 !important;
+  border: 0;
+  cursor: pointer; }
+  a.navbar-toggle i {
+    color: #fff;
+    font-size: 1.6em; }
+
 .carousel-inner {
   overflow: visible !important;
   height: 650px;
   background: url("../img/d.jpg") no-repeat; }
+
+.funfur-wrapper {
+  display: table;
+  height: inherit; }
+  .funfur-wrapper .funfur-description {
+    display: table-cell;
+    vertical-align: middle; }
+    .funfur-wrapper .funfur-description h1, .funfur-wrapper .funfur-description p {
+      color: #fff; }
+    .funfur-wrapper .funfur-description a {
+      background-color: #fdd831 !important;
+      color: #fff;
+      margin: 0 10px;
+      width: 110px; }
+    .funfur-wrapper .funfur-description iframe {
+      width: 100%;
+      height: 300px; }
+
+@media only screen and (max-width: 667px) {
+  .funfur-wrapper {
+    display: block; }
+    .funfur-wrapper .funfur-description:first-child {
+      margin-top: 200px; }
+    .funfur-wrapper .funfur-description {
+      display: block; }
+      .funfur-wrapper .funfur-description h1 {
+        font-size: 1.8em;
+        text-align: center; }
+      .funfur-wrapper .funfur-description p {
+        text-align: center; }
+        .funfur-wrapper .funfur-description p a {
+          margin: 0 10px;
+          width: 110px; }
+      .funfur-wrapper .funfur-description iframe {
+        margin-top: 40px;
+        width: 100%;
+        height: 200px; } }

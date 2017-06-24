@@ -1,0 +1,23 @@
+div.navbar-header {
+    background-color: $funfur-color !important;
+    border: 0;
+}
+
+.navbar {
+    border: 0 !important;
+}
+
+a.navbar-brand {
+    color: #fff !important;
+    margin: 0 !important;
+}
+
+a.navbar-toggle {
+    background-color: $funfur-color !important;
+    border: 0;
+    cursor: pointer;
+    i {
+        color: #fff;
+        font-size: 1.6em;
+    }
+}
