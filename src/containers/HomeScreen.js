@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Home extends Component {
+class HomeScreen extends Component {
     render() {
         return (
             <div className="carousel-inner" role="listbox">
@@ -26,4 +26,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default HomeScreen;

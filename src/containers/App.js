@@ -6,8 +6,8 @@ import {
 
 import 'App.css';
 import 'styles/style.css';
-import { Header, Footer } from 'components';
-import { Home } from 'containers';
+import { Header, Footer } from 'components/Base';
+import { HomeScreen, RegisterIntroScreen } from 'containers';
 
 class App extends Component {
   render() {
@@ -15,7 +15,11 @@ class App extends Component {
       <Router>
         <div>
           <Header/>
-          <Route exact path="/" component={Home}/>
+          <div className="spacer">
+              &nbsp;
+          </div>
+            <Route exact path="/" component={HomeScreen}/>
+            <Route path="/register" component={RegisterIntroScreen}/>
           <Footer/>
         </div>
       </Router>

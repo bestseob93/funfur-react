@@ -1,0 +1,32 @@
+.register-intro-advantage {
+    margin: 45px 0;
+}
+
+.intro-image-wrapper {
+    div.intro-box {
+        .intro-images {
+            background-color: $funfur-color;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.intro-contents {
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.register-btn {
+    background-color: $funfur-color;
+    float: right;
+}
+
+// @media only screen and (max-width: 667px) {
+//     .register-btn {
+//         float: none;
+//     }
+// }

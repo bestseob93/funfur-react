@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NoMatch = ({match}) => {
+const NoMatchScreen = ({match}) => {
     return (
         <div>
             404 Not Found
@@ -8,4 +8,4 @@ const NoMatch = ({match}) => {
     )
 };
 
-export default NoMatch;
+export default NoMatchScreen;

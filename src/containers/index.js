@@ -1,9 +1,11 @@
 import App from './App';
-import Home from './Home';
-import NoMatch from './NoMatch';
+import HomeScreen from './HomeScreen';
+import NoMatchScreen from './NoMatchScreen';
+import RegisterIntroScreen from './RegisterIntroScreen';
 
 export {
     App,
-    Home,
-    NoMatch,
+    HomeScreen,
+    NoMatchScreen,
+    RegisterIntroScreen,
 };
