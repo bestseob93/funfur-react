@@ -18,3 +18,33 @@ ul {
 .funfur-color {
     color: $funfur-color;
 }
+
+.btn-container {
+  text-align: center;
+}
+
+.btn-common {
+  width: 30%;
+  margin: 0 15px;
+  padding: 10px 0;
+}
+
+.btn-common.btn-prev {
+  background-color: #fff;
+  border: 2px solid #e7eaec;
+  color: #000;
+}
+
+.btn-common.btn-prev:hover {
+  border: 3px solid #e7eaec;
+}
+
+.btn-common.btn-next {
+  background-color: $funfur-color;
+  border: 2px solid $funfur-color;
+  color: #fff;
+}
+
+.btn-common.btn-next:hover {
+  border: 3px solid $funfur-color;
+}

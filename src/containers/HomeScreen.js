@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class HomeScreen extends Component {
     render() {
@@ -11,8 +12,8 @@ class HomeScreen extends Component {
                         </h1>
                         <p>뻔뻐가구거리에 지금 바로 입주하시고 3개월간 무료로 상품등록 해보세요.</p>
                         <p>
-                            <a className="btn btn-lg" href="/user/register_1" role="button">로그인</a>
-                            <a className="btn btn-lg" href="/user/register_1" role="button">회원가입</a>
+                            <a className="btn btn-lg" href="/login" role="button">로그인</a>
+                            <Link className="btn btn-lg" to="/register">회원가입</Link>
                         </p>
                     </div>
                     <div className="funfur-description youtube-wrapper">

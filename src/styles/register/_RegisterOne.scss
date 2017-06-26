@@ -14,15 +14,22 @@
     }
 }
 
+.intro-txt {
+    font-size: 20px !important;
+    font-weight: 500;
+}
+
 .intro-contents {
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 1.3em;
     font-weight: 500;
 }
 
 .register-btn {
     background-color: $funfur-color;
-    float: right;
+    color: #fff;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
 }
 
 // @media only screen and (max-width: 667px) {
