@@ -17,9 +17,11 @@
             vertical-align: bottom;
             padding: 10px;
             font-size: 18px;
+            font-weight: lighter;
         }
         li.active {
             font-size: 24px;
+            font-weight: 500;
             .active-detail {
                 color: $funfur-color;
                 padding: 0;

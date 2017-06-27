@@ -1,0 +1,14 @@
+.register-form-container {
+    background-color: #f3f3f4;
+    border: 2px solid $funfur-color;
+    h1 {
+        color: #676a6c;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .form-container {
+        width: 100% !important;
+    }
+}
+

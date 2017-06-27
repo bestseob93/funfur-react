@@ -8,7 +8,7 @@ class RegisterFormScreen extends Component {
     render() {
         return (
             <RegisterThree>
-                <RegisterTitle/>
+                <RegisterTitle title={'form'}/>
                 <RegisterForm/>
             </RegisterThree>
         );

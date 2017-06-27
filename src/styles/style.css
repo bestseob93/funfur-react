@@ -15,6 +15,7 @@ ul {
 .funfur-color {
   color: #fdd831; }
 
+/* about buttons */
 .btn-container {
   text-align: center; }
 
@@ -38,6 +39,17 @@ ul {
 
 .btn-common.btn-next:hover {
   border: 3px solid #fdd831; }
+
+/* about input */
+._input_label {
+  text-align: right; }
+
+@media only screen and (max-width: 768px) {
+  ._input_label {
+    text-align: left;
+    padding-left: 20px; }
+  .container._mb {
+    padding: 0 !important; } }
 
 @media only screen and (max-width: 992px) {
   footer ul.style {
@@ -149,6 +161,34 @@ a.navbar-toggle {
         width: 100%;
         height: 200px; } }
 
+.register-title {
+  position: relative;
+  padding: 0 0 30px;
+  border-bottom: 2px solid #e7eaec;
+  font-weight: 500; }
+  .register-title ol {
+    list-style: none;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+    bottom: 30px; }
+    .register-title ol li {
+      float: left;
+      vertical-align: bottom;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: lighter; }
+    .register-title ol li.active {
+      font-size: 24px;
+      font-weight: 500; }
+      .register-title ol li.active .active-detail {
+        color: #fdd831;
+        padding: 0;
+        margin: 0; }
+
 .register-intro-advantage {
   margin: 45px 0; }
 
@@ -225,28 +265,12 @@ a.navbar-toggle {
     padding: 20px 0;
     margin: 0; }
 
-.register-title {
-  position: relative;
-  padding: 0 0 30px;
-  border-bottom: 2px solid #e7eaec;
-  font-weight: 500; }
-  .register-title ol {
-    list-style: none;
-    position: absolute;
-    right: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    line-height: 30px;
-    bottom: 30px; }
-    .register-title ol li {
-      float: left;
-      vertical-align: bottom;
-      padding: 10px;
-      font-size: 18px; }
-    .register-title ol li.active {
-      font-size: 24px; }
-      .register-title ol li.active .active-detail {
-        color: #fdd831;
-        padding: 0;
-        margin: 0; }
+.register-form-container {
+  background-color: #f3f3f4;
+  border: 2px solid #fdd831; }
+  .register-form-container h1 {
+    color: #676a6c; }
+
+@media only screen and (max-width: 768px) {
+  .form-container {
+    width: 100% !important; } }

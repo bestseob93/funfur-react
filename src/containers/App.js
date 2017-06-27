@@ -4,7 +4,6 @@ import {
   Route
 } from 'react-router-dom';
 
-import 'App.css';
 import 'styles/style.css';
 import { Header, Footer } from 'components/Base';
 import { 

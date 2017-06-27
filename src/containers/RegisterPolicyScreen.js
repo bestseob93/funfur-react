@@ -5,7 +5,7 @@ class RegisterPolicyScreen extends Component {
     render() {
         return (
             <RegisterTwo>
-                <RegisterTitle/>
+                <RegisterTitle title={'policy'}/>
                 <RegisterPolicy/>
             </RegisterTwo>
         );
