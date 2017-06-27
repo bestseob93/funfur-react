@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
           <Header/>
           <div className="spacer">
               &nbsp;
