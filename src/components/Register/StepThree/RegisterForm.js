@@ -3,7 +3,37 @@ import FormLabel from './FormLabel';
 import SubTitle from './SubTitle';
 
 class RegisterForm extends Component {
+    constructor(props) {
+        super(props);
+
+        this.changeHandler = this.changeHandler.bind(this);
+        this.chkBusinessIdSubmit = this.chkBusinessIdSubmit.bind(this);
+    }
+
+    changeHandler(ev) {
+        const { FormActions } = this.props;
+        
+        FormActions.formChange({
+            formName: 'register',
+            name: 'businessId',
+            value: ev.target.value
+        });
+        console.log(this.props.form.toJS());
+    }
+
+    chkBusinessIdSubmit() {
+        const { AuthActions, form } = this.props;
+        let businessId = form.get('businessId');
+        
+        AuthActions.checkCompanyRegistration(businessId);
+    }
+
     render() {
+        const { 
+            changeHandler,
+            chkBusinessIdSubmit
+        } = this;
+
         return (
             <div className="register-form-container">
                 {/* 가구업체 입력 폼 */}
@@ -23,10 +53,11 @@ class RegisterForm extends Component {
                         <input type="text"
                                className="form-control"
                                placeholder="사업자 등록번호를 적어주세요.( '-' 제외하고 숫자만 적어주세요.)"
-                               required/>
+                               required
+                               onChange={changeHandler}/>
                     </div>
-                    <div className="col-md-2 col-md-offset-0 col-xs-offset-1">
-                        <button type="button" className="btn btn-primary">중복 확인</button>
+                    <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
+                        <button type="button" className="btn btn-primary" onClick={chkBusinessIdSubmit}>중복 확인</button>
                     </div>
                 </div>
                 <div className="row">
@@ -36,7 +67,7 @@ class RegisterForm extends Component {
                                className="form-control"
                                required/>
                     </div>
-                    <div className="col-md-2 col-md-offset-0 col-xs-offset-1">
+                    <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
                         <button type="button" className="btn btn-primary">첨부 하기</button>
                     </div>
                 </div>
@@ -117,7 +148,7 @@ class RegisterForm extends Component {
                                placeholder="띄어쓰기 없이 영문자나 숫자 4-20자"
                                required/>
                     </div>
-                    <div className="col-md-2 col-md-offset-0 col-xs-offset-1">
+                    <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
                         <button type="button" className="btn btn-primary">중복 확인</button>
                     </div>
                 </div>

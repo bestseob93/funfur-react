@@ -6,6 +6,7 @@ import {
     RegisterThree,
     RegisterTitle } from 'components/Register';
 import * as authDuck from 'ducks/auth.duck';
+import * as formDuck from 'ducks/form.duck';
 
 class RegisterFormScreen extends Component {
     render() {
@@ -13,7 +14,7 @@ class RegisterFormScreen extends Component {
         return (
             <RegisterThree>
                 <RegisterTitle title={'form'}/>
-                <RegisterForm/>
+                <RegisterForm {...this.props}/>
             </RegisterThree>
         );
     }
@@ -21,11 +22,13 @@ class RegisterFormScreen extends Component {
 
 export default connect(
     state => ({
+        form: state.form.get('register'),
         status: {
             chkCompanyRegi: state.auth.getIn(['requests', 'checkCompanyRegistration'])
         }
     }),
     dispatch => ({
-        AuthActions: bindActionCreators(authDuck.checkCompanyRegistration, dispatch)
+        AuthActions: bindActionCreators(authDuck, dispatch),
+        FormActions: bindActionCreators(formDuck, dispatch)
     })
 )(RegisterFormScreen);
