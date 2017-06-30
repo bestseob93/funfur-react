@@ -139,9 +139,11 @@ class RegisterForm extends Component {
                                required/>
                     </div>
                 </div>
-                
+                <div className="row">
+                    <button type="button" className="btn">취소</button>
+                    <button type="button" className="btn">다음</button>
+                </div>
             </div>
-
         );
     }
 }

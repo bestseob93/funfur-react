@@ -1,12 +1,18 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import auth from 'ducks/auth.duck';
+import product from 'ducks/product.duck';
+
+const rootReducer = {
+    auth,
+    product
+};
 
 // const reducer = combineReducers(auth);
-const reducer = auth;
+const reducer = combineReducers(rootReducer);
 
-const middlewares = [promiseMiddleware()];
+const middlewares = applyMiddleware(promiseMiddleware());
 
-const configStore = createStore(reducer, applyMiddleware(...middlewares), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const configureStore = createStore(reducer, compose(middlewares, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
-export default configStore;
+export default configureStore;
