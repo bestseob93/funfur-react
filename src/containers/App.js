@@ -10,7 +10,7 @@ import {
   HomeScreen,
   RegisterFormScreen,
   RegisterIntroScreen,
-  RegisterPolicyScreen } from 'containers';
+  RegisterPolicyScreen } from './Routes';
 
 class App extends Component {
   render() {
