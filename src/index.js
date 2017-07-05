@@ -5,7 +5,6 @@ import App from 'containers/App';
 import { AppContainer } from 'react-hot-loader';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from 'store/configureStore';
-import './index.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -30,7 +29,9 @@ window.onload = function () {
     render(App);
 }
 if (module.hot) {
-  module.hot.accept('./containers/App', () => { render(App) })
+  module.hot.accept('./containers/App', () => { 
+      const NextApp = require('./containers/App').default;
+      render(NextApp) })
 }
 
 registerServiceWorker();

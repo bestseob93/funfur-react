@@ -7,7 +7,20 @@ export const formChange = createAction(FORM_CHANGE);
 
 const initialState = Map({
     register: Map({
-        businessId: ''
+        cpName: '',
+        businessId: '',
+        businessIdImage: [],
+        postCode: '',
+        cpAddress_1: '',
+        cpAddress_2: '',
+        cpCall: '',
+        ceoName: '',
+        ceoCall: '',
+        ceoEmail_1: '',
+        ceoEmail_2: '',
+        userId: '',
+        password: '',
+        repassword: ''
     })
 });
 

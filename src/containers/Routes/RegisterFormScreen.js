@@ -9,6 +9,7 @@ import * as authDuck from 'ducks/auth.duck';
 import * as formDuck from 'ducks/form.duck';
 
 class RegisterFormScreen extends Component {
+    
     render() {
         console.log(this.props.status.chkCompanyRegi.toJS());
         return (
@@ -24,7 +25,8 @@ export default connect(
     state => ({
         form: state.form.get('register'),
         status: {
-            chkCompanyRegi: state.auth.getIn(['requests', 'checkCompanyRegistration'])
+            chkCompanyRegi: state.auth.getIn(['requests', 'checkCompanyRegistration']),
+            isSuccess: state.auth.get('isSuccess')
         }
     }),
     dispatch => ({
