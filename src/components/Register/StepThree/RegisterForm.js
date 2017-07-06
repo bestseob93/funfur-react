@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 
 import FormLabel from './FormLabel';
 import SubTitle from './SubTitle';
+import { Spinner } from 'components/Common';
 
 import { checkBizID } from 'helpers/checkBizId';
 
@@ -172,16 +173,20 @@ class RegisterForm extends Component {
         }
     }
 
+    /* 회원가입 요청 */
     handleSubmit = async (ev) => {
         const { AuthActions, form } = this.props;
         ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 
         let formInfos = form.toJS();
-        console.log(formInfos);
-        const pwRegex = /^[a-zA-Z0-9]{4,20}$/;
+        const pwRegex = /^[a-zA-Z0-9]{4,20}$/; // 비밀번호 정규표현식
+        const chkNum = formInfos.password.search(/[0-9]/g); // 숫자 확인
+        const chkEng = formInfos.password.search(/[a-z]/ig); // 영어 확인
 
         if(!pwRegex.test(formInfos.password)) {
             this.addAlert('warning', '영문자와 숫자를 포함한 4-20자인지 확인해주세요!');
+        } else if(chkNum < 0 || chkEng < 0) {
+            this.addAlert('warning', '비밀번호는 영문과 숫자를 혼합해야 합니다.');
         } else if(formInfos.password !== formInfos.repassword) {
             this.addAlert('warning', '비밀번호 확인과 비밀번호가 일치하지 않습니다.');
         } else if(!this.props.valid.bizId) {
@@ -209,11 +214,12 @@ class RegisterForm extends Component {
             try {
                 await AuthActions.registerCeo(ceoInfo);
                 this.submitBtn.classList.add('disabled');
-                if(this.props.isSuccess) {
+                if(this.props.status.isSuccess) {
                     if(this.submitBtn.classList.contains('disabled')) {
                         this.submitBtn.classList.remove('disabled');
                     }
-                    // router 이동
+                // router 이동
+                this.props.router.history.push('/register_4');
                 }
             } catch (e) {
                 const { message } = e.response.data;
@@ -236,9 +242,11 @@ class RegisterForm extends Component {
 
         /* 리덕스 form register에서 가져옴 */
         let formValues = form.toJS();
-
         return (
             <div className="register-form-container">
+                {/* 스피너 */}
+                { this.props.status.register.get('fetching') ? (<Spinner/>) : null }
+                {/* 토스트 컨테이너 */}
                 <ToastContainer ref="container"
                 toastMessageFactory={ToastMessageFactory}
                 className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}/>
@@ -337,7 +345,7 @@ class RegisterForm extends Component {
                     </div>
                 </div>
                 <div className="row form-box">
-                     <div ref={(post) => { this.postWrap = post }} className="col-md-offset-2 col-md-6 col-xs-10 col-xs-offset-1"></div>
+                     <div ref={(post) => { this.postWrap = post }} className="col-md-offset-3 col-md-6 col-xs-10 col-xs-offset-1"></div>
                 </div>
                 <div className="row form-box">
                     <FormLabel name="사업장 연락처"/>

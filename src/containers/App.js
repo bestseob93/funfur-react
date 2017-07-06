@@ -10,7 +10,8 @@ import {
   HomeScreen,
   RegisterFormScreen,
   RegisterIntroScreen,
-  RegisterPolicyScreen } from './Routes';
+  RegisterPolicyScreen,
+  RegisterPendingScreen } from './Routes';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/register" component={RegisterIntroScreen}/>
             <Route path="/register_2" component={RegisterPolicyScreen}/>
             <Route path="/register_3" component={RegisterFormScreen}/>
+            <Route path="/register_4" component={RegisterPendingScreen}/>
           <Footer/>
         </div>
       </Router>

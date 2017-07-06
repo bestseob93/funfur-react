@@ -12,12 +12,26 @@ html, body {
 ul {
   padding: 0; }
 
+.row {
+  margin: 0 !important; }
+
+input.form-control {
+  border: 3px solid #e5e6e7 !important;
+  outline: 0px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none !important; }
+
+input.form-control:focus {
+  border: 3px solid #fdd831 !important; }
+
 .funfur-color {
   color: #fdd831; }
 
-.funfur-btn {
+.funfur-btn, .funfur-btn:hover {
   background-color: #fdd831 !important;
-  color: #fff !important; }
+  color: #fff !important;
+  border: 1px solid #fdc731; }
 
 .padding-top50 {
   padding-top: 50px; }
@@ -45,7 +59,8 @@ ul {
   color: #fff; }
 
 .btn-common.btn-next:hover {
-  border: 3px solid #fdd831; }
+  border: 2px solid #fdc731;
+  color: #fff !important; }
 
 /* about input */
 ._input_label {
@@ -57,6 +72,68 @@ ul {
     padding-left: 20px; }
   .container._mb {
     padding: 0 !important; } }
+
+/* spinner */
+.spinner-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.3) center center no-repeat; }
+
+.spinner {
+  margin: 300px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 9999; }
+
+.cube1, .cube2 {
+  background-color: #fdd831;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+  animation: sk-cubemove 1.8s infinite ease-in-out; }
+
+.cube2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s; }
+
+@-webkit-keyframes sk-cubemove {
+  25% {
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5); }
+  50% {
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg); }
+  75% {
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5); }
+  100% {
+    -webkit-transform: rotate(-360deg); } }
+
+@keyframes sk-cubemove {
+  25% {
+    transform: translateX(42px) rotate(-90deg) scale(0.5);
+    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5); }
+  50% {
+    transform: translateX(42px) translateY(42px) rotate(-179deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg); }
+  50.1% {
+    transform: translateX(42px) translateY(42px) rotate(-180deg);
+    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg); }
+  75% {
+    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5); }
+  100% {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg); } }
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -1449,8 +1526,6 @@ a.navbar-toggle {
   font-weight: 500; }
 
 .register-btn {
-  background-color: #fdd831;
-  color: #fff;
   font-weight: 600 !important;
   padding: 10px 20px !important; }
 

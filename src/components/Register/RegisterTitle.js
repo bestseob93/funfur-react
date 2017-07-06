@@ -31,6 +31,23 @@ const RegisterTitle = ({title}) => {
                 </ol>
             </div>
         );
+    } else if(title === 'pending') {
+        return (
+            <div className="register-title">
+                <h3>
+                    사장님 정보입력
+                </h3>
+                <p>등록하신 아이디로 뻔뻐 사장님 사이트 로그인이 가능합니다.<br/>
+                뻔뻐에서 2일 내에 가입하신 휴대폰번호로 전화 드릴예정입니다. 항상 최선의<br/>
+                서비스로 보답하는[<span className="funfur-color">뻔.뻐</span>]가 되겠습니다.
+                </p>
+                <ol>
+                    <li>01. 약관 동의 ></li>
+                    <li>02. 정보 입력 ></li>
+                    <li className="active"><span className="active-detail">03.</span> 승인 요청</li>
+                </ol>
+            </div>
+        );
     }
 };
 

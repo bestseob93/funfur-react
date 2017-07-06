@@ -23,7 +23,7 @@ const RegisterIntro = () => {
             </div>
             <p className="text-center intro-contents" style={{marginBottom: 0}}>가구 소매/도매 업체를 운영 중이신 사장님만 가입이 가능합니다.</p>
             <p className="text-center intro-contents" style={{marginTop: 0}}>가입 승인 후, 서비스 이용 가능하십니다.</p>
-            <p className="text-center"><Link className="btn register-btn" to="/register_2">회원가입</Link></p>
+            <p className="text-center"><Link className="btn register-btn funfur-btn" to="/register_2">회원가입</Link></p>
         </div>
     );
 };

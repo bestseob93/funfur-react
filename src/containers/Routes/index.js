@@ -2,6 +2,7 @@ import HomeScreen from './HomeScreen';
 import NoMatchScreen from './NoMatchScreen';
 import RegisterFormScreen from './RegisterFormScreen';
 import RegisterIntroScreen from './RegisterIntroScreen';
+import RegisterPendingScreen from './RegisterPendingScreen';
 import RegisterPolicyScreen from './RegisterPolicyScreen';
 
 export {
@@ -9,5 +10,6 @@ export {
     NoMatchScreen,
     RegisterFormScreen,
     RegisterIntroScreen,
+    RegisterPendingScreen,
     RegisterPolicyScreen,
 };
