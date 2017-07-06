@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
 import FormLabel from './FormLabel';
@@ -129,13 +129,19 @@ class RegisterForm extends Component {
     /* businessId 인증 및 중복 확인 */
     chkBusinessIdSubmit() {
         const { AuthActions, form } = this.props;
+        let self = this;
         let businessId = form.get('businessId');
         checkBizID(businessId).then(async (checked) => {
             if(checked) {
                 try {
                     await AuthActions.checkCompanyRegistration(businessId);
+                    console.log(self.props.valid.bizId);
+                    if(self.props.valid.bizId) {
+                        this.addAlert('success', '인증되었습니다!');
+                    }
                 } catch (e) {
-                    console.error(e);
+                    const { message } = e.response.data;
+                    this.addAlert('error', message);
                 }
             } else {
                 this.addAlert('warning', '사업자 등록번호를 확인해주세요.');
@@ -144,21 +150,75 @@ class RegisterForm extends Component {
     }
 
     /* userId 중복 확인 */
-    chkUserIdSubmit() {
+    chkUserIdSubmit = async () => {
         const { AuthActions, form } = this.props;
         let userId = form.get('userId');
-        console.log(userId);
-        AuthActions.checkUserId(userId);
+
+        // 유저네임 정규표현식 확인
+        const usernameRegex = /^[0-9a-z_]{4,20}$/;
+        
+        if(usernameRegex.test(userId)) {
+            try {
+                await AuthActions.checkUserId(userId);
+                if(this.props.valid.userId) {
+                    this.addAlert('success', '인증되었습니다!');
+                }
+            } catch (e) {
+                const { message } = e.response.data;
+                this.addAlert('error', message);
+            }
+        } else {
+            this.addAlert('warning', '영문자나 숫자 4-20자 확인해주세요!');
+        }
     }
 
-    handleSubmit = async () => {
+    handleSubmit = async (ev) => {
         const { AuthActions, form } = this.props;
+        ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 
-        console.log(form.toJS());
-        try {
-            await AuthActions.registerSubmit();
-        } catch (e) {
-            
+        let formInfos = form.toJS();
+        console.log(formInfos);
+        const pwRegex = /^[a-zA-Z0-9]{4,20}$/;
+
+        if(!pwRegex.test(formInfos.password)) {
+            this.addAlert('warning', '영문자와 숫자를 포함한 4-20자인지 확인해주세요!');
+        } else if(formInfos.password !== formInfos.repassword) {
+            this.addAlert('warning', '비밀번호 확인과 비밀번호가 일치하지 않습니다.');
+        } else if(!this.props.valid.bizId) {
+            this.addAlert('error', '사업자 등록번호를 인증해주세요!');
+        } else if(!this.props.valid.userId) {
+            this.addAlert('error', '아이디 중복확인을 해주세요!');
+        } else if(formInfos.businessIdImage.length < 1) {
+            this.addAlert('error', '사업자 등록증 사진을 첨부해주세요!');
+        } else {
+                    
+        let ceoInfo = {
+            cpName: formInfos.cpName,
+            businessId: formInfos.businessId,
+            businessIdImage: formInfos.businessIdImage,
+            postCode: formInfos.postCode,
+            cpAddress: formInfos.cpAddress_1 + formInfos.cpAddress_2,
+            cpCall: formInfos.cpCall,
+            ceoName: formInfos.ceoName,
+            ceoCall: formInfos.ceoCall,
+            ceoEmail: formInfos.ceoEmail_1 + formInfos.ceoEmail_2,
+            userId: formInfos.userId,
+            password: formInfos.password
+        };
+
+            try {
+                await AuthActions.registerCeo(ceoInfo);
+                this.submitBtn.classList.add('disabled');
+                if(this.props.isSuccess) {
+                    if(this.submitBtn.classList.contains('disabled')) {
+                        this.submitBtn.classList.remove('disabled');
+                    }
+                    // router 이동
+                }
+            } catch (e) {
+                const { message } = e.response.data;
+                this.addAlert('error', message);
+            }
         }
     }
 
@@ -181,7 +241,7 @@ class RegisterForm extends Component {
             <div className="register-form-container">
                 <ToastContainer ref="container"
                 toastMessageFactory={ToastMessageFactory}
-                className="toast-top-right"/>
+                className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}/>
                 {/* 가구업체 입력 폼 */}
                 <SubTitle title={"가구업체 정보입력"}/>
                 <div className="row form-box">
@@ -206,7 +266,7 @@ class RegisterForm extends Component {
                                onChange={changeHandler}/>
                     </div>
                     <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
-                        <button type="button" className="btn btn-primary" onClick={chkBusinessIdSubmit}>중복 확인</button>
+                        <button type="button" className="funfur-btn btn" onClick={chkBusinessIdSubmit}>중복 확인</button>
                     </div>
                 </div>
                 <div className="row form-box">
@@ -253,10 +313,10 @@ class RegisterForm extends Component {
                                required
                                onChange={changeHandler}/>
                     </div>
-                    <button type="button" className="btn btn-primary" onClick={execDaumPostCode}>우편번호 검색</button>
+                    <button type="button" className="btn funfur-btn" onClick={execDaumPostCode}>우편번호 검색</button>
                 </div>
                 <div className="row form-box">
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-2">
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3">
                         <input type="text"
                                ref={(input) => {this.addressInput = input}}
                                className="form-control"
@@ -267,7 +327,7 @@ class RegisterForm extends Component {
                     </div>
                 </div>
                 <div className="row form-box">
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-2">
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3">
                         <input type="text"
                                className="form-control"
                                name="cpAddress_2"
@@ -350,13 +410,13 @@ class RegisterForm extends Component {
                                onChange={changeHandler}/>
                     </div>
                     <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
-                        <button type="button" className="btn btn-primary" onClick={chkUserIdSubmit}>중복 확인</button>
+                        <button type="button" className="btn funfur-btn" onClick={chkUserIdSubmit}>중복 확인</button>
                     </div>
                 </div>
                 <div className="row form-box">
                     <FormLabel name="비밀번호 입력"/>
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
+                        <input type="password"
                                className="form-control"
                                name="password"
                                placeholder="띄어쓰기 없이 영문자나 숫자 포함 4-20자"
@@ -367,7 +427,7 @@ class RegisterForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="비밀번호 확인"/>
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
+                        <input type="password"
                                className="form-control"
                                name="repassword"
                                placeholder="위에서 입력한 비밀번호를 다시 한번 입력해주세요."
@@ -375,9 +435,11 @@ class RegisterForm extends Component {
                                onChange={changeHandler}/>
                     </div>
                 </div>
-                <div className="row">
-                    <button type="button" className="btn">취소</button>
-                    <button type="button" className="btn" onClick={handleSubmit}>다음</button>
+                <div className="row form-box padding-top50">
+                    <div className="btn-container">
+                        <Link to="/register_2" className="btn btn-common btn-prev">취소</Link>
+                        <button type="button" className="btn btn-common btn-next" onClick={handleSubmit} ref={(btn) => { this.submitBtn = btn }}>다음</button>
+                    </div>
                 </div>
             </div>
         );

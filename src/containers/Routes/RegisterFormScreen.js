@@ -26,7 +26,12 @@ export default connect(
         form: state.form.get('register'),
         status: {
             chkCompanyRegi: state.auth.getIn(['requests', 'checkCompanyRegistration']),
+            chkUserId: state.auth.getIn(['requests', 'checkUserId']),
             isSuccess: state.auth.get('isSuccess')
+        },
+        valid: {
+            bizId: state.auth.getIn(['valid', 'bizId']),
+            userId: state.auth.getIn(['valid', 'userId'])
         }
     }),
     dispatch => ({
