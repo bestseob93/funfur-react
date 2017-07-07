@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import * as requestStatus from 'helpers/requestStatus';
 import * as auth from 'helpers/request/auth';
 
@@ -6,6 +6,7 @@ import * as auth from 'helpers/request/auth';
 const CHECK_COMPANY_REGISTERATION = "registser/CHECK_COMPANY_REGISTERATION";
 const CHECK_USER_ID = "register/CHECK_USER_ID";
 const REGISTER_CEO = "register/REGISTER_CEO";
+const LOGIN_CEO = "login/LOGIN_CEO";
 
 console.log(requestStatus.request);
 /* Action Creators */
@@ -24,6 +25,11 @@ export const registerCeo = (ceoInfo) => ({
     payload: auth.requestRegisterCeo(ceoInfo)
 });
 
+export const loginCeo = (userId, pw) => ({
+    type: LOGIN_CEO,
+    payload: auth.requestLoginCeo(userId, pw)
+});
+
 const initialState = fromJS({
     requests: {
         checkCompanyRegistration: {
@@ -33,6 +39,9 @@ const initialState = fromJS({
             ...requestStatus.request
         },
         register: {
+            ...requestStatus.request
+        },
+        login: {
             ...requestStatus.request
         }
     },
@@ -69,6 +78,12 @@ export default function reducer(state = initialState, action) {
                         .set('isSuccess', action.payload.data.success);
         case `${REGISTER_CEO}_REJECTED`:
             return state.mergeIn(['requests', 'register'], requestStatus.rejected);
+        case `${LOGIN_CEO}_PENDING`:
+            return state.mergeIn(['requests', 'login'], requestStatus.pending);
+        case `${LOGIN_CEO}_FULFILLED`:
+            return state.mergeIn(['requests', 'login'], requestStatus.fulfilled);
+        case `${LOGIN_CEO}_REJECTED`:
+            return state.mergeIn(['requests', 'login'], requestStatus.rejected);
         default:
             return state;
     }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import crypto from 'crypto';
 import { encryptIt } from '../encrypt';
 
 const FUNFUR = process.env.REACT_APP_URL;
@@ -57,9 +56,16 @@ export const requestRegisterCeo = (ceoInfo) => {
         }).catch(err => {
             if(err) throw err;
         });
-    })
+    });
+}
 
-
-
-
+export const requestLoginCeo = (userId, pw) => {
+    return axios.post(`${FUNFUR}/auth_web/signin`, {
+        userId,
+        password: pw
+    }).then(res => {
+        return res;
+    }).catch(err => {
+        if(err) throw err;
+    });
 }

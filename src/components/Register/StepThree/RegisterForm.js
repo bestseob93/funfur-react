@@ -30,6 +30,8 @@ class RegisterForm extends Component {
     }
 
     componentDidMount() {
+        const { FormActions } = this.props;
+        FormActions.formReset('register');
         try {
             this.daum = global.daum;  // 글로벌 변수를 this.daum에 담음.
         } catch (e) {
@@ -222,8 +224,10 @@ class RegisterForm extends Component {
                 this.props.router.history.push('/register_4');
                 }
             } catch (e) {
-                const { message } = e.response.data;
-                this.addAlert('error', message);
+                if(e.response) {
+                    const { message } = e.response.data;
+                    this.addAlert('error', message);
+                }
             }
         }
     }

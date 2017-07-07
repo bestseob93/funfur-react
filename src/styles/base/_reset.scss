@@ -4,7 +4,10 @@ body {
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
+}
 
+h1,h2,h3,h4,h5,h6,p,span,ul,li,ol,div {
+  color: #676a6c;
 }
 
 html, body {
@@ -19,12 +22,25 @@ ul {
   margin: 0 !important;
 }
 
+.auth-top-border {
+    margin-top: 45px !important;
+    border-top: 3px solid $funfur-color;
+}
+
+div.toast-message {
+  color: #fff !important;
+}
+
 input.form-control {
   border: 3px solid #e5e6e7 !important;
   outline: 0px !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: none !important;
+}
+
+input.form-control.login-input {
+  height: 50px;
 }
 
 input.form-control:focus {
@@ -41,8 +57,13 @@ input.form-control:focus {
   border: 1px solid #fdc731;
 }
 
+/* common */
 .padding-top50 {
   padding-top: 50px;
+}
+
+.width100 {
+  width: 100% !important;
 }
 
 /* about buttons */

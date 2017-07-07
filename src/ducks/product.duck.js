@@ -1,8 +1,8 @@
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import * as requestStatus from 'helpers/requestStatus';
 
 /* Action Types */
-const PRODUCT_LIST = "PRODUCT_LIST";
+const PRODUCT_LIST = "product/PRODUCT_LIST";
 
 /* Action Creators */
 export const productList = (user_id) => ({

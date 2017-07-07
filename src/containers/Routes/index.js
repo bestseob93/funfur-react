@@ -4,6 +4,7 @@ import RegisterFormScreen from './RegisterFormScreen';
 import RegisterIntroScreen from './RegisterIntroScreen';
 import RegisterPendingScreen from './RegisterPendingScreen';
 import RegisterPolicyScreen from './RegisterPolicyScreen';
+import LoginScreen from './LoginScreen';
 
 export {
     HomeScreen,
@@ -12,4 +13,5 @@ export {
     RegisterIntroScreen,
     RegisterPendingScreen,
     RegisterPolicyScreen,
+    LoginScreen,
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 const RegisterTwo = ({ children }) => {
     return (
-        <div className="register-top-border container">
+        <div className="auth-top-border container">
             { children }
         </div>
     );

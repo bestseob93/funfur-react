@@ -6,6 +6,9 @@ body {
   color: #676a6c;
   overflow-x: hidden; }
 
+h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div {
+  color: #676a6c; }
+
 html, body {
   height: 100%; }
 
@@ -15,12 +18,22 @@ ul {
 .row {
   margin: 0 !important; }
 
+.auth-top-border {
+  margin-top: 45px !important;
+  border-top: 3px solid #fdd831; }
+
+div.toast-message {
+  color: #fff !important; }
+
 input.form-control {
   border: 3px solid #e5e6e7 !important;
   outline: 0px !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: none !important; }
+
+input.form-control.login-input {
+  height: 50px; }
 
 input.form-control:focus {
   border: 3px solid #fdd831 !important; }
@@ -33,8 +46,12 @@ input.form-control:focus {
   color: #fff !important;
   border: 1px solid #fdc731; }
 
+/* common */
 .padding-top50 {
   padding-top: 50px; }
+
+.width100 {
+  width: 100% !important; }
 
 /* about buttons */
 .btn-container {
@@ -1529,10 +1546,6 @@ a.navbar-toggle {
   font-weight: 600 !important;
   padding: 10px 20px !important; }
 
-.register-top-border {
-  margin-top: 45px;
-  border-top: 3px solid #fdd831; }
-
 .policy-checks {
   padding: 18px 0;
   border-bottom: 2px solid #e7eaec; }
@@ -1627,3 +1640,8 @@ div.row.form-box {
 @media only screen and (max-width: 768px) {
   .form-container {
     width: 100% !important; } }
+
+.middle-box {
+  max-width: 400px;
+  width: 300px;
+  margin: 0 auto; }

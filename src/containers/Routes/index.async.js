@@ -45,3 +45,4 @@ export const RegisterFormScreen = asyncRoute(()=> import('./RegisterFormScreen')
 export const RegisterIntroScreen = asyncRoute(()=> import('./RegisterIntroScreen'));
 export const RegisterPolicyScreen = asyncRoute(()=> import('./RegisterPolicyScreen'));
 export const RegisterPendingScreen = asyncRoute(()=> import('./RegisterPendingScreen'));
+export const LoginScreen = asyncRoute(()=> import('./LoginScreen'));
