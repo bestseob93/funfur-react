@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RegisterThree = ({ children }) => {
+function RegisterThree({ children }) {
     return (
         <div className="auth-top-border container _mb">
             { children }

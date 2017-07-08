@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RegisterIntro = () => {
+function RegisterIntro() {
     return (
         <div className="container register-intro">
             <h3 className="register-intro-advantage text-center">

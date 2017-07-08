@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NoMatchScreen = ({match}) => {
+function NoMatchScreen({match}) {
     return (
         <div>
             404 Not Found

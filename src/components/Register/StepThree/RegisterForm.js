@@ -26,7 +26,6 @@ class RegisterForm extends Component {
         this.onOpenClick = this.onOpenClick.bind(this);
         this.chkBusinessIdSubmit = this.chkBusinessIdSubmit.bind(this);
         this.chkUserIdSubmit = this.chkUserIdSubmit.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -43,11 +42,11 @@ class RegisterForm extends Component {
     addAlert(types, msg) {  /* enum of types: ['warning', 'success', 'error', 'info'],  msg: String */
         switch(types) {
             case 'warning':
-                return this.refs.container.warning(`${msg}`);
+                return this.toastRef.warning(`${msg}`);
             case 'success':
-                return this.refs.container.success(`${msg}`);
+                return this.toastRef.success(`${msg}`);
             case 'error':
-                return this.refs.container.error(`${msg}`);
+                return this.toastRef.error(`${msg}`);
             default:
                 break;
         }
@@ -134,6 +133,7 @@ class RegisterForm extends Component {
         const { AuthActions, form } = this.props;
         let self = this;
         let businessId = form.get('businessId');
+        console.log('aa');
         checkBizID(businessId).then(async (checked) => {
             if(checked) {
                 try {
@@ -147,6 +147,10 @@ class RegisterForm extends Component {
                     this.addAlert('error', message);
                 }
             } else {
+                this.addAlert('warning', '사업자 등록번호를 확인해주세요.');
+            }
+        }).catch(err => {
+            if(err) {
                 this.addAlert('warning', '사업자 등록번호를 확인해주세요.');
             }
         });
@@ -251,38 +255,48 @@ class RegisterForm extends Component {
                 {/* 스피너 */}
                 { this.props.status.register.get('fetching') ? (<Spinner/>) : null }
                 {/* 토스트 컨테이너 */}
-                <ToastContainer ref="container"
-                toastMessageFactory={ToastMessageFactory}
-                className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}/>
+                <ToastContainer
+                    ref={(toast) => {this.toastRef = toast}}
+                    toastMessageFactory={ToastMessageFactory}
+                    className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}
+                />
                 {/* 가구업체 입력 폼 */}
-                <SubTitle title={"가구업체 정보입력"}/>
+                <SubTitle title={"가구업체 정보입력"} />
                 <div className="row form-box">
-                    <FormLabel name="업체명"/>
+                    <FormLabel name="업체명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="cpName"
-                               placeholder="업체명을 적어주세요."
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cpName"
+                            placeholder="업체명을 적어주세요."
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="사업자 등록번호"/>
+                    <FormLabel name="사업자 등록번호" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="businessId"
-                               placeholder="사업자 등록번호를 적어주세요.( '-' 제외하고 숫자만 적어주세요.)"
-                               required
-                               onChange={changeHandler}/>
+                        <input 
+                            type="text"
+                            className="form-control"
+                            name="businessId"
+                            placeholder="사업자 등록번호를 적어주세요.( '-' 제외하고 숫자만 적어주세요.)"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                     <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
-                        <button type="button" className="funfur-btn btn" onClick={chkBusinessIdSubmit}>중복 확인</button>
+                        <button
+                            type="button"
+                            className="funfur-btn btn"
+                            onClick={chkBusinessIdSubmit}>중복 확인
+                        </button>
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="사업자 등록증"/>
+                    <FormLabel name="사업자 등록증" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         { formValues.businessIdImage.length > 0 ?  <div className="dropzone-hidden">
                                                             <Dropzone
@@ -315,93 +329,116 @@ class RegisterForm extends Component {
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="사업자 주소"/>
+                    <FormLabel name="사업자 주소" />
                     <div className="col-md-2 col-xs-5 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               ref={(input) => {this.postCodeInput = input}}
-                               className="form-control"
-                               name="postCode"
-                               placeholder="우편번호"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            ref={(input) => {this.postCodeInput = input}}
+                            className="form-control"
+                            name="postCode"
+                            placeholder="우편번호"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
-                    <button type="button" className="btn funfur-btn" onClick={execDaumPostCode}>우편번호 검색</button>
+                    <button
+                        type="button"
+                        className="btn funfur-btn"
+                        onClick={execDaumPostCode}>우편번호 검색
+                    </button>
                 </div>
                 <div className="row form-box">
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3">
-                        <input type="text"
-                               ref={(input) => {this.addressInput = input}}
-                               className="form-control"
-                               name="cpAddress_1"
-                               placeholder="주소"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            ref={(input) => {this.addressInput = input}}
+                            className="form-control"
+                            name="cpAddress_1"
+                            placeholder="주소"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3">
-                        <input type="text"
-                               className="form-control"
-                               name="cpAddress_2"
-                               placeholder="나머지 주소"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cpAddress_2"
+                            placeholder="나머지 주소"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
-                     <div ref={(post) => { this.postWrap = post }} className="col-md-offset-3 col-md-6 col-xs-10 col-xs-offset-1"></div>
+                     <div
+                        ref={(post) => { this.postWrap = post }}
+                        className="col-md-offset-3 col-md-6 col-xs-10 col-xs-offset-1">
+                    </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="사업장 연락처"/>
+                    <FormLabel name="사업장 연락처" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="cpCall"
-                               placeholder="사업장 연락처를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cpCall"
+                            placeholder="사업장 연락처를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 {/* 사장님 개인 정보 입력 폼 */}
-                <SubTitle title={"개인 정보입력"}/>
+                <SubTitle title={"개인 정보입력"} />
                 <div className="row form-box">
-                    <FormLabel name="사장님 성함"/>
+                    <FormLabel name="사장님 성함" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="ceoName"
-                               placeholder="성함을 적어주세요."
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="ceoName"
+                            placeholder="성함을 적어주세요."
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="휴대폰 번호"/>
+                    <FormLabel name="휴대폰 번호" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="ceoCall"
-                               placeholder="휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="ceoCall"
+                            placeholder="휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="이메일 주소"/>
+                    <FormLabel name="이메일 주소" />
                     <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="ceoEmail_1"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="ceoEmail_1"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                     <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="ceoEmail_2"
-                               placeholder="gmail.com"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="ceoEmail_2"
+                            placeholder="gmail.com"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                     <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select className="form-control">
@@ -410,47 +447,65 @@ class RegisterForm extends Component {
                     </div>
                 </div>
                 {/*계정 정보 입력*/}
-                <SubTitle title={"계정 정보입력"}/>
+                <SubTitle title={"계정 정보입력"} />
                 <div className="row form-box">
-                    <FormLabel name="아이디"/>
+                    <FormLabel name="아이디" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="text"
-                               className="form-control"
-                               name="userId"
-                               placeholder="띄어쓰기 없이 영문자나 숫자 4-20자"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="userId"
+                            placeholder="띄어쓰기 없이 영문자나 숫자 4-20자"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                     <div className="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1">
-                        <button type="button" className="btn funfur-btn" onClick={chkUserIdSubmit}>중복 확인</button>
+                        <button
+                            type="button"
+                            className="btn funfur-btn"
+                            onClick={chkUserIdSubmit}>중복 확인
+                        </button>
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="비밀번호 입력"/>
+                    <FormLabel name="비밀번호 입력" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="password"
-                               className="form-control"
-                               name="password"
-                               placeholder="띄어쓰기 없이 영문자나 숫자 포함 4-20자"
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="password"
+                            placeholder="띄어쓰기 없이 영문자나 숫자 포함 4-20자"
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
-                    <FormLabel name="비밀번호 확인"/>
+                    <FormLabel name="비밀번호 확인" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input type="password"
-                               className="form-control"
-                               name="repassword"
-                               placeholder="위에서 입력한 비밀번호를 다시 한번 입력해주세요."
-                               required
-                               onChange={changeHandler}/>
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="repassword"
+                            placeholder="위에서 입력한 비밀번호를 다시 한번 입력해주세요."
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box padding-top50">
                     <div className="btn-container">
-                        <Link to="/register_2" className="btn btn-common btn-prev">취소</Link>
-                        <button type="button" className="btn btn-common btn-next" onClick={handleSubmit} ref={(btn) => { this.submitBtn = btn }}>다음</button>
+                        <Link
+                            to="/register_2"
+                            className="btn btn-common btn-prev">취소
+                        </Link>
+                        <button
+                            type="button"
+                            className="btn btn-common btn-next"
+                            onClick={handleSubmit}
+                            ref={(btn) => { this.submitBtn = btn }}>다음
+                        </button>
                     </div>
                 </div>
             </div>

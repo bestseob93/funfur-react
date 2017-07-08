@@ -32,11 +32,17 @@ export const requestRegisterCeo = (ceoInfo) => {
     var idOutPut = encryptIt(ceoInfo.userId);
     var pwOutPut = encryptIt(ceoInfo.password);
     console.log(ceoInfo);
-
+    console.log(typeof nameOutPut);
+    console.log(typeof phoneOutPut);
+    console.log(typeof emailOutPut);
+    console.log(typeof idOutPut);
+    console.log(typeof pwOutPut);
     return Promise.all([nameOutPut, phoneOutPut, emailOutPut, idOutPut, pwOutPut]).then((values) => {
         const idImage = Array.prototype.slice.call(ceoInfo.businessIdImage);
         let formData = new FormData();
 
+        console.log('email: ' + values[2]);
+        console.log('id: ' + values[3]);
         formData.append('companyName', ceoInfo.cpName);
         formData.append('businessId', ceoInfo.businessId);
         formData.append('business_registration', idImage[0]);
@@ -46,7 +52,7 @@ export const requestRegisterCeo = (ceoInfo) => {
         formData.append('name', values[0]);
         formData.append('phone_number', values[1]);
         formData.append('email', values[2]);
-        formData.append('login_id', values[3]);
+        formData.append('userId', values[3]);
         formData.append('password', values[4]);
 
         return axios.post(`${FUNFUR}/auth_web/signup`,

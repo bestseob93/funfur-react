@@ -1,8 +1,6 @@
 import React from 'react';
 
-const RegisterTitle = ({title}) => {
-    console.log(title);
-    let contents;
+function RegisterTitle({title}) {
     if(title === 'policy') {
         return (
             <div className="register-title">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = ({children}) => {
+function Login({children}) {
     return (
         <div className="auth-top-border middle-box text-center">
             { children }

@@ -6,6 +6,7 @@ export function checkBizID(bizId) {
             }
 
             if(bizId.length !== 10) {
+                console.log('a');
                 resolve(false);
             }
             let checkID = "137137135";
@@ -24,7 +25,8 @@ export function checkBizID(bizId) {
             if(bizId.charAt(9) == lastNumber) {
                 resolve(true);
             } else {
-                reject(false);
+                console.log('??');
+                reject('잘못된 사업자 번호');
             }
         }
     );

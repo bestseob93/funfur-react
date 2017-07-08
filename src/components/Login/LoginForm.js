@@ -27,11 +27,11 @@ class LoginForm extends Component {
     addAlert(types, msg) {  /* enum of types: ['warning', 'success', 'error', 'info'],  msg: String */
         switch(types) {
             case 'warning':
-                return this.refs.container.warning(`${msg}`);
+                return this.toastRef.warning(`${msg}`);
             case 'success':
-                return this.refs.container.success(`${msg}`);
+                return this.toastRef.success(`${msg}`);
             case 'error':
-                return this.refs.container.error(`${msg}`);
+                return this.toastRef.error(`${msg}`);
             default:
                 break;
         }
@@ -56,10 +56,10 @@ class LoginForm extends Component {
         let pw = form.get('password');
         if(userId === '' || typeof userId !== 'string') {
             this.addAlert('warning', '아이디를 입력해주세요!');
-            this.refs.idInput.focus();
+            this.idInput.focus();
         } else if(pw === '' || typeof pw !== 'string') {
             this.addAlert('warning', '비밀번호를 입력해주세요!');
-            this.refs.pwInput.focus();
+            this.pwInput.focus();
         } else {
             try {
                 await AuthActions.loginCeo(userId, pw);
@@ -81,11 +81,11 @@ class LoginForm extends Component {
         var a = LocalForage.getItem('hi');
         console.log(a);
         if(userId === '' || typeof userId !== 'string') {
-            this.refs.idInput.focus();
+            this.idInput.focus();
         } else if(pw === '' || typeof pw !== 'string') {
-            this.refs.pwInput.focus();
+            this.pwInput.focus();
         } else {
-            this.refs.idInput.focus();
+            this.idInput.focus();
         }
     }
 
@@ -99,17 +99,19 @@ class LoginForm extends Component {
         return (
             <div className="login-form">
                 {/* 스피너 */}
-                { this.props.status.login.get('fetching') ? (<Spinner/>) : null }
+                { this.props.status.login.get('fetching') ? (<Spinner />) : null }
                 {/* 토스트 컨테이너 */}
-                <ToastContainer ref="container"
-                                toastMessageFactory={ToastMessageFactory}
-                                className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}
-                                onClick={handleToastOff}/>
+                <ToastContainer
+                    ref={(toast) => { this.toastRef = toast }}
+                    toastMessageFactory={ToastMessageFactory}
+                    className={ document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right' }
+                    onClick={handleToastOff}
+                />
                 <h1 className="funfur-color">뻔뻐</h1>
                 <h3>뻔뻐에 오신걸 환영합니다.</h3>
                 <div className="form-group">
                     <input
-                        ref="idInput"
+                        ref={(input) => { this.idInput = input }}
                         type="text"
                         className="form-control login-input"
                         name="userId"
@@ -120,7 +122,7 @@ class LoginForm extends Component {
                 </div>
                 <div className="form-group">
                     <input
-                        ref="pwInput"
+                        ref={(input) => { this.pwInput = input }}
                         type="password"
                         className="form-control login-input"
                         name="password"
@@ -129,15 +131,20 @@ class LoginForm extends Component {
                         onChange={changeHandler}
                     />
                 </div>
-                <button type="button"
-                        className="btn funfur-btn width100"
-                        onClick={handleSubmit}>로그인
+                <button
+                    type="button"
+                    className="btn funfur-btn width100"
+                    onClick={handleSubmit}>로그인
                 </button>
                 <div className="find-wrapper">
                     <Link to="/findAuth">아이디/패스워드 찾기</Link>
                     <p>뻔뻐에 아직 입주 안했나요?</p>
                 </div>
-                <Link to="/register" className="btn btn-prev btn-common width100" style={{margin: 0}}>회원가입</Link>
+                <Link
+                    to="/register"
+                    className="btn btn-prev btn-common width100"
+                    style={{ margin: 0 }}>회원가입
+                </Link>
             </div>
         );
     }

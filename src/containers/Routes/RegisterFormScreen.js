@@ -5,27 +5,33 @@ import { connect } from 'react-redux';
 import {
     RegisterForm,
     RegisterThree,
-    RegisterTitle } from 'components/Register';
+    RegisterTitle
+} from 'components/Register';
+
 import * as authDuck from 'ducks/auth.duck';
 import * as formDuck from 'ducks/form.duck';
 
-class RegisterFormScreen extends Component {
-    static contextTypes = {
-        router: PropTypes.object
-    };
+const contextTypes = {
+    router: PropTypes.object
+};
 
+class RegisterFormScreen extends Component {
     render() {
         console.log(this.props.status.chkCompanyRegi.toJS());
         console.log(this.context);
         return (
             <RegisterThree>
-                <RegisterTitle title={'form'}/>
-                <RegisterForm {...this.props} router={this.context.router}/>
+                <RegisterTitle title={'form'} />
+                <RegisterForm
+                    {...this.props}
+                    router={this.context.router}
+                />
             </RegisterThree>
         );
     }
 }
 
+RegisterFormScreen.contextTypes = contextTypes;
 
 export default connect(
     state => ({

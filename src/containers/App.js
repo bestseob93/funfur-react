@@ -5,14 +5,19 @@ import {
 } from 'react-router-dom';
 
 import 'styles/style.css';
-import { Header, Footer } from 'components/Base';
+import {
+  Header,
+  Footer
+} from 'components/Base';
+
 import { 
   HomeScreen,
   RegisterFormScreen,
   RegisterIntroScreen,
   RegisterPolicyScreen,
   RegisterPendingScreen,
-  LoginScreen } from './Routes';
+  LoginScreen
+} from './Routes';
 
 class App extends Component {
   render() {
@@ -20,17 +25,36 @@ class App extends Component {
       <Router>
         <div>
           {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
-          <Header/>
+          <Header />
           <div className="spacer">
               &nbsp;
           </div>
-            <Route exact path="/" component={HomeScreen}/>
-            <Route path="/register" component={RegisterIntroScreen}/>
-            <Route path="/register_2" component={RegisterPolicyScreen}/>
-            <Route path="/register_3" component={RegisterFormScreen}/>
-            <Route path="/register_4" component={RegisterPendingScreen}/>
-            <Route path="/login" component={LoginScreen}/>
-          <Footer/>
+            <Route
+              exact
+              path="/"
+              component={HomeScreen}
+            />
+            <Route
+              path="/register"
+              component={RegisterIntroScreen}
+            />
+            <Route
+              path="/register_2"
+              component={RegisterPolicyScreen}
+            />
+            <Route
+              path="/register_3"
+              component={RegisterFormScreen}
+            />
+            <Route
+              path="/register_4"
+              component={RegisterPendingScreen}
+            />
+            <Route
+              path="/login"
+              component={LoginScreen}
+            />
+          <Footer />
         </div>
       </Router>
     );
