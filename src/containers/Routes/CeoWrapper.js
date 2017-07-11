@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import {
     CeoHome,
-    CeoSellingProduct
+    CeoSellingProduct,
+    CeoProductUpload,
 } from './CeoRoutes';
 
 import {
@@ -63,6 +64,7 @@ class CeoWrapper extends Component {
                     <CeoHeader/>
                     <Route exact path={match.url} component={CeoHome}/>
                     <Route path={`${match.url}/products`} component={CeoSellingProduct}/>
+                    <Route path={`${match.url}/upload`} component={CeoProductUpload}/>
                 </div>
             </div>
         );

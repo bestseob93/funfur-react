@@ -27,6 +27,22 @@ const initialState = Map({
     login: Map({
         userId: '',
         password: ''
+    }),
+    product: Map({
+        productName: '',
+        productPosition: '',
+        firstSort: '',
+        secondSort: '',
+        modelName: '',
+        modelOption: '',
+        productColor: '',
+        sizeWidth: '',
+        sizeHeight: '',
+        mainMaterial: '',
+        prManufacturer: '',
+        productOrigin: '',
+        productPrice: '',
+        asIntro: ''
     })
 });
 

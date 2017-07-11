@@ -6,6 +6,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 h1,h2,h3,h4,h5,h6,p,span,ul,li,ol,div,i {
   color: #676a6c;
 }
@@ -17,6 +21,7 @@ html, body {
 ul {
     padding: 0;
 }
+
 
 .row {
   margin: 0 !important;
@@ -101,6 +106,10 @@ input.form-control:focus {
 /* about input */
 ._input_label {
   text-align: right;
+}
+
+div.row.sub-title {
+  padding-bottom: 30px;
 }
 
 @media only screen and (max-width: 768px) {

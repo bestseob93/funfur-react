@@ -12,6 +12,7 @@
     "jquery": "^3.2.1",
     "localforage": "^1.5.0",
     "react": "^15.5.4",
+    "react-bootstrap-sweetalert": "^3.0.0",
     "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.3",

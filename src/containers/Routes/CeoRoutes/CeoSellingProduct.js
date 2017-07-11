@@ -1,10 +1,15 @@
 import React from 'react';
-import { ProductContainer } from 'components/Ceo/Product';
+import {
+    ProductContainer,
+    ProductHeader,
+    ProductContents
+} from 'components/Ceo/Product';
 
 function CeoCurrentProduct() {
     return (
         <ProductContainer>
-            현재 물건
+            <ProductHeader />
+            <ProductContents />
         </ProductContainer>
     );
 }

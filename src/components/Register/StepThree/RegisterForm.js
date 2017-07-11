@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
-import FormLabel from './FormLabel';
-import SubTitle from './SubTitle';
-import { Spinner } from 'components/Common';
+import {
+    Spinner,
+    SubTitle,
+    FormLabel
+} from 'components/Common';
 
 import { checkBizID } from 'helpers/checkBizId';
 
