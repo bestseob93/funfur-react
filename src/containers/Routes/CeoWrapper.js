@@ -52,6 +52,7 @@ class CeoWrapper extends Component {
     render() {
         const { match } = this.props;
         const { handleSideMenu } = this;
+        console.log(this.props);
         return (
             <div>
                 <SideBar
