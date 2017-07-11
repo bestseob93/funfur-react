@@ -20,15 +20,7 @@ class CeoWrapper extends Component {
         super(props);
 
         this.handleUiAction = this.handleUiAction.bind(this);
-    }
-
-    handleUiAction(hide) {
-        const { UiActions } = this.props;
-        if(hide) {
-            UiActions.hideHeaderFooter();
-        } else {
-            UiActions.showHeaderFooter();
-        }
+        this.handleSideMenu = this.handleSideMenu.bind(this);
     }
 
     componentDidMount() {
@@ -43,11 +35,29 @@ class CeoWrapper extends Component {
         this.handleUiAction(false); // ceo 페이지 언마운트 시 기존 헤더 / 푸터 쇼
     }
 
+    handleUiAction(hide) {
+        const { UiActions } = this.props;
+        if(hide) {
+            UiActions.hideHeaderFooter();
+        } else {
+            UiActions.showHeaderFooter();
+        }
+    }
+
+    handleSideMenu(index) {
+        const { UiActions } = this.props;
+        UiActions.setListIndex(index);
+    }
+
     render() {
         const { match } = this.props;
+        const { handleSideMenu } = this;
         return (
             <div>
-                <SideBar/>
+                <SideBar
+                    onClick={handleSideMenu}
+                    listIndex={this.props.listIndex}
+                />
                 <div className="ceo-page-wrapper">
                     <CeoHeader/>
                     <Route exact path={match.url} component={CeoHome}/>
@@ -60,7 +70,8 @@ class CeoWrapper extends Component {
 
 export default connect(
     state => ({
-        visible: state.ui.getIn(['visible', 'base'])
+        visible: state.ui.getIn(['visible', 'base']),
+        listIndex: state.ui.get('listIndex')
     }),
     dispatch => ({
         UiActions: bindActionCreators(uiDuck, dispatch)

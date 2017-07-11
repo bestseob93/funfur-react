@@ -253,7 +253,7 @@ class RegisterForm extends Component {
         return (
             <div className="register-form-container">
                 {/* 스피너 */}
-                { this.props.status.register.get('fetching') ? (<Spinner/>) : null }
+                { this.props.status.register.get('fetching') && (<Spinner/>) }
                 {/* 토스트 컨테이너 */}
                 <ToastContainer
                     ref={(toast) => {this.toastRef = toast}}

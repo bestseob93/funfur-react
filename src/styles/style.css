@@ -6,7 +6,7 @@ body {
   color: #676a6c;
   overflow-x: hidden; }
 
-h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div {
+h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, i {
   color: #676a6c; }
 
 html, body {
@@ -1676,12 +1676,36 @@ div.row.form-box {
     .navbar-static-side .side-nav li {
       position: relative;
       display: block; }
+      .navbar-static-side .side-nav li a:hover, .navbar-static-side .side-nav li afocus {
+        background-color: #fdd831;
+        color: #000; }
       .navbar-static-side .side-nav li .nav-link {
         position: relative;
         display: block;
-        padding: 14px 20px 14px 25px; }
+        padding: 14px 20px 14px 25px;
+        text-decoration: none;
+        color: #a7b1c2;
+        font-weight: 600; }
+        .navbar-static-side .side-nav li .nav-link .side-menu-right {
+          float: right; }
         .navbar-static-side .side-nav li .nav-link i {
-          margin-right: 6px; }
+          margin-right: 6px;
+          color: inherit; }
+        .navbar-static-side .side-nav li .nav-link span {
+          color: inherit; }
+        .navbar-static-side .side-nav li .nav-link span.label-info {
+          color: #000;
+          background-color: #fdd831; }
+      .navbar-static-side .side-nav li .nav-link.second-depth {
+        padding: 7px 10px 7px 10px;
+        padding-left: 52px; }
+    .navbar-static-side .side-nav li.active {
+      border-left: 4px solid #fdd831;
+      background: #fff;
+      -webkit-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      -o-transition: all 0.4s;
+      transition: all 0.4s; }
 
 @media only screen and (min-width: 768px) {
   .navbar-static-side {

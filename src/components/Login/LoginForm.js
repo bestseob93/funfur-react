@@ -106,7 +106,7 @@ class LoginForm extends Component {
         return (
             <div className="login-form">
                 {/* 스피너 */}
-                { this.props.status.login.get('fetching') ? (<Spinner />) : null }
+                { this.props.status.login.get('fetching') && (<Spinner />) }
                 {/* 토스트 컨테이너 */}
                 <ToastContainer
                     ref={(toast) => { this.toastRef = toast }}

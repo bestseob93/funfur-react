@@ -29,15 +29,47 @@
         li {
             position: relative;
             display: block;
+            a:hover, afocus {
+                background-color: $funfur-color;
+                color: #000;
+            }
             .nav-link {
                 position: relative;
                 display: block;
                 padding: 14px 20px 14px 25px;
+                text-decoration: none;
+                color: #a7b1c2;
+                font-weight: 600;
+
+                .side-menu-right {
+                    float: right;
+                }
 
                 i {
                     margin-right: 6px;
+                    color: inherit;
+                }
+                span {
+                    color: inherit;
+                }
+                span.label-info {
+                    color: #000;
+                    background-color: $funfur-color;
                 }
             }
+            .nav-link.second-depth {
+                padding: 7px 10px 7px 10px;
+                padding-left: 52px;
+            }
+        }
+        li.active {
+            border-left: 4px solid $funfur-color;
+            background: #fff;
+            -webkit-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            transition: all 0.4s;
+
         }
     }
 }
