@@ -7,9 +7,14 @@ const CHECK_COMPANY_REGISTERATION = "registser/CHECK_COMPANY_REGISTERATION";
 const CHECK_USER_ID = "register/CHECK_USER_ID";
 const REGISTER_CEO = "register/REGISTER_CEO";
 const LOGIN_CEO = "login/LOGIN_CEO";
+const TOKEN_TEST = "login/TOKEN_TEST";
 
-console.log(requestStatus.request);
 /* Action Creators */
+export const tokenTest = (token) => ({
+    type: TOKEN_TEST,
+    payload: auth.requestTokenTest(token)
+});
+
 export const checkCompanyRegistration = (companyNumber) => ({
     type: CHECK_COMPANY_REGISTERATION,
     payload: auth.requestChkCompanyRegi(companyNumber)
@@ -45,7 +50,9 @@ const initialState = fromJS({
             ...requestStatus.request
         }
     },
+    token: null,
     valid: {
+        login: false,
         bizId: false,
         userId: false
     },
@@ -55,6 +62,12 @@ const initialState = fromJS({
 /* REDUCER */
 export default function reducer(state = initialState, action) {
     switch(action.type) {
+        case `${TOKEN_TEST}_PENDING`:
+            return state;
+        case `${TOKEN_TEST}_FULFILLED`:
+            return state;
+        case `${TOKEN_TEST}_REJECTED`:
+            return state;
         case `${CHECK_COMPANY_REGISTERATION}_PENDING`:
             return state.mergeIn(['requests', 'checkCompanyRegistration'], requestStatus.pending);
         case `${CHECK_COMPANY_REGISTERATION}_FULFILLED`:
@@ -81,7 +94,9 @@ export default function reducer(state = initialState, action) {
         case `${LOGIN_CEO}_PENDING`:
             return state.mergeIn(['requests', 'login'], requestStatus.pending);
         case `${LOGIN_CEO}_FULFILLED`:
-            return state.mergeIn(['requests', 'login'], requestStatus.fulfilled);
+            return state.mergeIn(['requests', 'login'], requestStatus.fulfilled)
+                        .setIn(['valid', 'login'], true)
+                        .set('token', action.payload.data.token);
         case `${LOGIN_CEO}_REJECTED`:
             return state.mergeIn(['requests', 'login'], requestStatus.rejected);
         default:

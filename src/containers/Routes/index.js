@@ -5,6 +5,7 @@ import RegisterIntroScreen from './RegisterIntroScreen';
 import RegisterPendingScreen from './RegisterPendingScreen';
 import RegisterPolicyScreen from './RegisterPolicyScreen';
 import LoginScreen from './LoginScreen';
+import CeoWrapper from './CeoWrapper';
 
 export {
     HomeScreen,
@@ -14,4 +15,5 @@ export {
     RegisterPendingScreen,
     RegisterPolicyScreen,
     LoginScreen,
+    CeoWrapper,
 };

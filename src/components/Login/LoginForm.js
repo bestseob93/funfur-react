@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LocalForage from 'localforage';
 import { Link } from 'react-router-dom';
 import { Spinner } from 'components/Common';
+import storage from 'helpers/localForage.helper';
 
 var ReactToastr = require('react-toastr');
 var { ToastContainer } = ReactToastr; // This is a React Element.
@@ -63,10 +64,16 @@ class LoginForm extends Component {
         } else {
             try {
                 await AuthActions.loginCeo(userId, pw);
+                console.log(this.props.valid.login);
+                console.log(this.props.status.token);
+                if(this.props.valid.login) {
+                    storage.set('token', this.props.status.token);
+                    this.props.router.history.push('/');
+                }
             } catch (e) {
-                if(e.response) {
-                    const { message } = e.response.data;
-                    this.addAlert('error', message);
+                console.log(e);
+                if(e) {
+                    this.addAlert('error', '아이디나 패스워드를 확인해주세요!');
                 }
             }
         }

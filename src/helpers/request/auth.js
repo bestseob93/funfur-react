@@ -3,6 +3,21 @@ import { encryptIt } from '../encrypt';
 
 const FUNFUR = process.env.REACT_APP_URL;
 
+export const requestTokenTest = (token) => {
+    console.log(token);
+                return axios({
+                    method: 'GET',
+                    url: `${FUNFUR}/auth_web/hiThere`,
+                    headers: {
+                        Authorization: token
+                    }
+                }).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    if(err) throw err;
+                });
+}
+
 export const requestChkCompanyRegi = (companyNumber) => {
     return encryptIt(companyNumber).then((result) => {
             return axios.post(`${FUNFUR}/auth_web/chkBusinessId`, {
@@ -67,7 +82,7 @@ export const requestRegisterCeo = (ceoInfo) => {
 
 export const requestLoginCeo = (userId, pw) => {
     return axios.post(`${FUNFUR}/auth_web/signin`, {
-        userId,
+        login_id: userId,
         password: pw
     }).then(res => {
         return res;

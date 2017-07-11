@@ -239,6 +239,10 @@ module.exports = {
         /^\.\/Routes$/,
         './Routes/index.async.js'
     ),
+    new webpack.NormalModuleReplacementPlugin(
+      /^\.\/CeoRoutes$/,
+      './CeoRoutes/index.async.js'
+    ),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
     }),

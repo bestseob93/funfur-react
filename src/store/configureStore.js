@@ -3,11 +3,13 @@ import promiseMiddleware from 'redux-promise-middleware';
 import auth from 'ducks/auth.duck';
 import product from 'ducks/product.duck';
 import form from 'ducks/form.duck';
+import ui from 'ducks/ui.duck';
 
 const rootReducer = {
     auth,
     product,
     form,
+    ui,
 };
 
 // const reducer = combineReducers(auth);

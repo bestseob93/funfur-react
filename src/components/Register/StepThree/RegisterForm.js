@@ -212,7 +212,7 @@ class RegisterForm extends Component {
             cpCall: formInfos.cpCall,
             ceoName: formInfos.ceoName,
             ceoCall: formInfos.ceoCall,
-            ceoEmail: formInfos.ceoEmail_1 + formInfos.ceoEmail_2,
+            ceoEmail: formInfos.ceoEmail_1 + "@" + formInfos.ceoEmail_2,
             userId: formInfos.userId,
             password: formInfos.password
         };

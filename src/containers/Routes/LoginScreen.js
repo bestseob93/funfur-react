@@ -8,15 +8,31 @@ import {
     LoginForm
 } from 'components/Login';
 
+/* duck */
 import * as authDuck from 'ducks/auth.duck';
 import * as formDuck from 'ducks/form.duck';
+
+/* helpers */
+import storage from 'helpers/localForage.helper';
 
 const contextTypes = {
     router: PropTypes.object
 };
 
 class LoginScreen extends Component {
+    componentDidMount() {
+        const { AuthActions } = this.props;
+        
+        storage.get('token').then((value) => {
+           console.log(value);
+            if(value) {
+                AuthActions.tokenTest(value);
+            } 
+        }).catch((err) => {
+            if(err) throw err;
+        });
 
+    }
     render() {
         return (
             <Login>
@@ -35,7 +51,11 @@ export default connect(
     state => ({
         form: state.form.get('login'),
         status: {
-            login: state.auth.getIn(['requests', 'login'])
+            login: state.auth.getIn(['requests', 'login']),
+            token: state.auth.get('token')
+        },
+        valid: {
+            login: state.auth.getIn(['valid', 'login'])
         }
     }),
     dispatch => ({

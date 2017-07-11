@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { 
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 import 'styles/style.css';
 import {
   Header,
@@ -16,7 +17,8 @@ import {
   RegisterIntroScreen,
   RegisterPolicyScreen,
   RegisterPendingScreen,
-  LoginScreen
+  LoginScreen,
+  CeoWrapper,
 } from './Routes';
 
 class App extends Component {
@@ -25,10 +27,9 @@ class App extends Component {
       <Router>
         <div>
           {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
-          <Header />
-          <div className="spacer">
-              &nbsp;
-          </div>
+          { this.props.visible.base ? <Header /> : null }
+          { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null }
+
             <Route
               exact
               path="/"
@@ -54,11 +55,23 @@ class App extends Component {
               path="/login"
               component={LoginScreen}
             />
-          <Footer />
+            <Route
+              path="/ceo"
+              component={CeoWrapper}
+            />
+          { this.props.visible.base ? <Footer /> : null }
         </div>
       </Router>
     );
   }
 }
 
-export default App;
+export default connect(
+    state => ({
+        visible: {
+          base: state.ui.getIn(['visible', 'base']),
+          dashboard: state.ui.getIn(['visible', 'dashboard'])
+        }
+    }),
+    null
+)(App);

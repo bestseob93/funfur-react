@@ -1,0 +1,13 @@
+.ceo-page-wrapper {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+@media only screen and (min-width: 768px) {
+    .ceo-page-wrapper {
+        position: relative;
+        margin: 0 0 0 220px;
+    }
+}
