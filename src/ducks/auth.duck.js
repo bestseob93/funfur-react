@@ -8,6 +8,7 @@ const CHECK_USER_ID = "register/CHECK_USER_ID";
 const REGISTER_CEO = "register/REGISTER_CEO";
 const LOGIN_CEO = "login/LOGIN_CEO";
 const TOKEN_TEST = "login/TOKEN_TEST";
+const CHECK_TOKEN = "auth/CHECK_TOKEN";
 
 /* Action Creators */
 export const tokenTest = (token) => ({
@@ -35,6 +36,11 @@ export const loginCeo = (userId, pw) => ({
     payload: auth.requestLoginCeo(userId, pw)
 });
 
+export const checkToken = (token) => ({
+    type: CHECK_TOKEN,
+    payload: auth.requestCheckToken(token)
+});
+
 const initialState = fromJS({
     requests: {
         checkCompanyRegistration: {
@@ -48,9 +54,13 @@ const initialState = fromJS({
         },
         login: {
             ...requestStatus.request
+        },
+        checkToken: {
+            ...requestStatus.request
         }
     },
     token: null,
+    authenticated: false,
     valid: {
         login: false,
         bizId: false,
@@ -96,9 +106,18 @@ export default function reducer(state = initialState, action) {
         case `${LOGIN_CEO}_FULFILLED`:
             return state.mergeIn(['requests', 'login'], requestStatus.fulfilled)
                         .setIn(['valid', 'login'], true)
-                        .set('token', action.payload.data.token);
+                        .set('token', action.payload.data.token)
+                        .set('authenticated', true);
         case `${LOGIN_CEO}_REJECTED`:
             return state.mergeIn(['requests', 'login'], requestStatus.rejected);
+        case `${CHECK_TOKEN}_PENDING`:
+            return state.mergeIn(['requests', 'checkToken'], requestStatus.pending);
+        case `${CHECK_TOKEN}_FULFILLED`:
+            return state.mergeIn(['requests', 'checkToken'], requestStatus.fulfilled)
+                        .set('authenticated', true);
+        case `${CHECK_TOKEN}_REJECTED`:
+            return state.mergeIn(['requests', 'checkToken'], requestStatus.rejected)
+                        .set('authenticated', false);
         default:
             return state;
     }

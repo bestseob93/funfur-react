@@ -281,7 +281,7 @@ class RegisterForm extends Component {
                     <FormLabel name="사업자 등록번호" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input 
-                            type="text"
+                            type="tel"
                             className="form-control"
                             name="businessId"
                             placeholder="사업자 등록번호를 적어주세요.( '-' 제외하고 숫자만 적어주세요.)"
@@ -334,7 +334,7 @@ class RegisterForm extends Component {
                     <FormLabel name="사업자 주소" />
                     <div className="col-md-2 col-xs-5 col-xs-offset-1 col-md-offset-0">
                         <input
-                            type="text"
+                            type="tel"
                             ref={(input) => {this.postCodeInput = input}}
                             className="form-control"
                             name="postCode"
@@ -384,7 +384,7 @@ class RegisterForm extends Component {
                     <FormLabel name="사업장 연락처" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
-                            type="text"
+                            type="tel"
                             className="form-control"
                             name="cpCall"
                             placeholder="사업장 연락처를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
@@ -412,7 +412,7 @@ class RegisterForm extends Component {
                     <FormLabel name="휴대폰 번호" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
-                            type="text"
+                            type="tel"
                             className="form-control"
                             name="ceoCall"
                             placeholder="휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"

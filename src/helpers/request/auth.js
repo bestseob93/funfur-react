@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { encryptIt } from '../encrypt';
-
+import storage from '../localForage.helper';
 const FUNFUR = process.env.REACT_APP_URL;
 
 export const requestTokenTest = (token) => {
@@ -85,8 +85,32 @@ export const requestLoginCeo = (userId, pw) => {
         login_id: userId,
         password: pw
     }).then(res => {
+        console.log(res);
+        storage.set('auth', {
+            ceoName: res.data.ceoName,
+            companyName: res.data.companyName,
+            loginId: res.data.loginId
+        });
         return res;
     }).catch(err => {
+        if(err) throw err;
+    });
+}
+
+export const requestCheckToken = (token) => {
+    console.log(token);
+    return axios({
+        method: 'GET',
+            url: `${FUNFUR}/auth_web/chkToken`,
+            headers: {
+                Authorization: token
+            }
+    })
+    .then(res => {
+        console.log(res);
+        return res;
+    }).catch(err => {
+        console.error(err);
         if(err) throw err;
     });
 }
