@@ -33,12 +33,22 @@ class App extends Component {
 
   componentDidMount() {
     const { AuthActions } = this.props;
-    storage.get('token').then((value) => {
+    if(!this.props.authenticated) {
+      storage.get('token').then((value) => {
 
-      AuthActions.checkToken(value);
-    }).catch(err => {
-      if(err) throw err;
-    })
+        AuthActions.checkToken(value);
+      }).catch(err => {
+        if(err) throw err;
+      });
+    }
+
+    // pathname이 /ceo 로 시작하는지 검사.
+    const pathNameRegx = /^\/ceo/g;
+
+    // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
+    if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
+      document.location = "/";
+    }
   }
   
   handleLogout() {

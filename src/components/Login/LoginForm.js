@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LocalForage from 'localforage';
 import { Link } from 'react-router-dom';
 import { Spinner } from 'components/Common';
 import storage from 'helpers/localForage.helper';
@@ -18,10 +17,6 @@ class LoginForm extends Component {
         this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleToastOff = this.handleToastOff.bind(this);
-    }
-
-    componentDidMount() {
-        LocalForage.setItem('hi', 'worldsss');
     }
 
     /* toast 창띄우기 */
@@ -85,8 +80,6 @@ class LoginForm extends Component {
         let userId = form.get('userId');
         let pw = form.get('password');
 
-        var a = LocalForage.getItem('hi');
-        console.log(a);
         if(userId === '' || typeof userId !== 'string') {
             this.idInput.focus();
         } else if(pw === '' || typeof pw !== 'string') {
