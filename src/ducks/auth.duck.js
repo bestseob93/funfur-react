@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable';
+import { createAction } from 'redux-actions';
 import * as requestStatus from 'helpers/requestStatus';
 import * as auth from 'helpers/request/auth';
 
@@ -9,6 +10,7 @@ const REGISTER_CEO = "register/REGISTER_CEO";
 const LOGIN_CEO = "login/LOGIN_CEO";
 const TOKEN_TEST = "login/TOKEN_TEST";
 const CHECK_TOKEN = "auth/CHECK_TOKEN";
+const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
 
 /* Action Creators */
 export const tokenTest = (token) => ({
@@ -40,6 +42,8 @@ export const checkToken = (token) => ({
     type: CHECK_TOKEN,
     payload: auth.requestCheckToken(token)
 });
+
+export const authLogout = createAction(AUTH_LOGOUT);
 
 const initialState = fromJS({
     requests: {
@@ -118,6 +122,8 @@ export default function reducer(state = initialState, action) {
         case `${CHECK_TOKEN}_REJECTED`:
             return state.mergeIn(['requests', 'checkToken'], requestStatus.rejected)
                         .set('authenticated', false);
+        case AUTH_LOGOUT:
+            return state.set('authenticated', false);
         default:
             return state;
     }

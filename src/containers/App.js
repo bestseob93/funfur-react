@@ -25,9 +25,12 @@ import {
 
 import * as authDuck from 'ducks/auth.duck';
 
+const contextTypes = {
+    router: PropTypes.object
+};
 
 class App extends Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     
     this.handleLogout = this.handleLogout.bind(this);
@@ -44,10 +47,15 @@ class App extends Component {
   }
   
   handleLogout() {
+    const { AuthActions } = this.props;
+    AuthActions.authLogout();
     storage.remove('token');
+    console.log('hi');
   }
 
   render() {
+    console.log(this.context);
+    console.log(this.props);
     return (
       <Router>
         <div>
@@ -90,6 +98,8 @@ class App extends Component {
     );
   }
 }
+
+App.contextTypes = contextTypes;
 
 export default connect(
     state => ({
