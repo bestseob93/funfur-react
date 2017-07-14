@@ -2,12 +2,13 @@ import React from 'react';
 import NavList from './NavList';
 import NavHeader from './NavHeader';
 
-function SideBar({onClick, listIndex}) {
+function SideBar({onClick, listIndex, authInfo}) {
+    
     return (
         <nav className="navbar-static-side">
             <div className="side-collaspe">
                 <ul className="side-nav">
-                    <NavHeader />
+                    <NavHeader authInfo={authInfo} />
                     <NavList
                         index={'navIndex-1'}
                         text="홈"

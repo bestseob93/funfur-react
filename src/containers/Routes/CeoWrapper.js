@@ -56,12 +56,13 @@ class CeoWrapper extends Component {
     render() {
         const { match } = this.props;
         const { handleSideMenu } = this;
-        console.log(this.props);
+        console.log(this.props.authInfo.toJS());
         return (
             <div>
                 <SideBar
                     onClick={handleSideMenu}
                     listIndex={this.props.listIndex}
+                    authInfo={this.props.authInfo.toJS()}
                 />
                 <div className="ceo-page-wrapper">
                     <CeoHeader/>
@@ -78,7 +79,8 @@ class CeoWrapper extends Component {
 export default connect(
     state => ({
         visible: state.ui.getIn(['visible', 'base']),
-        listIndex: state.ui.get('listIndex')
+        listIndex: state.ui.get('listIndex'),
+        authInfo: state.auth.get('authInfo')
     }),
     dispatch => ({
         UiActions: bindActionCreators(uiDuck, dispatch)

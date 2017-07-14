@@ -65,7 +65,12 @@ const initialState = fromJS({
         bizId: false,
         userId: false
     },
-    isSuccess: false
+    isSuccess: false,
+    authInfo: {
+        ceoName: '',
+        companyName: '',
+        loginId: ''
+    }
 });
 
 /* REDUCER */
@@ -100,7 +105,10 @@ export default function reducer(state = initialState, action) {
             return state.mergeIn(['requests', 'login'], requestStatus.fulfilled)
                         .setIn(['valid', 'login'], true)
                         .set('token', action.payload.data.token)
-                        .set('authenticated', true);
+                        .set('authenticated', true)
+                        .setIn(['authInfo', 'loginId'], action.payload.data.loginId)
+                        .setIn(['authInfo', 'ceoName'], action.payload.data.ceoName)
+                        .setIn(['authInfo', 'companyName'], action.payload.data.companyName);
         case `${LOGIN_CEO}_REJECTED`:
             return state.mergeIn(['requests', 'login'], requestStatus.rejected);
         case `${CHECK_TOKEN}_PENDING`:
