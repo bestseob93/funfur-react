@@ -21,16 +21,6 @@ const contextTypes = {
 
 class LoginScreen extends Component {
     componentDidMount() {
-        const { AuthActions } = this.props;
-        
-        storage.get('token').then((value) => {
-           console.log(value);
-            if(value) {
-                AuthActions.tokenTest(value);
-            } 
-        }).catch((err) => {
-            if(err) throw err;
-        });
 
     }
     render() {

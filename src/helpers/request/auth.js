@@ -3,21 +3,6 @@ import { encryptIt } from '../encrypt';
 import storage from '../localForage.helper';
 const FUNFUR = process.env.REACT_APP_URL;
 
-export const requestTokenTest = (token) => {
-    console.log(token);
-                return axios({
-                    method: 'GET',
-                    url: `${FUNFUR}/auth_web/hiThere`,
-                    headers: {
-                        Authorization: token
-                    }
-                }).then(res => {
-                    console.log(res);
-                }).catch(err => {
-                    if(err) throw err;
-                });
-}
-
 export const requestChkCompanyRegi = (companyNumber) => {
     return encryptIt(companyNumber).then((result) => {
             return axios.post(`${FUNFUR}/auth_web/chkBusinessId`, {
