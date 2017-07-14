@@ -219,7 +219,7 @@ class ProductForm extends Component {
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select
                             className="form-control"
-                            name="firstSort"
+                            name="modelOption"
                             onChange={changeHandler}
                         >
                         {/* CHECK 확인 필요 */}

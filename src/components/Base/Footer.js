@@ -22,7 +22,7 @@ function Footer() {
                             <div className="col-lg-4 col-lg-offset-3">
                                 <p>
                                     {/*<!-- <img res="img/funfur-icon.png"> -->*/}
-                                    <strong><span className="funfur-color">뻔뻐, Inc.</span></strong><br/> 대표: 유덕열 외 3명<br/> 주소: 서울시 송파구 방이동 62-8 석정빌딩 502호 <br/> 전화: 010-9251-6202 팩스: 0504-433-6202 <br/> 제휴문의: unit9251@naver.com
+                                    <strong><span className="funfur-color">뻔뻐, Inc.</span></strong><br/> 대표: 유덕열 외 3명<br/> 주소: 서울시 송파구 방이동 62-8 석정빌딩 502호 <br/> 전화: 050-6591-6200 팩스: 0504-433-6202 <br/> 제휴문의: unit9251@naver.com
                                 </p>
                             </div>
 

@@ -39,6 +39,7 @@ function asyncRoute(getComponent) {
   }
 }
 
-export const CeoCurrentProduct = asyncRoute(()=> import('./CeoSellingProduct'));
+export const CeoSellingProduct = asyncRoute(()=> import('./CeoSellingProduct'));
 export const CeoProductUpload = asyncRoute(()=> import('./CeoProductUpload'));
 export const CeoHome = asyncRoute(()=> import('./CeoHome'));
+export const MyPage = asyncRoute(()=> import('./MyPage'));

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { 
   BrowserRouter as Router,
   Route
@@ -24,10 +23,6 @@ import {
 } from './Routes';
 
 import * as authDuck from 'ducks/auth.duck';
-
-const contextTypes = {
-    router: PropTypes.object
-};
 
 class App extends Component {
   constructor(props, context) {
@@ -54,8 +49,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.context);
-    console.log(this.props);
     return (
       <Router>
         <div>
@@ -98,8 +91,6 @@ class App extends Component {
     );
   }
 }
-
-App.contextTypes = contextTypes;
 
 export default connect(
     state => ({

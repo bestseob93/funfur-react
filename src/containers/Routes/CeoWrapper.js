@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -7,6 +7,7 @@ import {
     CeoHome,
     CeoSellingProduct,
     CeoProductUpload,
+    MyPage,
 } from './CeoRoutes';
 
 import {
@@ -36,6 +37,7 @@ class CeoWrapper extends Component {
         this.handleUiAction(false); // ceo 페이지 언마운트 시 기존 헤더 / 푸터 쇼
     }
 
+    // ceo 페이지 들어올 시 기존 header / footer 컨트롤
     handleUiAction(hide) {
         const { UiActions } = this.props;
         if(hide) {
@@ -45,6 +47,7 @@ class CeoWrapper extends Component {
         }
     }
 
+    // 왼쪽 border 애니메이션 처리
     handleSideMenu(index) {
         const { UiActions } = this.props;
         UiActions.setListIndex(index);
@@ -65,6 +68,7 @@ class CeoWrapper extends Component {
                     <Route exact path={match.url} component={CeoHome}/>
                     <Route path={`${match.url}/products`} component={CeoSellingProduct}/>
                     <Route path={`${match.url}/upload`} component={CeoProductUpload}/>
+                    <Route path={`${match.url}/mypage`} component={MyPage}/>
                 </div>
             </div>
         );
