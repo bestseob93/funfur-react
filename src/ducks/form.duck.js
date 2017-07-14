@@ -43,6 +43,9 @@ const initialState = Map({
         productOrigin: '',
         productPrice: '',
         asIntro: ''
+    }),
+    myPageEnter: Map({
+        password: ''
     })
 });
 

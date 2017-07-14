@@ -63,7 +63,7 @@ class LoginForm extends Component {
                 console.log(this.props.status.token);
                 if(this.props.valid.login) {
                     storage.set('token', this.props.status.token);
-                    this.props.router.history.push('/');
+                    this.props.router.history.push('/ceo');
                 }
             } catch (e) {
                 console.log(e);

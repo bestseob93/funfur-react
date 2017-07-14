@@ -33,7 +33,7 @@ class App extends Component {
 
   componentDidMount() {
     const { AuthActions } = this.props;
-    if(!this.props.authenticated) {
+    if(this.props.authenticated === false) {
       storage.get('token').then((value) => {
 
         AuthActions.checkToken(value);
@@ -46,7 +46,8 @@ class App extends Component {
     const pathNameRegx = /^\/ceo/g;
 
     // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
-    if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
+    console.log(this.props.authenticated);
+    if(this.props.authenticated === false && window.location.pathname.search(pathNameRegx) === 0) {
       document.location = "/";
     }
   }
@@ -60,6 +61,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.authenticated);
     return (
       <Router>
         <div>
