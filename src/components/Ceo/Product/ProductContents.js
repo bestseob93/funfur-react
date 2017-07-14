@@ -18,7 +18,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -31,7 +31,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1485452499676-62ab02c20e83?dpr=2&auto=format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1485452499676-62ab02c20e83?dpr=2&auto=format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -44,7 +44,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="http://cfs6.tistory.com/upload_control/download.blog?fhandle=YmxvZzEwODM3OUBmczYudGlzdG9yeS5jb206L2F0dGFjaC8xNi8xMzAwMDAwMDE2MjMucG5n"/>
+                                <img alt="이미지" src="http://cfs6.tistory.com/upload_control/download.blog?fhandle=YmxvZzEwODM3OUBmczYudGlzdG9yeS5jb206L2F0dGFjaC8xNi8xMzAwMDAwMDE2MjMucG5n"/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -59,7 +59,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -72,7 +72,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -85,7 +85,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>
@@ -98,7 +98,7 @@ function ProductContents() {
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
-                                <img src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
+                                <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
                             </div>
                             <div className="product-desc">
                                 <a>제품명(오로라 공주)</a>

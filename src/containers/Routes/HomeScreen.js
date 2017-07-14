@@ -45,7 +45,7 @@ class HomeScreen extends Component {
                         { this.props.authenticated ? logoutBtn : loginBtn }
                     </div>
                     <div className="funfur-description youtube-wrapper">
-                        <iframe src="https://www.youtube.com/embed/fNDzegpZdPg" frameBorder={0} allowFullScreen></iframe>
+                        <iframe title="영상" src="https://www.youtube.com/embed/fNDzegpZdPg" frameBorder={0} allowFullScreen></iframe>
                     </div>
                 </div>
                 {/*<!-- Set background for slide in css -->*/}

@@ -15,7 +15,10 @@ import {
     SideBar,
 } from 'components/Base';
 
+import storage from 'helpers/localForage.helper';
+
 import * as uiDuck from 'ducks/ui.duck';
+import * as authDuck from 'ducks/auth.duck';
 
 class CeoWrapper extends Component {
     constructor(props) {
@@ -25,8 +28,18 @@ class CeoWrapper extends Component {
         this.handleSideMenu = this.handleSideMenu.bind(this);
     }
 
+
     componentDidMount() {
         this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
+
+        // TODO. 리프레쉬 해도 localforage에 있는 프로필 가져오기.
+        const { AuthActions } = this.props;
+        storage.get('auth').then((value) => {
+            console.log(value);
+            AuthActions.setProfile(value);
+        }).catch(e => {
+            if(e) throw e;
+        });
     }
 
     // shouldComponentUpdate(nextProps, nextState) {
@@ -83,6 +96,7 @@ export default connect(
         authInfo: state.auth.get('authInfo')
     }),
     dispatch => ({
-        UiActions: bindActionCreators(uiDuck, dispatch)
+        UiActions: bindActionCreators(uiDuck, dispatch),
+        AuthActions: bindActionCreators(authDuck, dispatch)
     })
 )(CeoWrapper);

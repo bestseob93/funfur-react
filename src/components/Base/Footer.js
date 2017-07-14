@@ -9,9 +9,9 @@ function Footer() {
                             <div className="col-lg-12 text-center" >
                                 <ul className="style">
                                     <li><a target="_blank" rel="noopener noreferrer" href="http://intro.funfur.kr/">회사소개</a></li>
-                                    <li><a href="#">이용약관</a></li>
-                                    <li><a href="#">광고운영정책</a></li>
-                                    <li><a href="#">개인정보 처리방침</a></li>
+                                    <li><a href="">이용약관</a></li>
+                                    <li><a href="">광고운영정책</a></li>
+                                    <li><a href="">개인정보 처리방침</a></li>
                                 </ul>
                             </div>
                         </div>

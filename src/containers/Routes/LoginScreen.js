@@ -12,9 +12,6 @@ import {
 import * as authDuck from 'ducks/auth.duck';
 import * as formDuck from 'ducks/form.duck';
 
-/* helpers */
-import storage from 'helpers/localForage.helper';
-
 const contextTypes = {
     router: PropTypes.object
 };

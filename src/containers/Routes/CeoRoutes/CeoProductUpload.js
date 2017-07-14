@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ProductUpload, ProductForm } from 'components/Ceo/Product';
-import { SubTitle } from 'components/Common';
 
 import * as formDuck from 'ducks/form.duck';
 

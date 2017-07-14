@@ -10,6 +10,7 @@ const REGISTER_CEO = "register/REGISTER_CEO";
 const LOGIN_CEO = "login/LOGIN_CEO";
 const CHECK_TOKEN = "auth/CHECK_TOKEN";
 const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
+const SET_PROFILE = "auth/SET_PROFILE";
 
 /* Action Creators */
 
@@ -39,6 +40,7 @@ export const checkToken = (token) => ({
 });
 
 export const authLogout = createAction(AUTH_LOGOUT);
+export const setProfile = createAction(SET_PROFILE);
 
 const initialState = fromJS({
     requests: {
@@ -121,6 +123,8 @@ export default function reducer(state = initialState, action) {
                         .set('authenticated', false);
         case AUTH_LOGOUT:
             return state.set('authenticated', false);
+        case SET_PROFILE:
+            return state.mergeIn(['authInfo'], action.payload);
         default:
             return state;
     }
