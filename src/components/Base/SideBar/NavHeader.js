@@ -20,7 +20,7 @@ function NavHeader({authInfo}) {
             <div className="nav-header-contents">
                 <h3 className="text-center">{loginId}</h3>
                 <h3 className="text-center">{companyName}</h3>
-                <h3 className="text-center">{ceoName}</h3>
+                <h3 className="text-center">{ceoName} 님</h3>
             </div>
         </li>
     );

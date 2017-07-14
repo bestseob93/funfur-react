@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -9,13 +9,16 @@ import {
 
 import * as formDuck from 'ducks/form.duck';
 
-function MyPage() {
-    return (
-        <MyPageEnter>
-            <EnterHeader authInfo={this.props.authInfo.toJS()} />
-            <EnterForm {...this.props} />
-        </MyPageEnter>
-    );
+class MyPage extends Component {
+    render() {
+        console.log(this.props);
+        return (
+            <MyPageEnter>
+                <EnterHeader authInfo={this.props.authInfo.toJS()} />
+                <EnterForm {...this.props} />
+            </MyPageEnter>
+        );
+    }
 }
 
 export default connect(

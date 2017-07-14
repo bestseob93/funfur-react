@@ -34,17 +34,13 @@ class CeoWrapper extends Component {
 
         // TODO. 리프레쉬 해도 localforage에 있는 프로필 가져오기.
         const { AuthActions } = this.props;
-        storage.get('auth').then((value) => {
-            console.log(value);
-            AuthActions.setProfile(value);
+        storage.get('auth').then(async (value) => {
+            await AuthActions.setProfile(value);
         }).catch(e => {
             if(e) throw e;
         });
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return nextProps.visible;
-    // }
 
     componentWillUnmount() {
         this.handleUiAction(false); // ceo 페이지 언마운트 시 기존 헤더 / 푸터 쇼

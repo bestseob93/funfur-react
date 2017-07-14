@@ -2,7 +2,7 @@ import React from 'react';
 
 function MyPageEnter({children}) {
     return (
-        <div>
+        <div className="container">
             {children}
         </div>
     );
