@@ -41,9 +41,9 @@ function asyncRoute(getComponent) {
 
 export const HomeScreen = asyncRoute(()=> import('./HomeScreen'));
 export const NoMatchScreen = asyncRoute(()=> import('./NoMatchScreen'));
-export const RegisterFormScreen = asyncRoute(()=> import('./RegisterFormScreen'));
-export const RegisterIntroScreen = asyncRoute(()=> import('./RegisterIntroScreen'));
-export const RegisterPolicyScreen = asyncRoute(()=> import('./RegisterPolicyScreen'));
-export const RegisterPendingScreen = asyncRoute(()=> import('./RegisterPendingScreen'));
-export const LoginScreen = asyncRoute(()=> import('./LoginScreen'));
+export const RegisterFormScreen = asyncRoute(()=> import('./AuthRoutes/RegisterFormScreen'));
+export const RegisterIntroScreen = asyncRoute(()=> import('./AuthRoutes/RegisterIntroScreen'));
+export const RegisterPolicyScreen = asyncRoute(()=> import('./AuthRoutes/RegisterPolicyScreen'));
+export const RegisterPendingScreen = asyncRoute(()=> import('./AuthRoutes/RegisterPendingScreen'));
+export const LoginScreen = asyncRoute(()=> import('./AuthRoutes/LoginScreen'));
 export const CeoWrapper = asyncRoute(()=> import('./CeoWrapper'));
