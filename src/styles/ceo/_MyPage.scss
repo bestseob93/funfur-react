@@ -1,0 +1,15 @@
+@media screen and (min-width: 768px) {
+    div.container.enter-wrapper {
+        margin-top: 100px;
+        div.text-center {
+            p {
+                margin: 0;
+                padding: 0;
+                font-weight: 500;
+            }
+            p:nth-child(4) {
+                margin: 20px 0;
+            }
+        }
+    }
+}

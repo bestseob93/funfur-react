@@ -43,7 +43,7 @@ class EnterForm extends Component {
                         />
                     </div>
                 </div>
-                 <div className="row form-box padding-top50">
+                 <div className="row form-box">
                     <div className="btn-container">
                         <Link
                             to="/ceo"
