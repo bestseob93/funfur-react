@@ -9,7 +9,7 @@ import {
 
 import * as formDuck from 'ducks/form.duck';
 
-class MyPage extends Component {
+class MyPageEnterScreen extends Component {
     render() {
         console.log(this.props);
         return (
@@ -29,4 +29,4 @@ export default connect(
     dispatch => ({
         FormActions: bindActionCreators(formDuck, dispatch)
     })
-)(MyPage);
+)(MyPageEnterScreen);

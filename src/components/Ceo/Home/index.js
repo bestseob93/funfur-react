@@ -4,6 +4,9 @@ import DeliverStatus from './DeliverStatus';
 import OrderStatus from './OrderStatus';
 import ServiceStatus from './ServiceStatus';
 import SalesAmountStatus from './SalesAmountStatus';
+import MiniNotice from './MiniNotice';
+import Contact from './Contact';
+import FunfurStatus from './FunfurStatus';
 
 export {
     HomeContainer,
@@ -11,5 +14,8 @@ export {
     DeliverStatus,
     OrderStatus,
     ServiceStatus,
-    SalesAmountStatus
+    SalesAmountStatus,
+    MiniNotice,
+    Contact,
+    FunfurStatus
 };

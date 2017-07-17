@@ -7,7 +7,7 @@ import {
     CeoHome,
     CeoSellingProduct,
     CeoProductUpload,
-    MyPage,
+    MyPageEnterScreen,
 } from './CeoRoutes';
 
 import {
@@ -75,10 +75,10 @@ class CeoWrapper extends Component {
                 />
                 <div className="ceo-page-wrapper">
                     <CeoHeader/>
-                    <Route exact path={match.url} component={CeoHome}/>
-                    <Route path={`${match.url}/products`} component={CeoSellingProduct}/>
-                    <Route path={`${match.url}/upload`} component={CeoProductUpload}/>
-                    <Route path={`${match.url}/mypage`} component={MyPage}/>
+                    <Route exact path={match.url} component={CeoHome} />
+                    <Route path={`${match.url}/products`} component={CeoSellingProduct} />
+                    <Route path={`${match.url}/upload`} component={CeoProductUpload} />
+                    <Route path={`${match.url}/mypage`} component={MyPageEnterScreen} />
                 </div>
             </div>
         );

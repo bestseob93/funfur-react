@@ -6,7 +6,10 @@ import {
     DeliverStatus,
     OrderStatus,
     ServiceStatus,
-    SalesAmountStatus
+    SalesAmountStatus,
+    MiniNotice,
+    Contact,
+    FunfurStatus
 } from 'components/Ceo/Home';
 
 class CeoHome extends Component {
@@ -14,12 +17,20 @@ class CeoHome extends Component {
         return (
             <HomeContainer>CeoHome
                 <SalesStatus>
-                    <OrderStatus />
-                    <DeliverStatus />
-                    <ServiceStatus />
-                    <SalesAmountStatus />
+                    <div className="row">
+                        <OrderStatus />
+                        <DeliverStatus />
+                    </div>
+                    <div className="row">
+                        <ServiceStatus />
+                        <SalesAmountStatus />
+                    </div>
                 </SalesStatus>
-                <Link to="/">to home</Link>
+                <div className="row">
+                    <MiniNotice />
+                    <Contact />
+                </div>
+                <FunfurStatus />
             </HomeContainer>
         );
     }

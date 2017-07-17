@@ -1,11 +1,11 @@
 import CeoSellingProduct from './CeoSellingProduct';
 import CeoProductUpload from './CeoProductUpload';
 import CeoHome from './CeoHome';
-import MyPage from './MyPage';
+import MyPageEnterScreen from './MyPageRoutes/MyPageEnterScreen';
 
 export {
     CeoSellingProduct,
     CeoProductUpload,
     CeoHome,
-    MyPage
+    MyPageEnterScreen
 };
