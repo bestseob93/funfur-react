@@ -44,7 +44,7 @@ class LoginForm extends Component {
         });
     }
 
-    handleSubmit = async (ev) => {
+    async handleSubmit(ev) {
         const { AuthActions, form } = this.props;
         ev.preventDefault();
 
@@ -134,7 +134,8 @@ class LoginForm extends Component {
                 <button
                     type="button"
                     className="btn funfur-btn width100"
-                    onClick={handleSubmit}>로그인
+                    onClick={handleSubmit}
+                >로그인
                 </button>
                 <div className="find-wrapper">
                     <Link to="/findAuth">아이디/패스워드 찾기</Link>

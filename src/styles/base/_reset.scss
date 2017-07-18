@@ -27,6 +27,21 @@ ul {
   margin: 0 !important;
 }
 
+div.row.form-box {
+    padding-bottom: 15px;
+}
+
+div.row.form-box.has-helper {
+    padding-bottom: 0;
+}
+
+.input-helper {
+  margin-left: 27%;
+  font-weight: 700;
+  font-size: 12px;
+  color: $text-color;
+}
+
 .auth-top-border {
     margin-top: 45px !important;
     border-top: 3px solid $funfur-color;
@@ -126,6 +141,13 @@ div.row.sub-title {
     
     .container._mb {
       padding: 0 !important;
+    }
+    div.row.sub-title {
+      padding-bottom: 10px;
+    }
+    .input-helper {
+      margin-left: 0;
+      text-align: center;
     }
 }
 

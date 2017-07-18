@@ -13,7 +13,6 @@ const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
 const SET_PROFILE = "auth/SET_PROFILE";
 
 /* Action Creators */
-
 export const checkCompanyRegistration = (companyNumber) => ({
     type: CHECK_COMPANY_REGISTERATION,
     payload: auth.requestChkCompanyRegi(companyNumber)

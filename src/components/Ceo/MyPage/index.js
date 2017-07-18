@@ -1,9 +1,14 @@
-import MyPageEnter from './MyPageEnter';
-import EnterForm from './EnterForm';
-import EnterHeader from './EnterHeader';
+import MyPageEnter from './Enter/MyPageEnter';
+import EnterForm from './Enter/EnterForm';
+import EnterHeader from './Enter/EnterHeader';
+
+import MyPageModify from './Modify/MyPageModify';
+import ModifyForm from './Modify/ModifyForm';
 
 export {
     MyPageEnter,
     EnterForm,
-    EnterHeader
+    EnterHeader,
+    MyPageModify,
+    ModifyForm
 };

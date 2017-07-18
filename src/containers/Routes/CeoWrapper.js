@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ import {
     CeoSellingProduct,
     CeoProductUpload,
     MyPageEnterScreen,
+    MyPageModifyScreen,
 } from './CeoRoutes';
 
 import {
@@ -19,6 +21,10 @@ import storage from 'helpers/localForage.helper';
 
 import * as uiDuck from 'ducks/ui.duck';
 import * as authDuck from 'ducks/auth.duck';
+
+const contextTypes = {
+    router: PropTypes.object
+};
 
 class CeoWrapper extends Component {
     constructor(props) {
@@ -65,7 +71,7 @@ class CeoWrapper extends Component {
     render() {
         const { match } = this.props;
         const { handleSideMenu } = this;
-        console.log(this.props.authInfo.toJS());
+        console.log(this.context);
         return (
             <div>
                 <SideBar
@@ -74,16 +80,19 @@ class CeoWrapper extends Component {
                     authInfo={this.props.authInfo.toJS()}
                 />
                 <div className="ceo-page-wrapper">
-                    <CeoHeader/>
+                    <CeoHeader />
                     <Route exact path={match.url} component={CeoHome} />
                     <Route path={`${match.url}/products`} component={CeoSellingProduct} />
                     <Route path={`${match.url}/upload`} component={CeoProductUpload} />
                     <Route path={`${match.url}/mypage`} component={MyPageEnterScreen} />
+                    <Route path={`${match.url}/mypage_2`} component={MyPageModifyScreen} />
                 </div>
             </div>
         );
     }
 }
+
+CeoWrapper.contextTypes = contextTypes;
 
 export default connect(
     state => ({

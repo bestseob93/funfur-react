@@ -43,4 +43,4 @@ export const CeoSellingProduct = asyncRoute(()=> import('./CeoSellingProduct'));
 export const CeoProductUpload = asyncRoute(()=> import('./CeoProductUpload'));
 export const CeoHome = asyncRoute(()=> import('./CeoHome'));
 export const MyPageEnterScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageEnterScreen'));
-export const MyPageFormScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageFormScreen'));
+export const MyPageModifyScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageModifyScreen'));

@@ -46,6 +46,13 @@ const initialState = Map({
     }),
     myPageEnter: Map({
         password: ''
+    }),
+    modify: Map({
+        password: '',
+        repassword: '',
+        ceoCall: '',
+        ceoEmail_1: '',
+        ceoEmail_2: ''
     })
 });
 

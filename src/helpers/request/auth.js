@@ -26,11 +26,11 @@ export const requestChkUserId = (userId) => {
 }
 
 export const requestRegisterCeo = (ceoInfo) => {
-    var nameOutPut = encryptIt(ceoInfo.ceoName);
-    var phoneOutPut = encryptIt(ceoInfo.ceoCall);
-    var emailOutPut = encryptIt(ceoInfo.ceoEmail);
-    var idOutPut = encryptIt(ceoInfo.userId);
-    var pwOutPut = encryptIt(ceoInfo.password);
+    let nameOutPut = encryptIt(ceoInfo.ceoName);
+    let phoneOutPut = encryptIt(ceoInfo.ceoCall);
+    let emailOutPut = encryptIt(ceoInfo.ceoEmail);
+    let idOutPut = encryptIt(ceoInfo.userId);
+    let pwOutPut = encryptIt(ceoInfo.password);
     console.log(ceoInfo);
     console.log(typeof nameOutPut);
     console.log(typeof phoneOutPut);

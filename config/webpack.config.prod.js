@@ -59,7 +59,8 @@ module.exports = {
       require.resolve('./polyfills'),
       'react',
       'react-dom',
-      'react-router-dom'
+      'react-router-dom',
+      'react-toastr'
     ],
     app: paths.appIndexJs
   },

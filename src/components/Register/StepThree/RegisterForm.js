@@ -28,6 +28,7 @@ class RegisterForm extends Component {
         this.onOpenClick = this.onOpenClick.bind(this);
         this.chkBusinessIdSubmit = this.chkBusinessIdSubmit.bind(this);
         this.chkUserIdSubmit = this.chkUserIdSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -97,7 +98,7 @@ class RegisterForm extends Component {
     }
 
     /* onComplete시 실행, 우편번호와 앞주소 redux form 업데이트 */
-     handleAddress = (data) => {
+     handleAddress(data) {
          const { FormActions } = this.props;
          let fullAddress = data.address;
          let extraAddress = ''; 
@@ -159,7 +160,7 @@ class RegisterForm extends Component {
     }
 
     /* userId 중복 확인 */
-    chkUserIdSubmit = async () => {
+    async chkUserIdSubmit() {
         const { AuthActions, form } = this.props;
         let userId = form.get('userId');
 
@@ -182,7 +183,8 @@ class RegisterForm extends Component {
     }
 
     /* 회원가입 요청 */
-    handleSubmit = async (ev) => {
+    async handleSubmit(ev) {
+        console.log(this.props);
         const { AuthActions, form } = this.props;
         ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 
