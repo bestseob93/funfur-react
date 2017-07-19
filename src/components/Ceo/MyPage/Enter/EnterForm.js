@@ -21,11 +21,11 @@ class EnterForm extends Component {
     addAlert(types, msg) {  /* enum of types: ['warning', 'success', 'error', 'info'],  msg: String */
         switch(types) {
             case 'warning':
-                return this.toastRef.warning(`${msg}`);
+                return this.toastRefs.warning(`${msg}`);
             case 'success':
-                return this.toastRef.success(`${msg}`);
+                return this.toastRefs.success(`${msg}`);
             case 'error':
-                return this.toastRef.error(`${msg}`);
+                return this.toastRefs.error(`${msg}`);
             default:
                 break;
         }
@@ -58,9 +58,7 @@ class EnterForm extends Component {
                     this.props.history.push('/ceo/mypage_2');
                 }
             } catch (e) {
-                if(e) {
-                    this.addAlert('error', '비밀번호가 맞지 않습니다!');
-                }
+                this.addAlert('error', '비밀번호가 맞지 않습니다!');
             }
         }
     }
@@ -77,7 +75,7 @@ class EnterForm extends Component {
                 { this.props.status.get('fetching') && (<Spinner/>) }
                 {/* 토스트 컨테이너 */}
                 <ToastContainer
-                    ref={(toast) => { this.toastRef = toast }}
+                    ref={(toast) => { this.toastRefs = toast }}
                     toastMessageFactory={ToastMessageFactory}
                     className={ document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right' }
                 />

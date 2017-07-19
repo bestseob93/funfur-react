@@ -78,32 +78,32 @@ const initialState = fromJS({
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case `${CHECK_COMPANY_REGISTERATION}_PENDING`:
-            return state.mergeIn(['requests', 'checkCompanyRegistration'], requestStatus.pending);
+            return state.mergeIn(['requests', 'checkCompanyRegistration'], fromJS(requestStatus.pending));
         case `${CHECK_COMPANY_REGISTERATION}_FULFILLED`:
-            return state.mergeIn(['requests', 'checkCompanyRegistration'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'checkCompanyRegistration'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'bizId'], true);
         case `${CHECK_COMPANY_REGISTERATION}_REJECTED`:
-            return state.mergeIn(['requests', 'checkCompanyRegistration'], requestStatus.rejected)
+            return state.mergeIn(['requests', 'checkCompanyRegistration'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'bizId'], false);
         case `${CHECK_USER_ID}_PENDING`:
-            return state.mergeIn(['requests', 'checkUserId'], requestStatus.pending);
+            return state.mergeIn(['requests', 'checkUserId'], fromJS(requestStatus.pending));
         case `${CHECK_USER_ID}_FULFILLED`:
-            return state.mergeIn(['requests', 'checkUserId'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'checkUserId'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'userId'], true);
         case `${CHECK_USER_ID}_REJECTED`:
-            return state.mergeIn(['requests', 'checkUserId'], requestStatus.rejected)
+            return state.mergeIn(['requests', 'checkUserId'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'userId'], false);
         case `${REGISTER_CEO}_PENDING`:
-            return state.mergeIn(['requests', 'register'], requestStatus.pending);
+            return state.mergeIn(['requests', 'register'], fromJS(requestStatus.pending));
         case `${REGISTER_CEO}_FULFILLED`:
-            return state.mergeIn(['requests', 'register'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'register'], fromJS(requestStatus.fulfilled))
                         .set('isSuccess', action.payload.data.success);
         case `${REGISTER_CEO}_REJECTED`:
-            return state.mergeIn(['requests', 'register'], requestStatus.rejected);
+            return state.mergeIn(['requests', 'register'], fromJS(requestStatus.rejected));
         case `${LOGIN_CEO}_PENDING`:
-            return state.mergeIn(['requests', 'login'], requestStatus.pending);
+            return state.mergeIn(['requests', 'login'], fromJS(requestStatus.pending));
         case `${LOGIN_CEO}_FULFILLED`:
-            return state.mergeIn(['requests', 'login'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'login'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'login'], true)
                         .set('token', action.payload.data.token)
                         .set('authenticated', true)
@@ -111,14 +111,14 @@ export default function reducer(state = initialState, action) {
                         .setIn(['authInfo', 'ceoName'], action.payload.data.ceoName)
                         .setIn(['authInfo', 'companyName'], action.payload.data.companyName);
         case `${LOGIN_CEO}_REJECTED`:
-            return state.mergeIn(['requests', 'login'], requestStatus.rejected);
+            return state.mergeIn(['requests', 'login'], fromJS(requestStatus.rejected));
         case `${CHECK_TOKEN}_PENDING`:
-            return state.mergeIn(['requests', 'checkToken'], requestStatus.pending);
+            return state.mergeIn(['requests', 'checkToken'], fromJS(requestStatus.pending));
         case `${CHECK_TOKEN}_FULFILLED`:
-            return state.mergeIn(['requests', 'checkToken'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'checkToken'], fromJS(requestStatus.fulfilled))
                         .set('authenticated', true);
         case `${CHECK_TOKEN}_REJECTED`:
-            return state.mergeIn(['requests', 'checkToken'], requestStatus.rejected)
+            return state.mergeIn(['requests', 'checkToken'], fromJS(requestStatus.rejected))
                         .set('authenticated', false);
         case AUTH_LOGOUT:
             return state.set('authenticated', false);

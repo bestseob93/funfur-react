@@ -252,9 +252,10 @@ class RegisterForm extends Component {
             handleSubmit
         } = this;
         const { form } = this.props;
-
+        console.log(form.get('businessIdImage'));
         /* 리덕스 form register에서 가져옴 */
-        let formValues = form.toJS();
+        /* TODO: get으로 변경 */
+        // let formValues = form.toJS();
         return (
             <div className="register-form-container">
                 {/* 스피너 */}
@@ -296,7 +297,7 @@ class RegisterForm extends Component {
                         <button
                             type="button"
                             className="funfur-btn btn"
-                            disabled={formValues.businessId.length > 0 ? false : true}
+                            disabled={form.get('businessId').length > 0 ? false : true}
                             onClick={chkBusinessIdSubmit}>중복 확인
                         </button>
                     </div>
@@ -304,7 +305,7 @@ class RegisterForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="사업자 등록증" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { formValues.businessIdImage.length > 0 ?  <div className="dropzone-hidden">
+                        { form.get('businessIdImage').size > 0 ?  <div className="dropzone-hidden">
                                                             <Dropzone
                                                                     ref={(node) => { this.dropzone = node; }}
                                                                     onDrop={handleFile}
@@ -321,9 +322,9 @@ class RegisterForm extends Component {
                                                                     <p>사업자 등록증 사진을 첨부해주세요.</p>
                                                             </Dropzone>
                                                         </div>}
-                        { formValues.businessIdImage.length > 0 ?  <div className="business-id-image flex-column">
+                        { form.get('businessIdImage').size > 0 ?  <div className="business-id-image flex-column">
                                                             <span onClick={onOpenClick} className="id-image-after">사진 바꾸기</span>
-                                                                <div>{formValues.businessIdImage.map((file) => <img
+                                                                <div>{form.get('businessIdImage').map((file) => <img
                                                                                                         className="id-image-after"
                                                                                                         key={file.name}
                                                                                                         src={file.preview}
@@ -471,7 +472,7 @@ class RegisterForm extends Component {
                             type="button"
                             className="btn funfur-btn"
                             onClick={chkUserIdSubmit}
-                            disabled={ formValues.userId.length > 0 ? false : true }
+                            disabled={ form.get('userId').length > 0 ? false : true }
                         >중복 확인
                         </button>
                     </div>
