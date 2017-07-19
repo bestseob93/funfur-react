@@ -31,6 +31,7 @@ class EnterForm extends Component {
         }
     }
 
+    /* input 값에 따라 redux에 form store 값 업데이트 */
     changeHandler(ev) {
         const { FormActions } = this.props;
         FormActions.formChange({
@@ -40,6 +41,7 @@ class EnterForm extends Component {
         });
     }
 
+    /* 비밀번호 확인 요청 */
     async handleSubmit(ev) {
         const { MyPageActions, form } = this.props;
         ev.preventDefault();
@@ -68,7 +70,7 @@ class EnterForm extends Component {
             changeHandler,
             handleSubmit
         } = this;
-        
+
         return (
             <div className="enter-form">
                 {/* 스피너 */}

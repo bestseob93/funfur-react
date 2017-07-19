@@ -39,6 +39,7 @@ class ModifyForm extends Component {
         }
     }
 
+    /* input 값에 따라 redux에 form store 값 업데이트 */
     changeHandler(ev) {
         const { FormActions } = this.props;
 
@@ -48,7 +49,7 @@ class ModifyForm extends Component {
             value: ev.target.value
         });
     }
-
+    /* 회원 정보 수정 요청 */
     handleSubmit(ev) {
         const { MyPageActions, form } = this.props;
         ev.preventDefault();

@@ -1,14 +1,18 @@
-import { Map } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import { createAction } from 'redux-actions';
 
 const FORM_RESET = "form/FORM_RESET";
 const FORM_CHANGE = "form/FORM_CHANGE";
+const FORM_UPLOAD_ADD = "form/FORM_UPLOAD_ADD";
+const FORM_UPLOAD_REMOVE = "form/FORM_UPLOAD_REMOVE";
 
 export const formReset = createAction(FORM_RESET);
 export const formChange = createAction(FORM_CHANGE);
+export const formUploadAdd = createAction(FORM_UPLOAD_ADD);
+export const formUploadRemove = createAction(FORM_UPLOAD_REMOVE);
 
-const initialState = Map({
-    register: Map({
+const initialState = fromJS({
+    register: {
         cpName: '',
         businessId: '',
         businessIdImage: [],
@@ -23,12 +27,12 @@ const initialState = Map({
         userId: '',
         password: '',
         repassword: ''
-    }),
-    login: Map({
+    },
+    login: {
         userId: '',
         password: ''
-    }),
-    product: Map({
+    },
+    product: {
         productName: '',
         productPosition: '',
         firstSort: '',
@@ -42,29 +46,34 @@ const initialState = Map({
         prManufacturer: '',
         productOrigin: '',
         productPrice: '',
-        asIntro: ''
-    }),
-    myPageEnter: Map({
+        asIntro: '',
+        productImages: []
+    },
+    myPageEnter: {
         password: ''
-    }),
-    modify: Map({
+    },
+    modify: {
         password: '',
         repassword: '',
         ceoCall: '',
         ceoEmail_1: '',
         ceoEmail_2: ''
-    })
+    }
 });
 
 export default function reducer(state = initialState, action) {
+    console.log(action.payload);
     switch(action.type) {
         case FORM_CHANGE:
-            const { formName, name, value } = action.payload;
-            console.log(action.payload);
-            return state.setIn([formName, name], value);
+            // const { formName, name, value } = action.payload;
+            return state.setIn([action.payload.formName, action.payload.name], Map(action.payload.value));
         case FORM_RESET:
             /* 폼 초기화 */
             return state.set(action.payload, initialState.get(action.payload))
+        case FORM_UPLOAD_ADD:
+            return state.setIn([action.payload.formName, action.payload.name], state.getIn([action.payload.formName, action.payload.name]).concat(action.payload.value));
+        case FORM_UPLOAD_REMOVE:
+            return state;
         default:
             return state;
     }

@@ -4,6 +4,7 @@ import ProductForm from './ProductForm';
 import ProductHeader from './ProductHeader';
 import ProductUpload from './ProductUpload';
 import SortableSelect from './SortableSelect';
+import PhotosUpload from './PhotosUpload';
 
 export {
     ProductContainer,
@@ -11,5 +12,6 @@ export {
     ProductForm,
     ProductHeader,
     ProductUpload,
-    SortableSelect
+    SortableSelect,
+    PhotosUpload
 };

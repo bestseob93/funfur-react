@@ -127,6 +127,7 @@ class RegisterForm extends Component {
         });
     }
 
+    /* 이미지 업로드 부분 클릭 으로 사진 첨부 (드래그로도 가능) */
     onOpenClick() {
         this.dropzone.open();
     }
@@ -295,6 +296,7 @@ class RegisterForm extends Component {
                         <button
                             type="button"
                             className="funfur-btn btn"
+                            disabled={formValues.businessId.length > 0 ? false : true}
                             onClick={chkBusinessIdSubmit}>중복 확인
                         </button>
                     </div>
@@ -468,7 +470,9 @@ class RegisterForm extends Component {
                         <button
                             type="button"
                             className="btn funfur-btn"
-                            onClick={chkUserIdSubmit}>중복 확인
+                            onClick={chkUserIdSubmit}
+                            disabled={ formValues.userId.length > 0 ? false : true }
+                        >중복 확인
                         </button>
                     </div>
                 </div>

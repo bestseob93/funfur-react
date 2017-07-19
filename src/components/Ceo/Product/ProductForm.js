@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 import {
     SubTitle,
     FormLabel,
 } from 'components/Common';
-import SortableSelect from './SortableSelect';
+import {
+    SortableSelect,
+    PhotosUpload
+} from 'components/Ceo/Product';
 
 class ProductForm extends Component {
     constructor(props) {
@@ -19,8 +23,11 @@ class ProductForm extends Component {
     componentDidMount() {
         const { FormActions } = this.props;
         FormActions.formReset('product');
+
+        // TODO 임시 저장 로직 구현 필요
     }
 
+    /* input 값에 따라 redux에 form store 값 업데이트 */
     changeHandler(ev) {
         const { FormActions } = this.props;
         FormActions.formChange({
@@ -30,10 +37,12 @@ class ProductForm extends Component {
         });
     }
     
-    handleSubmit() {
-
+    /* 제품 등록 요청 */
+    async handleSubmit(ev) {
+        
     }
 
+    /* 위치 관련 첫번째 분류 렌더링 */
     renderFirstSort(position) {
         switch(position) {
             case '거실':
@@ -65,6 +74,7 @@ class ProductForm extends Component {
         }
     }
 
+    /* 위치 관련 두번째 분류 렌더링 */
     renderSecondSort(first) {
         switch(first) {
             case '테이블':
@@ -148,13 +158,15 @@ class ProductForm extends Component {
             renderSecondSort
         } = this;
         console.log(this.props.form.toJS());
+
+        /* 분류 결과 값에 따라 하위 값들 분류하기 위해 받아옴 */
         let positionSort = this.props.form.get('productPosition');
         let firstSort = this.props.form.get('firstSort');
 
         return (
             <div>
                 <SubTitle title="제품 등록" />
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="제품명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -168,7 +180,7 @@ class ProductForm extends Component {
                     </div>
                 </div>
                 <SubTitle title="제품 분류" />
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="위치" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select
@@ -187,20 +199,20 @@ class ProductForm extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="1차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         {renderFirstSort(positionSort)}
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="2차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         {renderSecondSort(firstSort)}
                     </div>
                 </div>
                 <SubTitle title="제품 정보" />
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="모델명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -213,7 +225,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="옵션" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select
@@ -229,11 +241,11 @@ class ProductForm extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <p className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3">* 조립이 필요하시다면 설명서를 &lt;업체제공정보&gt;에 꼭 넣어주세요!</p>
                 </div>
                 {/* 색상 코드 or 네모의 색깔? */}
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="색상" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -246,7 +258,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="사이즈(가로)" />
                     <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0" style={{paddingRight: 5}}>
                         <input
@@ -262,7 +274,7 @@ class ProductForm extends Component {
                         cm
                     </span>
                 </div> 
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="사이즈(세로)" />
                     <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0" style={{paddingRight: 5}}>
                         <input
@@ -278,7 +290,7 @@ class ProductForm extends Component {
                         cm
                     </span>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="사이즈(높이)" />
                     <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0" style={{paddingRight: 5}}>
                         <input
@@ -294,11 +306,12 @@ class ProductForm extends Component {
                         cm
                     </span>
                 </div>
-                <FormLabel name="주요 소재" />
-                <div className="row">
+                
+                <div className="row form-box has-textarea">
+                    <FormLabel name="주요 소재" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <textarea
-                            style={{resize: 'none'}}
+                            style={{resize: 'none', height: 130}}
                             className="form-control"
                             name="mainMaterial"
                             placeholder="가구 '주요 소재'들을 적어주세요."
@@ -307,7 +320,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="제조사" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -320,7 +333,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="원산지" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -333,7 +346,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <div className="row form-box">
                     <FormLabel name="소비자가격" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <input
@@ -346,11 +359,40 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row">
+                <SubTitle title="배송 정보" />
+                <div className="row form-box">
+                    <FormLabel name="배송비" />
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                        <select
+                            className="form-control"
+                            name="deliveryCost"
+                            onChange={changeHandler}
+                        >
+                            <option>배송비 선택</option>
+                            <option value="무료">무료</option>
+                            <option value="유료">유료</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="row form-box">
+                    <FormLabel name="지역별 배송비 설정" />
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                        <select
+                            className="form-control"
+                            name="deliveryCost"
+                            onChange={changeHandler}
+                        >
+                            <option>배송비 선택</option>
+                            <option value="무료">무료</option>
+                            <option value="유료">유료</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="row form-box has-textarea">
                     <FormLabel name="배송 및 반품/교환/AS 안내" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <textarea
-                            style={{resize: 'none', width: '100%'}}
+                            style={{resize: 'none', height: 150}}
                             className="form-control"
                             name="asIntro"
                             placeholder="배송 및 밭품/AS에 관한 설명을 적어주세요."
@@ -359,7 +401,9 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                 <div className="row form-box padding-top50">
+                <SubTitle title="사진 업로드" />
+                <PhotosUpload {...this.props} />
+                <div className="row form-box padding-top50">
                     <div className="btn-container">
                         <Link
                             to="/ceo"

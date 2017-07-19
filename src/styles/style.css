@@ -27,6 +27,15 @@ div.row.form-box {
 div.row.form-box.has-helper {
   padding-bottom: 0; }
 
+div.row.form-box.has-textarea {
+  height: 150px; }
+
+div.upload-dropzone {
+  border-width: 1px;
+  border-color: #666666;
+  border-style: dashed;
+  border-radius: 5px; }
+
 .input-helper {
   margin-left: 27%;
   font-weight: 700;
@@ -1686,28 +1695,8 @@ a.navbar-toggle {
   margin-top: 0;
   padding: 0;
   cursor: pointer; }
-  .product-box .product-box-contents {
-    padding: 0;
-    border: 1px solid #e7eaec;
-    clear: both;
-    text-align: center; }
-    .product-box .product-box-contents .product-thumbnail {
-      width: 100%;
-      height: 150px;
-      position: relative;
-      overflow: hidden;
-      background-color: #fdd831; }
-      .product-box .product-box-contents .product-thumbnail img {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        height: 100%;
-        width: auto;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        display: block;
-        margin: 0 auto; }
+  .product-box .product-box-contents.product-photo p:first-child {
+    margin: 20px 0 !important; }
   .product-box .product-box-contents.add-product {
     border: 1px dotted #e7eaec; }
     .product-box .product-box-contents.add-product p:first-child {
@@ -1718,6 +1707,36 @@ a.navbar-toggle {
       .product-box .product-box-contents.add-product p:first-child span {
         display: block;
         padding-top: 10px; }
+
+.product-box-contents {
+  padding: 0;
+  border: 1px solid #e7eaec;
+  clear: both;
+  text-align: center; }
+  .product-box-contents .product-thumbnail.case-upload {
+    height: 100px !important;
+    background-color: #fff; }
+    .product-box-contents .product-thumbnail.case-upload i {
+      position: absolute;
+      z-index: 9999;
+      right: 0; }
+  .product-box-contents .product-thumbnail {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fdd831; }
+    .product-box-contents .product-thumbnail img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 100%;
+      width: auto;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      display: block;
+      margin: 0 auto; }
 
 .product-form-container {
   background-color: #f3f3f4; }

@@ -35,6 +35,16 @@ div.row.form-box.has-helper {
     padding-bottom: 0;
 }
 
+div.row.form-box.has-textarea {
+  height: 150px;
+}
+
+div.upload-dropzone {
+  border-width: 1px;
+  border-color: rgb(102, 102, 102);
+  border-style: dashed;
+  border-radius: 5px;
+}
 .input-helper {
   margin-left: 27%;
   font-weight: 700;

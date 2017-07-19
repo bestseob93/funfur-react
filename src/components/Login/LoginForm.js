@@ -44,6 +44,7 @@ class LoginForm extends Component {
         });
     }
 
+    /* 로그인 요청 */
     async handleSubmit(ev) {
         const { AuthActions, form } = this.props;
         ev.preventDefault();
@@ -59,14 +60,11 @@ class LoginForm extends Component {
         } else {
             try {
                 await AuthActions.loginCeo(userId, pw);
-                console.log(this.props.valid.login);
-                console.log(this.props.status.token);
                 if(this.props.valid.login) {
                     storage.set('token', this.props.status.token);
                     this.props.router.history.push('/ceo');
                 }
             } catch (e) {
-                console.log(e);
                 if(e) {
                     this.addAlert('error', '아이디나 패스워드를 확인해주세요!');
                 }
