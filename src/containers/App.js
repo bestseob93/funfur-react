@@ -63,7 +63,6 @@ class App extends Component {
     AuthActions.authLogout();
     storage.remove('token');
     storage.remove('auth');
-    console.log('hi');
   }
 
   render() {

@@ -21,7 +21,7 @@ export function checkBizID(bizId) {
                 }
             }
 
-            if(bizId.charAt(9) === lastNumber) {
+            if(parseInt(bizId.charAt(9)) === lastNumber) {
                 resolve(true);
             } else {
                 reject('잘못된 사업자 번호');

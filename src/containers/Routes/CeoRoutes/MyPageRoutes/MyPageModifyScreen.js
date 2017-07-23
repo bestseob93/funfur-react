@@ -7,6 +7,7 @@ import {
 } from 'components/Ceo/MyPage';
 
 import * as formDuck from 'ducks/form.duck';
+import * as mypageDuck from 'ducks/mypage.duck';
 
 class MyPageModifyScreen extends Component {
     render() {
@@ -24,6 +25,7 @@ export default connect(
         status: state.mypage.getIn(['requests', 'modify']),
     }),
     dispatch => ({
-        FormActions: bindActionCreators(formDuck, dispatch)
+        FormActions: bindActionCreators(formDuck, dispatch),
+        MyPageActions: bindActionCreators(mypageDuck, dispatch)
     })
 )(MyPageModifyScreen);

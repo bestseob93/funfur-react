@@ -49,17 +49,15 @@ class LoginForm extends Component {
         const { AuthActions, form } = this.props;
         ev.preventDefault();
 
-        let userId = form.get('userId');
-        let pw = form.get('password');
-        if(userId === '' || typeof userId !== 'string') {
+        if(form.get('userId') === '' || typeof form.get('userId') !== 'string') {
             this.addAlert('warning', '아이디를 입력해주세요!');
             this.idInput.focus();
-        } else if(pw === '' || typeof pw !== 'string') {
+        } else if(form.get('password') === '' || typeof form.get('password') !== 'string') {
             this.addAlert('warning', '비밀번호를 입력해주세요!');
             this.pwInput.focus();
         } else {
             try {
-                await AuthActions.loginCeo(userId, pw);
+                await AuthActions.loginCeo(form.get('userId'), form.get('password'));
                 if(this.props.valid.login) {
                     storage.set('token', this.props.status.token);
                     this.props.router.history.push('/ceo');

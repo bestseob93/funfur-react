@@ -29,3 +29,19 @@ export const requestCheckPassword = (password) => {
         });
     });
 }
+
+export const requestGetMyInfo = () => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'GET',
+            url: `${FUNFUR}/mypage_web/profile`,
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}

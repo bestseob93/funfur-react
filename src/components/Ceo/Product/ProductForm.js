@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
+    Spinner,
     SubTitle,
     FormLabel,
 } from 'components/Common';
 import {
     SortableSelect,
-    PhotosUpload
+    PhotosUpload,
+    DeliveryTable
 } from 'components/Ceo/Product';
 
 class ProductForm extends Component {
@@ -15,9 +17,12 @@ class ProductForm extends Component {
         super(props);
 
         this.changeHandler = this.changeHandler.bind(this);
+        this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderFirstSort = this.renderFirstSort.bind(this);
         this.renderSecondSort = this.renderSecondSort.bind(this);
+        this.renderSortTwo = this.renderSortTwo.bind(this);
     }
 
     componentDidMount() {
@@ -30,141 +35,344 @@ class ProductForm extends Component {
     /* input 값에 따라 redux에 form store 값 업데이트 */
     changeHandler(ev) {
         const { FormActions } = this.props;
+
         FormActions.formChange({
             formName: 'product',
             name: ev.target.name,
             value: ev.target.value
         });
+        console.log(ev.target.name);
+        console.log(this.props.form.get('isDeliverFree'));
+
+        /* 배송비 종류 선택하는 곳 free 일 경우 기존 배송비 입력된 값 초기화 */
+        if(ev.target.name === 'isDeliverFree' && this.costSelect.value === 'free') {
+            FormActions.deliverCostFree();
+        }
+    }
+
+    /* 전 지역 배송비용 동일 체크박스 */
+    handleCheckBox(ev) {
+        const { FormActions, form } = this.props;
+        
+        FormActions.handleCheckBox({
+            formName: 'product',
+            name: ev.target.name,
+            value: ev.target.checked
+        });
+
+        /* 체크하고 1초 뒤에 전 지역 첫 번째 입력 값으로 통일 */
+        setTimeout(() => {
+            if(this.props.form.get('isCostSame')) {
+                const formName = ['GangWon', 'ChungNam', 'ChungBuk', 'GyeongBuk', 'GyeongNam', 'JeonBuk', 'JeonNam', 'JeJuSanGan'];
+                for(let i=0; i<8; i++) {
+                FormActions.formChange({
+                        formName: 'product',
+                        name: formName[i],
+                        value: form.get('SeoulGyungki')
+                    });
+                }
+            }
+        }, 1000);
+    }
+
+    /* 배송비 같을 때 나머지 form 값 변경 */
+    handleBlur(ev) {
+        const { FormActions, form } = this.props;
+        const formName = ['GangWon', 'ChungNam', 'ChungBuk', 'GyeongBuk', 'GyeongNam', 'JeonBuk', 'JeonNam', 'JeJuSanGan'];
+        for(let i=0; i<8; i++) {
+            FormActions.formChange({
+                formName: 'product',
+                name: formName[i],
+                value: form.get('SeoulGyungki')
+            });
+        }
     }
     
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
-        
+        const { ProductActions, token, form } = this.props;
+        const productInfo = {
+            productName: form.get('productName'),
+            productPosition: form.get('productPosition'),
+            firstSort_1: form.get('firstSort_1'),
+            secondSort_1: form.get('firstSort_1'),
+            productPosition_2: form.get('productPosition_2') || '',
+            firstSort_2: form.get('firstSort_2') || '',
+            secondSort_2: form.get('secondSort_2') || '',
+            modelName: form.get('modelName'),
+            modelOption: form.get('modelOption'),
+            productColor: form.get('productColor'),
+            sizeWidth: form.get('sizeWidth'),
+            sizeDepth: form.get('sizeDepth'),
+            sizeHeight: form.get('sizeHeight'),
+            mainMaterial: form.get('mainMaterial'),
+            prManufacturer: form.get('prManufacturer'),
+            productOrigin: form.get('productOrigin'),
+            productPrice: form.get('productPrice'),
+            asIntro: form.get('asIntro'),
+            productImages: form.get('productImages'),
+            SeoulGyungki: form.get('isDeliverFree') ? '0' : form.get('SeoulGyungki'),
+            GangWon: form.get('isDeliverFree') ? '0' : form.get('GangWon'),
+            ChungNam: form.get('isDeliverFree') ? '0' : form.get('ChungNam'),
+            ChungBuk: form.get('isDeliverFree') ? '0' : form.get('ChungBuk'),
+            GyeongBuk: form.get('isDeliverFree') ? '0' : form.get('GyeongBuk'),
+            GyeongNam: form.get('isDeliverFree') ? '0' : form.get('GyeongNam'),
+            JeonBuk: form.get('isDeliverFree') ? '0' : form.get('JeonBuk'),
+            JeonNam: form.get('isDeliverFree') ? '0' : form.get('JeonNam'),
+            JeJuSanGan: form.get('isDeliverFree') ? '0' : form.get('JeJuSanGan')   
+        };
+
+        try {
+            await ProductActions.productUpload(productInfo, token);
+        } catch (e) {
+            if(e) {
+                throw e;
+            }
+        }
     }
 
     /* 위치 관련 첫번째 분류 렌더링 */
-    renderFirstSort(position) {
-        switch(position) {
-            case '거실':
-                return (
-                    <SortableSelect first={true} sortIndex={0} changeHandler={this.changeHandler} />
-                );
-            case '주방':
-                return (
-                    <SortableSelect first={true} sortIndex={1} changeHandler={this.changeHandler} />
-                );
-            case '침실':
-                return (
-                    <SortableSelect first={true} sortIndex={2} changeHandler={this.changeHandler} />
-                );
-            case '키즈/유아':
-                return (
-                    <SortableSelect first={true} sortIndex={3} changeHandler={this.changeHandler} />
-                );
-            case '학생/서재':
-                return (
-                    <SortableSelect first={true} sortIndex={4} changeHandler={this.changeHandler} />
-                );
-            case '화장실':
-                return (
-                    <SortableSelect first={true} sortIndex={5} changeHandler={this.changeHandler} />
-                );
-            default:   // 인테리어 소품
-                return;
+    renderFirstSort(isFirstSortable, position) {
+        if(isFirstSortable) {
+            switch(position) {
+                case '거실':
+                    return (
+                        <SortableSelect first={true} sortIndex={0} changeHandler={this.changeHandler} />
+                    );
+                case '주방':
+                    return (
+                        <SortableSelect first={true} sortIndex={1} changeHandler={this.changeHandler} />
+                    );
+                case '침실':
+                    return (
+                        <SortableSelect first={true} sortIndex={2} changeHandler={this.changeHandler} />
+                    );
+                case '키즈/유아':
+                    return (
+                        <SortableSelect first={true} sortIndex={3} changeHandler={this.changeHandler} />
+                    );
+                case '학생/서재':
+                    return (
+                        <SortableSelect first={true} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '화장실':
+                    return (
+                        <SortableSelect first={true} sortIndex={5} changeHandler={this.changeHandler} />
+                    );
+                default:   // 인테리어 소품
+                    return;
+            }
+        } else {
+            switch(position) {
+                case '거실':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={0} changeHandler={this.changeHandler} />
+                    );
+                case '주방':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={1} changeHandler={this.changeHandler} />
+                    );
+                case '침실':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={2} changeHandler={this.changeHandler} />
+                    );
+                case '키즈/유아':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={3} changeHandler={this.changeHandler} />
+                    );
+                case '학생/서재':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '화장실':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={true} sortIndex={5} changeHandler={this.changeHandler} />
+                    );
+                default:   // 인테리어 소품
+                    return;
+            }
         }
     }
 
     /* 위치 관련 두번째 분류 렌더링 */
-    renderSecondSort(first) {
-        switch(first) {
-            case '테이블':
-                return (
-                    <SortableSelect first={false} sortIndex={0} changeHandler={this.changeHandler} />
-                );
-            case '의자':
-                return (
-                    <SortableSelect first={false} sortIndex={1} changeHandler={this.changeHandler} />
-                );
-            case '소파':
-                return (
-                    <SortableSelect first={false} sortIndex={2} changeHandler={this.changeHandler} />
-                );
-            case '거실장':
-                return (
-                    <SortableSelect first={false} sortIndex={3} changeHandler={this.changeHandler} />
-                );
-            case '식탁 세트':
-                return (
-                    <SortableSelect first={false} sortIndex={4} changeHandler={this.changeHandler} />
-                );
-            case '식탁':
-                return (
-                    <SortableSelect first={false} sortIndex={4} changeHandler={this.changeHandler} />
-                );
-            case '홈 바':
-                return (
-                    <SortableSelect first={false} sortIndex={5} changeHandler={this.changeHandler} />
-                );
-            case '주방 수납장':
-                return (
-                    <SortableSelect first={false} sortIndex={6} changeHandler={this.changeHandler} />
-                );
-            case '침대':
-                return (
-                    <SortableSelect first={false} sortIndex={7} changeHandler={this.changeHandler} />
-                );
-            case '화장대':
-                return (
-                    <SortableSelect first={false} sortIndex={8} changeHandler={this.changeHandler} />
-                );
-            case '서랍장':
-                return (
-                    <SortableSelect first={false} sortIndex={9} changeHandler={this.changeHandler} />
-                );
-            case '수납장':
-                return (
-                    <SortableSelect first={false} sortIndex={10} changeHandler={this.changeHandler} />
-                );
-            case '책상/의자':
-                return (
-                    <SortableSelect first={false} sortIndex={11} changeHandler={this.changeHandler} />
-                );
-            case '침대(유아)':
-                return (
-                    <SortableSelect first={false} sortIndex={12} changeHandler={this.changeHandler} />
-                );
-            case '책상':
-                return (
-                    <SortableSelect first={false} sortIndex={13} changeHandler={this.changeHandler} />
-                );
-            case '의자(서재)':
-                return (
-                    <SortableSelect first={false} sortIndex={14} changeHandler={this.changeHandler} />
-                );
-            case '책장':
-                return (
-                    <SortableSelect first={false} sortIndex={15} changeHandler={this.changeHandler} />
-                );
-            default:
-                return;
+    renderSecondSort(isFirstSortable, first) {
+        if(isFirstSortable) {
+            switch(first) {
+                case '테이블':
+                    return (
+                        <SortableSelect first={false} sortIndex={0} changeHandler={this.changeHandler} />
+                    );
+                case '의자':
+                    return (
+                        <SortableSelect first={false} sortIndex={1} changeHandler={this.changeHandler} />
+                    );
+                case '소파':
+                    return (
+                        <SortableSelect first={false} sortIndex={2} changeHandler={this.changeHandler} />
+                    );
+                case '거실장':
+                    return (
+                        <SortableSelect first={false} sortIndex={3} changeHandler={this.changeHandler} />
+                    );
+                case '식탁 세트':
+                    return (
+                        <SortableSelect first={false} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '식탁':
+                    return (
+                        <SortableSelect first={false} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '홈 바':
+                    return (
+                        <SortableSelect first={false} sortIndex={5} changeHandler={this.changeHandler} />
+                    );
+                case '주방 수납장':
+                    return (
+                        <SortableSelect first={false} sortIndex={6} changeHandler={this.changeHandler} />
+                    );
+                case '침대':
+                    return (
+                        <SortableSelect first={false} sortIndex={7} changeHandler={this.changeHandler} />
+                    );
+                case '화장대':
+                    return (
+                        <SortableSelect first={false} sortIndex={8} changeHandler={this.changeHandler} />
+                    );
+                case '서랍장':
+                    return (
+                        <SortableSelect first={false} sortIndex={9} changeHandler={this.changeHandler} />
+                    );
+                case '수납장':
+                    return (
+                        <SortableSelect first={false} sortIndex={10} changeHandler={this.changeHandler} />
+                    );
+                case '책상/의자':
+                    return (
+                        <SortableSelect first={false} sortIndex={11} changeHandler={this.changeHandler} />
+                    );
+                case '침대(유아)':
+                    return (
+                        <SortableSelect first={false} sortIndex={12} changeHandler={this.changeHandler} />
+                    );
+                case '책상':
+                    return (
+                        <SortableSelect first={false} sortIndex={13} changeHandler={this.changeHandler} />
+                    );
+                case '의자(서재)':
+                    return (
+                        <SortableSelect first={false} sortIndex={14} changeHandler={this.changeHandler} />
+                    );
+                case '책장':
+                    return (
+                        <SortableSelect first={false} sortIndex={15} changeHandler={this.changeHandler} />
+                    );
+                default:
+                    return;
+            }
+        } else {
+            switch(first) {
+                case '테이블':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={0} changeHandler={this.changeHandler} />
+                    );
+                case '의자':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={1} changeHandler={this.changeHandler} />
+                    );
+                case '소파':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={2} changeHandler={this.changeHandler} />
+                    );
+                case '거실장':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={3} changeHandler={this.changeHandler} />
+                    );
+                case '식탁 세트':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '식탁':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={4} changeHandler={this.changeHandler} />
+                    );
+                case '홈 바':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={5} changeHandler={this.changeHandler} />
+                    );
+                case '주방 수납장':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={6} changeHandler={this.changeHandler} />
+                    );
+                case '침대':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={7} changeHandler={this.changeHandler} />
+                    );
+                case '화장대':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={8} changeHandler={this.changeHandler} />
+                    );
+                case '서랍장':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={9} changeHandler={this.changeHandler} />
+                    );
+                case '수납장':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={10} changeHandler={this.changeHandler} />
+                    );
+                case '책상/의자':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={11} changeHandler={this.changeHandler} />
+                    );
+                case '침대(유아)':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={12} changeHandler={this.changeHandler} />
+                    );
+                case '책상':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={13} changeHandler={this.changeHandler} />
+                    );
+                case '의자(서재)':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={14} changeHandler={this.changeHandler} />
+                    );
+                case '책장':
+                    return (
+                        <SortableSelect isSecondSortable={true} first={false} sortIndex={15} changeHandler={this.changeHandler} />
+                    );
+                default:
+                    return;
+            }
+        }
+    }
+
+    renderSortTwo() {
+        const { UiActions, FormActions } = this.props;
+        if(this.props.isSecondSortable) {
+            UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
+            FormActions.resetSecondSortable();
+        } else {
+            UiActions.addSecondSortable(); // + 누르면 두 번째 위치 추가 추가.
         }
     }
 
     render() {
         const {
             changeHandler,
+            handleCheckBox,
+            handleBlur,
             handleSubmit,
             renderFirstSort,
-            renderSecondSort
+            renderSecondSort,
+            renderSortTwo
         } = this;
-        console.log(this.props.form.toJS());
 
-        /* 분류 결과 값에 따라 하위 값들 분류하기 위해 받아옴 */
-        let positionSort = this.props.form.get('productPosition');
-        let firstSort = this.props.form.get('firstSort');
+        const emptyComponent = undefined;
 
         return (
             <div>
+                {/* 스피너 */}
+                { this.props.status.upload.get('fetching') && (<Spinner/>) }
+                {/* 토스트 컨테이너 */}
                 <SubTitle title="제품 등록" />
                 <div className="row form-box">
                     <FormLabel name="제품명" />
@@ -202,15 +410,63 @@ class ProductForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="1차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        {renderFirstSort(positionSort)}
+                        {renderFirstSort(true, this.props.form.get('productPosition')) /* 분류 값에 따라 하위 분류 */} 
                     </div>
                 </div>
                 <div className="row form-box">
                     <FormLabel name="2차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        {renderSecondSort(firstSort)}
+                        {renderSecondSort(true, this.props.form.get('firstSort_1'))}
                     </div>
                 </div>
+                <div className="row text-center">
+                    <p><i
+                            className={`fa ${this.props.isSecondSortable ? 'fa-minus-circle' :'fa-plus-circle'} fa-2x`}
+                            style={{cursor: 'pointer'}}
+                            onClick={renderSortTwo}>
+                        </i>
+                    </p>
+                </div>
+                {this.props.isSecondSortable ?
+                    <div className="row form-box animated fadeInUp">
+                        <FormLabel name="위치" />
+                        <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                            <select
+                                className="form-control"
+                                name="productPosition_2"
+                                onChange={changeHandler}
+                            >
+                                <option>공간별 분류</option>
+                                <option value="거실">거실</option>
+                                <option value="주방">주방</option>
+                                <option value="침실">침실</option>
+                                <option value="키즈/유아">키즈/유아</option>
+                                <option value="학생/서재">학생/서재</option>
+                                <option value="인테리어 소품">인테리어 소품</option>
+                                <option value="화장실">화장실</option>
+                            </select>
+                        </div>
+                    </div> :
+                    emptyComponent
+                }
+                {this.props.isSecondSortable ?
+                    <div className="row form-box animated fadeInUp">
+                        <FormLabel name="1차 분류" />
+                        <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                            {renderFirstSort(false, this.props.form.get('productPosition_2')) /* 분류 값에 따라 하위 분류 */} 
+                        </div>
+                    </div> :
+                    emptyComponent
+                }
+                {this.props.isSecondSortable ?
+                    <div className="row form-box animated fadeInUp">
+                        <FormLabel name="2차 분류" />
+                        <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                            {renderSecondSort(false, this.props.form.get('firstSort_2'))}
+                        </div>
+                    </div> :
+                    emptyComponent
+                }
                 <SubTitle title="제품 정보" />
                 <div className="row form-box">
                     <FormLabel name="모델명" />
@@ -233,7 +489,6 @@ class ProductForm extends Component {
                             name="modelOption"
                             onChange={changeHandler}
                         >
-                        {/* CHECK 확인 필요 */}
                             <option>옵션 선택</option>
                             <option value="부분조립">부분조립</option>
                             <option value="완제품">완제품</option>
@@ -364,30 +619,47 @@ class ProductForm extends Component {
                     <FormLabel name="배송비" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select
+                            ref={(select) => this.costSelect = select}
                             className="form-control"
-                            name="deliveryCost"
+                            name="isDeliverFree"
+                            value={this.props.form.get('isDeliverFree')}
                             onChange={changeHandler}
                         >
-                            <option>배송비 선택</option>
-                            <option value="무료">무료</option>
-                            <option value="유료">유료</option>
+                            <option value="">배송비 선택</option>
+                            <option value="free">무료</option>
+                            <option value="unfree">유료</option>
                         </select>
                     </div>
                 </div>
-                <div className="row form-box">
-                    <FormLabel name="지역별 배송비 설정" />
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <select
-                            className="form-control"
-                            name="deliveryCost"
-                            onChange={changeHandler}
-                        >
-                            <option>배송비 선택</option>
-                            <option value="무료">무료</option>
-                            <option value="유료">유료</option>
-                        </select>
+                {/* 배송비 선택하기 전과 무료일 경우 테이블 hide 유료일 경우에만 show */}
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
+                    <div className="row form-box">
+                        <FormLabel name="지역별 배송비 설정" />
+                        <DeliveryTable
+                            form={this.props.form}
+                            sameCost={this.props.form.get('SeoulGyungki')}
+                            changeHandler={changeHandler}
+                            handleBlur={handleBlur}
+                        />
                     </div>
-                </div>
+                }
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent : 
+                    <p className="row">
+                        <span className="col-md-3 col-xs-8 col-xs-offset-1 col-md-offset-3">* 전 지역 동일 시 체크해주세요.</span>
+                        <input
+                            className="col-md-1 col-xs-1"
+                            type="checkbox"
+                            name="isCostSame"
+                            onChange={handleCheckBox}
+                        />
+                    </p>
+
+                }
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
+                    <p className="row delivery-warning">
+                        <span className="col-md-6 col-xs-10 col-md-offset-3 col-xs-offset-1">* 뻔뻐의 정책 상, 모든 비용은 소비자가 선결제 하게 됩니다. 배송비 착불 불가합니다!</span>
+                    </p>
+                }
                 <div className="row form-box has-textarea">
                     <FormLabel name="배송 및 반품/교환/AS 안내" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">

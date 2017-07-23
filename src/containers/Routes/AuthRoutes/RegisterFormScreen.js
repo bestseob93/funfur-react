@@ -17,8 +17,6 @@ const contextTypes = {
 
 class RegisterFormScreen extends Component {
     render() {
-        console.log(this.props.status.chkCompanyRegi.toJS());
-        console.log(this.context);
         return (
             <RegisterThree>
                 <RegisterTitle title={'form'} />

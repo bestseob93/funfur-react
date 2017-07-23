@@ -136,12 +136,11 @@ class RegisterForm extends Component {
     chkBusinessIdSubmit() {
         const { AuthActions, form } = this.props;
         let self = this;
-        let businessId = form.get('businessId');
-        console.log('aa');
-        checkBizID(businessId).then(async (checked) => {
+        checkBizID(form.get('businessId')).then(async (checked) => {
+            console.log(checked);
             if(checked) {
                 try {
-                    await AuthActions.checkCompanyRegistration(businessId);
+                    await AuthActions.checkCompanyRegistration(form.get('businessId'));
                     console.log(self.props.valid.bizId);
                     if(self.props.valid.bizId) {
                         this.addAlert('success', '인증되었습니다!');
@@ -151,6 +150,7 @@ class RegisterForm extends Component {
                     this.addAlert('error', message);
                 }
             } else {
+                console.log('hi');
                 this.addAlert('warning', '사업자 등록번호를 확인해주세요.');
             }
         }).catch(err => {
@@ -163,14 +163,13 @@ class RegisterForm extends Component {
     /* userId 중복 확인 */
     async chkUserIdSubmit() {
         const { AuthActions, form } = this.props;
-        let userId = form.get('userId');
 
         // 유저네임 정규표현식 확인
         const usernameRegex = /^[0-9a-z_]{4,20}$/;
         
-        if(usernameRegex.test(userId)) {
+        if(usernameRegex.test(form.get('userId'))) {
             try {
-                await AuthActions.checkUserId(userId);
+                await AuthActions.checkUserId(form.get('userId'));
                 if(this.props.valid.userId) {
                     this.addAlert('success', '인증되었습니다!');
                 }
@@ -189,6 +188,7 @@ class RegisterForm extends Component {
         const { AuthActions, form } = this.props;
         ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 
+        console.log(form.get('cpName'));
         let formInfos = form.toJS();
         const pwRegex = /^[a-zA-Z0-9]{4,20}$/; // 비밀번호 정규표현식
         const chkNum = formInfos.password.search(/[0-9]/g); // 숫자 확인
@@ -209,17 +209,17 @@ class RegisterForm extends Component {
         } else {
                     
         let ceoInfo = {
-            cpName: formInfos.cpName,
-            businessId: formInfos.businessId,
-            businessIdImage: formInfos.businessIdImage,
-            postCode: formInfos.postCode,
-            cpAddress: formInfos.cpAddress_1 + formInfos.cpAddress_2,
-            cpCall: formInfos.cpCall,
-            ceoName: formInfos.ceoName,
-            ceoCall: formInfos.ceoCall,
-            ceoEmail: formInfos.ceoEmail_1 + "@" + formInfos.ceoEmail_2,
-            userId: formInfos.userId,
-            password: formInfos.password
+            cpName: form.get('cpName'),
+            businessId: form.get('businessId'),
+            businessIdImage: form.get('businessIdImage'),
+            postCode: form.get('postCode'),
+            cpAddress: form.get('cpAddress_1') + form.get('cpAddress_2'),
+            cpCall: form.get('cpCall'),
+            ceoName: form.get('ceoName'),
+            ceoCall: form.get('ceoCall'),
+            ceoEmail: form.get('ceoEmail_1') + "@" + form.get('ceoEmail_2'),
+            userId: form.get('userId'),
+            password: form.get('password')
         };
 
             try {

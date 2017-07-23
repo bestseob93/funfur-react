@@ -111,36 +111,6 @@ class ModifyForm extends Component {
                         />
                     </div>
                 </div>
-                <div className="row form-box">
-                    <FormLabel name="생년월일" />
-                    <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="birthYear"
-                            value="1993년"
-                            disabled
-                        />
-                    </div>
-                    <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="birthMonth"
-                            value="3월"
-                            disabled
-                        />
-                    </div>
-                    <div className="col-md-2 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="birthDay"
-                            value="30일"
-                            disabled
-                        />
-                    </div>
-                </div>
                 <div className="row form-box has-helper">
                     <FormLabel name="휴대폰 번호" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">

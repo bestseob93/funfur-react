@@ -1,17 +1,27 @@
 import { fromJS } from 'immutable';
 import { createAction } from 'redux-actions';
 
+
+/* CEO DASHBOARD */
 const HIDE_HEADER_FOOTER = "ui/HIDE_HEADER_FOOTER";
 const SHOW_HEADER_FOOTER = "ui/SHOW_HEADER_FOOTER";
 const HIDE_DASHBOARD = "ui/HIDE_DASHBOARD";
 const SHOW_DASHBOARD = "ui/SHOW_DASHBOARD";
+
+/* CEO DASHBOARD SIDE BAR */
 const SET_LIST_INDEX = "ui/SET_LIST_INDEX";
+
+/* PRODUCT UPLOAD */
+const ADD_SECOND_SORTABLE = "ui/ADD_SECOND_SORTABLE";
+const REMOVE_SECOND_SORTABLE = "ui/REMOVE_SECOND_SORTABLE";
 
 export const hideHeaderFooter = createAction(HIDE_HEADER_FOOTER);
 export const showHeaderFooter = createAction(SHOW_HEADER_FOOTER);
 export const hideDashboard = createAction(HIDE_DASHBOARD);
 export const showDashboard = createAction(SHOW_DASHBOARD);
 export const setListIndex = createAction(SET_LIST_INDEX);
+export const addSecondSortable = createAction(ADD_SECOND_SORTABLE);
+export const removeSecondSortable = createAction(REMOVE_SECOND_SORTABLE);
 
 const initialState = fromJS({
     visible: {
@@ -19,6 +29,7 @@ const initialState = fromJS({
         dashboard: true,
     },
     listIndex: null,
+    secondSortable: false
 });
 
 export default function reducer(state = initialState, action) {
@@ -33,6 +44,10 @@ export default function reducer(state = initialState, action) {
             return state.setIn(['visible', 'dashboard'], true);
         case SET_LIST_INDEX:
             return state.set('listIndex', action.payload);
+        case ADD_SECOND_SORTABLE:
+            return state.set('secondSortable', true);
+        case REMOVE_SECOND_SORTABLE:
+            return state.set('secondSortable', false);
         default:
             return state;
     }

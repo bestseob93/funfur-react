@@ -29,6 +29,32 @@ ul {
 
 div.row.form-box {
     padding-bottom: 15px;
+    table {
+      background-color: #fff;
+      border: 1px solid #000;
+      border-left-style: none;
+      border-right-style: none;
+      tr {
+        border-bottom: 1px dotted #000;
+        td, th {
+          padding: 4px;
+        }
+      }
+      input {
+        padding: 0 5px 0 0;
+        margin: 0;
+        border: none;
+        width: 40%;
+        text-align: right;
+      }
+      span {
+        display: inline-block;
+        text-align: right;
+        width: 40%;
+        padding: 0 5px 0 0;
+        margin: 0;
+      }
+    }
 }
 
 div.row.form-box.has-helper {

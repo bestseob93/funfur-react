@@ -5,6 +5,7 @@ import ProductHeader from './ProductHeader';
 import ProductUpload from './ProductUpload';
 import SortableSelect from './SortableSelect';
 import PhotosUpload from './PhotosUpload';
+import DeliveryTable from './DeliveryTable';
 
 export {
     ProductContainer,
@@ -13,5 +14,6 @@ export {
     ProductHeader,
     ProductUpload,
     SortableSelect,
-    PhotosUpload
+    PhotosUpload,
+    DeliveryTable
 };
