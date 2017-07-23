@@ -45,3 +45,22 @@ export const requestGetMyInfo = () => {
         });
     });
 }
+
+export const requestModifyCeo = (ceoInfo) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'PUT',
+            url: `${FUNFUR}/mypage_web/profile`,
+            headers: {
+                Authorization: token
+            },
+            data: {
+                
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}

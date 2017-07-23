@@ -22,7 +22,11 @@ class MyPageModifyScreen extends Component {
 export default connect(
     state => ({
         form: state.form.get('modify'),
-        status: state.mypage.getIn(['requests', 'modify']),
+        status: {
+            myInfo: state.mypage.getIn(['requests', 'myInfo']),
+            modify: state.mypage.getIn(['requests', 'modify'])
+        },
+        profile: state.mypage.get('profile')
     }),
     dispatch => ({
         FormActions: bindActionCreators(formDuck, dispatch),

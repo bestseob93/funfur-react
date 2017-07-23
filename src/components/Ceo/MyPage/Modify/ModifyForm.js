@@ -21,8 +21,13 @@ class ModifyForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillMount() {
-        
+    async componentDidMount() {
+        const { MyPageActions } = this.props;
+        try {
+            MyPageActions.getMyInfo();
+        } catch (e) {
+            if(e) throw e;
+        }
     }
 
     /* toast 창띄우기 */
@@ -53,6 +58,21 @@ class ModifyForm extends Component {
     handleSubmit(ev) {
         const { MyPageActions, form } = this.props;
         ev.preventDefault();
+
+        if(form.get('password') !== form.get('repassword')) {
+            console.log('패스워드 일치하지 않음.');
+        } else {
+            const ceoInfo = {
+                password: form.get('password'),
+                ceoCall: form.get('ceoCall'),
+                ceoEmail: form.get('ceoEmail')
+            };
+            try {
+                MyPageActions.modifyCeo(ceoInfo);
+            } catch (e) {
+                if(e) throw e;
+            }
+        }
     }
 
     render() {
@@ -64,7 +84,7 @@ class ModifyForm extends Component {
         return (
             <div className="modify-form-container">
                 {/* 스피너 */}
-                {/* { this.props.status.get('fetching') && (<Spinner/>) } */}
+                 { this.props.status.myInfo.get('fetching') && (<Spinner/>) } 
                 {/* 토스트 컨테이너 */}
                 <ToastContainer
                     ref={(toast) => { this.toastRef = toast }}
@@ -106,7 +126,7 @@ class ModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="ceoName"
-                            value="배사장"
+                            value={this.props.profile.get('ceoName')}
                             disabled
                         />
                     </div>
@@ -118,7 +138,7 @@ class ModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="ceoCall"
-                            placeholder="휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
+                            placeholder={this.props.profile.get('ceoCall')}
                             required
                             onChange={changeHandler}
                         />
@@ -136,6 +156,7 @@ class ModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="ceoEmail_1"
+                            placeholder={this.props.profile.get('ceoEmail').split('@')[0]}
                             required
                             onChange={changeHandler}
                         />
@@ -145,7 +166,7 @@ class ModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="ceoEmail_2"
-                            placeholder="gmail.com"
+                            placeholder={this.props.profile.get('ceoEmail').split('@')[1]}
                             required
                             onChange={changeHandler}
                         />
@@ -163,8 +184,8 @@ class ModifyForm extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            name="ceoName"
-                            value="배달의민족"
+                            name="cpName"
+                            value={this.props.profile.get('cpName')}
                             disabled
                         />
                     </div>
@@ -175,8 +196,8 @@ class ModifyForm extends Component {
                         <input
                             type="text"
                             className="form-control"
-                            name="cpId"
-                            value="131313131"
+                            name="businessId"
+                            value={this.props.profile.get('businessId')}
                             disabled
                         />
                     </div>
@@ -188,7 +209,7 @@ class ModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="cpAddress"
-                            value="서울특별시 강남구 신사동"
+                            value={this.props.profile.get('cpAddress')}
                             disabled
                         />
                     </div>
