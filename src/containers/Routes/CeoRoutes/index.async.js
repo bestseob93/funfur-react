@@ -39,8 +39,9 @@ function asyncRoute(getComponent) {
   }
 }
 
-export const CeoSellingProduct = asyncRoute(()=> import('./CeoSellingProduct'));
-export const CeoProductUpload = asyncRoute(()=> import('./CeoProductUpload'));
+export const CeoSellingProduct = asyncRoute(()=> import('./ProductRoutes/CeoSellingProduct'));
+export const CeoProductUpload = asyncRoute(()=> import('./ProductRoutes/CeoProductUpload'));
 export const CeoHome = asyncRoute(()=> import('./CeoHome'));
 export const MyPageEnterScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageEnterScreen'));
 export const MyPageModifyScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageModifyScreen'));
+export const ConsumerScreen = asyncRoute(()=> import('./ConsumerScreen'));
