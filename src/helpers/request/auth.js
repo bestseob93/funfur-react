@@ -100,3 +100,23 @@ export const requestCheckToken = (token) => {
         if(err) throw err;
     });
 }
+
+export const requestModifyPassword = (prevPassword, newPassword) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'POST',
+            url: `${FUNFUR}/auth_web/modify_pw`,
+            headers: {
+                Authorization: token
+            },
+            data: {
+                prevPassword,
+                newPassword
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}

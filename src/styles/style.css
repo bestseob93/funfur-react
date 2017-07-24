@@ -18,6 +18,9 @@ html, body {
 ul {
   padding: 0; }
 
+.fade.in {
+  background-color: rgba(0, 0, 0, 0.5); }
+
 .row {
   margin: 0 !important; }
 

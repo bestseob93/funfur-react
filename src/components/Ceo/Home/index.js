@@ -7,6 +7,7 @@ import SalesAmountStatus from './SalesAmountStatus';
 import MiniNotice from './MiniNotice';
 import Contact from './Contact';
 import FunfurStatus from './FunfurStatus';
+import PasswordModal from './PasswordModal';
 
 export {
     HomeContainer,
@@ -17,5 +18,6 @@ export {
     SalesAmountStatus,
     MiniNotice,
     Contact,
-    FunfurStatus
+    FunfurStatus,
+    PasswordModal
 };

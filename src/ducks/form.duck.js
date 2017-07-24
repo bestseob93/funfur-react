@@ -76,17 +76,21 @@ const initialState = fromJS({
         password: ''
     },
     modify: {
-        password: '',
-        repassword: '',
         ceoCall: '',
         ceoEmail_1: '',
         ceoEmail_2: ''
+    },
+    modifyPw: {
+        prevPassword: '',
+        newPassword: '',
+        rePassword: '',
+        errCode: null
     }
 });
 
 /* Reducer */
 export default function reducer(state = initialState, action) {
-    console.log(action.payload);
+    console.log(action.type);
     switch(action.type) {
         case FORM_CHANGE:
             // const { formName, name, value } = action.payload;

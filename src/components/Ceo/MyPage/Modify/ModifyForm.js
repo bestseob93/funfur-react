@@ -59,20 +59,15 @@ class ModifyForm extends Component {
         const { MyPageActions, form } = this.props;
         ev.preventDefault();
 
-        if(form.get('password') !== form.get('repassword')) {
-            console.log('패스워드 일치하지 않음.');
-        } else {
-            const ceoInfo = {
-                password: form.get('password'),
-                ceoCall: form.get('ceoCall'),
-                ceoEmail: form.get('ceoEmail')
-            };
-            try {
-                MyPageActions.modifyCeo(ceoInfo);
-            } catch (e) {
-                if(e) throw e;
+        const ceoInfo = {
+            ceoCall: form.get('ceoCall'),
+            ceoEmail: form.get('ceoEmail')
+        };
+        try {
+            MyPageActions.modifyCeo(ceoInfo);
+        } catch (e) {
+            if(e) throw e;
             }
-        }
     }
 
     render() {
@@ -91,33 +86,6 @@ class ModifyForm extends Component {
                     toastMessageFactory={ToastMessageFactory}
                     className={ document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right' }
                 />
-                <SubTitle title="계정 정보" />
-                <div className="row form-box">
-                    <FormLabel name="비밀번호 수정" />
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            placeholder="띄어쓰기 없이 영문자나 숫자 포함 4-20자"
-                            required
-                            onChange={changeHandler}
-                        />
-                    </div>
-                </div>
-                <div className="row form-box">
-                    <FormLabel name="비밀번호 확인" />
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="repassword"
-                            placeholder="위에서 입력한 비밀번호를 다시 한번 입력해주세요."
-                            required
-                            onChange={changeHandler}
-                        />
-                    </div>
-                </div>
                 <SubTitle title="개인 정보" />
                 <div className="row form-box">
                     <FormLabel name="사장님 성함" />

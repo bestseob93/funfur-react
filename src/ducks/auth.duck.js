@@ -11,6 +11,7 @@ const LOGIN_CEO = "login/LOGIN_CEO";
 const CHECK_TOKEN = "auth/CHECK_TOKEN";
 const AUTH_LOGOUT = "auth/AUTH_LOGOUT";
 const SET_PROFILE = "auth/SET_PROFILE";
+const MODIFY_PASSWORD = "auth/MODIFY_PASSWORD";
 
 /* Action Creators */
 export const checkCompanyRegistration = (companyNumber) => ({
@@ -41,6 +42,11 @@ export const checkToken = (token) => ({
 export const authLogout = createAction(AUTH_LOGOUT);
 export const setProfile = createAction(SET_PROFILE);
 
+export const modifyPassword = (prevPassword, newPassword) => ({
+    type: MODIFY_PASSWORD,
+    payload: auth.requestModifyPassword(prevPassword, newPassword)
+});
+
 const initialState = fromJS({
     requests: {
         checkCompanyRegistration: {
@@ -57,6 +63,9 @@ const initialState = fromJS({
         },
         checkToken: {
             ...requestStatus.request
+        },
+        modifyPassword: {
+            ...requestStatus.request
         }
     },
     token: null,
@@ -64,7 +73,8 @@ const initialState = fromJS({
     valid: {
         login: false,
         bizId: false,
-        userId: false
+        userId: false,
+        modifyPw: false
     },
     isSuccess: false,
     authInfo: {
@@ -124,6 +134,14 @@ export default function reducer(state = initialState, action) {
             return state.set('authenticated', false);
         case SET_PROFILE:
             return state.mergeIn(['authInfo'], action.payload);
+        case `${MODIFY_PASSWORD}_PENDING`:
+            return state.mergeIn(['requests', 'modifyPassword'], fromJS(requestStatus.pending));
+        case `${MODIFY_PASSWORD}_FULFILLED}`:
+            return state.mergeIn(['requests', 'modifyPassword'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'modifyPw'], true);
+        case `${MODIFY_PASSWORD}_REJECTED`:
+            return state.mergeIn(['requests', 'modifyPassword'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'modifyPw'], false);
         default:
             return state;
     }

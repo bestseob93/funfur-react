@@ -17,10 +17,15 @@ import {
     SideBar,
 } from 'components/Base';
 
+import {
+    PasswordModal
+} from 'components/Ceo/Home';
+
 import storage from 'helpers/localForage.helper';
 
 import * as uiDuck from 'ducks/ui.duck';
 import * as authDuck from 'ducks/auth.duck';
+import * as formDuck from 'ducks/form.duck';
 
 const contextTypes = {
     router: PropTypes.object
@@ -32,6 +37,8 @@ class CeoWrapper extends Component {
 
         this.handleUiAction = this.handleUiAction.bind(this);
         this.handleSideMenu = this.handleSideMenu.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
 
@@ -68,19 +75,45 @@ class CeoWrapper extends Component {
         UiActions.setListIndex(index);
     }
 
+    showModal(ev) {
+        const { UiActions } = this.props;
+        ev.preventDefault();
+        UiActions.showModal();
+    }
+
+    hideModal(ev) {
+        const { FormActions, UiActions } = this.props;
+        ev.preventDefault();
+        FormActions.formReset('modifyPw');
+        UiActions.hideModal();
+    }
+
     render() {
         const { match } = this.props;
-        const { handleSideMenu } = this;
-        console.log(this.context);
+        const {
+            handleSideMenu,
+            showModal,
+            hideModal
+        } = this;
+        console.log('hihi');
         return (
             <div>
+                <PasswordModal
+                    hideModal={hideModal}
+                    modalVisible={this.props.visible.modal}
+                    FormActions={this.props.FormActions}
+                    AuthActions={this.props.AuthActions}
+                    form={this.props.form}
+                    pwValid={this.props.valid.modifyPw}
+                    status={this.props.status.modifyPw}
+                />
                 <SideBar
                     onClick={handleSideMenu}
                     listIndex={this.props.listIndex}
                     authInfo={this.props.authInfo.toJS()}
                 />
                 <div className="ceo-page-wrapper">
-                    <CeoHeader />
+                    <CeoHeader showModal={showModal} />
                     <Route exact path={match.url} component={CeoHome} />
                     <Route path={`${match.url}/products`} component={CeoSellingProduct} />
                     <Route path={`${match.url}/upload`} component={CeoProductUpload} />
@@ -96,12 +129,22 @@ CeoWrapper.contextTypes = contextTypes;
 
 export default connect(
     state => ({
-        visible: state.ui.getIn(['visible', 'base']),
+        visible: {
+            modal: state.ui.getIn(['visible', 'modal'])
+        },
         listIndex: state.ui.get('listIndex'),
-        authInfo: state.auth.get('authInfo')
+        authInfo: state.auth.get('authInfo'),
+        form: state.form.get('modifyPw'),
+        valid: {
+            modifyPw: state.auth.getIn(['valid', 'modifyPw'])
+        },
+        status: {
+            modifyPw: state.auth.getIn(['requests', 'modifyPassword'])
+        }
     }),
     dispatch => ({
         UiActions: bindActionCreators(uiDuck, dispatch),
-        AuthActions: bindActionCreators(authDuck, dispatch)
+        AuthActions: bindActionCreators(authDuck, dispatch),
+        FormActions: bindActionCreators(formDuck, dispatch)
     })
 )(CeoWrapper);
