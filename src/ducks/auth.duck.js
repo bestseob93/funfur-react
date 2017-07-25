@@ -117,7 +117,6 @@ export default function reducer(state = initialState, action) {
                         .setIn(['valid', 'login'], true)
                         .set('token', action.payload.data.token)
                         .set('authenticated', true)
-                        .setIn(['authInfo', 'loginId'], action.payload.data.loginId)
                         .setIn(['authInfo', 'ceoName'], action.payload.data.ceoName)
                         .setIn(['authInfo', 'companyName'], action.payload.data.companyName);
         case `${LOGIN_CEO}_REJECTED`:
