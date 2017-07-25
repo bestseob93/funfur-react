@@ -44,7 +44,8 @@ const initialState = fromJS({
         ceoEmail: '',
         cpName: '',
         businessId: '',
-        cpAddress: ''
+        cpAddress: '',
+        cpCall: ''
     }
 });
 
@@ -68,7 +69,8 @@ export default function reducer(state = initialState, action) {
                         .setIn(['profile', 'ceoEmail'], fromJS(action.payload.data.email))
                         .setIn(['profile', 'cpName'], fromJS(action.payload.data.company_name))
                         .setIn(['profile', 'businessId'], fromJS(action.payload.data.business_registration_number))
-                        .setIn(['profile', 'cpAddress'], fromJS(action.payload.data.address));
+                        .setIn(['profile', 'cpAddress'], fromJS(action.payload.data.address))
+                        .setIn(['profile', 'cpCall'], fromJS(action.payload.data.cpCall));
         case `${GET_MY_INFO}_REJECTED`:
             return state.mergeIn(['requests', 'myInfo'], requestStatus.rejected);
         default:

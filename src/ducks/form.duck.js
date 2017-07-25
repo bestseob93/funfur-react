@@ -90,7 +90,7 @@ const initialState = fromJS({
 
 /* Reducer */
 export default function reducer(state = initialState, action) {
-    console.log(action.type);
+    console.log(action.payload);
     switch(action.type) {
         case FORM_CHANGE:
             // const { formName, name, value } = action.payload;

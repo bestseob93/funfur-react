@@ -136,7 +136,7 @@ export default function reducer(state = initialState, action) {
             return state.mergeIn(['authInfo'], action.payload);
         case `${MODIFY_PASSWORD}_PENDING`:
             return state.mergeIn(['requests', 'modifyPassword'], fromJS(requestStatus.pending));
-        case `${MODIFY_PASSWORD}_FULFILLED}`:
+        case `${MODIFY_PASSWORD}_FULFILLED`:
             return state.mergeIn(['requests', 'modifyPassword'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'modifyPw'], true);
         case `${MODIFY_PASSWORD}_REJECTED`:

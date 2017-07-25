@@ -50,15 +50,24 @@ class PasswordModal extends Component {
             } else if(form.get('newPassword') === form.get('rePassword')) { 
                 try {
                     await AuthActions.modifyPassword(form.get('prevPassword'), form.get('newPassword'));
+                    console.log(this.props.pwValid);
                     if(this.props.pwValid) {
-                        hideModal();
+                        console.log('aaa');
+                        this.props.hideModal();
                     }
                 } catch (e) {
-                    if(e) {
+                    console.log(e);
+                    if(e.response.data.code === 5) {
                         FormActions.formChange({
                             formName: 'modifyPw',
                             name: 'errCode',
-                            value: 2
+                            value: 5
+                        }); // 기존 비밀번호 다름
+                    } else {
+                        FormActions.formChange({
+                            formName: 'modifyPw',
+                            name: 'errCode',
+                            value: 4
                         }); // 토큰이 만료되었습니다. 재로그인해주세요.
                     }
                 }
@@ -84,6 +93,8 @@ class PasswordModal extends Component {
                 return <p style={{color: 'red'}}>새 비밀번호와 비밀번호 확인 값이 다릅니다.</p>;
             case 4:
                 return <p style={{color: 'red'}}>토큰이 만료되었습니다. 재로그인해주세요.</p>;
+            case 5:
+                return <p style={{color: 'red'}}>기존 비밀번호가 일치하지 않습니다.</p>;
             default:
                 return;
         }
@@ -100,8 +111,6 @@ class PasswordModal extends Component {
             handleSubmit,
             renderErrorMessage
         } = this;
-        
-        const emptyComponent = undefined;
         
         return (
             <div

@@ -38,7 +38,7 @@ export const requestRegisterCeo = (ceoInfo) => {
     console.log(typeof idOutPut);
     console.log(typeof pwOutPut);
     return Promise.all([nameOutPut, phoneOutPut, emailOutPut, idOutPut, pwOutPut]).then((values) => {
-        const idImage = Array.prototype.slice.call(ceoInfo.businessIdImage);
+        const idImage = Array.prototype.slice.call(ceoInfo.businessIdImage.toJS());
         let formData = new FormData();
 
         console.log('email: ' + values[2]);
@@ -103,8 +103,9 @@ export const requestCheckToken = (token) => {
 
 export const requestModifyPassword = (prevPassword, newPassword) => {
     return storage.get('token').then((token) => {
+        console.log(token);
         return axios({
-            method: 'POST',
+            method: 'PUT',
             url: `${FUNFUR}/auth_web/modify_pw`,
             headers: {
                 Authorization: token

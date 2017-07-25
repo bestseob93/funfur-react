@@ -68,6 +68,7 @@ class RegisterForm extends Component {
 
     /* react-dropzone을 이용하여 redux의 form 업데이트 */
     handleFile(files) {
+        console.log(files);
         const { FormActions } = this.props;
         FormActions.formChange({
             formName: 'register',

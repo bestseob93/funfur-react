@@ -182,6 +182,18 @@ class ModifyForm extends Component {
                         />
                     </div>
                 </div>
+                <div className="row form-box">
+                    <FormLabel name="사업장 전화번호" />
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="cpAddress"
+                            value={this.props.profile.get('cpCall')}
+                            disabled
+                        />
+                    </div>
+                </div>
                 <div className="row form-box padding-top50">
                     <div className="btn-container">
                         <Link

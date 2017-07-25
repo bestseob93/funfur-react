@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
 import {
-    Consumer
+    Consumer,
+    ConsumerNav,
+    ConsumerContents
 } from 'components/Ceo/Consumer';
 
 class ConsumerScreen extends Component {
     render() {
         return (
             <Consumer>
+                <ConsumerNav />
+                <ConsumerContents />
             </Consumer>
-        )
+        );
     }
 }
 

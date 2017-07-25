@@ -9,6 +9,7 @@ export const requestCheckPassword = (password) => {
     
     let passwordOutPut = encryptIt(password);
     return storage.get('token').then((token) => {
+        console.log(token);
         return passwordOutPut.then((value) => {
             console.log(value);
             return axios({
@@ -55,7 +56,8 @@ export const requestModifyCeo = (ceoInfo) => {
                 Authorization: token
             },
             data: {
-                // TODO: 서버로 보낼 데이터 넣기
+                phone_number: ceoInfo.ceoCall,
+                email: ceoInfo.ceoEmail
             }
         }).then(res => {
             return res;

@@ -84,9 +84,13 @@ class CeoWrapper extends Component {
 
     hideModal(ev) {
         const { FormActions, UiActions } = this.props;
-        ev.preventDefault();
-        FormActions.formReset('modifyPw');
-        UiActions.hideModal();
+        if(!ev) {
+            UiActions.hideModal();
+        } else {
+            ev.preventDefault();
+            FormActions.formReset('modifyPw');
+            UiActions.hideModal();
+        }
     }
 
     render() {
