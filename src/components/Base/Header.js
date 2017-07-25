@@ -39,7 +39,6 @@ function Header({authenticated, handleLogout}) {
                             <i className="fa fa-facebook"></i>
                         </a>
                         <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a>
-                        <Link className="navbar-brand" to="/">뻔뻐</Link>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         { renderBtn() }

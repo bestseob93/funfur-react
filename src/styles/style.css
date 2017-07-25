@@ -1495,8 +1495,16 @@ div.navbar-header {
   background-color: #fdd831 !important;
   border: 0; }
 
+nav.navbar-default {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important; }
+
 .navbar {
   border: 0 !important; }
+  .navbar ul li a, .navbar ul li i {
+    color: #fff !important;
+    font-size: 20px; }
 
 a.navbar-brand {
   color: #fff !important;

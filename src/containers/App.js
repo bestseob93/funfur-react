@@ -50,6 +50,7 @@ class App extends Component {
         if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
           document.location = "/";
         }
+        
         if(e) throw e;
       }
     }).catch(err => {
@@ -72,7 +73,7 @@ class App extends Component {
         <div>
           {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
           { this.props.visible.base ? <Header authenticated={this.props.authenticated} handleLogout={this.handleLogout}/> : null }
-          { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null }
+          {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
 
             <Route
               exact

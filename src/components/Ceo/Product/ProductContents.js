@@ -5,7 +5,7 @@ function ProductContents() {
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
             <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <Link to="/ceo/upload">
                             <div className="product-box-contents add-product">
@@ -14,7 +14,7 @@ function ProductContents() {
                         </Link>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -27,7 +27,7 @@ function ProductContents() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -40,7 +40,7 @@ function ProductContents() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -54,8 +54,9 @@ function ProductContents() {
                     </div>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-md-3">
+            {/* TODO: row 없애고 동적으로 col-md-3 col-xs-6 들어가게정수정 */}
+            <div className="row"> 
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -68,7 +69,7 @@ function ProductContents() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -81,7 +82,7 @@ function ProductContents() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">
@@ -94,7 +95,7 @@ function ProductContents() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-xs-6">
                     <div className="product-box">
                         <div className="product-box-contents">
                             <div className="product-thumbnail">

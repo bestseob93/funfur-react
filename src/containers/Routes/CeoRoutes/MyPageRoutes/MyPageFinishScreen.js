@@ -25,7 +25,7 @@ class MyPageFinishScreen extends Component {
     }
 
     componentWillUnmount () {
-        clearInterval(this.timer)
+        clearInterval(this.timer);
     }
 
     countDown() {

@@ -14,6 +14,23 @@ class HomeScreen extends Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
+    componentDidMount() {
+        const { AuthActions } = this.props;
+        storage.get('token').then(async (value) => {
+        try {
+            await AuthActions.checkToken(value);
+            // 로그인 되있으면 대쉬보드로 이동
+            if(this.props.authenticated) {
+                document.location = "/ceo";
+            }
+        } catch (e) {
+            if(e) throw e;
+        }
+        }).catch(err => {
+            if(err) throw err;
+        });    
+    }
+
     handleLogout() {
         const { AuthActions } = this.props;
         AuthActions.authLogout();
@@ -43,9 +60,6 @@ class HomeScreen extends Component {
                         </h1>
                         <p>뻔뻐가구거리에 지금 바로 입주하시고 3개월간 무료로 상품등록 해보세요.</p>
                         { this.props.authenticated ? logoutBtn : loginBtn }
-                    </div>
-                    <div className="funfur-description youtube-wrapper">
-                        <iframe title="영상" src="https://www.youtube.com/embed/fNDzegpZdPg" frameBorder={0} allowFullScreen></iframe>
                     </div>
                 </div>
                 {/*<!-- Set background for slide in css -->*/}

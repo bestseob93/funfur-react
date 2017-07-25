@@ -3,8 +3,23 @@ div.navbar-header {
     border: 0;
 }
 
+nav.navbar-default {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
 .navbar {
     border: 0 !important;
+
+    ul {
+        li {
+            a, i {
+                color: #fff !important;
+                font-size: 20px;
+            }
+        }
+    }
 }
 
 a.navbar-brand {
