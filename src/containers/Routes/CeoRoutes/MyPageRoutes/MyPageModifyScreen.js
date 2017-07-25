@@ -27,6 +27,7 @@ export default connect(
             modify: state.mypage.getIn(['requests', 'modify'])
         },
         valid: state.mypage.getIn(['valid', 'modify']),
+        confirmed: state.mypage.getIn(['valid', 'confirmed']),
         profile: state.mypage.get('profile')
     }),
     dispatch => ({

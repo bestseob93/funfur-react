@@ -23,11 +23,16 @@ class ModifyForm extends Component {
 
     async componentDidMount() {
         const { MyPageActions } = this.props;
-        try {
-            MyPageActions.getMyInfo();
-        } catch (e) {
-            if(e) throw e;
+        if(this.props.confirmed) {
+            try {
+                MyPageActions.getMyInfo();
+            } catch (e) {
+                if(e) throw e;
+            }
+        } else {
+            this.props.history.push('/ceo/mypage'); // TODO 새로 고침 문제 해결 필요.
         }
+
     }
 
     /* toast 창띄우기 */

@@ -17,6 +17,11 @@ class EnterForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        const { FormActions } = this.props;
+        FormActions.formReset('myPageEnter');
+    }
+
     /* toast 창띄우기 */
     addAlert(types, msg) {  /* enum of types: ['warning', 'success', 'error', 'info'],  msg: String */
         switch(types) {
