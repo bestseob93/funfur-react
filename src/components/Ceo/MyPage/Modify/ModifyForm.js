@@ -55,19 +55,30 @@ class ModifyForm extends Component {
         });
     }
     /* 회원 정보 수정 요청 */
-    handleSubmit(ev) {
+    async handleSubmit(ev) {
         const { MyPageActions, form } = this.props;
         ev.preventDefault();
 
         const ceoInfo = {
             ceoCall: form.get('ceoCall'),
-            ceoEmail: form.get('ceoEmail')
+            ceoEmail: form.get('ceoEmail_1') + '@' + form.get('ceoEmail_2')
         };
-        try {
-            MyPageActions.modifyCeo(ceoInfo);
-        } catch (e) {
-            if(e) throw e;
+
+        if(ceoInfo.ceoCall === '' || ceoInfo.ceoEmaill === '') {
+            this.addAlert('warning', '전화번호나 이메일을 입력해주세요. 변경하지 않으시려면 취소를 눌러주세요!');
+        } else {
+            try {
+                await MyPageActions.modifyCeo(ceoInfo);
+                console.log(this.props.valid);
+                if(this.props.valid) {
+                    console.log(this.props.history);
+                    this.props.history.push('/ceo/mypage_3');
+                }
+            } catch (e) {
+                if(e) throw e;
+                this.addAlert('error', '에러가 발생했습니다. 관리자에게 문의해주세요.');
             }
+        }
     }
 
     render() {
@@ -76,10 +87,12 @@ class ModifyForm extends Component {
             handleSubmit
         } = this;
 
+        const emptyComponent = undefined;
+        console.log(this.props);
         return (
             <div className="modify-form-container">
                 {/* 스피너 */}
-                 { this.props.status.myInfo.get('fetching') && (<Spinner/>) } 
+                 { this.props.status.myInfo.get('fetching') || this.props.status.modify.get('fetching') ? (<Spinner/>)  : emptyComponent } 
                 {/* 토스트 컨테이너 */}
                 <ToastContainer
                     ref={(toast) => { this.toastRef = toast }}

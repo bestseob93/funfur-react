@@ -10,6 +10,7 @@ import {
     CeoProductUpload,
     MyPageEnterScreen,
     MyPageModifyScreen,
+    MyPageFinishScreen,
     ConsumerScreen
 } from './CeoRoutes';
 
@@ -124,6 +125,7 @@ class CeoWrapper extends Component {
                     <Route path={`${match.url}/upload`} component={CeoProductUpload} />
                     <Route path={`${match.url}/mypage`} component={MyPageEnterScreen} />
                     <Route path={`${match.url}/mypage_2`} component={MyPageModifyScreen} />
+                    <Route path={`${match.url}/mypage_3`} component={MyPageFinishScreen} />
                     <Route path={`${match.url}/consumer`} component={ConsumerScreen} />
                 </div>
             </div>

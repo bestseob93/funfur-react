@@ -36,7 +36,8 @@ const initialState = fromJS({
         }
     },
     valid: {
-        confirmed: false
+        confirmed: false,
+        modify: false
     },
     profile: {
         ceoName: '',
@@ -53,17 +54,17 @@ const initialState = fromJS({
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case `${CHECK_PASSWORD}_PENDING`:
-            return state.mergeIn(['requests', 'checkPasword'], requestStatus.pending);
+            return state.mergeIn(['requests', 'checkPasword'], fromJS(requestStatus.pending));
         case `${CHECK_PASSWORD}_FULFILLED`:
-            return state.mergeIn(['requests', 'checkPasword'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'checkPasword'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'confirmed'], true);
         case `${CHECK_PASSWORD}_REJECTED`:
-            return state.mergeIn(['requests', 'checkPasword'], requestStatus.rejected)
+            return state.mergeIn(['requests', 'checkPasword'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'confirmed'], false);
         case `${GET_MY_INFO}_PENDING`:
-            return state.mergeIn(['requests', 'myInfo'], requestStatus.pending);
+            return state.mergeIn(['requests', 'myInfo'], fromJS(requestStatus.pending));
         case `${GET_MY_INFO}_FULFILLED`:
-            return state.mergeIn(['requests', 'myInfo'], requestStatus.fulfilled)
+            return state.mergeIn(['requests', 'myInfo'], fromJS(requestStatus.fulfilled))
                         .setIn(['profile', 'ceoName'], fromJS(action.payload.data.name))
                         .setIn(['profile', 'ceoCall'], fromJS(action.payload.data.phone_number))
                         .setIn(['profile', 'ceoEmail'], fromJS(action.payload.data.email))
@@ -72,7 +73,15 @@ export default function reducer(state = initialState, action) {
                         .setIn(['profile', 'cpAddress'], fromJS(action.payload.data.address))
                         .setIn(['profile', 'cpCall'], fromJS(action.payload.data.cpCall));
         case `${GET_MY_INFO}_REJECTED`:
-            return state.mergeIn(['requests', 'myInfo'], requestStatus.rejected);
+            return state.mergeIn(['requests', 'myInfo'], fromJS(requestStatus.rejected));
+        case `${MODIFY_CEO}_PENDING`:
+            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.pending));
+        case `${MODIFY_CEO}_FULFILLED`:
+            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'modify'], true);
+        case `${MODIFY_CEO}_REJECTED`:
+            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'modify'], false);
         default:
             return state;
     }
