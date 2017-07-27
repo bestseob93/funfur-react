@@ -20,6 +20,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                         />원
                     </td>
                 </tr>
+                {/* 모두 동일에 체크되면 첫번째 input 떠날 때 나머지 값들 모두 서울경기와 가격 동일 */}
                 <tr>
                     <td>강원</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 

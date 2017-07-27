@@ -1,7 +1,8 @@
 .carousel-inner {
     overflow: visible !important;
-    height: 650px;
-    background: url("../img/d.jpg") no-repeat;
+    height: 620px;
+    background: url("../img/main.jpg") no-repeat;
+    background-size: 100%;
 }
 
 .spacer {
@@ -11,15 +12,25 @@
 .funfur-wrapper {
     display: table;
     height: inherit;
+    background-color: $funfur-color;
+    width: 440px;
+    opacity: 0.93;
     .funfur-description {
         display: table-cell;
         vertical-align: middle;
+        text-align: center;
+        h1 {
+            font-size: 30px;
+        }
+        p {
+            font-size: 24px;
+        }
         h1, p {
             color: #fff;
         }
         a {
-            background-color: $funfur-color !important;
-            color: #fff;
+            border-radius: 10px;
+            border: 0;
             margin: 0 10px;
             width: 110px;
         }

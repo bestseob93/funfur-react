@@ -4,10 +4,10 @@ function RegisterTitle({title}) {
     if(title === 'policy') {
         return (
             <div className="register-title">
-                <h3>
-                    <span className="funfur-color">뻔뻐</span> 사장님사이트 이용약관 및 동의
+                <h3 className="ns-B">
+                    <span className="funfur-color bm-dohyeon">뻔뻐</span> 사장님사이트 이용약관 및 동의
                 </h3>
-                <p>아래의 이용약관을 읽고 동의 해주세요.</p>
+                <p style={{marginLeft: 60}}>* 아래의 이용약관을 읽고 동의 해주세요.</p>
                 <ol>
                     <li className="active"><span className="active-detail">01.</span> 약관 동의 ></li>
                     <li>02. 정보 입력 ></li>

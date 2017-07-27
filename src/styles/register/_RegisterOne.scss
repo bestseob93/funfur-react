@@ -1,5 +1,6 @@
 .register-intro-advantage {
-    margin: 45px 0;
+    margin: 70px 0 40px 0;
+    font-size: 20px !important;
 }
 
 .intro-image-wrapper {
@@ -14,6 +15,21 @@
     }
 }
 
+#intro-1.intro-images {
+    background: url("../img/intro1.png") no-repeat;
+    background-size: 100%;
+}
+
+#intro-2.intro-images {
+    background: url("../img/intro2.png") no-repeat;
+    background-size: 100%;
+}
+
+#intro-3.intro-images {
+    background: url("../img/intro3.png") no-repeat;
+    background-size: 100%;
+}
+
 .intro-txt {
     font-size: 20px !important;
     font-weight: 500;
@@ -21,13 +37,14 @@
 
 .intro-contents {
     margin-top: 40px;
-    font-size: 1.3em;
-    font-weight: 500;
+    font-size: 16px;
+    color: #d0011b;
 }
 
 .register-btn {
-    font-weight: 600 !important;
-    padding: 10px 20px !important;
+    font-size: 20px !important;
+    padding: 14px 20px !important;
+    border-radius: 10px !important;
 }
 
 // @media only screen and (max-width: 667px) {

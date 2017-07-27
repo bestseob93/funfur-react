@@ -1,10 +1,28 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("./font.scss");
 body {
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Nanum Square" !important;
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden; }
+
+/* about font */
+.bm-dohyeon {
+  font-family: "BMDoHyeon-OTF" !important;
+  font-size: 40px;
+  font-weight: normal !important; }
+
+.ns-EB {
+  font-weight: 900 !important; }
+
+.ns-B {
+  font-weight: 700 !important; }
+
+.ns-R {
+  font-weight: 400 !important; }
+
+.ns-L {
+  font-weight: 300 !important; }
 
 a {
   text-decoration: none !important; }
@@ -67,8 +85,7 @@ div.upload-dropzone {
   color: #676a6c; }
 
 .auth-top-border {
-  margin-top: 45px !important;
-  border-top: 3px solid #fdd831; }
+  margin-top: 45px !important; }
 
 div.toast-message {
   color: #fff !important; }
@@ -1498,12 +1515,23 @@ div.navbar-header {
 nav.navbar-default {
   background-color: transparent !important;
   background-image: none !important;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear; }
+
+nav.scrolling-nav {
+  background-color: #fdd831 !important;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear; }
+  nav.scrolling-nav ul li a, nav.scrolling-nav ul li i {
+    color: #fff !important; }
 
 .navbar {
   border: 0 !important; }
-  .navbar ul li a, .navbar ul li i {
+  .navbar ul.home-route li a, .navbar ul.home-route li i {
     color: #fff !important;
+    font-size: 20px; }
+  .navbar ul li a, .navbar ul li i {
     font-size: 20px; }
 
 a.navbar-brand {
@@ -1520,8 +1548,9 @@ a.navbar-toggle {
 
 .carousel-inner {
   overflow: visible !important;
-  height: 650px;
-  background: url("../img/d.jpg") no-repeat; }
+  height: 620px;
+  background: url("../img/main.jpg") no-repeat;
+  background-size: 100%; }
 
 .spacer {
   width: 100%;
@@ -1529,15 +1558,23 @@ a.navbar-toggle {
 
 .funfur-wrapper {
   display: table;
-  height: inherit; }
+  height: inherit;
+  background-color: #fdd831;
+  width: 440px;
+  opacity: 0.93; }
   .funfur-wrapper .funfur-description {
     display: table-cell;
-    vertical-align: middle; }
+    vertical-align: middle;
+    text-align: center; }
+    .funfur-wrapper .funfur-description h1 {
+      font-size: 30px; }
+    .funfur-wrapper .funfur-description p {
+      font-size: 24px; }
     .funfur-wrapper .funfur-description h1, .funfur-wrapper .funfur-description p {
       color: #fff; }
     .funfur-wrapper .funfur-description a {
-      background-color: #fdd831 !important;
-      color: #fff;
+      border-radius: 10px;
+      border: 0;
       margin: 0 10px;
       width: 110px; }
     .funfur-wrapper .funfur-description iframe {
@@ -1585,7 +1622,7 @@ a.navbar-toggle {
       font-size: 18px;
       font-weight: lighter; }
     .register-title ol li.active {
-      font-size: 24px;
+      font-size: 36px;
       font-weight: 500; }
       .register-title ol li.active .active-detail {
         color: #fdd831;
@@ -1593,7 +1630,8 @@ a.navbar-toggle {
         margin: 0; }
 
 .register-intro-advantage {
-  margin: 45px 0; }
+  margin: 70px 0 40px 0;
+  font-size: 20px !important; }
 
 .intro-image-wrapper div.intro-box .intro-images {
   background-color: #fdd831;
@@ -1602,18 +1640,31 @@ a.navbar-toggle {
   margin: 0 auto;
   margin-bottom: 15px; }
 
+#intro-1.intro-images {
+  background: url("../img/intro1.png") no-repeat;
+  background-size: 100%; }
+
+#intro-2.intro-images {
+  background: url("../img/intro2.png") no-repeat;
+  background-size: 100%; }
+
+#intro-3.intro-images {
+  background: url("../img/intro3.png") no-repeat;
+  background-size: 100%; }
+
 .intro-txt {
   font-size: 20px !important;
   font-weight: 500; }
 
 .intro-contents {
   margin-top: 40px;
-  font-size: 1.3em;
-  font-weight: 500; }
+  font-size: 16px;
+  color: #d0011b; }
 
 .register-btn {
-  font-weight: 600 !important;
-  padding: 10px 20px !important; }
+  font-size: 20px !important;
+  padding: 14px 20px !important;
+  border-radius: 10px !important; }
 
 .policy-checks {
   padding: 18px 0;

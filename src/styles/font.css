@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Nanum Square';
+  src: url("../fonts/NanumSquareL.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/NanumSquareL.eot?#iefix") format("embedded-opentype"), url("../fonts/NanumSquareL.woff") format("woff"), url("../fonts/NanumSquareL.ttf") format("truetype"), url("../fonts/NanumSquareOTFLight.svg#017f9c78318bcde3d1dc4451e8eaca0a") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 300; }
+
+@font-face {
+  font-family: 'Nanum Square';
+  src: url("../fonts/NanumSquareR.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/NanumSquareR.eot?#iefix") format("embedded-opentype"), url("../fonts/NanumSquareR.woff") format("woff"), url("../fonts/NanumSquareR.ttf") format("truetype"), url("../fonts/NanumSquareOTFR.svg#9e23ceb0c858ca37642ba540402577eb") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'Nanum Square';
+  src: url("../fonts/NanumSquareB.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/NanumSquareB.eot?#iefix") format("embedded-opentype"), url("../fonts/NanumSquareB.woff") format("woff"), url("../fonts/NanumSquareB.ttf") format("truetype"), url("../fonts/NanumSquareOTFB.svg#a41a1fda1fdf3dafd3394867a156b1cf") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 700; }
+
+@font-face {
+  font-family: 'Nanum Square';
+  src: url("../fonts/NanumSquareEB.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/NanumSquareEB.eot?#iefix") format("embedded-opentype"), url("../fonts/NanumSquareEB.woff") format("woff"), url("../fonts/NanumSquareEB.ttf") format("truetype"), url("../fonts/NanumSquareOTFExtraBold.svg#090d6763bc81b49309446d23fbd10e87") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: 900; }
+
+@font-face {
+  font-family: 'BMDoHyeon-OTF';
+  src: url("../fonts/BMDoHyeon-OTF00.eot");
+  src: url("../fonts/BMDoHyeon-OTF00.woff") format("woff"), url("../fonts/BMDoHyeon-OTF00.ttf") format("truetype"), url("../fonts/BMDoHyeon-OTF00.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal; }

@@ -1,52 +1,89 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-function Header({authenticated, handleLogout}) {
-    const renderBtn = () => {
-        if(!authenticated) {
-            return (
-                <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/login" className="page-scroll">로그인</Link></li>
-                    <li><Link to="/user/register_1" className="page-scroll">회원가입</Link></li>
-                    <li><Link to="/ceo" className="page-scroll">상품소개</Link></li>
-                    <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
-                    <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
-                </ul>
-            );
-        } else {
-            return (
-                <ul className="nav navbar-nav navbar-right">
-                    <li><Link to="/" type="button" className="page-scroll" onClick={handleLogout}>로그아웃</Link></li>
-                    <li><Link to="/" className="page-scroll">상품소개</Link></li>
-                    <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
-                    <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
-                </ul>
-            )
-        }
-    };
 
-    return (
-        <div className="navbar-wrapper">
-            <nav className="navbar navbar-default navbar-fixed-top">
-                <div className="container">
-                    <div className="navbar-header page-scroll">
-                        {/*<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>*/}
-                        <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks">
-                            <i className="fa fa-facebook"></i>
-                        </a>
-                        <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a>
+class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    /* scroll 시 header 배경 변경 */
+    handleScroll(ev) {
+        let scrollTop = ev.srcElement.body.scrollTop;
+        let itemTranslate = Math.min(0, scrollTop/3 - 60);
+        console.log(scrollTop);
+        let isScrolling = false;
+        if(scrollTop > 20) {
+            isScrolling = true;
+        } else {
+            isScrolling = false;
+        }
+        if(isScrolling) {
+            this.navbar.classList.add('scrolling-nav');
+        } else {
+            this.navbar.classList.remove('scrolling-nav');
+        }
+    }
+
+    render() {
+        const { authenticated, handleLogout } = this.props;
+        const pathName = document.location.pathname;
+        console.log(document.scroll);
+        const renderBtn = () => {
+            if(!authenticated) {
+                return (
+                    <ul className={`nav navbar-nav navbar-right ${pathName === '/' ? 'home-route' : ''}`}>
+                        <li><Link to="/login" className="page-scroll">로그인</Link></li>
+                        <li><Link to="/user/register_1" className="page-scroll">회원가입</Link></li>
+                        <li><Link to="/ceo" className="page-scroll">상품소개</Link></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
+                    </ul>
+                );
+            } else {
+                return (
+                    <ul className={`nav navbar-nav navbar-right ${pathName === '/' ? 'home-route' : ''}`}>
+                        <li><Link to="/" type="button" className="page-scroll" onClick={handleLogout}>로그아웃</Link></li>
+                        <li><Link to="/" className="page-scroll">상품소개</Link></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
+                    </ul>
+                )
+            }
+        };
+        return (
+            <div className="navbar-wrapper">
+                <nav ref={ (nav) => this.navbar = nav } className="navbar navbar-default navbar-fixed-top">
+                    <div className="container">
+                        <div className="navbar-header page-scroll">
+                            {/*<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span className="sr-only">Toggle navigation</span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>*/}
+                            <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks">
+                                <i className="fa fa-facebook"></i>
+                            </a>
+                            <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a>
+                        </div>
+                        <div id="navbar" className="navbar-collapse collapse">
+                            { renderBtn() }
+                        </div>
                     </div>
-                    <div id="navbar" className="navbar-collapse collapse">
-                        { renderBtn() }
-                    </div>
-                </div>
-            </nav>
-        </div>
-    );
+                </nav>
+            </div>
+        );
+    }
 }
 
 export default Header;

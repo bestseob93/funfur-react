@@ -37,6 +37,7 @@ class App extends Component {
     const { AuthActions } = this.props;
     console.log(this.props.authenticated);
     console.log('a');
+    
     storage.get('token').then(async (value) => {
       try {
         await AuthActions.checkToken(value);

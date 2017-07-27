@@ -39,26 +39,27 @@ class HomeScreen extends Component {
     }
     render() {
         const loginBtn = (
-            <p>
-                <Link className="btn btn-lg" to="/login" role="button">로그인</Link>
-                <Link className="btn btn-lg" to="/register">회원가입</Link>
-            </p>
+            <div className="btn-container">
+                <Link className="btn btn-common btn-prev" to="/login" role="button">로그인</Link>
+                <Link className="btn btn-common btn-prev" to="/register">회원가입</Link>
+            </div>
         );
 
         const logoutBtn = (
-            <p>
-                <Link className="btn btn-lg" to="/" role="button" onClick={this.handleLogout}>로그아웃</Link>
-            </p>           
+            <div className="btn-container">
+                <Link className="btn btn-common btn-prev" to="/" role="button" onClick={this.handleLogout}>로그아웃</Link>
+            </div>           
         );
 
         return (
             <div className="carousel-inner" role="listbox">
-                <div className="container funfur-wrapper">
+                <div className="funfur-wrapper">
                     <div className="funfur-description">
-                        <h1>한국, 최초의 모바일 가구거리에<br/>
-                            오신걸 환영합니다.<br/>
+                        <h1>대한민국 최초의<br/>
+                            모바일 가구거리<br/>
                         </h1>
-                        <p>뻔뻐가구거리에 지금 바로 입주하시고 3개월간 무료로 상품등록 해보세요.</p>
+                        <p>오프라인 스토어를 온라인으로!</p>
+                        <p>뻔뻐로 사업을 확장하세요.</p>
                         { this.props.authenticated ? logoutBtn : loginBtn }
                     </div>
                 </div>

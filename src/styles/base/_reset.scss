@@ -1,9 +1,29 @@
 body {
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Nanum Square" !important;
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
   overflow-x: hidden;
+}
+/* about font */
+.bm-dohyeon {
+  font-family: "BMDoHyeon-OTF" !important;
+  font-size: 40px;
+  font-weight: normal !important;
+}
+.ns-EB {
+  font-weight: 900 !important;
+}
+.ns-B {
+  font-weight: 700 !important;
+}
+
+.ns-R {
+  font-weight: 400 !important;
+}
+
+.ns-L {
+  font-weight: 300 !important;
 }
 
 a {
@@ -82,7 +102,6 @@ div.upload-dropzone {
 
 .auth-top-border {
     margin-top: 45px !important;
-    border-top: 3px solid $funfur-color;
 }
 
 div.toast-message {

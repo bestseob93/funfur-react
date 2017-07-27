@@ -7,15 +7,37 @@ nav.navbar-default {
     background-color: transparent !important;
     background-image: none !important;
     box-shadow: none !important;
+    transition: background-color 0.2s linear;
+    -webkit-transition: background-color 0.2s linear;
+}
+
+nav.scrolling-nav {
+    background-color: $funfur-color !important;
+    transition: background-color 0.2s linear;
+    -webkit-transition: background-color 0.2s linear;
+    ul {
+        li {
+            a, i { 
+                color: #fff !important;
+            }
+        }
+    }
 }
 
 .navbar {
     border: 0 !important;
 
-    ul {
+    ul.home-route {
         li {
             a, i {
                 color: #fff !important;
+                font-size: 20px;
+            }
+        }
+    }
+    ul {
+        li {
+            a, i {
                 font-size: 20px;
             }
         }
