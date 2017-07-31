@@ -16,10 +16,13 @@ const contextTypes = {
 };
 
 class RegisterFormScreen extends Component {
+    handleChange() {
+
+    }
     render() {
         return (
             <RegisterThree>
-                <RegisterTitle title={'form'} />
+                <RegisterTitle title={'form'} onChange={this.handleChange} />
                 <RegisterForm
                     {...this.props}
                     router={this.context.router}

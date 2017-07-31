@@ -8,36 +8,78 @@ class RegisterPolicy extends Component {
         this.state = {
             mouseOvered: false
         };
-        
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
+
+        this.changeHandler = this.changeHandler.bind(this);
+        this.handleCheckAll = this.handleCheckAll.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
 
-    handleMouseOver() {
-        this.setState({
-            mouseOvered: !this.state.mouseOvered
+    changeHandler(ev) {
+        const { FormActions } = this.props;
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: ev.target.name,
+            value: ev.target.value
         });
     }
 
-    handleMouseOut() {
-        this.setState({
-            mouseOvered: !this.state.mouseOvered
+    handleCheckAll() {
+        const { FormActions } = this.props;
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'checkAll',
+            value: 'on'
         });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'site',
+            value: 'on'
+        });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'sales',
+            value: 'on'
+        });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'privacy',
+            value: 'on'
+        });
+    }
+
+    handleNext(ev) {
+        const { form } = this.props;
+        ev.preventDefault();
+
+        if(form.get('site') === '' || form.get('sales') === '' || form.get('privacy') === '') {
+            alert("모든 약관에 동의해주세요!");
+        } else {
+            this.props.history.push('/register_3');
+        }
     }
 
     render() {
         const {
-            handleMouseOver,
-            handleMouseOut } = this;
+            changeHandler,
+            handleCheckAll,
+            handleNext
+        } = this;
+
+        const { form } = this.props;
+
         return (
             <div className="row">
                 <div className="col-lg-12">
                     <div className="policy-checks">
-                        <label onMouseOver={handleMouseOver}
-                               onMouseOut={handleMouseOut}
-                               className={this.state.mouseOvered ? 'overed' : ''}>
-                            <input type="checkbox" value=""/>
-                        </label>
+                        <input
+                            type="checkbox"
+                            name="checkAll"
+                            onChange={handleCheckAll}
+                        />
                         <span>모든 약관 및 정책에 동의합니다.</span>
                     </div>
                     <div className="policy-box-wrapper">
@@ -47,7 +89,15 @@ class RegisterPolicy extends Component {
                                 <PolicyContents contentType={'useterm'}/>
                             </div>
                         </div>
-                        <p className="policy-box-agree">위의 뻔뻐 사장님사이트 이용약관에 동의합니다.</p>
+                        <p className="policy-box-agree">
+                            <input
+                                type="checkbox"
+                                name="site"
+                                checked={form.get('checkAll') === 'on' ? true : false}
+                                onChange={changeHandler}
+                            />
+                            위의 뻔뻐 사장님사이트 이용약관에 동의합니다.
+                        </p>
                     </div>
                     <div className="policy-box-wrapper">
                         <h5 className="policy-box-title">뻔뻐 제품 판매 이용약관</h5>
@@ -56,7 +106,15 @@ class RegisterPolicy extends Component {
                                 <PolicyContents contentType={'sellterm'}/>
                             </div>
                         </div>
-                        <p className="policy-box-agree">위의 뻔뻐 제품 판매 이용약관에 동의합니다.</p>
+                        <p className="policy-box-agree">
+                            <input
+                                type="checkbox"
+                                name="sales"
+                                checked={form.get('checkAll') === 'on' ? true : false}
+                                onChange={changeHandler}
+                            />
+                            위의 뻔뻐 제품 판매 이용약관에 동의합니다.
+                        </p>
                     </div>
                     <div className="policy-box-wrapper" style={{borderBottom: 0}}>
                         <h5 className="policy-box-title">개인정보 수집 이용 동의</h5>
@@ -65,11 +123,19 @@ class RegisterPolicy extends Component {
                                 <PolicyContents contentType={'userinfo'}/>
                             </div>
                         </div>
-                        <p className="policy-box-agree">위의 개인정보 수집 이용에 동의합니다.</p>
+                        <p className="policy-box-agree">
+                            <input
+                                type="checkbox"
+                                name="privacy"
+                                checked={form.get('checkAll') === 'on' ? true : false}
+                                onChange={changeHandler}
+                            />
+                            위의 개인정보 수집 이용에 동의합니다.
+                        </p>
                     </div>
                     <div className="btn-container">
                         <Link className="btn btn-common btn-prev" to="/register">이전</Link>
-                        <Link className="btn btn-common btn-next" to="/register_3">다음</Link>
+                        <button className="btn btn-common btn-next" onClick={handleNext}>다음</button>
                     </div>
                 </div>
             </div>

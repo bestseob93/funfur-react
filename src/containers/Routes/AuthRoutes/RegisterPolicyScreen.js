@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as formDuck from 'ducks/form.duck';
+
 import {
     RegisterPolicy,
     RegisterTitle,
@@ -10,10 +15,17 @@ class RegisterPolicyScreen extends Component {
         return (
             <RegisterTwo>
                 <RegisterTitle title={'policy'} />
-                <RegisterPolicy />
+                <RegisterPolicy {...this.props} />
             </RegisterTwo>
         );
     }
 }
 
-export default RegisterPolicyScreen;
+export default connect(
+    state => ({
+        form: state.form.get('registerPolicy')
+    }),
+    dispatch => ({
+        FormActions: bindActionCreators(formDuck, dispatch)
+    })
+)(RegisterPolicyScreen);

@@ -20,6 +20,12 @@ export const deliverCostFree = createAction(DELIVER_COST_FREE);
 export const resetSecondSortable = createAction(RESET_SECOND_SORTABLE);
 
 const initialState = fromJS({
+    registerPolicy: {
+        checkAll: '',
+        site: '',
+        sales: '',
+        privacy: ''
+    },
     register: {
         cpName: '',
         businessId: '',

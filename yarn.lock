@@ -5131,9 +5131,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-react-bootstrap-sweetalert@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-sweetalert/-/react-bootstrap-sweetalert-3.0.0.tgz#65378a42f37845676acf98e8c43ce4a61f23306f"
+react-bootstrap-sweetalert@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-sweetalert/-/react-bootstrap-sweetalert-4.0.0.tgz#a6a8f92f614016f5d5057c59b01a268a7e19dafa"
   dependencies:
     object-assign "^4.1.0"
 
