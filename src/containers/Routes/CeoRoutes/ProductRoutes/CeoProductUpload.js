@@ -21,7 +21,6 @@ export default connect(
     state => ({
         form: state.form.get('product'),
         isSecondSortable: state.ui.get('secondSortable'),
-        token: state.auth.get('token'),
         status: {
             upload: state.product.getIn(['requests', 'upload'])
         },

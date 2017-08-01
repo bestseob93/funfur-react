@@ -10,7 +10,9 @@ import {
   Header,
   Footer
 } from 'components/Base';
-
+import {
+  SweetAlertComponent
+} from 'components/Common';
 import storage from 'helpers/localForage.helper';
 import { 
   HomeScreen,
@@ -23,6 +25,7 @@ import {
 } from './Routes';
 
 import * as authDuck from 'ducks/auth.duck';
+import * as uiDuck from 'ducks/ui.duck';
 
 class App extends Component {
   constructor(props, context) {
@@ -41,7 +44,7 @@ class App extends Component {
     storage.get('token').then(async (value) => {
       try {
         await AuthActions.checkToken(value);
-
+        
       } catch (e) {
         //document.location="/";
         // pathname이 /ceo 로 시작하는지 검사.
@@ -75,7 +78,11 @@ class App extends Component {
           {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
           { this.props.visible.base ? <Header authenticated={this.props.authenticated} handleLogout={this.handleLogout}/> : null }
           {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
-
+            <SweetAlertComponent
+                isAlertShow={this.props.isAlertShow}
+                alertMessage={this.props.alertMessage}
+                hideAlert={this.props.UiActions.hideSweetAlert}
+            />
             <Route
               exact
               path="/"
@@ -118,9 +125,12 @@ export default connect(
         base: state.ui.getIn(['visible', 'base']),
         dashboard: state.ui.getIn(['visible', 'dashboard'])
       },
-      authenticated: state.auth.get('authenticated')
+      authenticated: state.auth.get('authenticated'),
+      isAlertShow: state.ui.getIn(['sweetAlert', 'isAlertShow']),
+      alertMessage: state.ui.getIn(['sweetAlert', 'alertMessage'])
     }),
     dispatch => ({
-      AuthActions:  bindActionCreators(authDuck, dispatch)
+      AuthActions: bindActionCreators(authDuck, dispatch),
+      UiActions: bindActionCreators(uiDuck, dispatch)
     })
 )(App);

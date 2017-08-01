@@ -17,6 +17,10 @@ const SET_LIST_INDEX = "ui/SET_LIST_INDEX";
 const ADD_SECOND_SORTABLE = "ui/ADD_SECOND_SORTABLE";
 const REMOVE_SECOND_SORTABLE = "ui/REMOVE_SECOND_SORTABLE";
 
+/* SWEET ALERT */
+const SHOW_SWEET_ALERT = "ui/SHOW_SWEET_ALERT";
+const HIDE_SWEET_ALERT = "ui/HIDE_SWEET_ALERT";
+
 export const hideHeaderFooter = createAction(HIDE_HEADER_FOOTER);
 export const showHeaderFooter = createAction(SHOW_HEADER_FOOTER);
 export const hideDashboard = createAction(HIDE_DASHBOARD);
@@ -26,6 +30,8 @@ export const addSecondSortable = createAction(ADD_SECOND_SORTABLE);
 export const removeSecondSortable = createAction(REMOVE_SECOND_SORTABLE);
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
+export const showSweetAlert = createAction(SHOW_SWEET_ALERT);
+export const hideSweetAlert = createAction(HIDE_SWEET_ALERT);
 
 const initialState = fromJS({
     visible: {
@@ -34,7 +40,11 @@ const initialState = fromJS({
         modal: false
     },
     listIndex: null,
-    secondSortable: false
+    secondSortable: false,
+    sweetAlert: {
+        isAlertShow: false,
+        alertMessage: ''
+    }
 });
 
 export default function reducer(state = initialState, action) {
@@ -57,6 +67,11 @@ export default function reducer(state = initialState, action) {
             return state.setIn(['visible', 'modal'], true);
         case HIDE_MODAL:
             return state.setIn(['visible', 'modal'], false);
+        case SHOW_SWEET_ALERT:
+            return state.setIn(['sweetAlert', 'isAlertShow'], true)
+                        .setIn(['sweetAlert', 'alertMessage'], action.payload.message);
+        case HIDE_SWEET_ALERT:
+            return state.setIn(['sweetAlert', 'isAlertShow'], false);
         default:
             return state;
     }

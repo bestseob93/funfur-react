@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {
+    SweetAlertComponent
+} from 'components/Common';
+
 import PolicyContents from './PolicyContents';
 
 class RegisterPolicy extends Component {
@@ -17,47 +21,84 @@ class RegisterPolicy extends Component {
     changeHandler(ev) {
         const { FormActions } = this.props;
 
-        FormActions.formChange({
-            formName: 'registerPolicy',
-            name: ev.target.name,
-            value: ev.target.value
-        });
+        if(this.props.form.get(ev.target.name) === 'on') {
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: ev.target.name,
+                value: ''
+            });
+        } else {
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: ev.target.name,
+                value: ev.target.value
+            });
+        }
     }
 
     handleCheckAll() {
         const { FormActions } = this.props;
-        FormActions.formChange({
-            formName: 'registerPolicy',
-            name: 'checkAll',
-            value: 'on'
-        });
+        if(this.props.form.get('checkAll') === '') {
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'checkAll',
+                value: 'on'
+            });
 
-        FormActions.formChange({
-            formName: 'registerPolicy',
-            name: 'site',
-            value: 'on'
-        });
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'site',
+                value: 'on'
+            });
 
-        FormActions.formChange({
-            formName: 'registerPolicy',
-            name: 'sales',
-            value: 'on'
-        });
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'sales',
+                value: 'on'
+            });
 
-        FormActions.formChange({
-            formName: 'registerPolicy',
-            name: 'privacy',
-            value: 'on'
-        });
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'privacy',
+                value: 'on'
+            });
+        } else {
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'checkAll',
+                value: ''
+            });
+
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'site',
+                value: ''
+            });
+
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'sales',
+                value: ''
+            });
+
+            FormActions.formChange({
+                formName: 'registerPolicy',
+                name: 'privacy',
+                value: ''
+            });
+        }
+
     }
 
     handleNext(ev) {
-        const { form } = this.props;
+        const { UiActions, form } = this.props;
         ev.preventDefault();
 
         if(form.get('site') === '' || form.get('sales') === '' || form.get('privacy') === '') {
-            alert("모든 약관에 동의해주세요!");
-        } else {
+            UiActions.showSweetAlert({
+                message: '모든 약관에 동의해주세요!'
+            });
+        } else {    
             this.props.history.push('/register_3');
         }
     }
@@ -93,7 +134,7 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="site"
-                                checked={form.get('checkAll') === 'on' ? true : false}
+                                checked={form.get('checkAll') === '' ? form.get('site') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
                             위의 뻔뻐 사장님사이트 이용약관에 동의합니다.
@@ -110,7 +151,7 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="sales"
-                                checked={form.get('checkAll') === 'on' ? true : false}
+                                checked={form.get('checkAll') === '' ? form.get('sales') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
                             위의 뻔뻐 제품 판매 이용약관에 동의합니다.
@@ -127,7 +168,7 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="privacy"
-                                checked={form.get('checkAll') === 'on' ? true : false}
+                                checked={form.get('checkAll') === '' ? form.get('privacy') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
                             위의 개인정보 수집 이용에 동의합니다.

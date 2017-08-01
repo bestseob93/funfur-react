@@ -90,12 +90,12 @@ class ProductForm extends Component {
     
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
-        const { ProductActions, token, form } = this.props;
+        const { UiActions, ProductActions, form } = this.props;
         const productInfo = {
             productName: form.get('productName'),
             productPosition: form.get('productPosition'),
             firstSort_1: form.get('firstSort_1'),
-            secondSort_1: form.get('firstSort_1'),
+            secondSort_1: form.get('secondSort_1'),
             productPosition_2: form.get('productPosition_2') || '',
             firstSort_2: form.get('firstSort_2') || '',
             secondSort_2: form.get('secondSort_2') || '',
@@ -111,19 +111,26 @@ class ProductForm extends Component {
             productPrice: form.get('productPrice'),
             asIntro: form.get('asIntro'),
             productImages: form.get('productImages'),
-            SeoulGyungki: form.get('isDeliverFree') ? '0' : form.get('SeoulGyungki'),
-            GangWon: form.get('isDeliverFree') ? '0' : form.get('GangWon'),
-            ChungNam: form.get('isDeliverFree') ? '0' : form.get('ChungNam'),
-            ChungBuk: form.get('isDeliverFree') ? '0' : form.get('ChungBuk'),
-            GyeongBuk: form.get('isDeliverFree') ? '0' : form.get('GyeongBuk'),
-            GyeongNam: form.get('isDeliverFree') ? '0' : form.get('GyeongNam'),
-            JeonBuk: form.get('isDeliverFree') ? '0' : form.get('JeonBuk'),
-            JeonNam: form.get('isDeliverFree') ? '0' : form.get('JeonNam'),
-            JeJuSanGan: form.get('isDeliverFree') ? '0' : form.get('JeJuSanGan')   
+            isDeliverFree: form.get('isDeliverFree'),
+            SeoulGyungki: form.get('isDeliverFree') === 'free' ? '0' : form.get('SeoulGyungki'),
+            GangWon: form.get('isDeliverFree') === 'free' ? '0' : form.get('GangWon'),
+            ChungNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungNam'),
+            ChungBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungBuk'),
+            GyeongBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongBuk'),
+            GyeongNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongNam'),
+            JeonBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonBuk'),
+            JeonNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonNam'),
+            JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan')   
         };
 
         try {
-            await ProductActions.productUpload(productInfo, token);
+            await ProductActions.productUpload(productInfo);
+            if(this.props.valid.upload) {
+                UiActions.showSweetAlert({
+                    message: '제품이 성공적으로 등록되었습니다!'
+                });
+                this.props.history.push('/ceo');
+            }
         } catch (e) {
             if(e) {
                 throw e;
@@ -389,6 +396,7 @@ class ProductForm extends Component {
                 </div>
                 <SubTitle title="제품 분류" />
                 <div className="row form-box">
+                    {/* TODO: 동적으로 바꾸고, 첫번째에 선택된 값 배열에서 빼기 */}
                     <FormLabel name="위치" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         <select

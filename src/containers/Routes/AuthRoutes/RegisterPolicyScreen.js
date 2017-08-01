@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as formDuck from 'ducks/form.duck';
+import * as uiDuck from 'ducks/ui.duck';
 
 import {
     RegisterPolicy,
@@ -26,6 +27,7 @@ export default connect(
         form: state.form.get('registerPolicy')
     }),
     dispatch => ({
-        FormActions: bindActionCreators(formDuck, dispatch)
+        FormActions: bindActionCreators(formDuck, dispatch),
+        UiActions: bindActionCreators(uiDuck, dispatch)
     })
 )(RegisterPolicyScreen);
