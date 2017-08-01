@@ -27,6 +27,7 @@ const initialState = fromJS({
         }
     },
     valid: {
+        productList: false,
         upload: false
     },
     products: []
@@ -38,15 +39,17 @@ export default function reducer(state = initialState, action) {
         case `${PRODUCT_LIST}_PENDING`:
             return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.pending));
         case `${PRODUCT_LIST}_FULFILLED`:
-            return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.fulfilled));
-        case `${PRODUCT_LIST}_FULFILLED`:
-            return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.rejected));
+            return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.fulfilled))
+                        .set('products', state.get('products').concat(action.payload.data.products))
+                        .setIn(['valid', 'productList'], true);
+        case `${PRODUCT_LIST}_REJECTED`:
+            return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'productList'], false);
         case `${PRODUCT_UPLOAD}_PENDING`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.pending));
         case `${PRODUCT_UPLOAD}_FULFILLED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.fulfilled))
-                        .setIn(['valid', 'upload'], true)
-                        .set('products', state.get('products').concat(action.payload.data.products));
+                        .setIn(['valid', 'upload'], true);
         case `${PRODUCT_UPLOAD}_REJECTED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'upload'], false);

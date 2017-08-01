@@ -7,7 +7,7 @@ import * as formDuck from 'ducks/form.duck';
 import * as uiDuck from 'ducks/ui.duck';
 import * as productDuck from 'ducks/product.duck';
 
-class CeoProductUpload extends Component {
+class CeoProductUploadModify extends Component {
     render() {
         return (
             <ProductUpload>
@@ -33,4 +33,4 @@ export default connect(
         UiActions: bindActionCreators(uiDuck, dispatch),
         ProductActions: bindActionCreators(productDuck, dispatch)
     })
-)(CeoProductUpload);
+)(CeoProductUploadModify);

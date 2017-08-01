@@ -3,18 +3,43 @@ import { Link } from 'react-router-dom';
 import {
     Spinner
 } from 'components/Common';
+import ProductItem from './ProductItem';
 
 class ProductContents extends Component {
-    async componentDidMount() {
+    constructor(props) {
+        super(props);
+
+        this.renderProductList = this.renderProductList.bind(this);
+    }
+
+    renderProductList() {
+        return this.props.products.map((product) => {
+            console.log(product.product_photo_path);
+            return <ProductItem
+                        key={product.id + product.product_name + product.updated_at}
+                        productId={product.id}
+                        name={product.product_name}
+                        updatedTime={product.updated_at}
+                        photoUrl={product.product_photo_path}
+                        match={this.props.match}
+                    />;
+        });
+    }
+
+    async componentWillMount() {
         const { ProductActions } = this.props;
         try {
             await ProductActions.productList();
+            console.log('a');
         } catch (e) {
             console.log(e);
         }
     }
 
     render() {
+        const { renderProductList } = this;
+        const emptyComponent = undefined;
+        console.log(this.props);
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 {/* Spinner */}
@@ -29,100 +54,7 @@ class ProductContents extends Component {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1485452499676-62ab02c20e83?dpr=2&auto=format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="http://cfs6.tistory.com/upload_control/download.blog?fhandle=YmxvZzEwODM3OUBmczYudGlzdG9yeS5jb206L2F0dGFjaC8xNi8xMzAwMDAwMDE2MjMucG5n"/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* TODO: row 없애고 동적으로 col-md-3 col-xs-6 들어가게정수정 */}
-                <div className="row"> 
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-3 col-xs-6">
-                        <div className="product-box">
-                            <div className="product-box-contents">
-                                <div className="product-thumbnail">
-                                    <img alt="이미지" src="https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=2&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop="/>
-                                </div>
-                                <div className="product-desc">
-                                    <a>제품명(오로라 공주)</a>
-                                    <p>최종수정날짜: 17.05.30</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    { this.props.valid ? renderProductList() : emptyComponent }
                 </div>
             </div>
         );

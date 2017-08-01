@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import {
     CeoHome,
     CeoSellingProduct,
-    CeoProductUpload,
+    CeoProductUploadModify,
     MyPageEnterScreen,
     MyPageModifyScreen,
     MyPageFinishScreen,
@@ -121,8 +121,11 @@ class CeoWrapper extends Component {
                 <div className="ceo-page-wrapper">
                     <CeoHeader showModal={showModal} />
                     <Route exact path={match.url} component={CeoHome} />
-                    <Route path={`${match.url}/products`} component={CeoSellingProduct} />
-                    <Route path={`${match.url}/upload`} component={CeoProductUpload} />
+                    <Switch>
+                        <Route exact path={`${match.url}/products`} component={CeoSellingProduct} />
+                        <Route path={`${match.url}/products/:id`} component={CeoProductUploadModify} />
+                    </Switch>
+                    <Route path={`${match.url}/upload`} component={CeoProductUploadModify} />
                     <Route path={`${match.url}/mypage`} component={MyPageEnterScreen} />
                     <Route path={`${match.url}/mypage_2`} component={MyPageModifyScreen} />
                     <Route path={`${match.url}/mypage_3`} component={MyPageFinishScreen} />

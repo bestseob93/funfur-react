@@ -9,11 +9,11 @@ import {
 
 import * as productDuck from 'ducks/product.duck';
 
-function CeoCurrentProduct() {
+function CeoCurrentProduct(props) {
     return (
         <ProductContainer>
             <ProductHeader />
-            <ProductContents {...this.props} />
+            <ProductContents {...props} />
         </ProductContainer>
     );
 }
@@ -21,6 +21,7 @@ function CeoCurrentProduct() {
 export default connect(
     state => ({
         status: state.product.getIn(['requests', 'productList']),
+        valid: state.product.getIn(['valid', 'productList']),
         products: state.product.get('products')
     }),
     dispatch => ({

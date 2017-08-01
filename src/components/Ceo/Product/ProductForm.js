@@ -681,6 +681,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
+                {/* TODO: 이미지 최소 2장 이상 업로드 */}
                 <SubTitle title="사진 업로드" />
                 <PhotosUpload {...this.props} />
                 <div className="row form-box padding-top50">

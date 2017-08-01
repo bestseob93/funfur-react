@@ -25,6 +25,7 @@ export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();
 
+        console.log(productInfo.isDeliverFree);
         const productImages = productInfo.productImages.toJS();
         productImages.forEach((file) => {
             formData.append('productPhoto', file);
