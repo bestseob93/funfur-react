@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="34px" viewBox="0 0 36 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>xxxhdpi/kakaotalk</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.44">
+        <g id="3.0-home" transform="translate(-1030.000000, -1096.000000)">
+            <g id="kakaotalk" transform="translate(1031.000000, 1097.000000)">
+                <g id="kakao">
+                    <path d="M14.0975869,27.0211072 C15.0927623,27.1635368 16.1177604,27.2378986 17.1646484,27.2378986 C26.6444219,27.2378986 34.3292967,21.1404873 34.3292967,13.6189493 C34.3292967,6.0974113 26.6444219,-3.55271368e-15 17.1646484,-3.55271368e-15 C7.68487484,-3.55271368e-15 3.55271368e-15,6.0974113 3.55271368e-15,13.6189493 C3.55271368e-15,18.4364486 3.15258496,22.6697248 7.91015555,25.0908662 C7.251145,27.6149669 6.21917998,31.7807817 6.5298405,31.9880075 C6.94460054,32.2646728 13.1939246,27.6862096 14.0975869,27.0211072 Z" id="Combined-Shape" stroke="#000000"></path>
+                    <text id="TALK" font-family="ArialRoundedMTBold, Arial Rounded MT Bold" font-size="8" font-weight="normal" fill="#000000">
+                        <tspan x="6.24609375" y="17.5">TALK</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

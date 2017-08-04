@@ -15,22 +15,22 @@ import {
 class CeoHome extends Component {
     render() {
         return (
-            <HomeContainer>CeoHome
+            <HomeContainer>
                 <SalesStatus>
-                    <div className="row">
+                    <div className="row status-box-wrapper">
                         <OrderStatus />
                         <DeliverStatus />
                     </div>
-                    <div className="row">
+                    <div className="row status-box-wrapper">
                         <ServiceStatus />
                         <SalesAmountStatus />
                     </div>
                 </SalesStatus>
+                <FunfurStatus />
                 <div className="row">
                     <MiniNotice />
                     <Contact />
                 </div>
-                <FunfurStatus />
             </HomeContainer>
         );
     }

@@ -21,6 +21,22 @@ export const requestProductList = () => {
     });
 }
 
+export const requestProductDetail = (productId) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'GET',
+            url: `${FUNFUR}/product_web/thumbnail/${productId}`,
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}
+
 export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();

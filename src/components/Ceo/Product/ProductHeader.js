@@ -4,11 +4,12 @@ function productHeader() {
     return (
         <div>
             <h3>내가 등록한 상품</h3>
-            <ol className="breadcrumb">
-                <li>홈</li>
-                <li>판매관리</li>
-                <li><strong>제품관리/등록</strong></li>
-            </ol>
+            <ul className="product-howto">
+                <li>HOW TO...</li>
+                <li>+ 버튼을 눌러 제품을 추가해주세요.</li>
+                <li>수정할 제품의 사진을 눌러주세요.</li>
+                <li>제품 삭제는 제품 수정에서 가능합니다.</li>
+            </ul>
         </div>
     );
 }

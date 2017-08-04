@@ -5,6 +5,7 @@ class ConsumerContents extends Component {
         return (
             <div>
                 ConsumerContents
+                <input type="password" />
             </div>
         );
     }

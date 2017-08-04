@@ -15,8 +15,9 @@ class ProductContents extends Component {
     renderProductList() {
         return this.props.products.map((product) => {
             console.log(product.product_photo_path);
+            const date = new Date();
             return <ProductItem
-                        key={product.id + product.product_name + product.updated_at}
+                        key={(product.id + product.product_name + date).toString()}
                         productId={product.id}
                         name={product.product_name}
                         updatedTime={product.updated_at}

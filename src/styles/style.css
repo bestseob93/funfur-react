@@ -95,6 +95,9 @@ select.form-control {
   outline: 0px !important;
   box-shadow: none !important; }
 
+input[type="password"] {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
 input.form-control, textarea.form-control {
   border: 3px solid #e5e6e7 !important;
   outline: 0px !important;
@@ -1762,8 +1765,73 @@ a.navbar-toggle {
     .ceo-nav-top ul.nav.navbar-right li i {
       margin-right: 6px; }
 
+.ceo-home-container {
+  padding: 0 37px; }
+
+.sales-status-wrapper {
+  margin: 29px 0; }
+  .sales-status-wrapper .status-title {
+    margin-bottom: 27px; }
+  .sales-status-wrapper .status-box-wrapper {
+    position: relative; }
+    .sales-status-wrapper .status-box-wrapper .status-box {
+      border: 1px solid #ffe368;
+      text-align: center; }
+    .sales-status-wrapper .status-box-wrapper .status-box.non-border {
+      border: none;
+      background-color: #ffe368;
+      opacity: 0.6; }
+  .sales-status-wrapper .status-box-table {
+    height: 140px; }
+
+.funfur-status-box {
+  background-color: rgba(0, 0, 0, 0.04);
+  text-align: center;
+  height: 160px;
+  font-size: 12px; }
+  .funfur-status-box .funfur-img-wrapper {
+    height: 90px;
+    padding: 12px 0 30px 0; }
+
+@media only screen and (min-width: 1280px) {
+  .status-box-wrapper {
+    padding: 0 120px;
+    margin-top: 40px !important; }
+    .status-box-wrapper .status-box {
+      padding: 0 !important;
+      text-align: inherit !important; }
+  .status-box-table {
+    display: table; }
+    .status-box-table .status-icon-wrapper {
+      display: table-cell;
+      padding-left: 40px;
+      padding-right: 40px;
+      text-align: center;
+      vertical-align: middle; }
+    .status-box-table .status-txt-wrapper {
+      display: table-cell;
+      line-height: 40px;
+      text-align: center;
+      vertical-align: middle; }
+      .status-box-table .status-txt-wrapper p {
+        color: #000;
+        width: 170px;
+        margin: 0 !important;
+        text-align: left;
+        letter-spacing: 0.2px; }
+        .status-box-table .status-txt-wrapper p span {
+          color: #000;
+          float: right; } }
+
 .breadcrumb {
   background-color: #fff !important; }
+
+.product-howto {
+  list-style: none;
+  padding-left: 40px;
+  font-size: 12px; }
+  .product-howto li {
+    padding: 4px 0; }
 
 .product-box {
   margin-bottom: 25px;
@@ -1800,7 +1868,7 @@ a.navbar-toggle {
     height: 150px;
     position: relative;
     overflow: hidden;
-    background-color: #fdd831; }
+    background-color: #999; }
     .product-box-contents .product-thumbnail img {
       position: absolute;
       left: 50%;
@@ -1841,7 +1909,6 @@ a.navbar-toggle {
     .navbar-static-side .side-nav h3 {
       font-size: 16px; }
     .navbar-static-side .side-nav .nav-header {
-      background-color: #fdd831;
       padding: 33px 0;
       -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
@@ -1886,7 +1953,7 @@ a.navbar-toggle {
 @media only screen and (min-width: 768px) {
   .navbar-static-side {
     position: absolute;
-    width: 220px; } }
+    width: 260px; } }
 
 .ceo-page-wrapper {
   -webkit-transition: all 0.4s;
@@ -1897,4 +1964,4 @@ a.navbar-toggle {
 @media only screen and (min-width: 768px) {
   .ceo-page-wrapper {
     position: relative;
-    margin: 0 0 0 220px; } }
+    margin: 0 0 0 260px; } }

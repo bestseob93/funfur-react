@@ -114,6 +114,10 @@ select.form-control {
   box-shadow: none !important;
 }
 
+input[type="password"] {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 input.form-control, textarea.form-control {
   border: 3px solid #e5e6e7 !important;
   outline: 0px !important;

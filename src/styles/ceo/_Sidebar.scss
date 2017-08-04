@@ -12,7 +12,6 @@
             font-size: 16px;
         }
         .nav-header {
-            background-color: $funfur-color;
             padding: 33px 0;
             -webkit-transition: all 0.4s;
             -moz-transition: all 0.4s;
@@ -76,6 +75,6 @@
 @media only screen and (min-width: 768px) {
     .navbar-static-side {
         position: absolute;
-        width: 220px;
+        width: 260px;
     }
 }

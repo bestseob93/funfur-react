@@ -9,9 +9,10 @@ import * as productDuck from 'ducks/product.duck';
 
 class CeoProductUploadModify extends Component {
     render() {
+        console.log(this.props);
         return (
             <ProductUpload>
-                <ProductForm {...this.props} />
+                { this.props.location.pathname === '/ceo/upload' ? <ProductForm {...this.props} /> : <ProductForm {...this.props} editable={true} />}
             </ProductUpload>
         );
     }
@@ -26,7 +27,8 @@ export default connect(
         },
         valid: {
             upload: state.product.getIn(['valid', 'upload'])
-        }
+        },
+        productDetail: state.product.get('productDetail')
     }),
     dispatch => ({
         FormActions: bindActionCreators(formDuck, dispatch),

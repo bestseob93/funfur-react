@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="47px" viewBox="0 0 62 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>xxxhdpi/furniture</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2.19559622,28.003355 C1.7213024,26.4207184 2.68707018,25.137738 4.32707117,25.137738 L12.7179487,25.137738 L12.7179487,35.9275861 L51,35.9275861 L51,25.137738 L59.8786401,25.137738 C61.5336346,25.137738 62.4900917,26.4230208 62.0164879,28.003355 L56.9820575,44.8023801 C56.6650932,45.8600353 55.5125165,46.7174342 54.4121868,46.7174342 L9.79989731,46.7174342 C8.69756121,46.7174342 7.54643124,45.8581678 7.2300266,44.8023801 L2.19559622,28.003355 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60.0629046" height="21.5796962" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M12.7179487,12.568869 C12.7179487,5.62727432 18.3461361,0 25.2919169,0 L38.7080831,0 C45.652494,0 51.2820513,5.62574805 51.2820513,12.568869 L51.2820513,25.137738 L12.7179487,25.137738 L12.7179487,12.568869 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="38.5641026" height="25.137738" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.0-home" transform="translate(-769.000000, -735.000000)">
+            <g id="furniture" transform="translate(768.000000, 735.000000)">
+                <g id="Group-13">
+                    <rect id="Rectangle-19" fill="#FFFFFF" x="12" y="25" width="40" height="11"></rect>
+                    <use id="Rectangle-17" stroke="#000000" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <use id="Rectangle-8" stroke="#000000" mask="url(#mask-4)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-3"></use>
+                    <path d="M9.70896641,32.5554311 C13.900666,32.5554311 17.29871,29.1421664 17.29871,24.9316909 C17.29871,20.7212155 13.900666,17.3079507 9.70896641,17.3079507 C5.51726677,17.3079507 2.11922282,20.7212155 2.11922282,24.9316909" id="Oval-5" stroke="#000000" fill="#FFFFFF" transform="translate(9.708966, 24.931691) rotate(-12.000000) translate(-9.708966, -24.931691) "></path>
+                    <path d="M62.0986978,24.9316909 C62.0986978,20.7212155 58.7006538,17.3079507 54.5089542,17.3079507 C50.3172546,17.3079507 46.9192106,20.7212155 46.9192106,24.9316909 C46.9192106,29.1421664 50.3172546,32.5554311 54.5089542,32.5554311" id="Oval-5" stroke="#000000" fill="#FFFFFF" transform="translate(54.508954, 24.931691) rotate(12.000000) translate(-54.508954, -24.931691) "></path>
+                    <path d="M61.9,26.483464 L61,29.516536" id="Line" stroke="#000000" stroke-linecap="square"></path>
+                    <path d="M2.2,25.8 L2.9,28.5" id="Line" stroke="#000000" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

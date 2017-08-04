@@ -2,7 +2,7 @@ import React from 'react';
 
 function HomeContainer({children}) {
     return (
-        <div>
+        <div className="ceo-home-container">
             {children}
         </div>
     );
