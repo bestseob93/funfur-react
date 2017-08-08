@@ -8,6 +8,7 @@ const PRODUCT_LIST = "product/PRODUCT_LIST";
 const PRODUCT_UPLOAD = "product/PRODUCT_UPLOAD";
 const PRODUCT_MODIFY = "product/PRODUCT_MODIFY";
 const REMOVE_PRODUCT_DETAIL_PHOTO = "product/REMOVE_PRODUCT_DETAIL_PHOTO";
+const PRODUCT_REMOVE = "product/PRODUCT_REMOVE";
 
 /* Action Creators */
 export const getProductDetail = (productId) => ({
@@ -25,13 +26,19 @@ export const productUpload = (productInfo) => ({
     payload: product.requestProductUpload(productInfo)
 });
 
-export const productModify = (productInfo) => ({
+export const productModify = (productId, productInfo) => ({
     type: PRODUCT_MODIFY,
+    payload: product.requestProductModify(productId, productInfo)
 });
 
 export const removeProductDetailPhoto = (productId, photoIndex) => ({
     type: REMOVE_PRODUCT_DETAIL_PHOTO,
     payload: product.requestRemoveProductDetailPhoto(productId, photoIndex)
+});
+
+export const productRemove = (productId) => ({
+    type: PRODUCT_REMOVE,
+    payload: product.requestProductRemove(productId)
 });
 
 const initialState = fromJS({
@@ -50,12 +57,17 @@ const initialState = fromJS({
         },
         modify: {
             ...requestStatus.request
+        },
+        remove: {
+            ...requestStatus.request
         }
     },
     valid: {
         productList: false,
         upload: false,
-        modify: false
+        productDetail: false,
+        modify: false,
+        remove: false
     },
     products: [],
     productDetail: {
@@ -81,10 +93,10 @@ export default function reducer(state = initialState, action) {
                         .setIn(['productDetail', 'productSpace', 'space'], fromJS(action.payload.data.space))
                         .setIn(['productDetail', 'productSpace', 'first'], fromJS(action.payload.data.first))
                         .setIn(['productDetail', 'productSpace', 'second'], fromJS(action.payload.data.second))
-                        .setIn(['valid', 'modify'], true);
+                        .setIn(['valid', 'productDetail'], true);
         case `${GET_PRODUCT_DETAIL}_REJECTED`:
             return state.mergeIn(['requests', 'productDetail'], fromJS(requestStatus.rejected))
-                        .setIn(['valid', 'modify'], false);
+                        .setIn(['valid', 'productDetail'], false);
         case `${PRODUCT_LIST}_PENDING`:
             return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.pending));
         case `${PRODUCT_LIST}_FULFILLED`:
@@ -105,15 +117,25 @@ export default function reducer(state = initialState, action) {
         case `${PRODUCT_MODIFY}_PENDING`:
             return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.pending));
         case `${PRODUCT_MODIFY}_FULFILLED`:
-            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.fulfilled));
+            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'modify'], true);
         case `${PRODUCT_MODIFY}_REJECTED`:
-            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.rejected));
+            return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'modify'], false);
         case `${REMOVE_PRODUCT_DETAIL_PHOTO}_PENDING`:
             return state.mergeIn(['requests', 'productDetailPhoto'], fromJS(requestStatus.pending));
         case `${REMOVE_PRODUCT_DETAIL_PHOTO}_FULFILLED`:
             return state.mergeIn(['requests', 'productDetailPhoto'], fromJS(requestStatus.fulfilled));
         case `${REMOVE_PRODUCT_DETAIL_PHOTO}_REJECTED`:
             return state.mergeIn(['requests', 'productDetailPhoto'], fromJS(requestStatus.rejected));
+        case `${PRODUCT_REMOVE}_PENDING`:
+            return state.mergeIn(['requests', 'remove'], fromJS(requestStatus.pending));
+        case `${PRODUCT_REMOVE}_FULFILLED`:
+            return state.mergeIn(['requests', 'remove'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'remove'], true);
+        case `${PRODUCT_REMOVE}_REJECTED`:
+            return state.mergeIn(['requests', 'remove'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'remove'], false);
         default:
             return state;
     }

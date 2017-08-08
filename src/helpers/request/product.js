@@ -37,22 +37,6 @@ export const requestProductDetail = (productId) => {
     });
 }
 
-export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
-    return storage.get('token').then((token) => {
-        return axios({
-            method: 'DELETE',
-            url: `${FUNFUR}/product_web/photo_delete/${productId}/${photoIndex}`,
-            headers: {
-                Authorization: token
-            }
-        }).then(res => {
-            return res;
-        }).catch(err => {
-            if(err) throw err;
-        })
-    })
-}
-
 export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();
@@ -99,4 +83,67 @@ export const requestProductUpload = (productInfo) => {
             if(err) throw err;
         });
     });
+}
+
+export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'DELETE',
+            url: `${FUNFUR}/product_web/photo_delete/${productId}/${photoIndex}`,
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        })
+    })
+}
+
+export const requestProductModify = (productId, productInfo) => {
+    return storage.get('token').then((token) => {
+        let formData = new FormData();
+        const productImages = productInfo.productImages.toJS();
+
+        for(let i=0; i<productImages.length; i++) {
+            if(productImages[i].id === undefined) {
+                formData.append('productPhoto', productImages[i]);
+            }
+        }
+
+        formData.append('productName', productInfo.productName);
+        formData.append('modelName', productInfo.modelName);
+        formData.append('modelOption', productInfo.modelOption);
+        formData.append('productColor', productInfo.productColor);
+        formData.append('sizeWidth', productInfo.sizeWidth);
+        formData.append('sizeDepth', productInfo.sizeDepth);
+        formData.append('sizeHeight', productInfo.sizeHeight);
+        formData.append('mainMaterial', productInfo.mainMaterial);
+        formData.append('prManufacturer', productInfo.prManufacturer);
+        formData.append('productOrigin', productInfo.productOrigin);
+        formData.append('productPrice', productInfo.productPrice);
+
+        return axios.put(`${FUNFUR}/product_web/thumbnail/${productId}`, formData, { headers: {
+            Authorization: token
+        }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    })
+}
+
+export const requestProductRemove = (productId) => {
+    return storage.get('token').then((token) => {
+        return axios.delete(`${FUNFUR}/product_web/thumbnail/${productId}`, { headers: {
+            Authorization: token
+        }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    })
 }

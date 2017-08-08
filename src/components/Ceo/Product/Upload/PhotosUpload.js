@@ -25,7 +25,7 @@ class PhotosUpload extends Component {
     }
 
     handleClose(presentPhoto, productId, photoIndex, index) {
-        const { FormActions, ProductActions } = this.props;
+        const { FormActions, ProductActions, UiActions } = this.props;
         console.log(photoIndex);
         console.log(index);
         if(photoIndex === null && productId === null) {
@@ -35,8 +35,10 @@ class PhotosUpload extends Component {
                 value: index
             });
         } else {
-            if(presentPhoto === 'selected') {
-                console.warn("대표사진입니다.");
+            if(presentPhoto === 'selected' && this.props.form.get('productImages').size < 2) {
+                UiActions.showSweetAlert({
+                    message: "최소 2개 이미지 이상일 때 대표 사진을 바꿀 수 있습니다."
+                });
             } else {
                 FormActions.formUploadRemove({
                     formName: 'product',
@@ -47,8 +49,6 @@ class PhotosUpload extends Component {
                 ProductActions.removeProductDetailPhoto(productId, photoIndex);
             }
         }
-
-
     }
 
     render() {

@@ -15,6 +15,8 @@ class ProductModifyForm extends Component {
         super(props);
 
         this.changeHandler = this.changeHandler.bind(this);
+        this.deleteAlert = this.deleteAlert.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
@@ -30,7 +32,8 @@ class ProductModifyForm extends Component {
         console.log(productId);
         try {
             await ProductActions.getProductDetail(productId[3]);
-            if(this.props.valid) {
+            console.log(this.props.valid.productDetail);
+            if(this.props.valid.productDetail) {
                 console.log('validddd');
                 console.log(this.props.productDetail.productPhotos.size);
                 for(let i=0; i<this.props.productDetail.productPhotos.size; i++) {
@@ -55,13 +58,54 @@ class ProductModifyForm extends Component {
         });
     }
 
-    handleSubmit() {
+    deleteAlert() {
+        const { UiActions } = this.props;
+        UiActions.showSweetAlert({
+            message: "정말로 삭제하시겠습니까?"
+        });
+    }
+    
+    async handleDelete() {
+        const { ProductActions } = this.props;
+        const productId = this.props.location.pathname.split('/');
+        try {
+            await ProductActions.productRemove(productId[3]);
+        } catch (e) {
+            if(e) throw e;
+        }
+    }
 
+    async handleSubmit() {
+        const { ProductActions, form } = this.props;
+        const { productAndDeliver } = this.props.productDetail;
+        const productId = this.props.location.pathname.split('/');
+        const productInfo = {
+            productName: form.get('productName') === "" ? productAndDeliver.get(0).get('product_name') : form.get('productName'),
+            modelName: form.get('modelName') === "" ? productAndDeliver.get(0).get('model_name') : form.get('modelName'),
+            modelOption: form.get('modelOption') === "" ? productAndDeliver.get(0).get('model_option') : form.get('modelOption'),
+            productColor: form.get('productColor') === "" ? productAndDeliver.get(0).get('product_color') : form.get('productColor'),
+            sizeWidth: form.get('sizeWidth') === "" ? productAndDeliver.get(0).get('horizontal') : form.get('sizeWidth'),
+            sizeDepth: form.get('sizeDepth') === "" ? productAndDeliver.get(0).get('vertical') : form.get('sizeDepth'),
+            sizeHeight: form.get('sizeHeight') === "" ? productAndDeliver.get(0).get('height') : form.get('sizeHeight'),
+            mainMaterial: form.get('mainMaterial') === "" ? productAndDeliver.get(0).get('main_material') : form.get('mainMaterial'),
+            prManufacturer: form.get('prManufacturer') === "" ? productAndDeliver.get(0).get('manufacturer') : form.get('prManufacturer'),
+            productOrigin: form.get('productOrigin') === "" ? productAndDeliver.get(0).get('origin') : form.get('productOrigin'),
+            productPrice: form.get('productPrice') === "" ? productAndDeliver.get(0).get('product_price') : form.get('productPrice'),
+            productImages: form.get('productImages'),
+        };
+
+        try {
+            await ProductActions.productModify(productId[3], productInfo);
+        } catch (e) {
+            if(e) throw e;
+        }
     }
     
     render() {
         const {
             changeHandler,
+            deleteAlert,
+            handleDelete,
             handleSubmit
         } = this;
         const {
@@ -76,7 +120,7 @@ class ProductModifyForm extends Component {
         return (
             <div>
                 {/* Spinner */}
-                { this.props.status.productDetail.get('fetching') ? <Spinner /> : emptyComponent }
+                { this.props.status.productDetail.get('fetching') || this.props.status.modify.get('fetching') || this.props.status.remove.get('fetching') ? <Spinner /> : emptyComponent }
                 <SubTitle title="제품 등록" />
                 <div className="row form-box">
                     <FormLabel name="제품명" />
@@ -410,10 +454,12 @@ class ProductModifyForm extends Component {
                 <PhotosUpload {...this.props} />
                 <div className="row form-box padding-top50">
                     <div className="btn-container">
-                        <Link
-                            to="/ceo/products"
-                            className="btn btn-common btn-prev">취소하기
-                        </Link>
+                        <button
+                            type="button"
+                            style={{borderColor: 'red'}}
+                            className="btn btn-common btn-prev"
+                            onClick={deleteAlert}>삭제하기
+                        </button>
                         <button
                             type="button"
                             className="btn btn-common btn-next"
