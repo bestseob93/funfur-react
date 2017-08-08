@@ -11,36 +11,40 @@ class ProductContents extends Component {
 
         this.renderProductList = this.renderProductList.bind(this);
     }
-
-    renderProductList() {
-        return this.props.products.map((product) => {
-            console.log(product.product_photo_path);
-            const date = new Date();
-            return <ProductItem
-                        key={(product.id + product.product_name + date).toString()}
-                        productId={product.id}
-                        name={product.product_name}
-                        updatedTime={product.updated_at}
-                        photoUrl={product.product_photo_path}
-                        match={this.props.match}
-                    />;
-        });
-    }
-
-    async componentWillMount() {
+    async componentDidMount() {
         const { ProductActions } = this.props;
         try {
             await ProductActions.productList();
-            console.log('a');
         } catch (e) {
             console.log(e);
         }
     }
 
+    renderProductList(datas) {
+        const mappedProduct = datas.map((product) => {
+                console.log(product.id);
+                console.log(product.product_name);
+                const date = new Date();
+                return <ProductItem
+                            key={(product.id + product.product_name + date).toString()}
+                            productId={product.id}
+                            name={product.product_name}
+                            updatedTime={product.updated_at}
+                            photoUrl={product.product_photo_path}
+                            match={this.props.match}
+                        />;
+            });
+        return mappedProduct;
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return JSON.stringify(this.props.products) !== JSON.stringify(nextProps.products);
+    }
+
     render() {
         const { renderProductList } = this;
         const emptyComponent = undefined;
-        console.log(this.props);
+        console.log(this.props.status.get('fetching'));
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 {/* Spinner */}
@@ -55,7 +59,7 @@ class ProductContents extends Component {
                             </Link>
                         </div>
                     </div>
-                    { this.props.valid ? renderProductList() : emptyComponent }
+                    { this.props.valid ? renderProductList(this.props.products) : emptyComponent }
                 </div>
             </div>
         );

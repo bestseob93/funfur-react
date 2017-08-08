@@ -25,17 +25,6 @@ class ProductForm extends Component {
         this.renderSortTwo = this.renderSortTwo.bind(this);
     }
 
-    async componentWillMount() {
-        const { ProductActions, match } = this.props;
-        let productId = match.url.split('/');
-        console.log(productId);
-        try {
-            await ProductActions.getProductDetail(productId[3]);
-        } catch (e) {
-
-        }
-    }
-
     componentDidMount() {
         const { FormActions } = this.props;
         FormActions.formReset('product');
@@ -383,37 +372,24 @@ class ProductForm extends Component {
             renderSortTwo
         } = this;
 
-        const { editable } = this.props;
-
         const emptyComponent = undefined;
 
         return (
             <div>
                 {/* 스피너 */}
                 { this.props.status.upload.get('fetching') && (<Spinner/>) }
-                {/* 토스트 컨테이너 */}
                 <SubTitle title="제품 등록" />
                 <div className="row form-box">
                     <FormLabel name="제품명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { editable ?
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="productName"
-                                placeholder={this.props.productDetail && this.props.productDetail.get('product_name')}
-                                onChange={changeHandler}
-                            /> :
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="productName"
-                                placeholder="제품명을 적어주세요."
-                                required
-                                onChange={changeHandler}
-                            />
-                        }
-
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="productName"
+                            placeholder="제품명을 적어주세요."
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <SubTitle title="제품 분류" />
@@ -421,40 +397,26 @@ class ProductForm extends Component {
                     {/* TODO: 동적으로 바꾸고, 첫번째에 선택된 값 배열에서 빼기 */}
                     <FormLabel name="위치" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { editable ? 
-                            <input
-                                type="text"
-                                className="form-control"
-                                value="1차 분류"
-                                disabled
-                            /> :
-                            <select
-                                className="form-control"
-                                name="productPosition"
-                                onChange={changeHandler}
-                            >
-                                <option>공간별 분류</option>
-                                <option value="거실">거실</option>
-                                <option value="주방">주방</option>
-                                <option value="침실">침실</option>
-                                <option value="키즈/유아">키즈/유아</option>
-                                <option value="학생/서재">학생/서재</option>
-                                <option value="인테리어 소품">인테리어 소품</option>
-                                <option value="화장실">화장실</option>
-                            </select>
-                        }
+                        <select
+                            className="form-control"
+                            name="productPosition"
+                            onChange={changeHandler}
+                        >
+                            <option>공간별 분류</option>
+                            <option value="거실">거실</option>
+                            <option value="주방">주방</option>
+                            <option value="침실">침실</option>
+                            <option value="키즈/유아">키즈/유아</option>
+                            <option value="학생/서재">학생/서재</option>
+                            <option value="인테리어 소품">인테리어 소품</option>
+                            <option value="화장실">화장실</option>
+                        </select>
                     </div>
                 </div>
                 <div className="row form-box">
                     <FormLabel name="1차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { editable ?
-                            <input
-                                type="text"
-                                className="form-control"
-                                value="2차 분류"
-                                disabled
-                            /> :
+                        { 
                             renderFirstSort(true, this.props.form.get('productPosition')) /* 분류 값에 따라 하위 분류 */
                         } 
                     </div>
@@ -462,13 +424,7 @@ class ProductForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="2차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { editable ?
-                            <input
-                                type="text"
-                                className="form-control"
-                                value="2-3차 분류"
-                                disabled
-                            /> :
+                        {
                             renderSecondSort(true, this.props.form.get('firstSort_1'))
                         }
                     </div>
@@ -525,14 +481,6 @@ class ProductForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="모델명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { editable ?
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="modelName"
-                                placeholder={this.props.productDetail && this.props.productDetail.get('model_name')}
-                                onChange={changeHandler}
-                            /> :
                             <input
                                 type="text"
                                 className="form-control"
@@ -541,8 +489,6 @@ class ProductForm extends Component {
                                 required
                                 onChange={changeHandler}
                             />
-                        }
-
                     </div>
                 </div>
                 <div className="row form-box">
@@ -551,7 +497,7 @@ class ProductForm extends Component {
                         <select
                             className="form-control"
                             name="modelOption"
-                            value={editable ? this.props.productDetail && this.props.productDetail.get('model_option') : this.props.form.get('modelOption')}
+                            value={this.props.form.get('modelOption')}
                             onChange={changeHandler}
                         >
                             <option>옵션 선택</option>
@@ -625,8 +571,7 @@ class ProductForm extends Component {
                     <span className="col-md-1 col-xs-1 col-xs-offset-0 col-md-offset-0" style={{padding: 0, paddingTop: 10}}>
                         cm
                     </span>
-                </div>
-                
+                </div>          
                 <div className="row form-box has-textarea">
                     <FormLabel name="주요 소재" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
@@ -738,13 +683,12 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
-                {/* TODO: 이미지 최소 2장 이상 업로드 */}
                 <SubTitle title="사진 업로드" />
                 <PhotosUpload {...this.props} />
                 <div className="row form-box padding-top50">
                     <div className="btn-container">
                         <Link
-                            to="/ceo"
+                            to="/ceo/products"
                             className="btn btn-common btn-prev">취소하기
                         </Link>
                         <button

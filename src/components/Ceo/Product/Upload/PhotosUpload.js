@@ -24,14 +24,31 @@ class PhotosUpload extends Component {
         this.dropzone.open();
     }
 
-    handleClose(index) {
-        const { FormActions } = this.props;
+    handleClose(presentPhoto, productId, photoIndex, index) {
+        const { FormActions, ProductActions } = this.props;
+        console.log(photoIndex);
         console.log(index);
-        FormActions.formUploadRemove({
-            formName: 'product',
-            name: 'productImages',
-            value: index
-        });
+        if(photoIndex === null && productId === null) {
+            FormActions.formUploadRemove({
+                formName: 'product',
+                name: 'productImages',
+                value: index
+            });
+        } else {
+            if(presentPhoto === 'selected') {
+                console.warn("대표사진입니다.");
+            } else {
+                FormActions.formUploadRemove({
+                    formName: 'product',
+                    name: 'productImages',
+                    value: index
+                });
+
+                ProductActions.removeProductDetailPhoto(productId, photoIndex);
+            }
+        }
+
+
     }
 
     render() {
@@ -94,19 +111,22 @@ class PhotosUpload extends Component {
             </div>
         );
 
+
+
         if(formValues.productImages.length > 0) {
             formValues.productImages.map((value, index) => {
+                console.log(value);
                 renderDroppedImage.push((
-                    <div key={value.name} className="product-box-contents flex-column" style={{marginBottom:25}}>
+                    <div key={value.name === undefined ? value.id : value.name} className="product-box-contents flex-column" style={{marginBottom: 25}}>
                         <div className="product-thumbnail case-upload">
-                            <i className="fa fa-times-circle" onClick={() => handleClose(index)}></i>
-                                <img
-                                    className="id-image-after"
-                                    key={value.name}
-                                    src={value.preview}
-                                    alt={value.name}
-                                    onClick={onOpenClick}
-                                />
+                            <i className="fa fa-times-circle" onClick={() => value.id !== undefined ? value.showing_photo === 'selected' ? handleClose(value.showing_photo, value.product_id, value.id, index) : handleClose(null, value.product_id, value.id, index) : handleClose(null, null, null, index)}></i>
+                            <img
+                                className="id-image-after"
+                                key={value.name === undefined ? (value.id + value.product_id).toString() : value.name}
+                                src={value.preview === undefined ? value.product_photo_path : value.preview}
+                                alt={value.preview === undefined ? value.product_photo_path : value.preview}
+                                onClick={onOpenClick}
+                            />
                         </div>
                     </div>
                 ));

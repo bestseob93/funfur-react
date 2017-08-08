@@ -37,6 +37,22 @@ export const requestProductDetail = (productId) => {
     });
 }
 
+export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'DELETE',
+            url: `${FUNFUR}/product_web/photo_delete/${productId}/${photoIndex}`,
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        })
+    })
+}
+
 export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();

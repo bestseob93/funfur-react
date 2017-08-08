@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import {
     CeoHome,
     CeoSellingProduct,
-    CeoProductUploadModify,
+    CeoProductUpload,
+    CeoProductModify,
     MyPageEnterScreen,
     MyPageModifyScreen,
     MyPageFinishScreen,
@@ -101,7 +102,6 @@ class CeoWrapper extends Component {
             showModal,
             hideModal
         } = this;
-        console.log('hihi');
         return (
             <div>
                 <PasswordModal
@@ -123,9 +123,9 @@ class CeoWrapper extends Component {
                     <Route exact path={match.url} component={CeoHome} />
                     <Switch>
                         <Route exact path={`${match.url}/products`} component={CeoSellingProduct} />
-                        <Route path={`${match.url}/products/:id`} component={CeoProductUploadModify} />
+                        <Route path={`${match.url}/products/:id`} component={CeoProductModify} />
                     </Switch>
-                    <Route path={`${match.url}/upload`} component={CeoProductUploadModify} />
+                    <Route path={`${match.url}/upload`} component={CeoProductUpload} />
                     <Route path={`${match.url}/mypage`} component={MyPageEnterScreen} />
                     <Route path={`${match.url}/mypage_2`} component={MyPageModifyScreen} />
                     <Route path={`${match.url}/mypage_3`} component={MyPageFinishScreen} />

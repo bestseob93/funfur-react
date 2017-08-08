@@ -15,6 +15,7 @@ class LoginForm extends Component {
 
         this.addAlert = this.addAlert.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
+        this.handleEnterPress = this.handleEnterPress.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleToastOff = this.handleToastOff.bind(this);
     }
@@ -42,6 +43,13 @@ class LoginForm extends Component {
             name: ev.target.name,
             value: ev.target.value
         });
+    }
+
+    handleEnterPress(ev) {
+        const { handleSubmit } = this;
+        if(ev.charCode === 13) {
+            handleSubmit(ev);
+        }
     }
 
     /* 로그인 요청 */
@@ -88,6 +96,7 @@ class LoginForm extends Component {
     render() {
         const {
             changeHandler,
+            handleEnterPress,
             handleSubmit,
             handleToastOff
         } = this;
@@ -125,6 +134,7 @@ class LoginForm extends Component {
                         placeholder="비밀번호"
                         required
                         onChange={changeHandler}
+                        onKeyPress={handleEnterPress}
                     />
                 </div>
                 <button

@@ -1,11 +1,13 @@
-import ProductContainer from './ProductContainer';
-import ProductContents from './ProductContents';
-import ProductForm from './ProductForm';
-import ProductHeader from './ProductHeader';
-import ProductUpload from './ProductUpload';
-import SortableSelect from './SortableSelect';
-import PhotosUpload from './PhotosUpload';
-import DeliveryTable from './DeliveryTable';
+import ProductContainer from './List/ProductContainer';
+import ProductContents from './List/ProductContents';
+import ProductForm from './Upload/ProductForm';
+import ProductHeader from './List/ProductHeader';
+import ProductUpload from './Upload/ProductUpload';
+import SortableSelect from './Upload/SortableSelect';
+import PhotosUpload from './Upload/PhotosUpload';
+import DeliveryTable from './Upload/DeliveryTable';
+import ProductModify from './Modify/ProductModify';
+import ProductModifyForm from './Modify/ProductModifyForm';
 
 export {
     ProductContainer,
@@ -15,5 +17,7 @@ export {
     ProductUpload,
     SortableSelect,
     PhotosUpload,
-    DeliveryTable
+    DeliveryTable,
+    ProductModify,
+    ProductModifyForm
 };

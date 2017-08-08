@@ -1,0 +1,41 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+    ProductModify,
+    ProductModifyForm
+} from 'components/Ceo/Product';
+
+import * as formDuck from 'ducks/form.duck';
+import * as productDuck from 'ducks/product.duck';
+
+class CeoProductModify extends Component {
+
+    render() {
+        return (
+            <ProductModify>
+                <ProductModifyForm {...this.props} />
+            </ProductModify>
+        );
+    }
+}
+
+export default connect(
+    state => ({
+        status: {
+            productDetail: state.product.getIn(['requests', 'productDetail']),
+            modify: state.product.getIn(['requests', 'modify'])
+        },
+        valid: state.product.getIn(['valid', 'modify']),
+        productDetail: {
+            productAndDeliver: state.product.getIn(['productDetail', 'productAndDeliver']),
+            productPhotos: state.product.getIn(['productDetail', 'productPhotos']),
+            productSpace: state.product.getIn(['productDetail', 'productSpace'])
+        },
+        form: state.form.get('product')
+    }),
+    dispatch => ({
+        FormActions: bindActionCreators(formDuck, dispatch),
+        ProductActions: bindActionCreators(productDuck, dispatch)
+    })
+)(CeoProductModify);

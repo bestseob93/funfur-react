@@ -1,8 +1,8 @@
 .carousel-inner {
     overflow: visible !important;
-    height: 620px;
     background: url("../img/main.jpg") no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center center;
 }
 
 .spacer {
@@ -11,7 +11,7 @@
 }
 .funfur-wrapper {
     display: table;
-    height: inherit;
+    height: 620px;
     background-color: $funfur-color;
     width: 440px;
     opacity: 0.93;

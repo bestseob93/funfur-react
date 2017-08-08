@@ -54,6 +54,7 @@ class PasswordModal extends Component {
                     if(this.props.pwValid) {
                         console.log('aaa');
                         this.props.hideModal();
+                        FormActions.formReset('modifyPw');
                     }
                 } catch (e) {
                     console.log(e);

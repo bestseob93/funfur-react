@@ -1551,9 +1551,9 @@ a.navbar-toggle {
 
 .carousel-inner {
   overflow: visible !important;
-  height: 620px;
   background: url("../img/main.jpg") no-repeat;
-  background-size: 100%; }
+  background-size: cover;
+  background-position: center center; }
 
 .spacer {
   width: 100%;
@@ -1561,7 +1561,7 @@ a.navbar-toggle {
 
 .funfur-wrapper {
   display: table;
-  height: inherit;
+  height: 620px;
   background-color: #fdd831;
   width: 440px;
   opacity: 0.93; }
@@ -1758,12 +1758,21 @@ a.navbar-toggle {
   width: 300px;
   margin: 0 auto; }
 
-.ceo-nav-top {
-  margin: 0 !important; }
-  .ceo-nav-top ul.nav.navbar-right li {
-    display: inline-block; }
-    .ceo-nav-top ul.nav.navbar-right li i {
-      margin-right: 6px; }
+nav.ceo-nav-top {
+  margin: 0 !important;
+  border-bottom: 0.5px solid #979797 !important; }
+  nav.ceo-nav-top ul.nav.navbar-right {
+    padding-right: 15px; }
+    nav.ceo-nav-top ul.nav.navbar-right li {
+      display: inline-block;
+      cursor: pointer;
+      padding-right: 15px; }
+      nav.ceo-nav-top ul.nav.navbar-right li a:hover, nav.ceo-nav-top ul.nav.navbar-right li a:focus {
+        background-color: #fff; }
+      nav.ceo-nav-top ul.nav.navbar-right li i {
+        margin-right: 6px; }
+      nav.ceo-nav-top ul.nav.navbar-right li span {
+        font-size: 14px; }
 
 .ceo-home-container {
   padding: 0 37px; }
@@ -1868,7 +1877,7 @@ a.navbar-toggle {
     height: 150px;
     position: relative;
     overflow: hidden;
-    background-color: #999; }
+    background-color: rgba(0, 0, 0, 0.1); }
     .product-box-contents .product-thumbnail img {
       position: absolute;
       left: 50%;
@@ -1954,6 +1963,22 @@ a.navbar-toggle {
   .navbar-static-side {
     position: absolute;
     width: 260px; } }
+
+/* in Mobile */
+.mobile-hamburger {
+  position: fixed;
+  background-color: #fdd831;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  bottom: 0;
+  margin: 0 0 20px 20px; }
+  .mobile-hamburger i {
+    vertical-align: middle;
+    font-size: 30px; }
 
 .ceo-page-wrapper {
   -webkit-transition: all 0.4s;

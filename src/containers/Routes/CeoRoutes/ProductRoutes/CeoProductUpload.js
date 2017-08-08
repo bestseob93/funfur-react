@@ -7,12 +7,12 @@ import * as formDuck from 'ducks/form.duck';
 import * as uiDuck from 'ducks/ui.duck';
 import * as productDuck from 'ducks/product.duck';
 
-class CeoProductUploadModify extends Component {
+class CeoProductUpload extends Component {
+
     render() {
-        console.log(this.props);
         return (
             <ProductUpload>
-                { this.props.location.pathname === '/ceo/upload' ? <ProductForm {...this.props} /> : <ProductForm {...this.props} editable={true} />}
+                <ProductForm {...this.props} />
             </ProductUpload>
         );
     }
@@ -27,12 +27,11 @@ export default connect(
         },
         valid: {
             upload: state.product.getIn(['valid', 'upload'])
-        },
-        productDetail: state.product.get('productDetail')
+        }
     }),
     dispatch => ({
         FormActions: bindActionCreators(formDuck, dispatch),
         UiActions: bindActionCreators(uiDuck, dispatch),
         ProductActions: bindActionCreators(productDuck, dispatch)
     })
-)(CeoProductUploadModify);
+)(CeoProductUpload);
