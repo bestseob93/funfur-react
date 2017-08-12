@@ -39,7 +39,8 @@ function asyncRoute(getComponent) {
   }
 }
 
-export const HomeScreen = asyncRoute(()=> import('./HomeScreen'));
+export const HomeScreen = asyncRoute(()=> import('./HomeRoutes/HomeScreen'));
+export const ContactScreen = asyncRoute(()=> import('./ContactRoutes/ContactScreen'));
 export const NoMatchScreen = asyncRoute(()=> import('./NoMatchScreen'));
 export const RegisterFormScreen = asyncRoute(()=> import('./AuthRoutes/RegisterFormScreen'));
 export const RegisterIntroScreen = asyncRoute(()=> import('./AuthRoutes/RegisterIntroScreen'));

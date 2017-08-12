@@ -5,7 +5,8 @@ import CeoHome from './CeoHome';
 import MyPageEnterScreen from './MyPageRoutes/MyPageEnterScreen';
 import MyPageModifyScreen from './MyPageRoutes/MyPageModifyScreen';
 import MyPageFinishScreen from './MyPageRoutes/MyPageFinishScreen';
-import ConsumerScreen from './ConsumerScreen';
+import ConsumerScreen from './ConsumerRoutes/ConsumerScreen';
+import OrderScreen from './OrderRoutes/OrderScreen';
 
 export {
     CeoSellingProduct,
@@ -15,5 +16,6 @@ export {
     MyPageEnterScreen,
     MyPageModifyScreen,
     MyPageFinishScreen,
-    ConsumerScreen
+    ConsumerScreen,
+    OrderScreen
 };

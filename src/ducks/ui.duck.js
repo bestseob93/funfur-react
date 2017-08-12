@@ -42,8 +42,13 @@ const initialState = fromJS({
     listIndex: null,
     secondSortable: false,
     sweetAlert: {
+        showCancel: false,
         isAlertShow: false,
-        alertMessage: ''
+        alertTitle: '',
+        alertMessage: '',
+        typeSuccess: false,
+        typeWarning: false,
+        typeDanger: false
     }
 });
 
@@ -69,9 +74,15 @@ export default function reducer(state = initialState, action) {
             return state.setIn(['visible', 'modal'], false);
         case SHOW_SWEET_ALERT:
             return state.setIn(['sweetAlert', 'isAlertShow'], true)
-                        .setIn(['sweetAlert', 'alertMessage'], action.payload.message);
+                        .setIn(['sweetAlert', 'alertTitle'], action.payload.alertTitle)
+                        .setIn(['sweetAlert', 'alertMessage'], action.payload.message)
+                        .setIn(['sweetAlert', 'showCancel'], action.payload.showCancel)
+                        .setIn(['sweetAlert', action.payload.alertType], action.payload.value);
         case HIDE_SWEET_ALERT:
-            return state.setIn(['sweetAlert', 'isAlertShow'], false);
+            return state.setIn(['sweetAlert', 'isAlertShow'], false)
+                        .setIn(['sweetAlert', 'typeDanger'], false)
+                        .setIn(['sweetAlert', 'typeWarning'], false)
+                        .setIn(['sweetAlert', 'typeSuccess'], false);
         default:
             return state;
     }

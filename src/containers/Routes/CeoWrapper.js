@@ -12,7 +12,8 @@ import {
     MyPageEnterScreen,
     MyPageModifyScreen,
     MyPageFinishScreen,
-    ConsumerScreen
+    ConsumerScreen,
+    OrderScreen
 } from './CeoRoutes';
 
 import {
@@ -130,6 +131,7 @@ class CeoWrapper extends Component {
                     <Route path={`${match.url}/mypage_2`} component={MyPageModifyScreen} />
                     <Route path={`${match.url}/mypage_3`} component={MyPageFinishScreen} />
                     <Route path={`${match.url}/consumer`} component={ConsumerScreen} />
+                    <Route path={`${match.url}/order`} component={OrderScreen} />
                 </div>
             </div>
         );

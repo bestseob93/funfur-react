@@ -1,0 +1,28 @@
+.contact-wrapper {
+    margin-top: 150px !important;
+}
+
+.contact-form-header {
+    margin-bottom: 30px;
+}
+
+.info-title-wrapper {
+    h3.funfur-info-title {
+        margin: 0 auto;
+        display: block;
+        width: 100px;
+        padding: 2px;
+        color: black;
+        border-bottom: solid 1px black;
+    }
+}
+
+.contact-time-wrapper {
+    text-align: center;
+    padding: 40px 0 50px 0;
+    .contact-time {
+        padding: 0;
+        margin: 0;
+        font-size: 13px;
+    }
+}

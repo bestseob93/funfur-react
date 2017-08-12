@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import auth from 'ducks/auth.duck';
+import contact from 'ducks/contact.duck';
 import product from 'ducks/product.duck';
 import form from 'ducks/form.duck';
 import ui from 'ducks/ui.duck';
@@ -8,6 +9,7 @@ import mypage from 'ducks/mypage.duck';
 
 const rootReducer = {
     auth,
+    contact,
     product,
     form,
     ui,

@@ -119,6 +119,9 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
 .funfur-color {
   color: #fdd831; }
 
+.text-red {
+  color: red; }
+
 .funfur-btn, .funfur-btn:hover {
   background-color: #fdd831 !important;
   color: #fff !important;
@@ -1471,6 +1474,28 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em; } }
 
+.contact-wrapper {
+  margin-top: 150px !important; }
+
+.contact-form-header {
+  margin-bottom: 30px; }
+
+.info-title-wrapper h3.funfur-info-title {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+  padding: 2px;
+  color: black;
+  border-bottom: solid 1px black; }
+
+.contact-time-wrapper {
+  text-align: center;
+  padding: 40px 0 50px 0; }
+  .contact-time-wrapper .contact-time {
+    padding: 0;
+    margin: 0;
+    font-size: 13px; }
+
 @media only screen and (max-width: 992px) {
   footer ul.style {
     list-style: none;
@@ -1875,7 +1900,7 @@ nav.ceo-nav-top {
     background-color: #fff; }
     .product-box-contents .product-thumbnail.case-upload i {
       position: absolute;
-      z-index: 9999;
+      z-index: 1000;
       right: 0; }
   .product-box-contents .product-thumbnail {
     width: 100%;

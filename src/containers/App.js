@@ -16,6 +16,7 @@ import {
 import storage from 'helpers/localForage.helper';
 import { 
   HomeScreen,
+  ContactScreen,
   RegisterFormScreen,
   RegisterIntroScreen,
   RegisterPolicyScreen,
@@ -26,20 +27,20 @@ import {
 
 import * as authDuck from 'ducks/auth.duck';
 import * as uiDuck from 'ducks/ui.duck';
+import * as productDuck from 'ducks/product.duck';
 
 class App extends Component {
   constructor(props, context) {
     super(props);
     
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleProductDelete = this.handleProductDelete.bind(this);
   }
 
 
   // TODO ceo 직접 접근할 시 예외 처리 , catch에 넣어서 일단은 해결
   componentDidMount() {
     const { AuthActions } = this.props;
-    console.log(this.props.authenticated);
-    console.log('a');
     
     storage.get('token').then(async (value) => {
       try {
@@ -70,6 +71,17 @@ class App extends Component {
     storage.remove('auth');
   }
 
+  async handleProductDelete() {
+    const { ProductActions } = this.props;
+    const productId = window.location.pathname.split('/');
+    console.log(productId);
+    try {
+        await ProductActions.productRemove(productId[3]);
+    } catch (e) {
+        if(e) throw e;
+    }
+  }
+
   render() {
     console.log(this.props.authenticated);
     return (
@@ -79,9 +91,15 @@ class App extends Component {
           { this.props.visible.base ? <Header authenticated={this.props.authenticated} handleLogout={this.handleLogout}/> : null }
           {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
             <SweetAlertComponent
-                isAlertShow={this.props.isAlertShow}
-                alertMessage={this.props.alertMessage}
-                hideAlert={this.props.UiActions.hideSweetAlert}
+              showCancel={this.props.sweetAlert.get('showCancel')}
+              typeSuccess={this.props.sweetAlert.get('typeSuccess')}
+              typeWarning={this.props.sweetAlert.get('typeWarning')}
+              typeDanger={this.props.sweetAlert.get('typeDanger')}
+              isAlertShow={this.props.sweetAlert.get('isAlertShow')}
+              alertTitle={this.props.sweetAlert.get('alertTitle')}
+              alertMessage={this.props.sweetAlert.get('alertMessage')}
+              hideAlert={this.props.UiActions.hideSweetAlert}
+              onDelete={this.handleProductDelete}
             />
             <Route
               exact
@@ -109,6 +127,10 @@ class App extends Component {
               component={LoginScreen}
             />
             <Route
+              path="/contact"
+              component={ContactScreen}
+            />
+            <Route
               path="/ceo"
               component={CeoWrapper}
             />
@@ -126,11 +148,11 @@ export default connect(
         dashboard: state.ui.getIn(['visible', 'dashboard'])
       },
       authenticated: state.auth.get('authenticated'),
-      isAlertShow: state.ui.getIn(['sweetAlert', 'isAlertShow']),
-      alertMessage: state.ui.getIn(['sweetAlert', 'alertMessage'])
+      sweetAlert: state.ui.get('sweetAlert')
     }),
     dispatch => ({
       AuthActions: bindActionCreators(authDuck, dispatch),
-      UiActions: bindActionCreators(uiDuck, dispatch)
+      UiActions: bindActionCreators(uiDuck, dispatch),
+      ProductActions: bindActionCreators(productDuck, dispatch)
     })
 )(App);

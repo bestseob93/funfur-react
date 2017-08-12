@@ -145,6 +145,10 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
     color: $funfur-color;
 }
 
+.text-red {
+  color: red;
+}
+
 .funfur-btn, .funfur-btn:hover {
   background-color: $funfur-color !important;
   color: #fff !important;

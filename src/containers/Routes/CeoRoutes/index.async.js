@@ -46,4 +46,5 @@ export const CeoHome = asyncRoute(()=> import('./CeoHome'));
 export const MyPageEnterScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageEnterScreen'));
 export const MyPageModifyScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageModifyScreen'));
 export const MyPageFinishScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageFinishScreen'));
-export const ConsumerScreen = asyncRoute(()=> import('./ConsumerScreen'));
+export const ConsumerScreen = asyncRoute(()=> import('./ConsumerRoutes/ConsumerScreen'));
+export const OrderScreen = asyncRoute(()=> import('./OrderRoutes/OrderScreen'));

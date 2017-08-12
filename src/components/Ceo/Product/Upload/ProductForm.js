@@ -119,7 +119,8 @@ class ProductForm extends Component {
             GyeongNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongNam'),
             JeonBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonBuk'),
             JeonNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonNam'),
-            JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan')   
+            JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan'),
+            isCostSame: form.get('isCostSame') && form.get('isCostSame')
         };
 
         try {

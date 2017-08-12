@@ -46,6 +46,11 @@ const initialState = fromJS({
         userId: '',
         password: ''
     },
+    contact: {
+        userName: '',
+        userEmail: '',
+        contents: ''
+    },
     product: {
         productName: '',
         productPosition: '',

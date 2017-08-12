@@ -16,7 +16,6 @@ class ProductModifyForm extends Component {
 
         this.changeHandler = this.changeHandler.bind(this);
         this.deleteAlert = this.deleteAlert.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
@@ -61,18 +60,12 @@ class ProductModifyForm extends Component {
     deleteAlert() {
         const { UiActions } = this.props;
         UiActions.showSweetAlert({
-            message: "정말로 삭제하시겠습니까?"
+            alertTitle: "정말로 삭제하시겠습니까?",
+            message: "모두 삭제됩니다.",
+            alertType: 'typeDanger',
+            showCancel: true,
+            value: true
         });
-    }
-    
-    async handleDelete() {
-        const { ProductActions } = this.props;
-        const productId = this.props.location.pathname.split('/');
-        try {
-            await ProductActions.productRemove(productId[3]);
-        } catch (e) {
-            if(e) throw e;
-        }
     }
 
     async handleSubmit() {
@@ -105,7 +98,6 @@ class ProductModifyForm extends Component {
         const {
             changeHandler,
             deleteAlert,
-            handleDelete,
             handleSubmit
         } = this;
         const {
