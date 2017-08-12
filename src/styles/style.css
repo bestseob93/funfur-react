@@ -3,7 +3,7 @@ body {
   font-family: "Nanum Square" !important;
   background-color: #2f4050;
   font-size: 13px;
-  color: #676a6c;
+  color: #000;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 1080px) {
@@ -33,7 +33,7 @@ a {
   text-decoration: none !important; }
 
 h1, h2, h3, h4, h5, h6, p, span, ul, li, ol, div, i {
-  color: #676a6c; }
+  color: #000; }
 
 html, body {
   height: 100%; }
@@ -1936,11 +1936,42 @@ nav.ceo-nav-top {
     div.container.enter-wrapper div.text-center p:nth-child(4) {
       margin: 20px 0; } }
 
+@media only screen and (min-width: 767px) {
+  .container.order-wrapper {
+    width: 80%; } }
+
+.order-header {
+  margin: 50px 0;
+  font-size: 18px; }
+
+.order-table {
+  width: 100%;
+  margin: 0 auto; }
+  .order-table table, .order-table th, .order-table tr, .order-table td {
+    text-align: center;
+    font-weight: inherit;
+    font-size: 13px;
+    letter-spacing: 0.2px; }
+  .order-table thead {
+    border: 1px solid aliceblue; }
+  .order-table th {
+    padding: 5px 0;
+    background-color: #777;
+    color: #fff;
+    border: 1px solid #fff; }
+  .order-table td {
+    padding: 10px 0; }
+  .order-table td.number-line {
+    border-right: 1px solid #979797; }
+  .order-table td.half-line {
+    border-right: 0.5px solid #979797; }
+
 .navbar-static-side {
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
-  transition: all 0.4s; }
+  transition: all 0.4s;
+  /* collapsing animation */ }
   .navbar-static-side .side-nav {
     padding-left: 0;
     margin-bottom: 0;
@@ -1955,39 +1986,53 @@ nav.ceo-nav-top {
       transition: all 0.4s; }
       .navbar-static-side .side-nav .nav-header .nav-header-contents h3 {
         margin-top: 5px; }
-    .navbar-static-side .side-nav li {
+    .navbar-static-side .side-nav .label-image {
+      display: none; }
+    .navbar-static-side .side-nav .icon-active .label-image {
+      display: inline-block;
+      width: 30px;
+      height: 30px; }
+    .navbar-static-side .side-nav .icon-active a {
+      color: #fdd831 !important; }
+    .navbar-static-side .side-nav .icon-active a:hover {
+      background-color: white !important; }
+    .navbar-static-side .side-nav li.nav-list {
       position: relative;
       display: block; }
-      .navbar-static-side .side-nav li a:hover, .navbar-static-side .side-nav li afocus {
+      .navbar-static-side .side-nav li.nav-list a:hover {
         background-color: #fdd831;
         color: #000; }
-      .navbar-static-side .side-nav li .nav-link {
+      .navbar-static-side .side-nav li.nav-list .nav-link {
         position: relative;
         display: block;
         padding: 14px 20px 14px 25px;
         text-decoration: none;
         color: #a7b1c2;
         font-weight: 600; }
-        .navbar-static-side .side-nav li .nav-link .side-menu-right {
+        .navbar-static-side .side-nav li.nav-list .nav-link .side-menu-right {
           float: right; }
-        .navbar-static-side .side-nav li .nav-link i {
+        .navbar-static-side .side-nav li.nav-list .nav-link i {
           margin-right: 6px;
           color: inherit; }
-        .navbar-static-side .side-nav li .nav-link span {
+        .navbar-static-side .side-nav li.nav-list .nav-link span {
           color: inherit; }
-        .navbar-static-side .side-nav li .nav-link span.label-info {
+        .navbar-static-side .side-nav li.nav-list .nav-link span.label-info {
           color: #000;
           background-color: #fdd831; }
-      .navbar-static-side .side-nav li .nav-link.second-depth {
+      .navbar-static-side .side-nav li.nav-list ul.side-nav {
+        display: none; }
+      .navbar-static-side .side-nav li.nav-list .nav-link.second-depth {
         padding: 7px 10px 7px 10px;
         padding-left: 52px; }
-    .navbar-static-side .side-nav li.active {
+    .navbar-static-side .side-nav li.nav-list.active {
       border-left: 4px solid #fdd831;
       background: #fff;
       -webkit-transition: all 0.4s;
       -moz-transition: all 0.4s;
       -o-transition: all 0.4s;
       transition: all 0.4s; }
+      .navbar-static-side .side-nav li.nav-list.active ul.side-nav {
+        display: block; }
 
 @media only screen and (min-width: 768px) {
   .navbar-static-side {

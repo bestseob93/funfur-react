@@ -62,6 +62,8 @@ class ContactForm extends Component {
             handleSubmit
         } = this;
 
+        console.log(this.props.status.get('fetching'));
+
         return (
             <div className="col-md-6 col-xs-12">
                 <FormHeader />

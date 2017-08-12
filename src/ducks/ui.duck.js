@@ -12,6 +12,7 @@ const HIDE_MODAL = "ui/HIDE_MODAL";
 
 /* CEO DASHBOARD SIDE BAR */
 const SET_LIST_INDEX = "ui/SET_LIST_INDEX";
+const SET_ICON_INDEX = "ui/SET_ICON_INDEX";
 
 /* PRODUCT UPLOAD */
 const ADD_SECOND_SORTABLE = "ui/ADD_SECOND_SORTABLE";
@@ -26,6 +27,7 @@ export const showHeaderFooter = createAction(SHOW_HEADER_FOOTER);
 export const hideDashboard = createAction(HIDE_DASHBOARD);
 export const showDashboard = createAction(SHOW_DASHBOARD);
 export const setListIndex = createAction(SET_LIST_INDEX);
+export const setIconIndex = createAction(SET_ICON_INDEX);
 export const addSecondSortable = createAction(ADD_SECOND_SORTABLE);
 export const removeSecondSortable = createAction(REMOVE_SECOND_SORTABLE);
 export const showModal = createAction(SHOW_MODAL);
@@ -40,6 +42,7 @@ const initialState = fromJS({
         modal: false
     },
     listIndex: null,
+    iconIndex: null,
     secondSortable: false,
     sweetAlert: {
         showCancel: false,
@@ -64,6 +67,8 @@ export default function reducer(state = initialState, action) {
             return state.setIn(['visible', 'dashboard'], true);
         case SET_LIST_INDEX:
             return state.set('listIndex', action.payload);
+        case SET_ICON_INDEX:
+            return state.set('iconIndex', action.payload);
         case ADD_SECOND_SORTABLE:
             return state.set('secondSortable', true);
         case REMOVE_SECOND_SORTABLE:

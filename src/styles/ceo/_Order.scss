@@ -1,0 +1,39 @@
+@media only screen and (min-width: 767px) {
+    .container.order-wrapper {
+        width: 80%;
+    }
+}
+
+.order-header {
+    margin: 50px 0;
+    font-size: 18px;
+}
+
+.order-table {
+    width: 100%;
+    margin: 0 auto;
+    table, th, tr, td {
+        text-align: center;
+        font-weight: inherit;
+        font-size: 13px;
+        letter-spacing: 0.2px;
+    }
+    thead {
+        border: 1px solid aliceblue;
+    }
+    th {
+        padding: 5px 0;
+        background-color: #777;
+        color: #fff;
+        border: 1px solid #fff;
+    }
+    td {
+        padding: 10px 0;
+    }
+    td.number-line {
+        border-right: 1px solid #979797;
+    }
+    td.half-line {
+        border-right: 0.5px solid #979797;
+    }
+}

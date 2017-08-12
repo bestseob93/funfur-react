@@ -1,9 +1,24 @@
 
 .navbar-static-side {
+    
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
+
+    /* collapsing animation */
+    // .collapsing {
+    //     position: relative;
+    //     height: 0;
+    //     overflow: hidden;
+    //     -webkit-transition-timing-function: ease;
+    //     transition-timing-function: ease;
+    //     -webkit-transition-duration: .35s;
+    //     transition-duration: .35s;
+    //     -webkit-transition-property: height, visibility;
+    //     transition-property: height, visibility;
+    // }
+
     .side-nav {
         padding-left: 0;
         margin-bottom: 0;
@@ -24,10 +39,26 @@
                 }
             }
         }
-        li {
+        .label-image {
+            display: none;
+        }
+        .icon-active {
+            .label-image {
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+            }
+            a {
+                color: $funfur-color !important;
+            }
+            a:hover {
+                background-color: white !important;
+            }
+        }
+        li.nav-list {
             position: relative;
             display: block;
-            a:hover, afocus {
+            a:hover {
                 background-color: $funfur-color;
                 color: #000;
             }
@@ -55,19 +86,26 @@
                     background-color: $funfur-color;
                 }
             }
+            ul.side-nav {
+                display: none;
+            }
+
             .nav-link.second-depth {
                 padding: 7px 10px 7px 10px;
                 padding-left: 52px;
             }
         }
-        li.active {
+        li.nav-list.active {
             border-left: 4px solid $funfur-color;
             background: #fff;
             -webkit-transition: all 0.4s;
             -moz-transition: all 0.4s;
             -o-transition: all 0.4s;
             transition: all 0.4s;
+            ul.side-nav {
+                display: block;
 
+            }
         }
     }
 }

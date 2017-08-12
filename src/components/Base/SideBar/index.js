@@ -3,7 +3,7 @@ import NavList from './NavList';
 import NavHeader from './NavHeader';
 import MobileHamburger from './MobileHamburger';
 
-function SideBar({onClick, listIndex, authInfo}) {
+function SideBar({onClick, listIndex, iconIndex, onIconActiveClick, authInfo}) {
     
     if(window.innerWidth < 767) {
         return (
@@ -17,14 +17,18 @@ function SideBar({onClick, listIndex, authInfo}) {
                         <NavHeader authInfo={authInfo} />
                         <NavList
                             index={'navIndex-1'}
+                            iconIndex={'iconIndex-0'}
                             text="홈"
                             faIcon="fa-th-large"
+                            faArrow={false}
                             pathName="/ceo"
                             active={'navIndex-1' === listIndex}
                             onClick={onClick}
+                            onIconActiveClick={onIconActiveClick}
                         />
                         <NavList
                             index={'navIndex-2'}
+                            iconIndex={iconIndex}
                             text="가입상품"
                             faIcon="fa-fa-files-o"
                             faArrow={true}
@@ -32,9 +36,11 @@ function SideBar({onClick, listIndex, authInfo}) {
                             secondDepth={true}
                             active={'navIndex-2' === listIndex}
                             onClick={onClick}
+                            onIconActiveClick={onIconActiveClick}
                         />
                         <NavList
                             index={'navIndex-3'}
+                            iconIndex={iconIndex}
                             text="판매관리"
                             faIcon="fa-shopping-cart"
                             faArrow={true}
@@ -42,15 +48,18 @@ function SideBar({onClick, listIndex, authInfo}) {
                             secondDepth={true}
                             active={'navIndex-3' === listIndex}
                             onClick={onClick}
+                            onIconActiveClick={onIconActiveClick}
                         />
                         <NavList
                             index={'navIndex-4'}
+                            iconIndex={'iconIndex-9'}
                             text="발주서 / 물건 보내기"
                             faIcon="fa-magic"
-                            pathName="#"
-                            hasLabel={true}
+                            faArrow={false}
+                            pathName="/ceo/order"
                             active={'navIndex-4' === listIndex}
                             onClick={onClick}
+                            onIconActiveClick={onIconActiveClick}
                         />
                     </ul>
                 </div>

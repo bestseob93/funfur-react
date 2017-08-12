@@ -13,6 +13,7 @@ import * as contactDuck from 'ducks/contact.duck';
 
 class ContactScreen extends Component {
     render() {
+        console.log(this.props.status.toJS());
         return (
             <Contact>
                 <div className="row">
@@ -27,7 +28,7 @@ class ContactScreen extends Component {
 export default connect(
     state => ({
         form: state.form.get('contact'),
-        status: state.contact.get('request'),
+        status: state.contact.getIn(['requests', 'contact']),
         valid: state.contact.get('valid')
     }),
     dispatch => ({

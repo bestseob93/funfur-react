@@ -11,19 +11,23 @@ export const sendContact = (contactInfo) => ({
 });
 
 const initialState = fromJS({
-    request: { ...requestStatus.request },
+    requests: { 
+        contact: {
+            ...requestStatus.request
+        }
+    },
     valid: false
 });
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case `${SEND_CONTACT}_PENDING`:
-            return state.mergeIn('request', fromJS(requestStatus.pending));
+            return state.mergeIn(['requests', 'contact'], fromJS(requestStatus.pending));
         case `${SEND_CONTACT}_FULFILLED`:
-            return state.mergeIn('request', fromJS(requestStatus.fulfilled))
+            return state.mergeIn(['requests', 'contact'], fromJS(requestStatus.fulfilled))
                         .set('valid', true);
         case `${SEND_CONTACT}_REJECTED`:
-            return state.mergeIn('request', fromJS(requestStatus.rejected))
+            return state.mergeIn(['requests', 'contact'], fromJS(requestStatus.rejected))
                         .set('valid', false);
         default:
             return state;

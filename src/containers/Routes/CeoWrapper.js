@@ -43,6 +43,7 @@ class CeoWrapper extends Component {
         this.handleSideMenu = this.handleSideMenu.bind(this);
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.onIconActiveClick = this.onIconActiveClick.bind(this);
     }
 
 
@@ -74,8 +75,11 @@ class CeoWrapper extends Component {
     }
 
     // 왼쪽 border 애니메이션 처리
-    handleSideMenu(index) {
+    handleSideMenu(iconIndex, index) {
         const { UiActions } = this.props;
+        if(iconIndex === 'iconIndex-9' || iconIndex === 'iconIndex-0') {
+            UiActions.setIconIndex(iconIndex);
+        }
         UiActions.setListIndex(index);
     }
 
@@ -95,13 +99,18 @@ class CeoWrapper extends Component {
             UiActions.hideModal();
         }
     }
+    onIconActiveClick(iconIndex) {
+        const { UiActions } = this.props;
+        UiActions.setIconIndex(iconIndex);
+    }
 
     render() {
         const { match } = this.props;
         const {
             handleSideMenu,
             showModal,
-            hideModal
+            hideModal,
+            onIconActiveClick
         } = this;
         return (
             <div>
@@ -116,7 +125,9 @@ class CeoWrapper extends Component {
                 />
                 <SideBar
                     onClick={handleSideMenu}
+                    onIconActiveClick={onIconActiveClick}
                     listIndex={this.props.listIndex}
+                    iconIndex={this.props.iconIndex}
                     authInfo={this.props.authInfo.toJS()}
                 />
                 <div className="ceo-page-wrapper">
@@ -146,6 +157,7 @@ export default connect(
             modal: state.ui.getIn(['visible', 'modal'])
         },
         listIndex: state.ui.get('listIndex'),
+        iconIndex: state.ui.get('iconIndex'),
         authInfo: state.auth.get('authInfo'),
         form: state.form.get('modifyPw'),
         valid: {
