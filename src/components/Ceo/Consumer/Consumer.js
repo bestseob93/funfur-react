@@ -2,7 +2,7 @@ import React from 'react';
 
 function Consumer({children}) {
     return (
-        <div className="container">
+        <div className="container consumer-wrapper">
             {children}
         </div>
     );

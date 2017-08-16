@@ -5,7 +5,7 @@ function ServiceStatus() {
         <div className="col-md-5 col-xs-6 status-box non-border">
             <div className="status-box-table row">
                 <div className="status-icon-wrapper">
-                    <img className="status-icon" src={require('img/icon/un-purchasing.svg')} />
+                    <img alt="service" className="status-icon" src={require('img/icon/un-purchasing.svg')} />
                 </div>
                 <div className="status-txt-wrapper">
                     <p>구매 취소<span>1건</span></p>

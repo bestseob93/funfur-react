@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {
     HomeContainer,
     SalesStatus,
@@ -7,7 +6,6 @@ import {
     OrderStatus,
     ServiceStatus,
     SalesAmountStatus,
-    MiniNotice,
     Contact,
     FunfurStatus
 } from 'components/Ceo/Home';
@@ -27,10 +25,7 @@ class CeoHome extends Component {
                     </div>
                 </SalesStatus>
                 <FunfurStatus />
-                <div className="row">
-                    <MiniNotice />
-                    <Contact />
-                </div>
+                <Contact />
             </HomeContainer>
         );
     }

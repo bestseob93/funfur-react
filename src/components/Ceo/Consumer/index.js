@@ -1,9 +1,9 @@
 import Consumer from './Consumer';
-import ConsumerNav from './ConsumerNav';
+import ConsumerHeader from './ConsumerHeader';
 import ConsumerContents from './ConsumerContents';
 
 export {
     Consumer,
-    ConsumerNav,
+    ConsumerHeader,
     ConsumerContents
 };

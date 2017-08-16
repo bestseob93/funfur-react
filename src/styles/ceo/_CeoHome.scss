@@ -2,6 +2,10 @@
     padding: 0 37px;
 }
 
+.ceo-home-contact {
+    margin-top: 60px !important;
+}
+
 .sales-status-wrapper {
     margin: 29px 0;
     .status-title {
@@ -10,13 +14,12 @@
     .status-box-wrapper {
         position: relative;
         .status-box {
-            border: 1px solid #ffe368;
+            border: 1px solid #ffeea4;
             text-align: center;
         }
         .status-box.non-border {
             border: none;
-            background-color: #ffe368;
-            opacity: 0.6;
+            background-color: #ffeea4;
         }
     }
 

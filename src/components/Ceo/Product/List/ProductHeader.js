@@ -2,8 +2,7 @@ import React from 'react';
 
 function productHeader() {
     return (
-        <div>
-            <h3>내가 등록한 상품</h3>
+        <div className="my-product-header">
             <ul className="product-howto">
                 <li>HOW TO...</li>
                 <li>+ 버튼을 눌러 제품을 추가해주세요.</li>

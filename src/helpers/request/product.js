@@ -5,8 +5,6 @@ const FUNFUR = process.env.REACT_APP_URL;
 
 export const requestProductList = () => {
     return storage.get('token').then((token) => {
-        let formData = new FormData();
-
         return axios({
             method: 'GET',
             url: `${FUNFUR}/product_web/thumbnail`,

@@ -60,6 +60,12 @@ const initialState = fromJS({
         },
         remove: {
             ...requestStatus.request
+        },
+        consumer: {
+            ...requestStatus.request
+        },
+        answer: {
+            ...requestStatus.request
         }
     },
     valid: {
@@ -67,7 +73,8 @@ const initialState = fromJS({
         upload: false,
         productDetail: false,
         modify: false,
-        remove: false
+        remove: false,
+        answer: false
     },
     products: [],
     productDetail: {
@@ -78,7 +85,8 @@ const initialState = fromJS({
             first: [],
             second: []
         }
-    }
+    },
+    consumers: []
 });
 
 /* REDUCER */

@@ -5141,6 +5141,10 @@ react-bootstrap-sweetalert@^4.0.0:
   dependencies:
     object-assign "^4.1.0"
 
+react-css-collapse@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-css-collapse/-/react-css-collapse-3.0.2.tgz#26958b0545dfdc62d49701e51ff1f931ee199950"
+
 react-custom-scrollbars@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/react-custom-scrollbars/-/react-custom-scrollbars-4.1.2.tgz#0e60c4a46c4a61f9e4994a7663e2b9cbbc5187a3"

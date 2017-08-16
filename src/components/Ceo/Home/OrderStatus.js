@@ -5,7 +5,7 @@ function OrderStatus() {
         <div className="col-md-5 col-xs-6 status-box">
             <div className="status-box-table row">
                 <div className="status-icon-wrapper">
-                    <img className="status-icon" src={require('img/icon/purchasing.svg')} />
+                    <img alt="purchasing" className="status-icon" src={require('img/icon/purchasing.svg')} />
                 </div>
                 <div className="status-txt-wrapper">
                     <p>제품 문의<span>1건</span></p>

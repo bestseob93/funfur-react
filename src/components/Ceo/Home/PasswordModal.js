@@ -20,7 +20,7 @@ class PasswordModal extends Component {
     }
 
     async handleSubmit(ev) {
-        const { FormActions, AuthActions, form, hideModal } = this.props;
+        const { FormActions, AuthActions, form } = this.props;
         ev.preventDefault();
 
         const pwRegex = /^[a-zA-Z0-9]{4,20}$/; // 비밀번호 정규표현식

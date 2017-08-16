@@ -5,8 +5,10 @@ import { createAction } from 'redux-actions';
 /* CEO DASHBOARD */
 const HIDE_HEADER_FOOTER = "ui/HIDE_HEADER_FOOTER";
 const SHOW_HEADER_FOOTER = "ui/SHOW_HEADER_FOOTER";
+
 const HIDE_DASHBOARD = "ui/HIDE_DASHBOARD";
 const SHOW_DASHBOARD = "ui/SHOW_DASHBOARD";
+
 const SHOW_MODAL = "ui/SHOW_MODAL";
 const HIDE_MODAL = "ui/HIDE_MODAL";
 
@@ -18,20 +20,30 @@ const SET_ICON_INDEX = "ui/SET_ICON_INDEX";
 const ADD_SECOND_SORTABLE = "ui/ADD_SECOND_SORTABLE";
 const REMOVE_SECOND_SORTABLE = "ui/REMOVE_SECOND_SORTABLE";
 
+/* CONSUMMER */
+const SET_COLLAPSE_INDEX = "ui/SET_COLLAPSE_INDEX";
+
 /* SWEET ALERT */
 const SHOW_SWEET_ALERT = "ui/SHOW_SWEET_ALERT";
 const HIDE_SWEET_ALERT = "ui/HIDE_SWEET_ALERT";
 
 export const hideHeaderFooter = createAction(HIDE_HEADER_FOOTER);
 export const showHeaderFooter = createAction(SHOW_HEADER_FOOTER);
+
 export const hideDashboard = createAction(HIDE_DASHBOARD);
 export const showDashboard = createAction(SHOW_DASHBOARD);
+
 export const setListIndex = createAction(SET_LIST_INDEX);
 export const setIconIndex = createAction(SET_ICON_INDEX);
+
 export const addSecondSortable = createAction(ADD_SECOND_SORTABLE);
 export const removeSecondSortable = createAction(REMOVE_SECOND_SORTABLE);
+
+export const setCollapseIndex = createAction(SET_COLLAPSE_INDEX);
+
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
+
 export const showSweetAlert = createAction(SHOW_SWEET_ALERT);
 export const hideSweetAlert = createAction(HIDE_SWEET_ALERT);
 
@@ -52,7 +64,8 @@ const initialState = fromJS({
         typeSuccess: false,
         typeWarning: false,
         typeDanger: false
-    }
+    },
+    collapseIndex: null
 });
 
 export default function reducer(state = initialState, action) {
@@ -73,6 +86,8 @@ export default function reducer(state = initialState, action) {
             return state.set('secondSortable', true);
         case REMOVE_SECOND_SORTABLE:
             return state.set('secondSortable', false);
+        case SET_COLLAPSE_INDEX:
+            return state.set('collapseIndex', action.payload);
         case SHOW_MODAL:
             return state.setIn(['visible', 'modal'], true);
         case HIDE_MODAL:

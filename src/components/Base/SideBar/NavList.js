@@ -6,7 +6,6 @@ function NavList(props) {
     const {
         index,
         iconIndex,
-        iconActive,
         onIconActiveClick,
         text,
         faIcon,
@@ -28,7 +27,7 @@ function NavList(props) {
                 to={pathName}
             >
                 <i className={`fa ${faIcon}`}></i>
-                <span className="nav-label">{text}<img className="label-image" src={require('img/ex-funfur-logo.jpg')} /></span>
+                <span className="nav-label">{text}<img className="label-image" src={require('img/ex-funfur-logo.jpg')} alt="로고" /></span>
                 { faArrow ? active ? (<i className="fa fa-angle-down side-menu-right"></i>) : (<i className="fa fa-angle-left side-menu-right"></i>) : emptyComponent}
             </Link>
             { secondDepth ? <NavSecondDepth onClick={onIconActiveClick} iconIndex={iconIndex} depthCategory={text} /> : emptyComponent }

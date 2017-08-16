@@ -19,7 +19,6 @@ class Header extends Component {
     /* scroll 시 header 배경 변경 */
     handleScroll(ev) {
         let scrollTop = ev.srcElement.body.scrollTop;
-        let itemTranslate = Math.min(0, scrollTop/3 - 60);
         console.log(scrollTop);
         let isScrolling = false;
         if(scrollTop > 20) {

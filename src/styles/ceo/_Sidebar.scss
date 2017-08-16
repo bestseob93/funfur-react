@@ -1,10 +1,17 @@
 
+@media only screen and (min-width: 767px) {
+    .navbar-static-side {
+        border-right: 1px solid #979797;
+    }
+}
 .navbar-static-side {
     
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
+    top: 0;
+    bottom: 0;
 
     /* collapsing animation */
     // .collapsing {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-    SweetAlertComponent
-} from 'components/Common';
+// import {
+//     SweetAlertComponent
+// } from 'components/Common';
 
 import PolicyContents from './PolicyContents';
 

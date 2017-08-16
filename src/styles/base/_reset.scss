@@ -6,7 +6,7 @@ body {
   overflow-x: hidden;
 }
 
-@media only screen and (min-width: 1080px) {
+@media only screen and (min-width: 1024px) {
   body {
     width: 1420px;
     overflow: visible;
@@ -39,6 +39,14 @@ a {
 
 h1,h2,h3,h4,h5,h6,p,span,ul,li,ol,div,i {
   color: #000;
+}
+
+.blue-text {
+  color: #4990e2;
+}
+
+.red-text {
+  color: #d0011b;
 }
 
 html, body {
@@ -287,4 +295,9 @@ div.row.sub-title {
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
+}
+
+/* collapse animation */
+.react-css-collapse-transition {
+  transition: height 250ms cubic-bezier(.4, 0, .2, 1);
 }
