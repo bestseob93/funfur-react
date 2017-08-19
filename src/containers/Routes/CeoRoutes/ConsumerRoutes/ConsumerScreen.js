@@ -25,16 +25,17 @@ class ConsumerScreen extends Component {
 export default connect(
     state => ({
         status: {
-            consumerList: state.get.product.getIn(['requests', 'consumer']),
-            answerPost: state.get.product.getIn(['requests', 'answer'])
+            consumerList: state.product.getIn(['requests', 'consumer']),
+            answerPost: state.product.getIn(['requests', 'answer'])
         },
         valid: {
-            answerPost: state.get.product.getIn(['valid', 'answer'])
+            consumerList: state.product.getIn(['valid', 'consumer']),
+            answerPost: state.product.getIn(['valid', 'answer'])
         },
         collapseIndex: state.ui.get('collapseIndex')
     }),
     dispatch => ({
-        ProducActions: bindActionCreators(productDuck, dispatch),
+        ProductActions: bindActionCreators(productDuck, dispatch),
         UiActions: bindActionCreators(uiDuck, dispatch)
     })
 )(ConsumerScreen);

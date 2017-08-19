@@ -1,13 +1,80 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
+import { isMouseBeyond } from 'helpers/sortableHelper';
 
 class PhotosUpload extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            dragIndex: null,
+            newIndex: null
+        };
+        
+        this.handleTocuhStart = this.handleTocuhStart.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
+        this.dragStart = this.dragStart.bind(this);
+        this.dragOver = this.dragOver.bind(this);
+        this.dragStop = this.dragStop.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.onOpenClick = this.onOpenClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
+    }
+
+    dragStart(e) {
+        const draggingIndex = e.currentTarget.dataset.id;
+
+        this.setState({
+            dragIndex: Number(draggingIndex)
+        });
+
+        let dt = e.dataTransfer;
+        if (dt !== undefined) {
+          e.dataTransfer.setData('text', e.target.innerHTML);
+
+          if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
+            dt.setDragImage(e.target, 0, 0);
+          }
+        }
+    }
+
+    dragOver(e) {
+        e.preventDefault();
+        const overEl = e.currentTarget;
+        const indexDragged = Number(overEl.dataset.id);
+        console.log(indexDragged);
+        const indexFrom = Number(this.state.dragIndex);
+        console.log(indexFrom);
+
+        let positionX = e.touches ? e.touches[0].clientX : e.clientX;
+        console.log(positionX);
+        console.log(overEl.getBoundingClientRect().left);
+        console.log(overEl.getBoundingClientRect().width);
+        let mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
+        // console.log(indexDragged);
+        // console.log(indexFrom);
+        // console.log(mouseBeyond);
+        // console.log(this.props.form.get('productImages').indexOf(indexFrom));
+        if (indexDragged !== indexFrom && mouseBeyond) {
+            this.setState({
+                newIndex: indexDragged
+            });
+          }
+    }
+
+    dragStop(e) {
+        e.preventDefault();
+        this.props.FormActions.formPhotoIndexUpdate({
+            dragIndex: this.state.dragIndex,
+            setNewIndex: this.state.newIndex
+        });
+    }
+
+    handleTocuhStart(e) {
+        console.log(e.touches);
+    }
+
+    handleTouchMove(e) {
+        console.log(e.touches);
     }
 
     /* react-dropzone을 이용하여 redux의 form 업데이트 */
@@ -59,6 +126,11 @@ class PhotosUpload extends Component {
         } = this.props;
 
         const {
+            dragStart,
+            dragOver,
+            dragStop,
+            handleTocuhStart,
+            handleTouchMove,
             handleFile,
             onOpenClick,
             handleClose
@@ -88,7 +160,7 @@ class PhotosUpload extends Component {
                     className="upload-dropzone"
                     onDrop={handleFile}
                     accept="image/jpeg, image/png"
-                    multiple={false}
+                    multiple={true}
                 >
                     <div className="product-box-contents add-product product-photo">
                         <p><i className="fa fa-plus-square fa-2x"></i><span>대표 사진</span></p>
@@ -104,7 +176,7 @@ class PhotosUpload extends Component {
                     className="upload-dropzone"
                     onDrop={handleFile}
                     accept="image/jpeg, image/png"
-                    multiple={false}
+                    multiple={true}
                 >
                     <div className="product-box-contents add-product product-photo">
                         <p><i className="fa fa-plus-square fa-2x"></i><span>사진 추가</span></p>
@@ -119,7 +191,19 @@ class PhotosUpload extends Component {
             formValues.productImages.map((value, index) => {
                 console.log(value);
                 renderDroppedImage.push((
-                    <div key={value.name === undefined ? value.id : value.name} className="product-box-contents flex-column" style={{marginBottom: 25}}>
+                    <div
+                        key={value.name === undefined ? value.id : value.name}
+                        draggable={true}
+                        data-id={index}
+                        className="product-box-contents flex-column"
+                        style={{marginBottom: 25}}
+                        onDragStart={dragStart}
+                        onDragOver={dragOver}
+                        onDragEnd={dragStop}
+                        onTouchStart={dragStart}
+                        onTouchMove={dragOver}
+                        onTouchEnd={dragStop}
+                    >
                         <div className="product-thumbnail case-upload">
                             <i className="fa fa-times-circle" onClick={() => value.id !== undefined ? value.showing_photo === 'selected' ? handleClose(value.showing_photo, value.product_id, value.id, index) : handleClose(null, value.product_id, value.id, index) : handleClose(null, null, null, index)}></i>
                             <img
@@ -136,6 +220,8 @@ class PhotosUpload extends Component {
         } else {
             renderDroppedImage = null;
         }
+
+        console.log(this.state.renderImages);
 
         return (
             <div className="row form-box">

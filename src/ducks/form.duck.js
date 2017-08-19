@@ -4,6 +4,7 @@ import { createAction } from 'redux-actions';
 /* Action Types */
 const FORM_RESET = "form/FORM_RESET";
 const FORM_CHANGE = "form/FORM_CHANGE";
+const FORM_PHOTO_INDEX_UPDATE = "form/FORM_PHOTO_INDEX_UPDATE";
 const FORM_UPLOAD_ADD = "form/FORM_UPLOAD_ADD";
 const FORM_UPLOAD_REMOVE = "form/FORM_UPLOAD_REMOVE";
 const HANDLE_CHECK_BOX = "form/HANDLE_CHECK_BOX";
@@ -13,6 +14,7 @@ const RESET_SECOND_SORTABLE = "form/RESET_SECOND_SORTABLE";
 /* Action Creators */
 export const formReset = createAction(FORM_RESET);
 export const formChange = createAction(FORM_CHANGE);
+export const formPhotoIndexUpdate = createAction(FORM_PHOTO_INDEX_UPDATE);
 export const formUploadAdd = createAction(FORM_UPLOAD_ADD);
 export const formUploadRemove = createAction(FORM_UPLOAD_REMOVE);
 export const handleCheckBox = createAction(HANDLE_CHECK_BOX);
@@ -109,6 +111,11 @@ export default function reducer(state = initialState, action) {
         case FORM_RESET:
             /* 폼 초기화 */
             return state.set(action.payload, initialState.get(action.payload))
+        case FORM_PHOTO_INDEX_UPDATE:
+            /* 사진 위치 바꾸기 */
+            let item = state.getIn(['product', 'productImages', action.payload.setNewIndex]);
+            return state.setIn(['product', 'productImages', action.payload.setNewIndex], state.getIn(['product', 'productImages', action.payload.dragIndex]))
+                        .setIn(['product', 'productImages', action.payload.dragIndex], item);
         case FORM_UPLOAD_ADD:
             return state.setIn([action.payload.formName, action.payload.name], state.getIn([action.payload.formName, action.payload.name]).concat(action.payload.value));
         case FORM_UPLOAD_REMOVE:

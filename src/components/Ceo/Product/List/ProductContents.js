@@ -16,7 +16,7 @@ class ProductContents extends Component {
         try {
             await ProductActions.productList();
         } catch (e) {
-            console.log(e);
+            if(e) console.log(e);
         }
     }
 
@@ -44,7 +44,6 @@ class ProductContents extends Component {
     render() {
         const { renderProductList } = this;
         const emptyComponent = undefined;
-        console.log(this.props.status.get('fetching'));
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 {/* Spinner */}

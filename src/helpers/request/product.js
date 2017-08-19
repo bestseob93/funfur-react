@@ -96,8 +96,8 @@ export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
             return res;
         }).catch(err => {
             if(err) throw err;
-        })
-    })
+        });
+    });
 }
 
 export const requestProductModify = (productId, productInfo) => {
@@ -131,7 +131,7 @@ export const requestProductModify = (productId, productInfo) => {
         }).catch(err => {
             if(err) throw err;
         });
-    })
+    });
 }
 
 export const requestProductRemove = (productId) => {
@@ -144,5 +144,18 @@ export const requestProductRemove = (productId) => {
         }).catch(err => {
             if(err) throw err;
         });
-    })
+    });
+}
+
+export const requestGetConsumerList = () => {
+    return storage.get('token').then((token) => {
+        return axios.get(`${FUNFUR}/consumer_inquiry_web/thumbnail`, { headers: {
+            Authorization: token
+        }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
 }

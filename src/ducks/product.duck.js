@@ -9,6 +9,7 @@ const PRODUCT_UPLOAD = "product/PRODUCT_UPLOAD";
 const PRODUCT_MODIFY = "product/PRODUCT_MODIFY";
 const REMOVE_PRODUCT_DETAIL_PHOTO = "product/REMOVE_PRODUCT_DETAIL_PHOTO";
 const PRODUCT_REMOVE = "product/PRODUCT_REMOVE";
+const GET_CONSUMER_LIST = "product/GET_CONSUMER_LIST";
 
 /* Action Creators */
 export const getProductDetail = (productId) => ({
@@ -39,6 +40,11 @@ export const removeProductDetailPhoto = (productId, photoIndex) => ({
 export const productRemove = (productId) => ({
     type: PRODUCT_REMOVE,
     payload: product.requestProductRemove(productId)
+});
+
+export const getConsumerList = () => ({
+    type: GET_CONSUMER_LIST,
+    payload: product.requestGetConsumerList()
 });
 
 const initialState = fromJS({
@@ -74,6 +80,7 @@ const initialState = fromJS({
         productDetail: false,
         modify: false,
         remove: false,
+        consumer: false,
         answer: false
     },
     products: [],
@@ -144,6 +151,15 @@ export default function reducer(state = initialState, action) {
         case `${PRODUCT_REMOVE}_REJECTED`:
             return state.mergeIn(['requests', 'remove'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'remove'], false);
+        case `${GET_CONSUMER_LIST}_PENDING`:
+            return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.pending));
+        case `${GET_CONSUMER_LIST}_FULFILLED`:
+            return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'consumer'], true)
+                        .setIn('consumer', action.payload.data.result);
+        case `${GET_CONSUMER_LIST}_REJECTED`:
+            return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'consumer'], false);
         default:
             return state;
     }
