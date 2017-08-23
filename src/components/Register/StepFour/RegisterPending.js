@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 class RegisterPending extends Component {
     render() {
         return (
-            <div className="text-center">
-                <h1 className="funfur-color">뻔뻐 사장님 사이트</h1>
-                <h3>업체등록 승인이 요청되었습니다.</h3>
-                <h3>뻔뻐의 모든 써비스는 업체등록 요청 승인시 접근 가능합니다.</h3>
-                <h3>"곧 연락드리겠습니다!" 등록해주셔서 감사합니다 :)</h3>
+            <div className="text-center pending-wrapper">
+                <h3 className="ns-B">사장님 사이트 업체등록 승인이 요청되었습니다.</h3>
+                <h5>뻔뻐의 모든 서비스는 업체등록 요청 <span className="point-red">승인 시 접근 가능</span>합니다.</h5>
+                <h5><span className="point-red">2일 내</span>에 가입하신 휴대폰 번호로 <span className="point-red">전화</span> 드리겠습니다.</h5>
                 <div className="padding-top50">
                     <div className="btn-container">
                         <button type="button" className="btn btn-common btn-prev">문의하기</button>

@@ -268,7 +268,7 @@ class RegisterForm extends Component {
                     className={document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right'}
                 />
                 {/* 가구업체 입력 폼 */}
-                <SubTitle title={"가구업체 정보입력"} />
+                <SubTitle title={"업체 정보 입력"} />
                 <div className="row form-box">
                     <FormLabel name="업체명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
@@ -421,7 +421,7 @@ class RegisterForm extends Component {
                             type="tel"
                             className="form-control"
                             name="ceoCall"
-                            placeholder="휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
+                            placeholder="현재 사용 중인 휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
                             required
                             onChange={changeHandler}
                         />
@@ -452,6 +452,11 @@ class RegisterForm extends Component {
                         <select className="form-control">
                             <option>직접 입력</option>
                         </select>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-3" style={{color: '#4990e2', fontSize: '12px'}}>
+                        실제 사용하는 이메일을 기입해 주세요. 승인 요청 처리 결과가 이메일로 전송됩니다.
                     </div>
                 </div>
                 {/*계정 정보 입력*/}
@@ -506,15 +511,11 @@ class RegisterForm extends Component {
                 </div>
                 <div className="row form-box padding-top50">
                     <div className="btn-container">
-                        <Link
-                            to="/register_2"
-                            className="btn btn-common btn-prev">취소
-                        </Link>
                         <button
                             type="button"
-                            className="btn btn-common btn-next"
+                            className="btn btn-common btn-next register-two"
                             onClick={handleSubmit}
-                            ref={(btn) => { this.submitBtn = btn }}>다음
+                            ref={(btn) => { this.submitBtn = btn }}>승인 요청하기
                         </button>
                     </div>
                 </div>

@@ -119,12 +119,14 @@ class RegisterPolicy extends Component {
                         <input
                             type="checkbox"
                             name="checkAll"
+                            id="checkAll"
                             onChange={handleCheckAll}
                         />
-                        <span>모든 약관 및 정책에 동의합니다.</span>
+                        <label htmlFor="checkAll"></label>
+                        <span className="ns-EB">모든 약관 및 정책에 동의합니다.</span>
                     </div>
                     <div className="policy-box-wrapper">
-                        <h5 className="policy-box-title">뻔뻐 사장님 사이트 이용약관</h5>
+                        <h5 className="policy-box-title ns-EB">뻔뻐 사장님 사이트 이용약관</h5>
                         <div className="policy-box">
                             <div className="policy-scroll-content">
                                 <PolicyContents contentType={'useterm'}/>
@@ -134,14 +136,16 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="site"
+                                id="site"
                                 checked={form.get('checkAll') === '' ? form.get('site') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
-                            위의 뻔뻐 사장님사이트 이용약관에 동의합니다.
+                            <label htmlFor="site"></label>
+                            <span>위의 뻔뻐 사장님사이트 이용약관에 동의합니다.</span>
                         </p>
                     </div>
                     <div className="policy-box-wrapper">
-                        <h5 className="policy-box-title">뻔뻐 제품 판매 이용약관</h5>
+                        <h5 className="policy-box-title ns-EB">뻔뻐 제품 판매 이용약관</h5>
                         <div className="policy-box">
                             <div className="policy-scroll-content">
                                 <PolicyContents contentType={'sellterm'}/>
@@ -151,14 +155,16 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="sales"
+                                id="sales"
                                 checked={form.get('checkAll') === '' ? form.get('sales') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
-                            위의 뻔뻐 제품 판매 이용약관에 동의합니다.
+                            <label htmlFor="sales"></label>
+                            <span>위의 뻔뻐 제품 판매 이용약관에 동의합니다.</span>
                         </p>
                     </div>
                     <div className="policy-box-wrapper" style={{borderBottom: 0}}>
-                        <h5 className="policy-box-title">개인정보 수집 이용 동의</h5>
+                        <h5 className="policy-box-title ns-EB">개인정보 수집 이용 동의</h5>
                         <div className="policy-box">
                             <div className="policy-scroll-content">
                                 <PolicyContents contentType={'userinfo'}/>
@@ -168,15 +174,17 @@ class RegisterPolicy extends Component {
                             <input
                                 type="checkbox"
                                 name="privacy"
+                                id="privacy"
                                 checked={form.get('checkAll') === '' ? form.get('privacy') : form.get('checkAll') === 'on' ? true : false}
                                 onChange={changeHandler}
                             />
-                            위의 개인정보 수집 이용에 동의합니다.
+                            <label htmlFor="privacy"></label>
+                            <span>위의 개인정보 수집 이용에 동의합니다.</span>
                         </p>
                     </div>
                     <div className="btn-container">
-                        <Link className="btn btn-common btn-prev" to="/register">이전</Link>
-                        <button className="btn btn-common btn-next" onClick={handleNext}>다음</button>
+                        <Link className="btn btn-common btn-prev register-two" to="/register">이전</Link>
+                        <button className="btn btn-common btn-next register-two" onClick={handleNext}>다음</button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,14 @@
 .register-title {
     position: relative;
-    padding: 0 0 30px;
-    border-bottom: 2px solid #e7eaec;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #979797;
     font-weight: 500;
+    .register-sub-desc {
+        margin-left: 60px;
+        color: #757575;
+        width: 500px;
+        font-size: 12px;
+    }
     ol {
         list-style: none;
         position: absolute;
@@ -16,11 +22,12 @@
             float: left;
             vertical-align: bottom;
             padding: 10px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: lighter;
+            color: #757575;
         }
         li.active {
-            font-size: 36px;
+            font-size: 24px;
             font-weight: 500;
             .active-detail {
                 color: $funfur-color;

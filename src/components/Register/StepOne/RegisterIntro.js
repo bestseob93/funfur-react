@@ -25,7 +25,7 @@ function RegisterIntro() {
                 <p className="text-center intro-contents ns-B" style={{marginBottom: 0}}>* 가구 소매/도매 업체를 운영 중이신 사장님만 가입이 가능합니다. *</p>
                 <p className="text-center intro-contents ns-R" style={{marginTop: 0, right: 30}}>가입 승인 후, 서비스 이용 가능하십니다.</p>
             </div>
-            <p className="text-center"><Link className="btn register-btn funfur-btn ns-EB" to="/register_2">회 원 가 입</Link></p>
+            <p className="text-center"><Link className="btn register-btn funfur-btn ns-EB" to="/register_2" style={{border: 0}}>회 원 가 입</Link></p>
         </div>
     );
 };

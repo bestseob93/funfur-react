@@ -102,16 +102,40 @@ div.toast-message {
   color: #fff !important; }
 
 select.form-control {
-  border: 3px solid #e5e6e7 !important;
+  border: 1px solid #e5e6e7 !important;
   outline: 0px !important;
+  border-radius: 0;
   box-shadow: none !important; }
+
+input[type="checkbox"] + label {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0; }
+
+input[name="checkAll"] + label {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #000; }
+
+input[name="site"] + label, input[name="sales"] + label, input[name="privacy"] + label {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000; }
+
+input[type="checkbox"]:checked + label {
+  background-color: #fdd831;
+  border: 1px solid #fdd831; }
+
+input[type="checkbox"] {
+  display: none; }
 
 input[type="password"] {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 input.form-control, textarea.form-control {
-  border: 3px solid #e5e6e7 !important;
+  border: 1px solid #e5e6e7 !important;
   outline: 0px !important;
+  border-radius: 0 !important;
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: none !important; }
@@ -149,6 +173,9 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
   margin: 0 15px;
   padding: 10px 0; }
 
+.btn-common.register-two {
+  width: 15%; }
+
 .btn-common.btn-prev {
   background-color: #fff;
   border: 2px solid #e7eaec;
@@ -171,7 +198,13 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
   text-align: right; }
 
 div.row.sub-title {
-  padding-bottom: 30px; }
+  padding-top: 60px;
+  padding-bottom: 30px;
+  color: #000; }
+  div.row.sub-title div {
+    border-bottom: 1px solid #000; }
+  div.row.sub-title p {
+    font-size: 16px; }
 
 @media only screen and (max-width: 768px) {
   ._input_label {
@@ -1534,7 +1567,7 @@ button.toast-close-button {
     display: block !important;
     border-left: none !important; } }
 
-footer .section .container .list-container {
+footer .section .list-container {
   padding-top: 40px; }
 
 footer ul.style {
@@ -1549,18 +1582,17 @@ footer ul li {
   display: inline;
   padding: 0 20px; }
   footer ul li a {
-    font-size: 20px;
-    font-family: 'Open Sans', helvetica, arial, sans-serif;
+    font-size: 12px;
     color: #676a6c;
     text-decoration: none !important; }
   footer ul li a:hover {
     color: #fdd831; }
 
 footer .funfur-line {
-  width: 100%;
+  width: 105%;
   height: 1px;
-  margin: 40px 0;
-  border-bottom: 2px solid #fdd831; }
+  margin: 20px 0;
+  border-bottom: 1px solid #000; }
 
 div.navbar-header {
   background-color: #fdd831 !important;
@@ -1657,9 +1689,14 @@ a.navbar-toggle {
 
 .register-title {
   position: relative;
-  padding: 0 0 30px;
-  border-bottom: 2px solid #e7eaec;
+  padding: 0 0 12px;
+  border-bottom: 1px solid #979797;
   font-weight: 500; }
+  .register-title .register-sub-desc {
+    margin-left: 60px;
+    color: #757575;
+    width: 500px;
+    font-size: 12px; }
   .register-title ol {
     list-style: none;
     position: absolute;
@@ -1673,10 +1710,11 @@ a.navbar-toggle {
       float: left;
       vertical-align: bottom;
       padding: 10px;
-      font-size: 18px;
-      font-weight: lighter; }
+      font-size: 16px;
+      font-weight: lighter;
+      color: #757575; }
     .register-title ol li.active {
-      font-size: 36px;
+      font-size: 24px;
       font-weight: 500; }
       .register-title ol li.active .active-detail {
         color: #fdd831;
@@ -1721,47 +1759,58 @@ a.navbar-toggle {
   border-radius: 10px !important; }
 
 .policy-checks {
-  padding: 18px 0;
-  border-bottom: 2px solid #e7eaec; }
+  padding: 35px 0; }
   .policy-checks label {
     display: inline-block;
     width: 20px;
     height: 20px;
     vertical-align: middle; }
+  .policy-checks span {
+    padding-left: 15px;
+    font-size: 14px; }
 
-.policy-box-wrapper {
-  border-bottom: 2px solid #e7eaec; }
-  .policy-box-wrapper .policy-box-title {
-    padding-left: 15px; }
-  .policy-box-wrapper .policy-box {
-    background-color: #f4f4f4;
-    padding: 15px 20px 20px 20px;
-    border: 1px solid #e7eaec;
-    clear: both; }
-    .policy-box-wrapper .policy-box .policy-scroll-content {
-      position: relative;
+.policy-box-wrapper .policy-box-title {
+  width: 260px;
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 4px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #000; }
+
+.policy-box-wrapper .policy-box {
+  background-color: #f4f4f4;
+  padding: 15px 20px 20px 20px;
+  border: 1px solid #e7eaec;
+  clear: both; }
+  .policy-box-wrapper .policy-box .policy-scroll-content {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 200px; }
+    .policy-box-wrapper .policy-box .policy-scroll-content .scroll-contents {
       overflow: hidden;
       width: auto;
       height: 200px; }
-      .policy-box-wrapper .policy-box .policy-scroll-content .scroll-contents {
-        overflow: hidden;
-        width: auto;
-        height: 200px; }
-      .policy-box-wrapper .policy-box .policy-scroll-content p, .policy-box-wrapper .policy-box .policy-scroll-content b {
-        font-size: 13px !important;
-        color: #676a6c; }
-      .policy-box-wrapper .policy-box .policy-scroll-content ol, .policy-box-wrapper .policy-box .policy-scroll-content li {
-        list-style: none; }
-      .policy-box-wrapper .policy-box .policy-scroll-content ul {
-        padding-left: 40px; }
-  .policy-box-wrapper .policy-box-agree {
-    text-align: right;
-    padding: 20px 0;
-    margin: 0; }
+    .policy-box-wrapper .policy-box .policy-scroll-content p, .policy-box-wrapper .policy-box .policy-scroll-content b {
+      font-size: 13px !important;
+      color: #676a6c; }
+    .policy-box-wrapper .policy-box .policy-scroll-content ol, .policy-box-wrapper .policy-box .policy-scroll-content li {
+      list-style: none; }
+    .policy-box-wrapper .policy-box .policy-scroll-content ul {
+      padding-left: 40px; }
+
+.policy-box-wrapper .policy-box-agree {
+  text-align: right;
+  padding: 20px 0;
+  margin: 0; }
+  .policy-box-wrapper .policy-box-agree label {
+    vertical-align: middle; }
+  .policy-box-wrapper .policy-box-agree span {
+    padding-left: 10px;
+    vertical-align: middle; }
 
 .register-form-container {
-  background-color: #f3f3f4;
-  border: 2px solid #fdd831; }
+  margin-top: 80px; }
   .register-form-container h1 {
     color: #676a6c; }
 
@@ -1774,14 +1823,14 @@ a.navbar-toggle {
   -ms-flex: 1;
   flex-direction: row;
   -ms-flex-direction: row; }
-
-.business-id-image > div {
-  flex: 1;
-  -ms-flex: 1; }
-
-.business-id-image > div > p {
-  font-size: 1.6rem;
-  padding: 75px 10px 0 10px; }
+  .business-id-image div {
+    flex: 1;
+    -ms-flex: 1;
+    border-width: 1px !important;
+    border-radius: 0 !important; }
+    .business-id-image div p {
+      font-size: 1.6rem;
+      padding: 75px 10px 0 10px; }
 
 .id-image-after {
   cursor: pointer;
@@ -1803,6 +1852,13 @@ a.navbar-toggle {
 @media only screen and (max-width: 768px) {
   .form-container {
     width: 100% !important; } }
+
+.pending-wrapper {
+  padding-top: 160px; }
+  .pending-wrapper h3:first-child {
+    padding-bottom: 60px; }
+  .pending-wrapper .point-red {
+    color: #c30016; }
 
 .middle-box {
   max-width: 400px;

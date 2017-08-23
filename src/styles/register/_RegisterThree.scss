@@ -1,6 +1,5 @@
 .register-form-container {
-    background-color: #f3f3f4;
-    border: 2px solid $funfur-color;
+    margin-top: 80px;
     h1 {
         color: #676a6c;
     }
@@ -16,16 +15,16 @@
   -ms-flex: 1;
   flex-direction: row;
   -ms-flex-direction: row;
-}
-
-.business-id-image > div {
-  flex: 1;
-  -ms-flex: 1;
-}
-
-.business-id-image > div > p {
-  font-size: 1.6rem;
-  padding: 75px 10px 0 10px;
+  div {
+      flex: 1;
+      -ms-flex: 1;
+      border-width: 1px !important;
+      border-radius: 0 !important;
+      p {
+          font-size: 1.6rem;
+          padding: 75px 10px 0 10px;
+      }
+  }
 }
 
 .id-image-after {

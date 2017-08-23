@@ -3,21 +3,19 @@ import React from 'react';
 function Footer() {
         return (
             <footer className="footer">
-                <div className="section">
-                    <div className="container">
-                        <div className="row m-b-lg list-container">
-                            <div className="col-lg-12 text-center" >
+                <section className="section">
+                        <div className="m-b-lg list-container">
+                            <div className="text-right">
                                 <ul className="style">
-                                    <li><a target="_blank" rel="noopener noreferrer" href="http://intro.funfur.kr/">회사소개</a></li>
-                                    <li><a href="">이용약관</a></li>
-                                    <li><a href="">광고운영정책</a></li>
-                                    <li><a href="">개인정보 처리방침</a></li>
+                                    <li><a className="ns-L" target="_blank" rel="noopener noreferrer" href="http://intro.funfur.kr/">회사소개</a></li>
+                                    <li><a className="ns-L" href="">이용약관</a></li>
+                                    <li><a className="ns-L" href="">광고운영정책</a></li>
+                                    <li><a className="ns-L" href="">개인정보 처리방침</a></li>
                                 </ul>
                             </div>
                         </div>
-
+                        <div className="container">
                         <div className="funfur-line"></div>
-
                         <div className="row m-b-lg">
                             <div className="col-lg-4 col-lg-offset-3">
                                 <p>
@@ -41,7 +39,7 @@ function Footer() {
                         </div>
 
                     </div>
-                </div>
+                </section>
             </footer>
         );
 }
