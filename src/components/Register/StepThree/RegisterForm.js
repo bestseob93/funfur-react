@@ -58,12 +58,20 @@ class RegisterForm extends Component {
     /* input 값에 따라 redux에 form store 값 업데이트 */
     changeHandler(ev) {
         const { FormActions } = this.props;
-        
-        FormActions.formChange({
-            formName: 'register',
-            name: ev.target.name,
-            value: ev.target.value
-        });
+
+        if(ev.target.name === 'businessId') {
+            FormActions.formChange({
+                formName: 'register',
+                name: ev.target.name,
+                value: ev.target.value.replace(/-/g, "")
+            });
+        } else {
+            FormActions.formChange({
+                formName: 'register',
+                name: ev.target.name,
+                value: ev.target.value
+            });
+        }
     }
 
     /* react-dropzone을 이용하여 redux의 form 업데이트 */
@@ -289,6 +297,7 @@ class RegisterForm extends Component {
                             type="tel"
                             className="form-control"
                             name="businessId"
+                            value={form.get('businessId')}
                             placeholder="사업자 등록번호를 적어주세요.( '-' 제외하고 숫자만 적어주세요.)"
                             required
                             onChange={changeHandler}

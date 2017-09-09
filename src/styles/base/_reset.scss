@@ -188,6 +188,7 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
 
 .funfur-btn, .funfur-btn:hover {
   background-color: $funfur-color !important;
+  letter-spacing: 3.4px;  
   color: #fff !important;
   border: 1px solid #fdc731;
 }
@@ -206,6 +207,10 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
   text-align: center;
 }
 
+.btn {
+  border-radius: 0 !important;
+}
+
 .btn-common {
   width: 30%;
   margin: 0 15px;
@@ -218,12 +223,12 @@ input.form-control:focus, textarea.form-control:focus, select.form-control:focus
 
 .btn-common.btn-prev {
   background-color: #fff;
-  border: 2px solid #e7eaec;
+  border: 1px solid #e7eaec;
   color: #000;
 }
 
 .btn-common.btn-prev:hover {
-  border: 3px solid #e7eaec;
+  border: 1px solid #e7eaec;
 }
 
 .btn-common.btn-next {

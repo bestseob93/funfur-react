@@ -13,7 +13,7 @@ class ProductItem extends Component {
                             <img alt="이미지" src={this.props.photoUrl} />
                         </div>
                         <div className="product-desc">
-                            <a>{this.props.name}</a>
+                            <a className="ns-B">{this.props.name}</a>
                             <p><Time value={this.props.updatedTime} format="YYYY.MM.DD" /></p>
                         </div>
                     </div>

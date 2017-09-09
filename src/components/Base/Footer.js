@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
         return (
-            <footer className="footer">
+            <footer className="footer container">
                 <section className="section">
                         <div className="m-b-lg list-container">
                             <div className="text-right">
@@ -14,7 +14,7 @@ function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="container">
+                        <div>
                         <div className="funfur-line"></div>
                         <div className="row m-b-lg">
                             <div className="col-lg-4 col-lg-offset-3">

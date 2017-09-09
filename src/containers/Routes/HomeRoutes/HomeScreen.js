@@ -55,11 +55,11 @@ class HomeScreen extends Component {
             <div className="carousel-inner" role="listbox">
                 <div className="funfur-wrapper">
                     <div className="funfur-description">
-                        <h1>대한민국 최초의<br/>
+                        <h1 className="ns-EB">대한민국 최초, 최대<br/>
                             모바일 가구거리<br/>
                         </h1>
-                        <p>오프라인 스토어를 온라인으로!</p>
-                        <p>뻔뻐로 사업을 확장하세요.</p>
+                        <p className="ns-B">오프라인 스토어를 온라인으로!</p>
+                        <p className="ns-B">뻔뻐로 사업을 확장하세요.</p>
                         { this.props.authenticated ? logoutBtn : loginBtn }
                     </div>
                 </div>
@@ -75,6 +75,6 @@ export default connect(
       authenticated: state.auth.get('authenticated')
     }),
     dispatch => ({
-      AuthActions:  bindActionCreators(authDuck, dispatch)
+      AuthActions: bindActionCreators(authDuck, dispatch)
     })
 )(HomeScreen);

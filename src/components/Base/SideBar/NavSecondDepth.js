@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function NavSecondDepth({onClick, iconIndex, depthCategory}) {
     if(depthCategory === "가입상품") {
         return (
-            <ul className="side-nav">
+            <ul className="side-nav second-depth">
                 <li onClick={(s) => onClick(s.target.id)} className={iconIndex === 'iconIndex-1' ? 'icon-active' : undefined}>
                     <Link id="iconIndex-1" to="/ceo/item_list" className="nav-link second-depth">모든 현황 보기<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>
                 </li>
@@ -18,7 +18,7 @@ function NavSecondDepth({onClick, iconIndex, depthCategory}) {
         );
     } else if(depthCategory === "판매관리") {
         return (
-            <ul className="side-nav">
+            <ul className="side-nav second-depth">
                 <li onClick={(s) => onClick(s.target.id)} className={iconIndex === 'iconIndex-4'  ? 'icon-active' : undefined}>
                     <Link id="iconIndex-4" to="/ceo/products" className="nav-link second-depth">제품 관리 / 등록<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>
                 </li>

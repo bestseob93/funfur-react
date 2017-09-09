@@ -52,9 +52,9 @@ class ProductContents extends Component {
                     <div className="col-md-3 col-xs-6">
                         <div className="product-box">
                             <Link to="/ceo/upload">
-                                <div className="product-box-contents add-product">
-                                    <p><i className="fa fa-plus-square fa-2x"></i><span>제품을 추가해주세요.</span></p>
+                                <div className="product-box-contents add-product on-contents">
                                 </div>
+                                <p className="text-center ns-B" style={{marginTop: '10px'}}>제품을 추가해주세요</p>
                             </Link>
                         </div>
                     </div>

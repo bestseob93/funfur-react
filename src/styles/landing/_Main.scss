@@ -21,12 +21,18 @@
         text-align: center;
         h1 {
             font-size: 30px;
+            margin-bottom: 50px;
         }
         p {
-            font-size: 24px;
+            font-size: 18px;
+            margin: 0;
+        }
+        div.btn-container {
+            margin-top: 50px;
         }
         h1, p {
             color: #fff;
+            letter-spacing: 1.8px;            
         }
         a {
             border-radius: 10px;

@@ -112,8 +112,7 @@ class LoginForm extends Component {
                     className={ document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right' }
                     onClick={handleToastOff}
                 />
-                <h1 className="funfur-color">뻔뻐</h1>
-                <h3>뻔뻐에 오신걸 환영합니다.</h3>
+                <h1 className="funfur-color bm-dohyeon" style={{marginBottom: '20px'}}>뻔뻐</h1>
                 <div className="form-group">
                     <input
                         ref={(input) => { this.idInput = input }}
@@ -139,12 +138,12 @@ class LoginForm extends Component {
                 </div>
                 <button
                     type="button"
-                    className="btn funfur-btn width100"
+                    className="ns-EB btn funfur-btn width100"
                     onClick={handleSubmit}
                 >로그인
                 </button>
                 <div className="find-wrapper">
-                    <Link to="/findAuth">아이디/패스워드 찾기</Link>
+                    <Link to="/findAuth" className="blue-text">아이디/패스워드 찾기</Link>
                     <p>뻔뻐에 아직 입주 안했나요?</p>
                 </div>
                 <Link
