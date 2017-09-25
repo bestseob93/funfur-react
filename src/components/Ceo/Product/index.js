@@ -3,6 +3,7 @@ import ProductContents from './List/ProductContents';
 import ProductForm from './Upload/ProductForm';
 import ProductHeader from './List/ProductHeader';
 import ProductUpload from './Upload/ProductUpload';
+import PositionSelect from './Upload/PositionSelect';
 import SortableSelect from './Upload/SortableSelect';
 import PhotosUpload from './Upload/PhotosUpload';
 import DeliveryTable from './Upload/DeliveryTable';
@@ -15,6 +16,7 @@ export {
     ProductForm,
     ProductHeader,
     ProductUpload,
+    PositionSelect,
     SortableSelect,
     PhotosUpload,
     DeliveryTable,

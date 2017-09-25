@@ -24,7 +24,7 @@ const secondSortEnum = [['소파 테이블', '사이드 테이블', '접이식 �
                         ['아동용 의자', '오피스 체어', '메쉬 의자', '가죽 의자', '패브릭 의자', '좌식 의자', '플라스틱 의자'],
                         ['1단', '2단', '3단', '4단', '5단 이상']];
 
-function SortableSelect({isSecondSortable, first, sortIndex, changeHandler, formValue}) {
+function SortableSelect({isSecondSortable, first, sortIndex, changeHandler, position, formValue}) {
     if(first) {
         return (
             <select
@@ -52,7 +52,6 @@ function SortableSelect({isSecondSortable, first, sortIndex, changeHandler, form
             </select>    
         );
     }
-
 }
 
 export default SortableSelect;

@@ -7,6 +7,7 @@ import {
     FormLabel,
 } from 'components/Common';
 import {
+    PositionSelect,
     SortableSelect,
     PhotosUpload,
     DeliveryTable
@@ -20,6 +21,7 @@ class ProductForm extends Component {
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderPosition = this.renderPosition.bind(this);
         this.renderFirstSort = this.renderFirstSort.bind(this);
         this.renderSecondSort = this.renderSecondSort.bind(this);
         this.renderSortTwo = this.renderSortTwo.bind(this);
@@ -46,6 +48,24 @@ class ProductForm extends Component {
         /* 배송비 종류 선택하는 곳 free 일 경우 기존 배송비 입력된 값 초기화 */
         if(ev.target.name === 'isDeliverFree' && this.costSelect.value === 'free') {
             FormActions.deliverCostFree();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { FormActions } = this.props;
+        if(this.props.form.get('productPosition') !== nextProps.form.get('productPosition')) {
+            FormActions.formChange({
+                formName: 'product',
+                name: 'firstSort_1',
+                value: ''
+            });
+        }
+        if(this.props.form.get('productPosition_2') !== nextProps.form.get('productPosition_2')) {
+            FormActions.formChange({
+                formName: 'product',
+                name: 'firstSort_2',
+                value: ''
+            });
         }
     }
 
@@ -135,6 +155,18 @@ class ProductForm extends Component {
             if(e) {
                 throw e;
             }
+        }
+    }
+
+    renderPosition(isFirstSortable) {
+        if(isFirstSortable) {
+            return (
+                <PositionSelect first={true} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition')} />
+            );
+        } else {
+            return (
+                <PositionSelect first={false} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition')} />
+            );
         }
     }
 
@@ -354,11 +386,16 @@ class ProductForm extends Component {
 
     renderSortTwo() {
         const { UiActions, FormActions } = this.props;
+        console.log(this.props.form.get('productPosition'));
         if(this.props.isSecondSortable) {
-            UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
-            FormActions.resetSecondSortable();
+                UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
+                FormActions.resetSecondSortable();
         } else {
-            UiActions.addSecondSortable(); // + 누르면 두 번째 위치 추가 추가.
+            if(this.props.form.get('productPosition') === '') {
+                alert("첫번째 위치를 먼저 추가해주세요!");
+            } else {
+                UiActions.addSecondSortable(); // + 누르면 두 번째 위치 추가 추가.
+            }
         }
     }
 
@@ -368,6 +405,7 @@ class ProductForm extends Component {
             handleCheckBox,
             handleBlur,
             handleSubmit,
+            renderPosition,
             renderFirstSort,
             renderSecondSort,
             renderSortTwo
@@ -398,20 +436,7 @@ class ProductForm extends Component {
                     {/* TODO: 동적으로 바꾸고, 첫번째에 선택된 값 배열에서 빼기 */}
                     <FormLabel name="위치" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <select
-                            className="form-control"
-                            name="productPosition"
-                            onChange={changeHandler}
-                        >
-                            <option>공간별 분류</option>
-                            <option value="거실">거실</option>
-                            <option value="주방">주방</option>
-                            <option value="침실">침실</option>
-                            <option value="키즈/유아">키즈/유아</option>
-                            <option value="학생/서재">학생/서재</option>
-                            <option value="인테리어 소품">인테리어 소품</option>
-                            <option value="화장실">화장실</option>
-                        </select>
+                        {renderPosition(true)}
                     </div>
                 </div>
                 <div className="row form-box">
@@ -442,20 +467,7 @@ class ProductForm extends Component {
                     <div className="row form-box animated fadeInUp">
                         <FormLabel name="위치" />
                         <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                            <select
-                                className="form-control"
-                                name="productPosition_2"
-                                onChange={changeHandler}
-                            >
-                                <option>공간별 분류</option>
-                                <option value="거실">거실</option>
-                                <option value="주방">주방</option>
-                                <option value="침실">침실</option>
-                                <option value="키즈/유아">키즈/유아</option>
-                                <option value="학생/서재">학생/서재</option>
-                                <option value="인테리어 소품">인테리어 소품</option>
-                                <option value="화장실">화장실</option>
-                            </select>
+                            {renderPosition(false)}
                         </div>
                     </div> :
                     emptyComponent

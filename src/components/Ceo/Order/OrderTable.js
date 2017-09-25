@@ -35,6 +35,7 @@ class OrderTable extends Component {
                         <td className="half-line">제품이상</td>
                         <td className="half-line">로젠</td>
                         <td className="number-line">운송장 번호 보기</td>
+                        {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
                         <td className="half-line">주문서 보기</td>
                     </tr>
                 </tbody>

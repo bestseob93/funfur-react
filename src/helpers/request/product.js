@@ -61,7 +61,6 @@ export const requestProductUpload = (productInfo) => {
         formData.append('prManufacturer', productInfo.prManufacturer);
         formData.append('productOrigin', productInfo.productOrigin);
         formData.append('productPrice', productInfo.productPrice);
-        formData.append('asIntro', productInfo.asIntro);
         formData.append('isDeliverFree', productInfo.isDeliverFree);
         formData.append('SeoulGyungki', productInfo.SeoulGyungki);
         formData.append('GangWon', productInfo.GangWon);

@@ -27,33 +27,28 @@ class PhotosUpload extends Component {
             dragIndex: Number(draggingIndex)
         });
 
+        console.log('----------- drag start -------------');
         let dt = e.dataTransfer;
-        if (dt !== undefined) {
-          e.dataTransfer.setData('text', e.target.innerHTML);
-
-          if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
-            dt.setDragImage(e.target, 0, 0);
-          }
-        }
+        // if (dt !== undefined) {
+        //   e.dataTransfer.setData('text', e.target.innerHTML);
+        //   console.log(dt);
+        //   if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
+        //     dt.setDragImage(e.target, 0, 0);
+        //     console.log(dt);
+        //   }
+        // }
     }
 
     dragOver(e) {
         e.preventDefault();
         const overEl = e.currentTarget;
         const indexDragged = Number(overEl.dataset.id);
-        console.log(indexDragged);
         const indexFrom = Number(this.state.dragIndex);
-        console.log(indexFrom);
 
         let positionX = e.touches ? e.touches[0].clientX : e.clientX;
-        console.log(positionX);
-        console.log(overEl.getBoundingClientRect().left);
-        console.log(overEl.getBoundingClientRect().width);
+
         let mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
-        // console.log(indexDragged);
-        // console.log(indexFrom);
-        // console.log(mouseBeyond);
-        // console.log(this.props.form.get('productImages').indexOf(indexFrom));
+
         if (indexDragged !== indexFrom && mouseBeyond) {
             this.setState({
                 newIndex: indexDragged
