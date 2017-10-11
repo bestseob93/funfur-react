@@ -112,7 +112,7 @@ class LoginForm extends Component {
                     className={ document.documentElement.clientWidth < 768 ? 'toast-bottom-center' : 'toast-top-right' }
                     onClick={handleToastOff}
                 />
-                <h1 className="funfur-color bm-dohyeon" style={{marginBottom: '20px'}}>뻔뻐</h1>
+                <Link to="/"><h1 className="funfur-color bm-dohyeon" style={{marginBottom: '20px'}}>뻔뻐</h1></Link>
                 <div className="form-group">
                     <input
                         ref={(input) => { this.idInput = input }}

@@ -61,7 +61,7 @@ class ModifyForm extends Component {
     }
     /* 회원 정보 수정 요청 */
     async handleSubmit(ev) {
-        const { MyPageActions, form } = this.props;
+        const { MyPageActions, form, FormActions } = this.props;
         ev.preventDefault();
 
         const ceoInfo = {
@@ -69,14 +69,15 @@ class ModifyForm extends Component {
             ceoEmail: form.get('ceoEmail_1') + '@' + form.get('ceoEmail_2')
         };
 
-        if(ceoInfo.ceoCall === '' || ceoInfo.ceoEmaill === '') {
+        console.log(ceoInfo);
+
+        if(ceoInfo.ceoCall === '' || ceoInfo.ceoEmail.length < 2) {
             this.addAlert('warning', '전화번호나 이메일을 입력해주세요. 변경하지 않으시려면 취소를 눌러주세요!');
         } else {
             try {
                 await MyPageActions.modifyCeo(ceoInfo);
-                console.log(this.props.valid);
                 if(this.props.valid) {
-                    console.log(this.props.history);
+                    FormActions.formReset('modify');
                     this.props.history.push('/ceo/mypage_3');
                 }
             } catch (e) {
@@ -93,7 +94,6 @@ class ModifyForm extends Component {
         } = this;
 
         const emptyComponent = undefined;
-        console.log(this.props);
         return (
             <div className="modify-form-container">
                 {/* 스피너 */}

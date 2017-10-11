@@ -59,7 +59,7 @@ class RegisterForm extends Component {
     changeHandler(ev) {
         const { FormActions } = this.props;
 
-        if(ev.target.name === 'businessId') {
+        if(ev.target.name === 'businessId' || ev.target.name === 'ceoCall' || ev.target.name === 'postCode' || ev.target.name === 'cpCall') {
             FormActions.formChange({
                 formName: 'register',
                 name: ev.target.name,
@@ -354,6 +354,7 @@ class RegisterForm extends Component {
                             className="form-control"
                             name="postCode"
                             placeholder="우편번호"
+                            value={form.get('postCode')}
                             required
                             onChange={changeHandler}
                         />
@@ -402,6 +403,7 @@ class RegisterForm extends Component {
                             type="tel"
                             className="form-control"
                             name="cpCall"
+                            value={form.get('cpCall')}
                             placeholder="사업장 연락처를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
                             required
                             onChange={changeHandler}
@@ -430,6 +432,7 @@ class RegisterForm extends Component {
                             type="tel"
                             className="form-control"
                             name="ceoCall"
+                            value={form.get('ceoCall')}
                             placeholder="현재 사용 중인 휴대폰 번호를 적어주세요.('-' 제외하고 숫자만 적어주세요.)"
                             required
                             onChange={changeHandler}

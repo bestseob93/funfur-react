@@ -40,6 +40,7 @@ export const requestProductUpload = (productInfo) => {
         let formData = new FormData();
 
         console.log(productInfo.isDeliverFree);
+        console.log(productInfo);
         const productImages = productInfo.productImages.toJS();
         productImages.forEach((file) => {
             formData.append('productPhoto', file);
@@ -71,7 +72,7 @@ export const requestProductUpload = (productInfo) => {
         formData.append('JeonBuk', productInfo.JeonBuk);
         formData.append('JeonNam', productInfo.JeonNam);
         formData.append('JeJuSanGan', productInfo.JeJuSanGan);
-        formData.append('isCostSame', productInfo.isCostSame);
+        formData.append('samePrice', productInfo.isCostSame);
         return axios.post(`${FUNFUR}/product_web/upload`, formData, { headers: {
             Authorization: token
         }

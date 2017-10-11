@@ -25,15 +25,10 @@ class ProductModifyForm extends Component {
 
     async componentDidMount() {
         const { ProductActions, FormActions } = this.props;
-        console.log(this.props.location.pathname);
         const productId = this.props.location.pathname.split('/');
-        console.log(productId);
         try {
             await ProductActions.getProductDetail(productId[3]);
-            console.log(this.props.valid.productDetail);
             if(this.props.valid.productDetail) {
-                console.log('validddd');
-                console.log(this.props.productDetail.productPhotos.size);
                 for(let i=0; i<this.props.productDetail.productPhotos.size; i++) {
                     FormActions.formUploadAdd({
                         formName: 'product',
@@ -60,7 +55,7 @@ class ProductModifyForm extends Component {
         const { UiActions } = this.props;
         UiActions.showSweetAlert({
             alertTitle: "정말로 삭제하시겠습니까?",
-            message: "모두 삭제됩니다.",
+            message: "제품에 대한 모든 내용이 삭제됩니다.",
             alertType: 'typeDanger',
             showCancel: true,
             value: true
@@ -68,7 +63,7 @@ class ProductModifyForm extends Component {
     }
 
     async handleSubmit() {
-        const { ProductActions, form } = this.props;
+        const { ProductActions, UiActions, form } = this.props;
         const { productAndDeliver } = this.props.productDetail;
         const productId = this.props.location.pathname.split('/');
         const productInfo = {
@@ -86,8 +81,15 @@ class ProductModifyForm extends Component {
             productImages: form.get('productImages'),
         };
 
+        console.log(productInfo);
         try {
             await ProductActions.productModify(productId[3], productInfo);
+            if(this.props.valid) {
+                UiActions.showSweetAlert({
+                    message: '제품이 수정되었습니다.'
+                });
+                this.props.history.push('/ceo/products');
+            }
         } catch (e) {
             if(e) throw e;
         }
@@ -455,7 +457,7 @@ class ProductModifyForm extends Component {
                             type="button"
                             className="btn btn-common btn-next"
                             onClick={handleSubmit}
-                            ref={(btn) => { this.submitBtn = btn }}>제품등록
+                            ref={(btn) => { this.submitBtn = btn }}>수정하기
                         </button>
                     </div>
                 </div>

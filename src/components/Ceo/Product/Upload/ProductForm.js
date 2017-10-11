@@ -673,8 +673,10 @@ class ProductForm extends Component {
                             className="col-md-1 col-xs-1"
                             type="checkbox"
                             name="isCostSame"
+                            id="isCostSame"
                             onChange={handleCheckBox}
                         />
+                        <label htmlFor="isCostSame"></label>
                     </p>
 
                 }

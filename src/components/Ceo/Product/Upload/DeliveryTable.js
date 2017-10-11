@@ -37,7 +37,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>충남 세종 대전</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="ChungNam"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -49,7 +49,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>충북</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="ChungBuk"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -61,7 +61,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>경북 대구</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="GyeongBuk"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -73,7 +73,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>경남 울산 부산</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="GyeongNam"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -85,7 +85,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>전북</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="JeonBuk"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -97,7 +97,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>전남 광주</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="JeonNam"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
@@ -109,7 +109,7 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur}) {
                     <td>제주 산간지역</td>
                         { form.get('isCostSame') ? defaultValue : <td><input 
                             type="text"
-                            name="GangWon"
+                            name="JeJuSanGan"
                             disabled={form.get('isCostSame')}
                             value={form.get('isCostName') ? sameCost : defaultValue }
                             placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}

@@ -2,6 +2,7 @@ import React from 'react';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
 function SweetAlertComponent(props) {
+    console.log(props);
     return (
         <SweetAlert
             showCancel={props.showCancel}
@@ -11,8 +12,8 @@ function SweetAlertComponent(props) {
             danger={props.typeDanger}
             show={props.isAlertShow}
             title={props.alertTitle}
-            onConfirm={props.hideAlert}
-            onCancel={props.onDelete}
+            onConfirm={props.onDelete}
+            onCancel={props.hideAlert}
             confirmBtnText={props.typeSuccess ? "완료" : props.typeWarning ? "확인" : props.typeDanger ? "네 삭제하겠습니다." : "확인"}
             confirmBtnBsStyle={props.typeSuccess ? "success" : props.typeWarning ? "warning" : props.typeDanger ? "danger" : "default"}
         >

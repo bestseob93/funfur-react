@@ -35,7 +35,6 @@ class HomeScreen extends Component {
         const { AuthActions } = this.props;
         AuthActions.authLogout();
         storage.remove('token');
-        console.log('hi');
     }
     render() {
         const loginBtn = (

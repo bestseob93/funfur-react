@@ -77,6 +77,10 @@ class App extends Component {
     console.log(productId);
     try {
         await ProductActions.productRemove(productId[3]);
+        if(this.props.valid) {
+          this.props.UiActions.hideSweetAlert();
+          document.location = '/ceo/products';
+        }
     } catch (e) {
         if(e) throw e;
     }
@@ -84,6 +88,7 @@ class App extends Component {
 
   render() {
     console.log(this.props.authenticated);
+    console.log(this.props);
     return (
       <Router>
         <div>
@@ -147,6 +152,7 @@ export default connect(
         base: state.ui.getIn(['visible', 'base']),
         dashboard: state.ui.getIn(['visible', 'dashboard'])
       },
+      valid: state.product.getIn(['valid', 'remove']),
       authenticated: state.auth.get('authenticated'),
       sweetAlert: state.ui.get('sweetAlert')
     }),
