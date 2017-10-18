@@ -73,6 +73,8 @@ export const requestProductUpload = (productInfo) => {
         formData.append('JeonNam', productInfo.JeonNam);
         formData.append('JeJuSanGan', productInfo.JeJuSanGan);
         formData.append('samePrice', productInfo.isCostSame);
+        formData.append('proportionShipping', productInfo.proportionShipping);
+        
         return axios.post(`${FUNFUR}/product_web/upload`, formData, { headers: {
             Authorization: token
         }

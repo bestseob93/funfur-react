@@ -19,6 +19,7 @@ class ProductForm extends Component {
 
         this.changeHandler = this.changeHandler.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
+        this.handleProportionChk = this.handleProportionChk.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderPosition = this.renderPosition.bind(this);
@@ -31,24 +32,6 @@ class ProductForm extends Component {
         const { FormActions } = this.props;
         FormActions.formReset('product');
         // TODO 임시 저장 로직 구현 필요
-    }
-
-    /* input 값에 따라 redux에 form store 값 업데이트 */
-    changeHandler(ev) {
-        const { FormActions } = this.props;
-
-        FormActions.formChange({
-            formName: 'product',
-            name: ev.target.name,
-            value: ev.target.value
-        });
-        console.log(ev.target.name);
-        console.log(this.props.form.get('isDeliverFree'));
-
-        /* 배송비 종류 선택하는 곳 free 일 경우 기존 배송비 입력된 값 초기화 */
-        if(ev.target.name === 'isDeliverFree' && this.costSelect.value === 'free') {
-            FormActions.deliverCostFree();
-        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -66,6 +49,25 @@ class ProductForm extends Component {
                 name: 'firstSort_2',
                 value: ''
             });
+        }
+    }
+
+
+    /* input 값에 따라 redux에 form store 값 업데이트 */
+    changeHandler(ev) {
+        const { FormActions } = this.props;
+
+        FormActions.formChange({
+            formName: 'product',
+            name: ev.target.name,
+            value: ev.target.value
+        });
+        console.log(ev.target.name);
+        console.log(this.props.form.get('isDeliverFree'));
+
+        /* 배송비 종류 선택하는 곳 free 일 경우 기존 배송비 입력된 값 초기화 */
+        if(ev.target.name === 'isDeliverFree' && this.costSelect.value === 'free') {
+            FormActions.deliverCostFree();
         }
     }
 
@@ -92,6 +94,16 @@ class ProductForm extends Component {
                 }
             }
         }, 1000);
+    }
+
+    /* 비례 배송 체크박스 */
+    handleProportionChk(ev) {
+        const { FormActions } = this.props;
+        FormActions.handleProportionChk({
+            formName: 'product',
+            name: ev.target.name,
+            value: ev.target.checked
+        });
     }
 
     /* 배송비 같을 때 나머지 form 값 변경 */
@@ -140,7 +152,8 @@ class ProductForm extends Component {
             JeonBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonBuk'),
             JeonNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonNam'),
             JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan'),
-            isCostSame: form.get('isCostSame') && form.get('isCostSame')
+            isCostSame: form.get('isCostSame') && form.get('isCostSame'),
+            proportionShipping: form.get('proportionShipping') && form.get('proportionShipping')
         };
 
         try {
@@ -403,6 +416,7 @@ class ProductForm extends Component {
         const {
             changeHandler,
             handleCheckBox,
+            handleProportionChk,
             handleBlur,
             handleSubmit,
             renderPosition,
@@ -677,6 +691,20 @@ class ProductForm extends Component {
                             onChange={handleCheckBox}
                         />
                         <label htmlFor="isCostSame"></label>
+                    </p>
+
+                }
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent : 
+                    <p className="row">
+                        <span className="col-md-3 col-xs-8 col-xs-offset-1 col-md-offset-3">* 비례 배송일 경우 체크해주세요.</span>
+                        <input
+                            className="col-md-1 col-xs-1"
+                            type="checkbox"
+                            name="proportionShipping"
+                            id="proportionShipping"
+                            onChange={handleProportionChk}
+                        />
+                        <label htmlFor="proportionShipping"></label>
                     </p>
 
                 }

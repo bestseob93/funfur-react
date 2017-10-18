@@ -22,9 +22,15 @@ class ConsumerContents extends Component {
     }
 
     renderConsumerList(datas) {
+        
         const mappedData = datas.map((consumer, index) => {
-                return <ConsumerItem />;
-            });
+            return <ConsumerItem
+                        key={`${index}Consumer`}
+                        index={consumer.inquiry_id}
+                        setCollapseIndex={this.setCollapseIndex}
+                    />;
+        });
+        console.log(datas);
         return mappedData;
     }
 
@@ -34,7 +40,7 @@ class ConsumerContents extends Component {
     }
 
     render() {
-        const { renderConsumerList, setCollapseIndex } = this;
+        const { renderConsumerList } = this;
         const emptyComponent = undefined;
 
         return (

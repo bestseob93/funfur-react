@@ -32,6 +32,7 @@ export default connect(
             consumerList: state.product.getIn(['valid', 'consumer']),
             answerPost: state.product.getIn(['valid', 'answer'])
         },
+        consumers: state.product.get('consumers'),
         collapseIndex: state.ui.get('collapseIndex')
     }),
     dispatch => ({

@@ -21,6 +21,7 @@ class ProductContents extends Component {
     }
 
     renderProductList(datas) {
+        console.log(datas);
         const mappedProduct = datas.map((product) => {
                 console.log(product.id);
                 console.log(product.product_name);

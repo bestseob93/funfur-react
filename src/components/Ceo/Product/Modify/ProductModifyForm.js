@@ -369,7 +369,7 @@ class ProductModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="isDeliverFree"
-                            value={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free') === "0" ? '무료' : '유료'}
+                            value={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free') === "free" ? '무료' : '유료'}
                             required
                             disabled
                         />

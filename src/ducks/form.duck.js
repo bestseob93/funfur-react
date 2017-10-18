@@ -8,6 +8,7 @@ const FORM_PHOTO_INDEX_UPDATE = "form/FORM_PHOTO_INDEX_UPDATE";
 const FORM_UPLOAD_ADD = "form/FORM_UPLOAD_ADD";
 const FORM_UPLOAD_REMOVE = "form/FORM_UPLOAD_REMOVE";
 const HANDLE_CHECK_BOX = "form/HANDLE_CHECK_BOX";
+const HANDLE_PROPORTION_CHK = "form/HANDLE?PROPORTION_CHK";
 const DELIVER_COST_FREE = "form/DELIVER_COST_FREE";
 const RESET_SECOND_SORTABLE = "form/RESET_SECOND_SORTABLE";
 
@@ -18,6 +19,7 @@ export const formPhotoIndexUpdate = createAction(FORM_PHOTO_INDEX_UPDATE);
 export const formUploadAdd = createAction(FORM_UPLOAD_ADD);
 export const formUploadRemove = createAction(FORM_UPLOAD_REMOVE);
 export const handleCheckBox = createAction(HANDLE_CHECK_BOX);
+export const handleProportionChk = createAction(HANDLE_PROPORTION_CHK);
 export const deliverCostFree = createAction(DELIVER_COST_FREE);
 export const resetSecondSortable = createAction(RESET_SECOND_SORTABLE);
 
@@ -83,7 +85,8 @@ const initialState = fromJS({
         JeonBuk: '',
         JeonNam: '',
         JeJuSanGan: '',
-        isCostSame: false
+        isCostSame: false,
+        proportionShipping: false
     },
     myPageEnter: {
         password: ''
@@ -121,6 +124,8 @@ export default function reducer(state = initialState, action) {
         case FORM_UPLOAD_REMOVE:
             return state.setIn([action.payload.formName, action.payload.name], state.getIn([action.payload.formName, action.payload.name]).delete(action.payload.value));
         case HANDLE_CHECK_BOX:
+            return state.setIn([action.payload.formName, action.payload.name], fromJS(action.payload.value));
+        case HANDLE_PROPORTION_CHK:
             return state.setIn([action.payload.formName, action.payload.name], fromJS(action.payload.value));
         case DELIVER_COST_FREE:
             return state.setIn(['product', 'SeoulGyungki'], fromJS(''))

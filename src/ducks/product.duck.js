@@ -155,8 +155,8 @@ export default function reducer(state = initialState, action) {
             return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.pending));
         case `${GET_CONSUMER_LIST}_FULFILLED`:
             return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.fulfilled))
-                        .setIn(['valid', 'consumer'], true)
-                        .setIn('consumer', action.payload.data.result);
+                        .set('consumers', action.payload.data.result)
+                        .setIn(['valid', 'consumer'], true);
         case `${GET_CONSUMER_LIST}_REJECTED`:
             return state.mergeIn(['requests', 'consumer'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'consumer'], false);
