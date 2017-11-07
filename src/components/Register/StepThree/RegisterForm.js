@@ -89,8 +89,8 @@ class RegisterForm extends Component {
     execDaumPostCode() {
         let self = this;
 
-        this.daum.postcode.load(() => {
-            const Postcode = new this.daum.Postcode({
+        this.daum.postcode.load(function() {
+            var Postcode = new self.daum.Postcode({
                 oncomplete: function oncomplete(data) {
                     self.handleAddress(data);
                 },
@@ -102,7 +102,7 @@ class RegisterForm extends Component {
                 height: '500px'
             });
 
-            Postcode.embed(this.postWrap);
+            Postcode.embed(self.postWrap);
         });
     }
 
