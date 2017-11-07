@@ -25,7 +25,8 @@
     "react-toastr": "^2.8.2",
     "redux": "^3.7.1",
     "redux-actions": "^2.0.3",
-    "redux-promise-middleware": "4.2.1"
+    "redux-promise-middleware": "4.2.1",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",
