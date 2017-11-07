@@ -44,6 +44,7 @@ class CeoWrapper extends Component {
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.onIconActiveClick = this.onIconActiveClick.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
 
@@ -104,13 +105,20 @@ class CeoWrapper extends Component {
         UiActions.setIconIndex(iconIndex);
     }
 
+    handleLogout() {
+        const { AuthActions } = this.props;
+        AuthActions.authLogout();
+        storage.remove('token');
+    }
+
     render() {
         const { match } = this.props;
         const {
             handleSideMenu,
             showModal,
             hideModal,
-            onIconActiveClick
+            onIconActiveClick,
+            handleLogout,
         } = this;
         return (
             <div>
@@ -131,7 +139,7 @@ class CeoWrapper extends Component {
                     authInfo={this.props.authInfo.toJS()}
                 />
                 <div className="ceo-page-wrapper">
-                    <CeoHeader showModal={showModal} />
+                    <CeoHeader showModal={showModal} handleLogout={handleLogout} />
                     <Route exact path={match.url} component={CeoHome} />
                     <Switch>
                         <Route exact path={`${match.url}/products`} component={CeoSellingProduct} />

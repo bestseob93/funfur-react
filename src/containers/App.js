@@ -22,6 +22,7 @@ import {
   RegisterPolicyScreen,
   RegisterPendingScreen,
   LoginScreen,
+  NoMatchScreen,
   CeoWrapper,
 } from './Routes';
 
@@ -105,6 +106,9 @@ class App extends Component {
               alertMessage={this.props.sweetAlert.get('alertMessage')}
               hideAlert={this.props.UiActions.hideSweetAlert}
               onDelete={this.handleProductDelete}
+            />
+            <Route
+              component={NoMatchScreen}
             />
             <Route
               exact

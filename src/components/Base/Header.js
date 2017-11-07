@@ -44,9 +44,9 @@ class Header extends Component {
                         <li><Link to="/login" className="page-scroll">로그인</Link></li>
                         <li><Link to="/register" className="page-scroll">회원가입</Link></li>
                         <li><Link to="/contact" className="page-scroll">문의하기</Link></li>
-                        <li><Link to="/ceo" className="page-scroll">상품소개</Link></li>
+                        <li><Link to="/items" className="page-scroll">상품소개</Link></li>
                         <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
-                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/funfurofficial/"><i className="fa fa-instagram"></i></a></li>
                     </ul>
                 );
             } else {
@@ -54,9 +54,9 @@ class Header extends Component {
                     <ul className={`nav navbar-nav navbar-right ${pathName === '/' ? 'home-route' : ''}`}>
                         <li><Link to="/" type="button" className="page-scroll" onClick={handleLogout}>로그아웃</Link></li>
                         <li><Link to="/contact" className="page-scroll">문의하기</Link></li>
-                        <li><Link to="/" className="page-scroll">상품소개</Link></li>
+                        <li><Link to="/items" className="page-scroll">상품소개</Link></li>
                         <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks"><i className="fa fa-facebook"></i></a></li>
-                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bbeonbbeo/"><i className="fa fa-instagram"></i></a></li>
+                        <li><a className="page-scroll" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/funfurofficial/"><i className="fa fa-instagram"></i></a></li>
                     </ul>
                 )
             }
