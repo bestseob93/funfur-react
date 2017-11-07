@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { 
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -107,42 +108,44 @@ class App extends Component {
               hideAlert={this.props.UiActions.hideSweetAlert}
               onDelete={this.handleProductDelete}
             />
-            <Route
-              component={NoMatchScreen}
-            />
-            <Route
-              exact
-              path="/"
-              component={HomeScreen}
-            />
-            <Route
-              path="/register"
-              component={RegisterIntroScreen}
-            />
-            <Route
-              path="/register_2"
-              component={RegisterPolicyScreen}
-            />
-            <Route
-              path="/register_3"
-              component={RegisterFormScreen}
-            />
-            <Route
-              path="/register_4"
-              component={RegisterPendingScreen}
-            />
-            <Route
-              path="/login"
-              component={LoginScreen}
-            />
-            <Route
-              path="/contact"
-              component={ContactScreen}
-            />
-            <Route
-              path="/ceo"
-              component={CeoWrapper}
-            />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                component={HomeScreen}
+              />
+              <Route
+                path="/register"
+                component={RegisterIntroScreen}
+              />
+              <Route
+                path="/register_2"
+                component={RegisterPolicyScreen}
+              />
+              <Route
+                path="/register_3"
+                component={RegisterFormScreen}
+              />
+              <Route
+                path="/register_4"
+                component={RegisterPendingScreen}
+              />
+              <Route
+                path="/login"
+                component={LoginScreen}
+              />
+              <Route
+                path="/contact"
+                component={ContactScreen}
+              />
+              <Route
+                path="/ceo"
+                component={CeoWrapper}
+              />
+              <Route
+                component={NoMatchScreen}
+              />
+            </Switch>
           { this.props.visible.base ? <Footer /> : null }
         </div>
       </Router>
