@@ -2,7 +2,7 @@ import React from 'react';
 
 function OrderStatus() {
     return (
-        <div className="col-md-5 col-xs-6 status-box">
+        <div className="col-md-5 col-xs-12 status-box">
             <div className="status-box-table row">
                 <div className="status-icon-wrapper">
                     <img alt="purchasing" className="status-icon" src={require('img/icon/purchasing.svg')} />

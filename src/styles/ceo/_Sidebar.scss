@@ -1,5 +1,5 @@
 
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 768px) {
     .navbar-static-side {
         border-right: 1px solid #979797;
     }
@@ -137,6 +137,7 @@
 
 /* in Mobile */
 .mobile-hamburger {
+    z-index: 9999;
     position: fixed;
     background-color: $funfur-color;
     width: 40px;

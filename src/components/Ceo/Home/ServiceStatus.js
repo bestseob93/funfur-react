@@ -2,7 +2,7 @@ import React from 'react';
 
 function ServiceStatus() {
     return (
-        <div className="col-md-5 col-xs-6 status-box non-border">
+        <div className={`col-md-5 col-xs-12 status-box ${window.innerWidth < 767 ? '' : 'non-border'}`}>
             <div className="status-box-table row">
                 <div className="status-icon-wrapper">
                     <img alt="service" className="status-icon" src={require('img/icon/un-purchasing.svg')} />

@@ -19,6 +19,7 @@ import {
 import {
     CeoHeader,
     SideBar,
+    MobileHamburger,
 } from 'components/Base';
 
 import {
@@ -122,6 +123,7 @@ class CeoWrapper extends Component {
         } = this;
         return (
             <div>
+                { window.innerWidth < 767 ? <MobileHamburger UiActions={this.props.UiActions} /> : undefined }
                 <PasswordModal
                     hideModal={hideModal}
                     modalVisible={this.props.visible.modal}
@@ -162,7 +164,8 @@ CeoWrapper.contextTypes = contextTypes;
 export default connect(
     state => ({
         visible: {
-            modal: state.ui.getIn(['visible', 'modal'])
+            modal: state.ui.getIn(['visible', 'modal']),
+            mobileMenu: state.ui.getIn(['visible', 'mobileMenu'])
         },
         listIndex: state.ui.get('listIndex'),
         iconIndex: state.ui.get('iconIndex'),

@@ -27,6 +27,10 @@ const SET_COLLAPSE_INDEX = "ui/SET_COLLAPSE_INDEX";
 const SHOW_SWEET_ALERT = "ui/SHOW_SWEET_ALERT";
 const HIDE_SWEET_ALERT = "ui/HIDE_SWEET_ALERT";
 
+/* Mobile Menu */
+const SHOW_MOBILE_MENU = "ui/SHOW_MOBILE_MENU";
+const HIDE_MOBILE_MENU = "ui/HIDE_MOBILE_MENU";
+
 export const hideHeaderFooter = createAction(HIDE_HEADER_FOOTER);
 export const showHeaderFooter = createAction(SHOW_HEADER_FOOTER);
 
@@ -47,11 +51,15 @@ export const hideModal = createAction(HIDE_MODAL);
 export const showSweetAlert = createAction(SHOW_SWEET_ALERT);
 export const hideSweetAlert = createAction(HIDE_SWEET_ALERT);
 
+export const showMobileMenu = createAction(SHOW_MOBILE_MENU);
+export const hideMobileMenu = createAction(HIDE_MOBILE_MENU);
+
 const initialState = fromJS({
     visible: {
         base: true,   // header & footer
         dashboard: true,
-        modal: false
+        modal: false,
+        mobileMenu: false,
     },
     listIndex: null,
     iconIndex: null,
@@ -103,6 +111,10 @@ export default function reducer(state = initialState, action) {
                         .setIn(['sweetAlert', 'typeDanger'], false)
                         .setIn(['sweetAlert', 'typeWarning'], false)
                         .setIn(['sweetAlert', 'typeSuccess'], false);
+        case SHOW_MOBILE_MENU:
+            return state.setIn(['visible', 'mobileMenu'], true);
+        case HIDE_MOBILE_MENU:
+            return state.setIn(['visible', 'mobileMenu'], false);
         default:
             return state;
     }

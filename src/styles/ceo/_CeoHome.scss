@@ -39,7 +39,50 @@
     }
 }
 
-@media only screen and (min-width: 1280px) {
+/* mobile */
+@media only screen and (max-width: 767px) {
+    .ceo-home-container {
+        padding: 0 20px;
+    }
+    .status-box-wrapper {
+        margin-top: 14px !important;
+        .status-box {
+            margin-top: 14px !important;
+            padding: 0 !important;
+            text-align: inherit !important;
+        }
+    }
+    .status-box-table {
+        width: 100%;
+        display: table;
+        .status-icon-wrapper {
+            display: table-cell;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .status-txt-wrapper {
+            display: table-cell;
+            line-height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            p {
+                color: #000;
+                width: 200px;
+                margin: 0 !important;
+                text-align: left;
+                letter-spacing: 0.2px;
+                span {
+                    color: #000;
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
     .status-box-wrapper {
         padding: 0 120px;
         margin-top: 40px !important;

@@ -2,7 +2,7 @@ import React from 'react';
 
 function DeliverStatus() {
     return (
-        <div className="col-md-5 col-xs-6 col-md-offset-1 col-xs-offset-0 status-box non-border">
+        <div className="col-md-5 col-xs-12 col-md-offset-1 col-xs-offset-0 status-box non-border">
             <div className="status-box-table row">
                 <div className="status-icon-wrapper">
                     <img alt="deliver" className="status-icon" src={require('img/icon/delivery.svg')} />
