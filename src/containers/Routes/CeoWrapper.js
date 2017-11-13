@@ -46,6 +46,7 @@ class CeoWrapper extends Component {
         this.hideModal = this.hideModal.bind(this);
         this.onIconActiveClick = this.onIconActiveClick.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleHamburgerPress = this.handleHamburgerPress.bind(this);
     }
 
 
@@ -79,8 +80,10 @@ class CeoWrapper extends Component {
     // 왼쪽 border 애니메이션 처리
     handleSideMenu(iconIndex, index) {
         const { UiActions } = this.props;
+        console.log(iconIndex);
         if(iconIndex === 'iconIndex-9' || iconIndex === 'iconIndex-0') {
             UiActions.setIconIndex(iconIndex);
+            UiActions.hideMobileMenu();
         }
         UiActions.setListIndex(index);
     }
@@ -104,12 +107,22 @@ class CeoWrapper extends Component {
     onIconActiveClick(iconIndex) {
         const { UiActions } = this.props;
         UiActions.setIconIndex(iconIndex);
+        UiActions.hideMobileMenu();
     }
 
     handleLogout() {
         const { AuthActions } = this.props;
         AuthActions.authLogout();
         storage.remove('token');
+    }
+
+    handleHamburgerPress() {
+        const { UiActions } = this.props;
+        if(this.props.visible.mobileMenu) {
+            UiActions.hideMobileMenu();    
+        } else {
+            UiActions.showMobileMenu();
+        }
     }
 
     render() {
@@ -120,10 +133,14 @@ class CeoWrapper extends Component {
             hideModal,
             onIconActiveClick,
             handleLogout,
+            handleHamburgerPress
         } = this;
         return (
             <div>
-                { window.innerWidth < 767 ? <MobileHamburger UiActions={this.props.UiActions} /> : undefined }
+                { window.innerWidth < 767 ? <MobileHamburger
+                                                mobileVisible={this.props.visible.mobileMenu}
+                                                toggleMenu={handleHamburgerPress}
+                                                /> : undefined }
                 <PasswordModal
                     hideModal={hideModal}
                     modalVisible={this.props.visible.modal}
@@ -139,6 +156,7 @@ class CeoWrapper extends Component {
                     listIndex={this.props.listIndex}
                     iconIndex={this.props.iconIndex}
                     authInfo={this.props.authInfo.toJS()}
+                    mobileVisible={this.props.visible.mobileMenu}
                 />
                 <div className="ceo-page-wrapper">
                     <CeoHeader showModal={showModal} handleLogout={handleLogout} />

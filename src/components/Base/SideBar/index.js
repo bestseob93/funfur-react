@@ -2,9 +2,9 @@ import React from 'react';
 import NavList from './NavList';
 import NavHeader from './NavHeader';
 
-function SideBar({onClick, listIndex, iconIndex, onIconActiveClick, authInfo}) {
+function SideBar({onClick, listIndex, iconIndex, onIconActiveClick, authInfo, mobileVisible}) {
     return (
-        <nav className="navbar-static-side">
+        <nav className={`${mobileVisible ? 'mobile-navbar' : window.innerWidth < 767 ? 'mobileview' : 'navbar-static-side'}`}>
             <div className="side-collaspe">
                 <ul className="side-nav">
                     <NavHeader authInfo={authInfo} />
