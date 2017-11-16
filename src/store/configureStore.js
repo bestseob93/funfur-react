@@ -6,6 +6,7 @@ import product from 'ducks/product.duck';
 import form from 'ducks/form.duck';
 import ui from 'ducks/ui.duck';
 import mypage from 'ducks/mypage.duck';
+import order from 'ducks/order.duck';
 
 const rootReducer = {
     auth,
@@ -13,7 +14,8 @@ const rootReducer = {
     product,
     form,
     ui,
-    mypage
+    mypage,
+    order
 };
 
 // const reducer = combineReducers(auth);
