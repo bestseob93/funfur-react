@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Footer() {
+function Footer(props) {
         return (
             <footer className="footer container">
                 <section className="section">
@@ -8,9 +9,9 @@ function Footer() {
                             <div className="text-right">
                                 <ul className="style">
                                     <li><a className="ns-L" target="_blank" rel="noopener noreferrer" href="http://intro.funfur.kr/">회사소개</a></li>
-                                    <li><a className="ns-L" href="">이용약관</a></li>
-                                    <li><a className="ns-L" href="">광고운영정책</a></li>
-                                    <li><a className="ns-L" href="">개인정보 처리방침</a></li>
+                                    <li><Link to="/Policy"><span className="ns-L">이용약관</span></Link></li>
+                                    <li><span className="ns-L">광고운영정책</span></li>
+                                    <li><span className="ns-L">개인정보 처리방침</span></li>
                                 </ul>
                             </div>
                         </div>

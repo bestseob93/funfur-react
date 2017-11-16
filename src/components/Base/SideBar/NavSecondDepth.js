@@ -23,7 +23,7 @@ function NavSecondDepth({onClick, iconIndex, depthCategory}) {
                     <Link id="iconIndex-4" to="/ceo/products" className="nav-link second-depth">제품 관리 / 등록<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>
                 </li>
                 <li onClick={(s) => onClick(s.target.id)} className={iconIndex === 'iconIndex-5' ? 'icon-active' : undefined}>
-                    <Link id="iconIndex-5" to="/ceo/product_exchange" className="nav-link second-depth">교환 / 반품 관리<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>
+                    <Link id="iconIndex-5" to="/ceo/exchange" className="nav-link second-depth">교환 / 반품 관리<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>
                 </li>
                 <li onClick={(s) => onClick(s.target.id)} className={iconIndex === 'iconIndex-6' ? 'icon-active' : undefined}>
                     <Link id="iconIndex-6" to="/ceo/consumer" className="nav-link second-depth">소비자 문의<img alt="로고" className="label-image" src={require('img/ex-funfur-logo.jpg')} /></Link>

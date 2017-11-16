@@ -4,7 +4,7 @@ import NavHeader from './NavHeader';
 
 function SideBar({onClick, listIndex, iconIndex, onIconActiveClick, authInfo, mobileVisible}) {
     return (
-        <nav className={`${mobileVisible ? 'mobile-navbar' : window.innerWidth < 767 ? 'mobileview' : 'navbar-static-side'}`}>
+        <nav className={`${mobileVisible ? 'mobile-navbar fade mobile animated fadeIn' : window.innerWidth < 767 ? 'mobileview fade mobile animated fadeIn' : 'navbar-static-side'}`}>
             <div className="side-collaspe">
                 <ul className="side-nav">
                     <NavHeader authInfo={authInfo} />

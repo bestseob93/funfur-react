@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class OrderTable extends Component {
+class ExchangeTable extends Component {
     render() {
         return (
             <table className="order-table ns-R">
@@ -44,4 +44,4 @@ class OrderTable extends Component {
     }
 }
 
-export default OrderTable;
+export default ExchangeTable;

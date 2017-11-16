@@ -18,7 +18,8 @@ class Header extends Component {
 
     /* scroll 시 header 배경 변경 */
     handleScroll(ev) {
-        let scrollTop = ev.srcElement.body.scrollTop;
+        // let scrollTop = ev.srcElement.body.scrollTop;
+        let scrollTop = ev.currentTarget.scrollY;
         console.log(scrollTop);
         let isScrolling = false;
         if(scrollTop > 20) {
@@ -36,7 +37,6 @@ class Header extends Component {
     render() {
         const { authenticated, handleLogout } = this.props;
         const pathName = document.location.pathname;
-        console.log(document.scroll);
         const renderBtn = () => {
             if(!authenticated) {
                 return (

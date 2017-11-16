@@ -5,9 +5,11 @@ function PolicyContents({contentType}) {
     console.log(contentType);
     if(contentType === 'useterm') {
         return (
-            <Scrollbars autoHide
-                        autoHideTimeout={1000}
-                        autoHideDuration={400}>
+            <Scrollbars
+                autoHide
+                autoHideTimeout={1000}
+                autoHideDuration={400}
+            >
                 <p>뻔뻐 이용약관: 2017년 05월 01일</p>
                 <b>제 1장 총칙 제 1조 [목적]</b>
                 <p>이 약관은 THE DUCK Company(이하 "회사"라 합니다)와 이용 고객(이하 "회원"이라고 함)간에 "회사"가 제공하는 위치 기반 광고 플랫폼 서비스인 뻔뻐(이하 "서비스"라 합니다) 및 제반 서비스를 유선 또는 무선 인터넷 등의 수단으로 이용함에 있어 "회사"와 "회원" 간의 권리, 이용에 관한 제반 사항과 기타 필요한 사항을 규정하는 것을 목적으로 합니다.</p>
@@ -135,9 +137,11 @@ function PolicyContents({contentType}) {
         );
     } else if(contentType === 'sellterm') {
         return (
-            <Scrollbars autoHide
-                        autoHideTimeout={1000}
-                        autoHideDuration={400}>
+            <Scrollbars
+                autoHide
+                autoHideTimeout={1000}
+                autoHideDuration={400}
+            >
                 <p>
                   <p>뻔뻐 이용약관 : 2017년 05월 01일</p>
                   <b>제 1장 총칙</b>
@@ -248,9 +252,11 @@ function PolicyContents({contentType}) {
         );
     } else {
         return (
-            <Scrollbars autoHide
-                        autoHideTimeout={1000}
-                        autoHideDuration={400}>
+            <Scrollbars
+                autoHide
+                autoHideTimeout={1000}
+                autoHideDuration={400}
+            >
                 <p>
                   <p>뻔뻐 이용약관 : 2017년 05월 01일</p>
                   <b>제 1장 총칙</b>

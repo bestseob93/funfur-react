@@ -43,6 +43,7 @@ export const CeoSellingProduct = asyncRoute(()=> import('./ProductRoutes/CeoSell
 export const CeoProductUpload = asyncRoute(()=> import('./ProductRoutes/CeoProductUpload'));
 export const CeoProductModify = asyncRoute(()=> import('./ProductRoutes/CeoProductModify'));
 export const CeoHome = asyncRoute(()=> import('./CeoHome'));
+export const ExchangeScreen = asyncRoute(()=> import('./ExchangeRoutes/ExchangeScreen'));
 export const MyPageEnterScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageEnterScreen'));
 export const MyPageModifyScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageModifyScreen'));
 export const MyPageFinishScreen = asyncRoute(()=> import('./MyPageRoutes/MyPageFinishScreen'));

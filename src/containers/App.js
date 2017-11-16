@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import 'styles/style.css';
 import {
   Header,
-  Footer
+  Footer,
 } from 'components/Base';
 import {
   SweetAlertComponent
@@ -18,6 +18,7 @@ import storage from 'helpers/localForage.helper';
 import { 
   HomeScreen,
   ContactScreen,
+  PolicyScreen,
   RegisterFormScreen,
   RegisterIntroScreen,
   RegisterPolicyScreen,
@@ -115,6 +116,10 @@ class App extends Component {
                 component={HomeScreen}
               />
               <Route
+                path="/policy"
+                component={PolicyScreen}
+              />
+              <Route
                 path="/register"
                 component={RegisterIntroScreen}
               />
@@ -146,7 +151,9 @@ class App extends Component {
                 component={NoMatchScreen}
               />
             </Switch>
-          { this.props.visible.base ? <Footer /> : null }
+          { this.props.visible.base ? 
+            <Footer
+            /> : undefined }
         </div>
       </Router>
     );
