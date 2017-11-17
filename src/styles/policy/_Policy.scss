@@ -1,0 +1,33 @@
+
+.policy-text-box {
+    width: 100%;
+    height: 460px;
+    padding: 10px;
+    overflow: hidden;
+    margin-top: 40px;
+    background-color: #f4f4f4;
+}
+
+ul.policy-nav-wrapper {
+    list-style: none;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    a {
+        display: inline-block;
+        li {
+            margin-right: 30px;
+        }
+        li.active {
+            color: $funfur-color;
+        }
+    }
+
+    a:hover {
+        li {
+            list-style: none;
+            color: $funfur-color;
+            background-color: 'black' !important;
+        }
+    }
+}
