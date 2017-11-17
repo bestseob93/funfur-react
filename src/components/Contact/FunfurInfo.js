@@ -30,7 +30,7 @@ function FunfurInfo() {
                 </div>
                 <div className="row info-row">
                     <div className="company-email col-md-6 col-xs-6">
-                        <img src={require('img/icon/email.svg')} alt="email" /><span>unit9251@naver.com</span>
+                        <img src={require('img/icon/email.svg')} alt="email" /><span>funfurofficial@gmail.com</span>
                     </div>
                     <div className="company-kakao col-md-6 col-xs-6">
                         <img src={require('img/icon/kakaotalk.svg')} alt="kakao" /><span>뻔뻐</span>
