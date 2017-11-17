@@ -7,26 +7,14 @@
     }
 }
 .navbar-static-side {
-    
+    z-index: 1000;
+    background-color: #fff;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
     top: 0;
     bottom: 0;
-
-    /* collapsing animation */
-    // .collapsing {
-    //     position: relative;
-    //     height: 0;
-    //     overflow: hidden;
-    //     -webkit-transition-timing-function: ease;
-    //     transition-timing-function: ease;
-    //     -webkit-transition-duration: .35s;
-    //     transition-duration: .35s;
-    //     -webkit-transition-property: height, visibility;
-    //     transition-property: height, visibility;
-    // }
 }
 
 .side-nav.second-depth {
