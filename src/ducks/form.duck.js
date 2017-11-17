@@ -73,7 +73,6 @@ const initialState = fromJS({
         prManufacturer: '',
         productOrigin: '',
         productPrice: '',
-        asIntro: '',
         productImages: [],
         isDeliverFree: '',
         SeoulGyungki: '',

@@ -13,7 +13,7 @@ class PolicyScreen extends Component {
         const { match } = this.props;
         console.log(match.url);
         return (
-            <div>
+            <div className="container" style={{marginTop: '80px'}}>
                 <Switch>
                     <Route exact path={match.url} component={ToS} />
                     <Route exact path={`${match.url}/privacy`} component={Privacy} />

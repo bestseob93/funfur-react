@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
 
 class OrderTable extends Component {
+    constructor(props) {
+        super(props);
+
+        this.renderTableItem = this.renderTableItem.bind(this);
+    }
+
+    renderTableItem(datas) {
+        console.log(datas);
+        return datas.map((data, index) => {
+            console.log(data);
+            return (
+                <tr key={index}>
+                    <td className="number-line">{index}</td>
+                    <td className="half-line">{data.get('product_order_number')}</td>
+                    <td className="number-line">{data.get('model_name')}</td>
+                    <td className="half-line">{data.get('receiver_name')}</td>
+                    <td className="half-line">{data.get('receiver_contact')}</td>
+                    <td className="number-line">20170707</td>
+                    <td className="half-line">제품이상</td>
+                    <td className="half-line">로젠</td>
+                    <td className="number-line">운송장 번호 보기</td>
+                    {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
+                    <td className="half-line">주문서 보기</td>
+                </tr>
+            );
+        });
+    }
+
     render() {
         return (
             <table className="order-table ns-R">
@@ -25,19 +53,7 @@ class OrderTable extends Component {
                 </thead>
                 <tbody>
                     {/* 리스트 뿌려주면 되는 곳 */}
-                    <tr>
-                        <td className="number-line">123</td>
-                        <td className="half-line">20170101341293214</td>
-                        <td className="number-line">AD-313</td>
-                        <td className="half-line">이환섭</td>
-                        <td className="half-line">01024487085</td>
-                        <td className="number-line">20170707</td>
-                        <td className="half-line">제품이상</td>
-                        <td className="half-line">로젠</td>
-                        <td className="number-line">운송장 번호 보기</td>
-                        {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
-                        <td className="half-line">주문서 보기</td>
-                    </tr>
+                    {this.renderTableItem(this.props.tableItems)}
                 </tbody>
             </table>
         );

@@ -86,6 +86,9 @@ div.row.form-box.has-helper {
 div.row.form-box.has-textarea {
   height: 150px; }
 
+div.row.form-box.delivery-info-box {
+  height: 250px; }
+
 div.upload-dropzone {
   border-width: 1px;
   border-color: #666666;
@@ -2125,6 +2128,10 @@ nav.ceo-nav-top {
 
 .delivery-warning {
   margin-bottom: 15px !important; }
+
+.product-delivery-info {
+  font-size: 12px;
+  padding: 10px; }
 
 @media only screen and (min-width: 767px) {
   .container.consumer-wrapper {

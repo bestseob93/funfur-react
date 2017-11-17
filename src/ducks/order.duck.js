@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
             return state.mergeIn(['requests', 'orderList'], fromJS(requestStatus.pending));
         case `${ORDER_LIST}_FULFILLED`:
             return state.mergeIn(['requests', 'orderList'], fromJS(requestStatus.fulfilled))
-                        .set('orders', action.payload.data.results)
+                        .set('orders', fromJS(action.payload.data.results))
                         .setIn(['valid', 'orderList'], true);
         case `${ORDER_LIST}_REJECTED`:
             return state.mergeIn(['requests', 'orderList'], fromJS(requestStatus.rejected))
