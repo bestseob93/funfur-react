@@ -14,22 +14,11 @@ class HomeScreen extends Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    // componentDidMount() {
-    //     const { AuthActions } = this.props;
-    //     storage.get('token').then(async (value) => {
-    //     try {
-    //         await AuthActions.checkToken(value);
-    //         // 로그인 되있으면 대쉬보드로 이동
-    //         if(this.props.authenticated) {
-    //             document.location = "/ceo";
-    //         }
-    //     } catch (e) {
-    //         if(e) throw e;
-    //     }
-    //     }).catch(err => {
-    //         if(err) throw err;
-    //     });    
-    // }
+    componentDidMount() {
+        if(this.props.authenticated) {
+            document.location = "/ceo";
+        } 
+    }
 
     handleLogout() {
         const { AuthActions } = this.props;
