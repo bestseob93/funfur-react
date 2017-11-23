@@ -46,20 +46,22 @@ class App extends Component {
     const { AuthActions } = this.props;
     
     storage.get('token').then(async (value) => {
-      try {
-        await AuthActions.checkToken(value);
-        
-      } catch (e) {
-        //document.location="/";
-        // pathname이 /ceo 로 시작하는지 검사.
-        const pathNameRegx = /^\/ceo/g;
+      if(value) {
+        try {
+          await AuthActions.checkToken(value);
+          
+        } catch (e) {
+          //document.location="/";
+          // pathname이 /ceo 로 시작하는지 검사.
+          const pathNameRegx = /^\/ceo/g;
 
-        // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
-        if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
-          document.location = "/";
+          // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
+          if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
+            document.location = "/";
+          }
+          
+          if(e) throw e;
         }
-        
-        if(e) throw e;
       }
     }).catch(err => {
       if(err) throw err;
