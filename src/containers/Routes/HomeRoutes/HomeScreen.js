@@ -14,7 +14,7 @@ class HomeScreen extends Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         if(this.props.authenticated) {
             document.location = "/ceo";
         } 
