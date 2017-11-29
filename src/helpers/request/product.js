@@ -42,6 +42,7 @@ export const requestProductUpload = (productInfo) => {
         console.log(productInfo.isDeliverFree);
         console.log(productInfo);
         const productImages = productInfo.productImages.toJS();
+        console.log(productImages);
         productImages.forEach((file) => {
             formData.append('productPhoto', file);
         });

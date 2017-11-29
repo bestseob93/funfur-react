@@ -12,9 +12,8 @@
 .funfur-wrapper {
     display: table;
     height: 620px;
-    background-color: $funfur-color;
+    background-color: rgba(253, 216, 49, 0.8) ;
     width: 440px;
-    opacity: 0.93;
     .funfur-description {
         display: table-cell;
         vertical-align: middle;
@@ -50,7 +49,7 @@
 @media only screen and (max-width: 667px) {
     .funfur-wrapper {
         width: 100%;
-        opacity: 0.8;
+        background-color: rgba(253, 216, 49, 0.8);
         .funfur-description:first-child {
             margin-top: 200px;
         }

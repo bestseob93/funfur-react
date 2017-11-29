@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
 function SweetAlertComponent(props) {
@@ -21,5 +22,25 @@ function SweetAlertComponent(props) {
         </SweetAlert>
     );
 }
+
+SweetAlert.propTypes = {
+    showCancel: PropTypes.bool,
+    isAlertShow: PropTypes.bool,
+    alertTitle: PropTypes.string,
+    alertMessage: PropTypes.string,
+    typeSuccess: PropTypes.bool,
+    typeWarning: PropTypes.bool,
+    typeDanger: PropTypes.bool
+};
+
+SweetAlert.defaultProps = {
+    showCancel: false,
+    isAlertShow: false,
+    alertTitle: '',
+    alertMessage: '',
+    typeSuccess: false,
+    typeWarning: false,
+    typeDanger: false
+};
 
 export default SweetAlertComponent;

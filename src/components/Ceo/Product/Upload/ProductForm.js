@@ -165,6 +165,8 @@ class ProductForm extends Component {
                 this.props.history.push('/ceo');
             }
         } catch (e) {
+            // TODO 스윗 알럿 추가
+            console.log(e.response);
             if(e) {
                 throw e;
             }
