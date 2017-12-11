@@ -120,7 +120,7 @@ class ProductForm extends Component {
     
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
-        const { UiActions, ProductActions, form } = this.props;
+        const { UiActions, ProductActions, FormActions, form } = this.props;
 
         const regNumberOnly = /^[0-9]*$/; // 숫자 체크 정규식
 
@@ -249,6 +249,8 @@ class ProductForm extends Component {
                         alertTitle: '',
                         message: '제품이 성공적으로 등록되었습니다!'
                     });
+
+                    FormActions.formReset('product');
                     this.props.history.push('/ceo');
                 }
             } catch (e) {
