@@ -18,3 +18,40 @@ export const requestOrderList = () => {
         });
     });
 }
+
+export const requestDetailShipping = (id) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'GET',
+            url: `${FUNFUR}/order_web/order_sheet/${id}`,
+            headers: {
+                Authorization: token
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}
+
+export const requestShippingRegister = (shippingInfo, id) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'GET',
+            url: `${FUNFUR}/order_web/order_sheet/shipping/register/${id}`,
+            headers: {
+                Authorization: token
+            },
+            data: {
+                shippingMethod: shippingInfo.shippingMethod,
+                shippingCompany: shippingInfo.shippingCompany,
+                trackingNumber: shippingInfo.trackingNumber
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}

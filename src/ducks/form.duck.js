@@ -100,6 +100,11 @@ const initialState = fromJS({
         newPassword: '',
         rePassword: '',
         errCode: null
+    },
+    orders: {
+        shippingMethod: '',
+        shippingCompany: '',
+        trackingNumber: ''
     }
 });
 
