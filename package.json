@@ -13,7 +13,6 @@
     "localforage": "^1.5.0",
     "moment": "^2.18.1",
     "react": "^15.5.4",
-    "react-bootstrap-sweetalert": "^4.0.0",
     "react-css-collapse": "^3.0.2",
     "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^15.5.4",
@@ -27,6 +26,7 @@
     "redux-actions": "^2.0.3",
     "redux-promise-middleware": "4.2.1",
     "sass-loader": "^6.0.6",
+    "sweetalert-react": "^0.4.10",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

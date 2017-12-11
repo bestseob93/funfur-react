@@ -100,8 +100,8 @@ class PhotosUpload extends Component {
             if(presentPhoto === 'selected' && this.props.form.get('productImages').size < 2) {
                 UiActions.showSweetAlert({
                     message: "최소 2개 이미지 이상일 때 대표 사진을 바꿀 수 있습니다.",
-                    alertType: 'typeWarning',
-                    value: true
+                    alertTitle: '',
+                    value: 'warning'
                 });
             } else {
                 FormActions.formUploadRemove({

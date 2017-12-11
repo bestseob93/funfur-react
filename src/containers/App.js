@@ -77,6 +77,7 @@ class App extends Component {
   async handleProductDelete() {
     const { ProductActions } = this.props;
     const productId = window.location.pathname.split('/');
+    
     console.log(productId);
     try {
         await ProductActions.productRemove(productId[3]);
@@ -100,12 +101,11 @@ class App extends Component {
           {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
             <SweetAlertComponent
               showCancel={this.props.sweetAlert.get('showCancel')}
-              typeSuccess={this.props.sweetAlert.get('typeSuccess')}
-              typeWarning={this.props.sweetAlert.get('typeWarning')}
-              typeDanger={this.props.sweetAlert.get('typeDanger')}
+              alertType={this.props.sweetAlert.get('alertType')}
               isAlertShow={this.props.sweetAlert.get('isAlertShow')}
               alertTitle={this.props.sweetAlert.get('alertTitle')}
               alertMessage={this.props.sweetAlert.get('alertMessage')}
+              confirmText={this.props.sweetAlert.get('confirmText')}
               hideAlert={this.props.UiActions.hideSweetAlert}
               onDelete={this.handleProductDelete}
             />

@@ -63,29 +63,7 @@ class RegisterPolicy extends Component {
                 value: 'on'
             });
         } else {
-            FormActions.formChange({
-                formName: 'registerPolicy',
-                name: 'checkAll',
-                value: ''
-            });
-
-            FormActions.formChange({
-                formName: 'registerPolicy',
-                name: 'site',
-                value: ''
-            });
-
-            FormActions.formChange({
-                formName: 'registerPolicy',
-                name: 'sales',
-                value: ''
-            });
-
-            FormActions.formChange({
-                formName: 'registerPolicy',
-                name: 'privacy',
-                value: ''
-            });
+            this.clearCheckbox();
         }
 
     }
@@ -96,11 +74,44 @@ class RegisterPolicy extends Component {
 
         if(form.get('site') === '' || form.get('sales') === '' || form.get('privacy') === '') {
             UiActions.showSweetAlert({
-                message: '모든 약관에 동의해주세요!'
+                message: '모든 약관에 동의해주세요!',
+                value: 'warning',
+                alertTitle: ''
             });
         } else {    
             this.props.history.push('/register_3');
         }
+    }
+
+    clearCheckbox = () => {
+        const { FormActions } = this.props;
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'checkAll',
+            value: ''
+        });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'site',
+            value: ''
+        });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'sales',
+            value: ''
+        });
+
+        FormActions.formChange({
+            formName: 'registerPolicy',
+            name: 'privacy',
+            value: ''
+        });
+    }
+
+    componentWillUnmount() {
+        this.clearCheckbox();
     }
 
     render() {

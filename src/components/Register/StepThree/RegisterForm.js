@@ -193,7 +193,6 @@ class RegisterForm extends Component {
 
     /* 회원가입 요청 */
     async handleSubmit(ev) {
-        console.log(this.props);
         const { AuthActions, form } = this.props;
         ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 

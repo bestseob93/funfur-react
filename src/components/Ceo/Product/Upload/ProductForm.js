@@ -63,8 +63,6 @@ class ProductForm extends Component {
             name: ev.target.name,
             value: ev.target.value
         });
-        console.log(ev.target.name);
-        console.log(this.props.form.get('isDeliverFree'));
 
         /* 배송비 종류 선택하는 곳 free 일 경우 기존 배송비 입력된 값 초기화 */
         if(ev.target.name === 'isDeliverFree' && this.costSelect.value === 'free') {
@@ -123,6 +121,9 @@ class ProductForm extends Component {
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
         const { UiActions, ProductActions, form } = this.props;
+
+        const regNumberOnly = /^[0-9]*$/; // 숫자 체크 정규식
+
         const productInfo = {
             productName: form.get('productName'),
             productPosition: form.get('productPosition'),
@@ -156,21 +157,109 @@ class ProductForm extends Component {
             proportionShipping: form.get('proportionShipping') && form.get('proportionShipping')
         };
 
-        try {
-            await ProductActions.productUpload(productInfo);
-            if(this.props.valid.upload) {
-                UiActions.showSweetAlert({
-                    message: '제품이 성공적으로 등록되었습니다!'
-                });
-                this.props.history.push('/ceo');
-            }
-        } catch (e) {
-            // TODO 스윗 알럿 추가
-            console.log(e.response);
-            if(e) {
-                throw e;
+        if(productInfo.productName === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제품명을 입력해주세요!"
+            });
+        } else if(productInfo.productPosition === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제품 위치를 설정해주세요!"
+            });
+        } else if(productInfo.modelName === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "모델명을 입력해주세요!"
+            });
+        } else if(productInfo.modelOption === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제품 옵션을 입력해주세요!"
+            });
+        } else if(productInfo.productColor === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제품 색상을 입력해주세요!"
+            });
+        } else if(productInfo.sizeWidth === '' || productInfo.sizeDepth === '' || productInfo.sizeHeight === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제품 사이즈를 입력해주세요!"
+            });
+        } else if(productInfo.mainMaterial === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "주요 소재를 입력해주세요!"
+            });
+        } else if(productInfo.prManufacturer === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "제조사를 입력해주세요!"
+            });
+        } else if(productInfo.productOrigin === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "원산지를 입력해주세요!"
+            });
+        } else if(productInfo.productPrice === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "소비자 가격을 입력해주세요!"
+            });
+        } else if(!regNumberOnly.test(productInfo.productPrice)) {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "소비자 가격은 숫자만 입력해주세요!"
+            });
+        } else if(productInfo.isDeliverFree === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "배송비를 설정해주세요!"
+            });
+        } else if(productInfo.productImages.size < 1) {
+            UiActions.showSweetAlert({
+                value: 'error',
+                alertTitle: '',
+                message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
+            });
+        } else {
+            try {
+                await ProductActions.productUpload(productInfo);
+
+                this.submitBtn.classList.add('disabled');
+                if(this.props.valid.upload) {
+                    if(this.submitBtn.classList.contains('disabled')) {
+                        this.submitBtn.classList.remove('disabled');
+                    }
+                    UiActions.showSweetAlert({
+                        value: 'success',
+                        alertTitle: '',
+                        message: '제품이 성공적으로 등록되었습니다!'
+                    });
+                    this.props.history.push('/ceo');
+                }
+            } catch (e) {
+                // TODO 스윗 알럿 추가
+                console.log(e.response);
+                if(e) {
+                    throw e;
+                }
             }
         }
+
     }
 
     renderPosition(isFirstSortable) {
@@ -642,7 +731,7 @@ class ProductForm extends Component {
                 </div>
                 <div className="row form-box">
                     <FormLabel name="소비자가격" />
-                    <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
+                    <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0">
                         <input
                             type="text"
                             className="form-control"
@@ -652,6 +741,9 @@ class ProductForm extends Component {
                             onChange={changeHandler}
                         />
                     </div>
+                    <span className="col-md-1 col-xs-1 col-xs-offset-0 col-md-offset-0" style={{padding: 0, paddingTop: 10}}>
+                        원
+                    </span>
                 </div>
                 <SubTitle title="배송 정보" />
                 <div className="row form-box">

@@ -26,6 +26,7 @@ const SET_COLLAPSE_INDEX = "ui/SET_COLLAPSE_INDEX";
 /* SWEET ALERT */
 const SHOW_SWEET_ALERT = "ui/SHOW_SWEET_ALERT";
 const HIDE_SWEET_ALERT = "ui/HIDE_SWEET_ALERT";
+const CLEAR_SWEET_ALERT = "ui/CLEAR_SWEET_ALERT";
 
 /* Mobile Menu */
 const SHOW_MOBILE_MENU = "ui/SHOW_MOBILE_MENU";
@@ -50,6 +51,7 @@ export const hideModal = createAction(HIDE_MODAL);
 
 export const showSweetAlert = createAction(SHOW_SWEET_ALERT);
 export const hideSweetAlert = createAction(HIDE_SWEET_ALERT);
+export const clearSweetAlert = createAction(CLEAR_SWEET_ALERT);
 
 export const showMobileMenu = createAction(SHOW_MOBILE_MENU);
 export const hideMobileMenu = createAction(HIDE_MOBILE_MENU);
@@ -69,9 +71,8 @@ const initialState = fromJS({
         isAlertShow: false,
         alertTitle: '',
         alertMessage: '',
-        typeSuccess: false,
-        typeWarning: false,
-        typeDanger: false
+        alertType: '',
+        confirmText: '',
     },
     collapseIndex: null
 });
@@ -105,12 +106,17 @@ export default function reducer(state = initialState, action) {
                         .setIn(['sweetAlert', 'alertTitle'], action.payload.alertTitle)
                         .setIn(['sweetAlert', 'alertMessage'], action.payload.message)
                         .setIn(['sweetAlert', 'showCancel'], action.payload.showCancel)
-                        .setIn(['sweetAlert', action.payload.alertType], action.payload.value);
+                        .setIn(['sweetAlert', 'confirmText'], action.payload.confirmText)
+                        .setIn(['sweetAlert', 'alertType'], action.payload.value);
         case HIDE_SWEET_ALERT:
             return state.setIn(['sweetAlert', 'isAlertShow'], false)
-                        .setIn(['sweetAlert', 'typeDanger'], false)
-                        .setIn(['sweetAlert', 'typeWarning'], false)
-                        .setIn(['sweetAlert', 'typeSuccess'], false);
+                        .setIn(['sweetAlert', 'alertType'], fromJS(''));
+        case CLEAR_SWEET_ALERT:
+            return state.setIn(['sweetAlert', 'isAlertShow'], false)
+                        .setIn(['sweetAlert', 'alertTitle'], fromJS(''))
+                        .setIn(['sweetAlert', 'alertMessage'], fromJS(''))
+                        .setIn(['sweetAlert', 'showCancel'], false)
+                        .setIn(['sweetAlert', 'alertType'], fromJS(''));
         case SHOW_MOBILE_MENU:
             return state.setIn(['visible', 'mobileMenu'], true);
         case HIDE_MOBILE_MENU:

@@ -57,9 +57,9 @@ class ProductModifyForm extends Component {
         UiActions.showSweetAlert({
             alertTitle: "정말로 삭제하시겠습니까?",
             message: "제품에 대한 모든 내용이 삭제됩니다.",
-            alertType: 'typeDanger',
             showCancel: true,
-            value: true
+            value: 'error',
+            confirmText: "네 삭제하겠습니다"
         });
     }
 
@@ -87,7 +87,9 @@ class ProductModifyForm extends Component {
             await ProductActions.productModify(productId[3], productInfo);
             if(this.props.valid) {
                 UiActions.showSweetAlert({
-                    message: '제품이 수정되었습니다.'
+                    message: '제품이 수정되었습니다.',
+                    alertTitle: '',
+                    value: 'success'
                 });
                 this.props.history.push('/ceo/products');
             }
@@ -123,7 +125,7 @@ class ProductModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="productName"
-                            placeholder={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('product_name')}
+                            value={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('product_name')}
                             required
                             onChange={changeHandler}
                         />
