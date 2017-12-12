@@ -21,7 +21,7 @@ const store = configureStore;
 const rootElement = document.getElementById('root');
 
 // Google Analytics Initial
-ReactGA.initialize(process.env.REACT_GA_KEY);
+ReactGA.initialize(process.env.REACT_APP_GA);
 
 const render = Component =>
     ReactDOM.render(
