@@ -3,8 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from 'containers/App';
 import { AppContainer } from 'react-hot-loader';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from 'store/configureStore';
+import ReactGA from 'react-ga';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -15,11 +20,16 @@ const store = configureStore;
 
 const rootElement = document.getElementById('root');
 
+// Google Analytics Initial
+ReactGA.initialize(process.env.REACT_GA_KEY);
+
 const render = Component =>
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <Component />
+                <Router>
+                    <Route component={Component} />
+                </Router>
             </Provider>
         </AppContainer>,
     rootElement

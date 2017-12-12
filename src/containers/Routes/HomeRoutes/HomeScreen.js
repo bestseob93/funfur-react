@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -14,11 +14,11 @@ class HomeScreen extends Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
-    componentDidUpdate() {
-        if(this.props.authenticated) {
-            document.location = "/ceo";
-        } 
-    }
+    // componentDidUpdate() {
+    //     if(this.props.authenticated) {
+    //         document.location = "/ceo";
+    //     } 
+    // }
 
     handleLogout() {
         const { AuthActions } = this.props;
@@ -39,22 +39,28 @@ class HomeScreen extends Component {
             </div>           
         );
 
-        return (
-            <div className="carousel-inner" role="listbox">
-                <div className="funfur-wrapper">
-                    <div className="funfur-description">
-                        <h1 className="ns-EB">대한민국 최초, 최대<br/>
-                            모바일 가구거리<br/>
-                        </h1>
-                        <p className="ns-B">오프라인 스토어를 온라인으로!</p>
-                        <p className="ns-B">뻔뻐로 사업을 확장하세요.</p>
-                        { this.props.authenticated ? logoutBtn : loginBtn }
+        if(this.props.authenticated) {
+            return (
+                <Redirect to="/ceo" />
+            );
+        } else {
+            return (
+                <div className="carousel-inner" role="listbox">
+                    <div className="funfur-wrapper">
+                        <div className="funfur-description">
+                            <h1 className="ns-EB">대한민국 최초, 최대<br/>
+                                모바일 가구거리<br/>
+                            </h1>
+                            <p className="ns-B">오프라인 스토어를 온라인으로!</p>
+                            <p className="ns-B">뻔뻐로 사업을 확장하세요.</p>
+                            { this.props.authenticated ? logoutBtn : loginBtn }
+                        </div>
                     </div>
+                    {/*<!-- Set background for slide in css -->*/}
                 </div>
-                {/*<!-- Set background for slide in css -->*/}
-
-            </div>
-        );
+            );
+        }
+        
     }
 }
 

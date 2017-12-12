@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { 
-  BrowserRouter as Router,
+import {
   Route,
   Switch
 } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
+
 import 'styles/style.css';
 import {
   Header,
@@ -38,13 +39,15 @@ class App extends Component {
     
     this.handleLogout = this.handleLogout.bind(this);
     this.handleProductDelete = this.handleProductDelete.bind(this);
+    this.sendPageChange(props.location.pathname, props.location.search);
   }
 
 
   // TODO ceo 직접 접근할 시 예외 처리 , catch에 넣어서 일단은 해결
   componentDidMount() {
     const { AuthActions } = this.props;
-    
+    console.log('---------------------------');
+    console.log(window.location);
     storage.get('token').then(async (value) => {
       try {
         await AuthActions.checkToken(value);
@@ -58,13 +61,26 @@ class App extends Component {
         if(!this.props.authenticated && window.location.pathname.search(pathNameRegx) === 0) {
           document.location = "/";
         }
-        
-        if(e) throw e;
       }
     }).catch(err => {
       if(err) throw err;
     });
 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // https://github.com/react-ga/react-ga/issues/122
+    if (this.props.location.pathname !== nextProps.location.pathname
+      || this.props.location.search !== nextProps.location.search) {
+      this.sendPageChange(nextProps.location.pathname, nextProps.location.search)
+    }
+  }
+
+  sendPageChange(pathname, search='') {
+    const page = pathname + search;
+    console.log('sendPageChange', page);
+    ReactGA.set({page});
+    ReactGA.pageview(page);
   }
   
   handleLogout() {
@@ -94,68 +110,66 @@ class App extends Component {
     console.log(this.props.authenticated);
     console.log(this.props);
     return (
-      <Router>
-        <div>
-          {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
-          { this.props.visible.base ? <Header authenticated={this.props.authenticated} handleLogout={this.handleLogout}/> : null }
-          {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
-            <SweetAlertComponent
-              showCancel={this.props.sweetAlert.get('showCancel')}
-              alertType={this.props.sweetAlert.get('alertType')}
-              isAlertShow={this.props.sweetAlert.get('isAlertShow')}
-              alertTitle={this.props.sweetAlert.get('alertTitle')}
-              alertMessage={this.props.sweetAlert.get('alertMessage')}
-              confirmText={this.props.sweetAlert.get('confirmText')}
-              hideAlert={this.props.UiActions.hideSweetAlert}
-              onDelete={this.handleProductDelete}
+      <div>
+        {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}
+        { this.props.visible.base ? <Header authenticated={this.props.authenticated} handleLogout={this.handleLogout}/> : null }
+        {/* { this.props.visible.base ? (<div className="spacer">&nbsp;</div>) : null } */}
+          <SweetAlertComponent
+            showCancel={this.props.sweetAlert.get('showCancel')}
+            alertType={this.props.sweetAlert.get('alertType')}
+            isAlertShow={this.props.sweetAlert.get('isAlertShow')}
+            alertTitle={this.props.sweetAlert.get('alertTitle')}
+            alertMessage={this.props.sweetAlert.get('alertMessage')}
+            confirmText={this.props.sweetAlert.get('confirmText')}
+            hideAlert={this.props.UiActions.hideSweetAlert}
+            onDelete={this.handleProductDelete}
+          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={HomeScreen}
             />
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={HomeScreen}
-              />
-              <Route
-                path="/policy"
-                component={PolicyScreen}
-              />
-              <Route
-                path="/register"
-                component={RegisterIntroScreen}
-              />
-              <Route
-                path="/register_2"
-                component={RegisterPolicyScreen}
-              />
-              <Route
-                path="/register_3"
-                component={RegisterFormScreen}
-              />
-              <Route
-                path="/register_4"
-                component={RegisterPendingScreen}
-              />
-              <Route
-                path="/login"
-                component={LoginScreen}
-              />
-              <Route
-                path="/contact"
-                component={ContactScreen}
-              />
-              <Route
-                path="/ceo"
-                component={CeoWrapper}
-              />
-              <Route
-                component={NoMatchScreen}
-              />
-            </Switch>
-          { this.props.visible.base ? 
-            <Footer
-            /> : undefined }
-        </div>
-      </Router>
+            <Route
+              path="/policy"
+              component={PolicyScreen}
+            />
+            <Route
+              path="/register"
+              component={RegisterIntroScreen}
+            />
+            <Route
+              path="/register_2"
+              component={RegisterPolicyScreen}
+            />
+            <Route
+              path="/register_3"
+              component={RegisterFormScreen}
+            />
+            <Route
+              path="/register_4"
+              component={RegisterPendingScreen}
+            />
+            <Route
+              path="/login"
+              component={LoginScreen}
+            />
+            <Route
+              path="/contact"
+              component={ContactScreen}
+            />
+            <Route
+              path="/ceo"
+              component={CeoWrapper}
+            />
+            <Route
+              component={NoMatchScreen}
+            />
+          </Switch>
+        { this.props.visible.base ? 
+          <Footer
+          /> : undefined }
+      </div>
     );
   }
 }
