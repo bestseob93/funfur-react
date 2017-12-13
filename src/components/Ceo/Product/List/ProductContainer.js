@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductContainer({children}) {
     return (
-        <div>
+        <div style={{overflowX: 'hidden'}}>
             {children}
         </div>
     );

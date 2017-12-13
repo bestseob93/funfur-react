@@ -125,7 +125,6 @@ class ProductModifyForm extends Component {
                             type="text"
                             className="form-control"
                             name="productName"
-                            value={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('product_name')}
                             required
                             onChange={changeHandler}
                         />

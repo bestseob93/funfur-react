@@ -524,7 +524,7 @@ class RegisterForm extends Component {
                     <div className="btn-container">
                         <button
                             type="button"
-                            className="btn btn-common btn-next register-two"
+                            className="btn btn-common btn-next register-submit"
                             onClick={handleSubmit}
                             ref={(btn) => { this.submitBtn = btn }}>승인 요청하기
                         </button>

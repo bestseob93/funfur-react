@@ -41,6 +41,7 @@ class Header extends Component {
             if(!authenticated) {
                 return (
                     <ul className={`nav navbar-nav navbar-right ${pathName === '/' ? 'home-route' : ''}`}>
+                        <li><Link to="/" className="page-scroll">홈</Link></li>
                         <li><Link to="/login" className="page-scroll">로그인</Link></li>
                         <li><Link to="/register" className="page-scroll">회원가입</Link></li>
                         <li><Link to="/contact" className="page-scroll">문의하기</Link></li>
@@ -52,6 +53,7 @@ class Header extends Component {
             } else {
                 return (
                     <ul className={`nav navbar-nav navbar-right ${pathName === '/' ? 'home-route' : ''}`}>
+                        <li><Link to="/" className="page-scroll">홈</Link></li>
                         <li><Link to="/" type="button" className="page-scroll" onClick={handleLogout}>로그아웃</Link></li>
                         <li><Link to="/contact" className="page-scroll">문의하기</Link></li>
                         <li><Link to="/items" className="page-scroll">상품소개</Link></li>
@@ -66,12 +68,6 @@ class Header extends Component {
                 <nav ref={ (nav) => this.navbar = nav } className="navbar navbar-default navbar-fixed-top">
                     <div className="container">
                         <div className="navbar-header page-scroll">
-                            {/*<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>*/}
                             <a className="navbar-toggle" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/bbeonbbeo/?ref=bookmarks">
                                 <i className="fa fa-facebook"></i>
                             </a>

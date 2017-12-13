@@ -11,6 +11,9 @@ body {
     width: 1420px;
     overflow: visible; } }
 
+.container {
+  overflow-x: hidden; }
+
 /* about font */
 .bm-dohyeon {
   font-family: "BMDoHyeon-OTF" !important;
@@ -218,6 +221,7 @@ div.row.sub-title {
 
 @media only screen and (max-width: 768px) {
   ._input_label {
+    float: left;
     text-align: left;
     padding-left: 20px; }
   .container._mb {
@@ -1712,11 +1716,6 @@ a.navbar-toggle {
   padding: 0 0 12px;
   border-bottom: 1px solid #979797;
   font-weight: 500; }
-  .register-title .register-sub-desc {
-    margin-left: 60px;
-    color: #757575;
-    width: 500px;
-    font-size: 12px; }
   .register-title ol {
     list-style: none;
     position: absolute;
@@ -1740,6 +1739,34 @@ a.navbar-toggle {
         color: #fdd831;
         padding: 0;
         margin: 0; }
+  .register-title .register-sub-desc {
+    margin-left: 60px;
+    color: #757575;
+    width: 500px;
+    font-size: 12px; }
+
+@media only screen and (max-width: 768px) {
+  .register-title h3.ns-R {
+    font-size: 18px;
+    padding-left: 30px; }
+    .register-title h3.ns-R span.funfur-color.bm-dohyeon {
+      font-size: 21px; }
+  .register-title ol {
+    bottom: 10px;
+    clear: both;
+    left: 70px;
+    line-height: 14px;
+    position: relative; }
+    .register-title ol li {
+      font-size: 11px;
+      padding: 4px; }
+    .register-title ol li.active {
+      font-size: 14px; }
+  .register-title .register-sub-desc {
+    width: 100%;
+    font-size: 10px;
+    padding: 10px 15px 0 15px;
+    margin-left: 0; } }
 
 .register-intro-advantage {
   margin: 70px 0 40px 0;

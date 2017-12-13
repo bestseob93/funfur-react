@@ -505,6 +505,11 @@ class ProductForm extends Component {
         }
     }
 
+    componentWillUnmount() {
+        const { FormActions } = this.props;
+        // TODO: Form Rest
+    }
+
     render() {
         const {
             changeHandler,
