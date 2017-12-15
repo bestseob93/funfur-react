@@ -78,6 +78,14 @@ export default function reducer(state = initialState, action) {
         case `${ORDER_DETAIL_SHIPPING}_REJECTED`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'orderDetailShipping'], false);
+        case `${ORDER_SHIPPING_REGISTER}_PENDING`:
+            return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.pending));
+        case `${ORDER_SHIPPING_REGISTER}_FULFILLED`:
+            return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'shippingRegister'], true);
+        case `${ORDER_SHIPPING_REGISTER}_REJECTED`:
+            return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'shippingRegister'], false);
         default:
             return state;
     }

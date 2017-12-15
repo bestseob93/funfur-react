@@ -37,8 +37,9 @@ export const requestDetailShipping = (id) => {
 
 export const requestShippingRegister = (shippingInfo, id) => {
     return storage.get('token').then((token) => {
+        console.log(shippingInfo);
         return axios({
-            method: 'GET',
+            method: 'POST',
             url: `${FUNFUR}/order_web/order_sheet/shipping/register/${id}`,
             headers: {
                 Authorization: token

@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+import {
+    Spinner
+} from 'components/Common';
+
 var ReactToastr = require('react-toastr');
 var { ToastContainer } = ReactToastr; // This is a React Element.
 // For Non ES6...
@@ -15,10 +20,32 @@ class OrderTable extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            editStatus: false
+        };
+
         this.addAlert = this.addAlert.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEditStatus = this.handleEditStatus.bind(this);
         this.renderTableItem = this.renderTableItem.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // 배송 정보 입력 도중 다른 주문 배송 정보 입력 시 초기화
+        if(this.props.form.get('id') !== nextProps.form.get('id')) {
+            this.props.FormActions.formChange({
+                formName: 'orders',
+                name: 'shippingCompany',
+                value: ''
+            });
+
+            this.props.FormActions.formChange({
+                formName: 'orders',
+                name: 'trackingNumber',
+                value: ''
+            });
+        }
     }
 
     /* toast 창띄우기 */
@@ -39,7 +66,6 @@ class OrderTable extends Component {
         const { FormActions } = this.props;
         console.log(id);
         console.log(ev);
-        this.addAlert('warning', 'hi')
 
         FormActions.orderFormChange({
             name: ev.target.name,
@@ -58,18 +84,40 @@ class OrderTable extends Component {
             trackingNumber: form.get('trackingNumber')
         };
 
+        if(shippingInfo.shippingMethod === '' || typeof shippingInfo.shippingMethod !== 'string') {
+            this.addAlert('error', '배송 방법을 선택해주세요!');
+        } else if(shippingInfo.shippingCompany === '' || typeof shippingInfo.shippingCompany !== 'string') {
+            this.addAlert('error', '회사명을 선택 또는 입력해주세요!');
+        } else if(shippingInfo.trackingNumber === '' || typeof shippingInfo.trackingNumber !== 'string') {
+            this.addAlert('error', '운송장 번호를 입력해주세요!');
+        }
+
         let orderId = form.get('id');
 
         try {
-            await OrderActions.shippingRegister(shippingInfo, orderId);
+            await OrderActions.orderShippingRegister(shippingInfo, orderId);
+            if(this.props.valid.shippingRegister) {
+                this.addAlert('success', '배송 정보가 등록되었습니다.');
+                await OrderActions.getOrderList();
+            }
         } catch (e) {
             if(e) console.log(e);
         }
     }
 
+    handleEditStatus() {
+        this.setState({
+            editStatus: !this.state.editStatus
+        });
+    }
+
     renderTableItem(datas) {
         console.log(datas);
-        const { changeHandler, handleSubmit } = this;
+        const {
+            changeHandler,
+            handleSubmit,
+            handleEditStatus
+        } = this;
         return datas.reverse().map((data, index) => {
             let newIndex = datas.size - index;
             
@@ -78,8 +126,7 @@ class OrderTable extends Component {
             let trackingNumber = null;
             let editBtn = null;
 
-            if(data.get('shipping_method') === null) {
-                
+            if(data.get('shipping_method') === null || this.state.editStatus) {
                 shippingMethod = (
                     <td className="half-line">
                         <select
@@ -94,12 +141,18 @@ class OrderTable extends Component {
                         </select>
                     </td>
                 );
+            } else {
+                shippingMethod = (
+                    <td className="half-line">{data.get('shipping_method')}</td>
+                );
             }
 
-            if(data.get('shipping_company') === null) {
+            if(data.get('shipping_company') === null || this.state.editStatus) {
+                // 배송방법 자체배송이면 select disabled
                 shippingCompany = (
                     <td className="half-line">
                         <select
+                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingMethod') === '자체배송' ? true : false : false}
                             className="form-control"
                             name="shippingCompany"
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingCompany') : ''}
@@ -111,28 +164,43 @@ class OrderTable extends Component {
                             ))}
                         </select>
                     </td>
-                )
+                );
+            } else {
+                shippingCompany = (
+                    <td className="half-line">{data.get('shipping_company')}</td>
+                );
             }
 
-            if(data.get('tracking_number') === null) {
+            if(data.get('tracking_number') === null || this.state.editStatus) {
+                let placeholderText = '';
+                if(this.props.form.get('shippingMethod') === '택배') {
+                    placeholderText = "운송장 번호를 입력해주세요";
+                } else if(this.props.form.get('shippingMethod') === '자체배송') {
+                    placeholderText = "기사님의 연락처를 입력해주세요";
+                }
                 trackingNumber = (
                     <td className="number-line">
                         <input
                             className="form-control"
                             type="text"
                             name="trackingNumber"
+                            placeholder={data.get('id') === this.props.form.get('id') ? placeholderText : ''}
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get('trackingNumber') : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
                         />
-                        <button type="button" onClick={handleSubmit}>입력</button>
+                        {this.props.status.shippingRegister.get('fetching') ? <Spinner /> : <button type="button" onClick={handleSubmit}>입력</button>}
                     </td>
-                )
+                );
+            } else {
+                trackingNumber = (
+                    <td className="half-line">{data.get('tracking_number')}</td>
+                );
             }
 
             // 배송 방법 입력되어 있다면 수정 버튼 생성
             if(data.get('tracking_number') !== null || data.get('shipping_method') !== null) {
                 editBtn = (
-                    <button>수정</button>
+                    <button onClick={handleEditStatus}>수정</button>
                 )
             } else {
                 editBtn = '';
@@ -150,7 +218,7 @@ class OrderTable extends Component {
                     {shippingCompany}
                     {trackingNumber}
                     {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
-                    {<td className="half-line">{editBtn}</td>}
+                    {<td className="half-line">{this.state.editStatus ? <span onClick={handleEditStatus}>취소</span> : editBtn}</td>}
                 </tr>
             );
         });
