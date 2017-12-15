@@ -12,6 +12,7 @@ const HANDLE_PROPORTION_CHK = "form/HANDLE?PROPORTION_CHK";
 const DELIVER_COST_FREE = "form/DELIVER_COST_FREE";
 const RESET_SECOND_SORTABLE = "form/RESET_SECOND_SORTABLE";
 
+const ORDER_FORM_CHANGE = "form/ORDER_FORM_CHANGE";
 /* Action Creators */
 export const formReset = createAction(FORM_RESET);
 export const formChange = createAction(FORM_CHANGE);
@@ -22,6 +23,8 @@ export const handleCheckBox = createAction(HANDLE_CHECK_BOX);
 export const handleProportionChk = createAction(HANDLE_PROPORTION_CHK);
 export const deliverCostFree = createAction(DELIVER_COST_FREE);
 export const resetSecondSortable = createAction(RESET_SECOND_SORTABLE);
+
+export const orderFormChange = createAction(ORDER_FORM_CHANGE);
 
 const initialState = fromJS({
     registerPolicy: {
@@ -104,7 +107,8 @@ const initialState = fromJS({
     orders: {
         shippingMethod: '',
         shippingCompany: '',
-        trackingNumber: ''
+        trackingNumber: '',
+        id: '',
     }
 });
 
@@ -113,7 +117,6 @@ export default function reducer(state = initialState, action) {
     console.log(action.payload);
     switch(action.type) {
         case FORM_CHANGE:
-            // const { formName, name, value } = action.payload;
             return state.setIn([action.payload.formName, action.payload.name], fromJS(action.payload.value));
         case FORM_RESET:
             /* 폼 초기화 */
@@ -145,6 +148,9 @@ export default function reducer(state = initialState, action) {
             return state.setIn(['product', 'productPosition_2'], fromJS(''))
                         .setIn(['product', 'firstSort_2'], fromJS(''))
                         .setIn(['product', 'secondSort_2'], fromJS(''));
+        case ORDER_FORM_CHANGE:
+            return state.setIn(['orders', action.payload.name], fromJS(action.payload.value))
+                        .setIn(['orders', 'id'], fromJS(action.payload.id));
         default:
             return state;
     }

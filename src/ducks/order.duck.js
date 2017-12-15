@@ -38,7 +38,24 @@ const initialState = fromJS({
         orderDetailShipping: false,
         shippingRegister: false,
     },
-    orders: []
+    orders: [],
+    orderDetail: {
+        productName: '',
+        buyerId: '',
+        shippingMethod: '',
+        productPrice: 0,
+        orderQuantity: 0,
+        shippingCost: 0,
+        proportionShipping: false,
+        createdAt: '',
+        buyerName: '',
+        receiverName: '',
+        receiverContact: '',
+        receiverBasicAddress: '',
+        receiverDetailAddress: '',
+        receiverPostCode: '',
+        shippingMessage: ''
+    }
 });
 
 export default function reducer(state = initialState, action) {
@@ -56,7 +73,7 @@ export default function reducer(state = initialState, action) {
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.pending));
         case `${ORDER_DETAIL_SHIPPING}_FULFILLED`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.fulfilled))
-                        .set('orders', fromJS(action.payload.data.results))
+                        .set('ordersDetail', fromJS(action.payload.data.result[0]))
                         .setIn(['valid', 'orderDetailShipping'], true);
         case `${ORDER_DETAIL_SHIPPING}_REJECTED`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.rejected))
