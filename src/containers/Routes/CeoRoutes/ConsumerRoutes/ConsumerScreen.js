@@ -33,7 +33,6 @@ export default connect(
             answerPost: state.product.getIn(['valid', 'answer'])
         },
         consumers: state.product.get('consumers'),
-        collapseIndex: state.ui.get('collapseIndex')
     }),
     dispatch => ({
         ProductActions: bindActionCreators(productDuck, dispatch),

@@ -9,7 +9,6 @@ class ConsumerContents extends Component {
         super(props);
 
         this.renderConsumerList = this.renderConsumerList.bind(this);
-        this.setCollapseIndex = this.setCollapseIndex.bind(this);
     }
 
     async componentDidMount() {
@@ -27,27 +26,32 @@ class ConsumerContents extends Component {
             return <ConsumerItem
                         key={`${index}Consumer`}
                         index={consumer.inquiry_id}
-                        setCollapseIndex={this.setCollapseIndex}
+                        productPic={consumer.product_photo_path}
+                        productName={consumer.product_name}
+                        question={consumer.question}
+                        productModel={consumer.model_name}
+                        userNickname={consumer.nickname}
+                        answer={consumer.answer}
+                        status={this.props.status}
+                        ProductActions={this.props.ProductActions}
+                        UiActions={this.props.UiActions}
                     />;
         });
-        console.log(datas);
         return mappedData;
-    }
-
-    setCollapseIndex(index) {
-        const { UiActions } = this.props;
-        UiActions.setCollapseIndex(index);
     }
 
     render() {
         const { renderConsumerList } = this;
         const emptyComponent = undefined;
+        console.log(this.props);
 
         return (
             <section className="consumer-contents">
                 {/* Spinner */}
                 { this.props.status.consumerList.get('fetching') || this.props.status.answerPost.get('fetching') ? <Spinner /> : emptyComponent }
-                { this.props.valid.consumerList ? renderConsumerList(this.props.consumers) : emptyComponent }
+                <ul className="consumer-item-wrapper">
+                    { this.props.valid.consumerList ? renderConsumerList(this.props.consumers) : emptyComponent }
+                </ul>
             </section>
         );
     }

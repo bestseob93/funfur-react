@@ -20,9 +20,6 @@ const SET_ICON_INDEX = "ui/SET_ICON_INDEX";
 const ADD_SECOND_SORTABLE = "ui/ADD_SECOND_SORTABLE";
 const REMOVE_SECOND_SORTABLE = "ui/REMOVE_SECOND_SORTABLE";
 
-/* CONSUMMER */
-const SET_COLLAPSE_INDEX = "ui/SET_COLLAPSE_INDEX";
-
 /* SWEET ALERT */
 const SHOW_SWEET_ALERT = "ui/SHOW_SWEET_ALERT";
 const HIDE_SWEET_ALERT = "ui/HIDE_SWEET_ALERT";
@@ -43,8 +40,6 @@ export const setIconIndex = createAction(SET_ICON_INDEX);
 
 export const addSecondSortable = createAction(ADD_SECOND_SORTABLE);
 export const removeSecondSortable = createAction(REMOVE_SECOND_SORTABLE);
-
-export const setCollapseIndex = createAction(SET_COLLAPSE_INDEX);
 
 export const showModal = createAction(SHOW_MODAL);
 export const hideModal = createAction(HIDE_MODAL);
@@ -73,8 +68,7 @@ const initialState = fromJS({
         alertMessage: '',
         alertType: '',
         confirmText: '',
-    },
-    collapseIndex: null
+    }
 });
 
 export default function reducer(state = initialState, action) {
@@ -95,8 +89,6 @@ export default function reducer(state = initialState, action) {
             return state.set('secondSortable', true);
         case REMOVE_SECOND_SORTABLE:
             return state.set('secondSortable', false);
-        case SET_COLLAPSE_INDEX:
-            return state.set('collapseIndex', action.payload);
         case SHOW_MODAL:
             return state.setIn(['visible', 'modal'], true);
         case HIDE_MODAL:

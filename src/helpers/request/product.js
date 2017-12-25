@@ -162,3 +162,22 @@ export const requestGetConsumerList = () => {
         });
     });
 }
+
+export const requestConsumerAnswer = (inquiryId, answer) => {
+    return storage.get('token').then((token) => {
+        return axios({
+            method: 'POST',
+            url: `${FUNFUR}/consumer_inquiry_web/thumbnail/${inquiryId}`,
+            headers: {
+                Authorization: token
+            },
+            data: {
+                answer
+            }
+        }).then(res => {
+            return res;
+        }).catch(err => {
+            if(err) throw err;
+        });
+    });
+}

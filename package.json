@@ -13,7 +13,6 @@
     "localforage": "^1.5.0",
     "moment": "^2.18.1",
     "react": "^15.5.4",
-    "react-css-collapse": "^3.0.2",
     "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.3",
