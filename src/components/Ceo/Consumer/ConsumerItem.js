@@ -101,7 +101,13 @@ class ConsumerItem extends Component {
                                     className="answer-form"
                                     placeholder="답변을 등록해주세요"
                                     style={{resize: 'none', height: 60}}
-                                /> : this.props.answer : this.props.answer
+                                /> : this.props.answer : <textarea
+                                                            onChange={this.changeHandler}
+                                                            value={this.state.answerText}
+                                                            className="answer-form"
+                                                            placeholder="답변을 등록해주세요"
+                                                            style={{resize: 'none', height: 60}}
+                                                        />
                             }
                         </div>
                         {
@@ -124,13 +130,13 @@ class ConsumerItem extends Component {
                                 답변 수정
                             </button> :
                             <button
-                                onClick={this.toggleEditMode}
+                                onClick={this.handleSubmit}
                                 type="button"
                                 className="btn funfur-btn"
                                 style={{marginTop: '10px'}}
                             >
-                                답변 수정
-                            </button>
+                                답변 등록
+                            </button> 
                         }
                         
                     </div>

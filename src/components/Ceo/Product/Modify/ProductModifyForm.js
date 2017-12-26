@@ -22,6 +22,7 @@ class ProductModifyForm extends Component {
     componentWillMount() {
         const { FormActions } = this.props;
         FormActions.formReset('product');
+        window.scrollTo(0, 0); // 수정 누를 시 스크롤 탑
     }
 
     async componentDidMount() {
@@ -124,6 +125,7 @@ class ProductModifyForm extends Component {
                         <input
                             type="text"
                             className="form-control"
+                            placeholder={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('product_name')}
                             name="productName"
                             required
                             onChange={changeHandler}
