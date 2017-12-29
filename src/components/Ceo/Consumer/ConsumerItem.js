@@ -35,6 +35,14 @@ class ConsumerItem extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.answer === null) {
+            this.setState({
+                editMode: !this.state.editMode
+            });
+        }
+    }
+
     changeHandler(ev) {
         this.setState({
             answerText: ev.target.value

@@ -5,6 +5,7 @@ import * as order from 'helpers/request/order';
 const ORDER_LIST = "order/ORDER_LIST";
 const ORDER_DETAIL_SHIPPING = "order/ORDER_DETAIL_SHIPPING";
 const ORDER_SHIPPING_REGISTER = "order/ORDER_SHIPPING_REGISTER";
+const ORDER_SHIPPING_UPDATE = "order/ORDER_SHIPPING_UPDATE";
 
 export const getOrderList = () => ({
     type: ORDER_LIST,
@@ -21,6 +22,11 @@ export const orderShippingRegister = (shippingInfo, id) => ({
     payload: order.requestShippingRegister(shippingInfo, id)
 });
 
+export const orderShippingUpdate = (shippingInfo, id) => ({
+    type: ORDER_SHIPPING_UPDATE,
+    payload: order.requestShippingUpdate(shippingInfo, id)
+});
+
 const initialState = fromJS({
     requests: {
         orderList: {
@@ -31,12 +37,16 @@ const initialState = fromJS({
         },
         shippingRegister: {
             ...requestStatus.request
+        },
+        shippingUpdate: {
+            ...requestStatus.request
         }
     },
     valid: {
         orderList: false,
         orderDetailShipping: false,
         shippingRegister: false,
+        shippingUpdate: false,
     },
     orders: [],
     orderDetail: {
@@ -86,6 +96,14 @@ export default function reducer(state = initialState, action) {
         case `${ORDER_SHIPPING_REGISTER}_REJECTED`:
             return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'shippingRegister'], false);
+        case `${ORDER_SHIPPING_UPDATE}_PENDING`:
+            return state.mergeIn(['requests', 'shippingUpdate'], fromJS(requestStatus.pending));
+        case `${ORDER_SHIPPING_UPDATE}_FULFILLED`:
+            return state.mergeIn(['requests', 'shippingUpdate'], fromJS(requestStatus.fulfilled))
+                        .setIn(['valid', 'shippingUpdate'], true);
+        case `${ORDER_SHIPPING_UPDATE}_REJECTED`:
+            return state.mergeIn(['requests', 'shippingUpdate'], fromJS(requestStatus.rejected))
+                        .setIn(['valid', 'shippingUpdate'], false);
         default:
             return state;
     }

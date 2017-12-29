@@ -14,8 +14,13 @@ class ProductModifyForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            btnDisabled: false
+        };
+
         this.changeHandler = this.changeHandler.bind(this);
         this.deleteAlert = this.deleteAlert.bind(this);
+        this.toggleSubmitBtn = this.toggleSubmitBtn.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
@@ -64,9 +69,17 @@ class ProductModifyForm extends Component {
         });
     }
 
+    toggleSubmitBtn(isDisabled) {
+        this.setState({
+            btnDisabled: isDisabled
+        });
+    }
+    
     async handleSubmit() {
         const { ProductActions, UiActions, form } = this.props;
         const { productAndDeliver } = this.props.productDetail;
+        const { toggleSubmitBtn } = this;
+        toggleSubmitBtn(true);
         const productId = this.props.location.pathname.split('/');
         const productInfo = {
             productName: form.get('productName') === "" ? productAndDeliver.get(0).get('product_name') : form.get('productName'),
@@ -87,6 +100,7 @@ class ProductModifyForm extends Component {
         try {
             await ProductActions.productModify(productId[3], productInfo);
             if(this.props.valid) {
+                toggleSubmitBtn(false);
                 UiActions.showSweetAlert({
                     message: '제품이 수정되었습니다.',
                     alertTitle: '',
@@ -95,6 +109,7 @@ class ProductModifyForm extends Component {
                 this.props.history.push('/ceo/products');
             }
         } catch (e) {
+            toggleSubmitBtn(false);
             if(e) throw e;
         }
     }
@@ -494,7 +509,7 @@ class ProductModifyForm extends Component {
                             type="button"
                             className="btn btn-common btn-next"
                             onClick={handleSubmit}
-                            ref={(btn) => { this.submitBtn = btn }}>수정하기
+                            disabled={this.state.btnDisabled}>수정하기
                         </button>
                     </div>
                 </div>

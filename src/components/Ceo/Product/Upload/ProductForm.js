@@ -18,10 +18,15 @@ class ProductForm extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            btnDisabled: false
+        };
+
         this.changeHandler = this.changeHandler.bind(this);
         this.handleCheckBox = this.handleCheckBox.bind(this);
         this.handleProportionChk = this.handleProportionChk.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
+        this.toggleSubmitBtn = this.toggleSubmitBtn.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderPosition = this.renderPosition.bind(this);
         this.renderFirstSort = this.renderFirstSort.bind(this);
@@ -117,13 +122,22 @@ class ProductForm extends Component {
             });
         }
     }
+
+    toggleSubmitBtn(isDisabled) {
+        this.setState({
+            btnDisabled: isDisabled
+        });
+    }
     
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
         const { UiActions, ProductActions, FormActions, form } = this.props;
 
+        const { toggleSubmitBtn } = this;
         const regNumberOnly = /^[0-9]*$/; // 숫자 체크 정규식
 
+        toggleSubmitBtn(true);
+        
         const productInfo = {
             productName: form.get('productName'),
             productPosition: form.get('productPosition'),
@@ -163,87 +177,97 @@ class ProductForm extends Component {
                 alertTitle: '',
                 message: "제품명을 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.productPosition === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "제품 위치를 설정해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.modelName === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "모델명을 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.modelOption === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "제품 옵션을 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.productColor === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "제품 색상을 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.sizeWidth === '' || productInfo.sizeDepth === '' || productInfo.sizeHeight === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "제품 사이즈를 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.mainMaterial === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "주요 소재를 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.prManufacturer === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "제조사를 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.productOrigin === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "원산지를 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.productPrice === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "소비자 가격을 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(!regNumberOnly.test(productInfo.productPrice)) {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "소비자 가격은 숫자만 입력해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.isDeliverFree === '') {
             UiActions.showSweetAlert({
                 value: 'warning',
                 alertTitle: '',
                 message: "배송비를 설정해주세요!"
             });
+            toggleSubmitBtn(false);
         } else if(productInfo.productImages.size < 1) {
             UiActions.showSweetAlert({
                 value: 'error',
                 alertTitle: '',
                 message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
             });
+            toggleSubmitBtn(false);
         } else {
             try {
                 await ProductActions.productUpload(productInfo);
 
-                this.submitBtn.classList.add('disabled');
                 if(this.props.valid.upload) {
-                    if(this.submitBtn.classList.contains('disabled')) {
-                        this.submitBtn.classList.remove('disabled');
-                    }
+                    toggleSubmitBtn(false);
                     UiActions.showSweetAlert({
                         value: 'success',
                         alertTitle: '',
@@ -255,8 +279,8 @@ class ProductForm extends Component {
                 }
             } catch (e) {
                 // TODO 스윗 알럿 추가
-                console.log(e.response);
                 if(e) {
+                    toggleSubmitBtn(false);
                     throw e;
                 }
             }
@@ -872,7 +896,8 @@ class ProductForm extends Component {
                             type="button"
                             className="btn btn-common btn-next"
                             onClick={handleSubmit}
-                            ref={(btn) => { this.submitBtn = btn }}>제품등록
+                            disabled={this.state.btnDisabled}
+                        >제품등록
                         </button>
                     </div>
                 </div>

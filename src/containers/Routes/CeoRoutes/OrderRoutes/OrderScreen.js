@@ -69,12 +69,14 @@ export default connect(
         status: {
             orderList: state.order.getIn(['requests', 'orderList']),
             orderDetailShipping: state.order.getIn(['requests', 'orderDetailShipping']),
-            shippingRegister: state.order.getIn(['requests', 'shippingRegister'])
+            shippingRegister: state.order.getIn(['requests', 'shippingRegister']),
+            shippingUpdate: state.order.getIn(['requests', 'shippingUpdate'])
         },
         valid: {
             orderList: state.order.getIn(['valid', 'orderList']),
             orderDetailShipping: state.order.getIn(['valid', 'orderDetailShipping']),
-            shippingRegister: state.order.getIn(['valid', 'shippingRegister'])
+            shippingRegister: state.order.getIn(['valid', 'shippingRegister']),
+            shippingUpdate: state.order.getIn(['valid', 'shippingUpdate'])
         },
         orders: state.order.get('orders'),
         form: state.form.get('orders'),
