@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ProductUpload, ProductForm } from 'components/Ceo/Product';
@@ -12,6 +13,9 @@ class CeoProductUpload extends Component {
     render() {
         return (
             <ProductUpload>
+                <Helmet>
+                    <title>제품 업로드</title>
+                </Helmet>
                 <ProductForm {...this.props} />
             </ProductUpload>
         );

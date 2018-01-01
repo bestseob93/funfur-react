@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -12,6 +13,9 @@ import * as productDuck from 'ducks/product.duck';
 function CeoCurrentProduct(props) {
     return (
         <ProductContainer>
+            <Helmet>
+                <title>제품 관리 / 등록</title>
+            </Helmet>
             <ProductHeader />
             <ProductContents {...props} />
         </ProductContainer>
