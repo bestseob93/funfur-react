@@ -7,6 +7,7 @@
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "dotenv": "^4.0.0",
+    "enzyme": "^3.3.0",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
     "jquery": "^3.2.1",
@@ -36,11 +37,15 @@
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.0.0",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react-app": "^3.0.0",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "6.23.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
     "chalk": "1.1.3",
     "css-loader": "0.28.1",
+    "enzyme-adapter-react-15": "^1.0.5",
     "eslint": "3.19.0",
     "eslint-config-react-app": "^1.0.4",
     "eslint-loader": "1.7.1",
@@ -62,6 +67,8 @@
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
     "react-hot-loader": "next",
+    "react-test-renderer": "^15.6.2",
+    "redux-mock-store": "^1.4.0",
     "style-loader": "0.17.0",
     "sw-precache-webpack-plugin": "0.9.1",
     "url-loader": "0.5.8",
@@ -79,15 +86,11 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+    "roots": [
+      "src/__tests__/"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
@@ -101,7 +104,14 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
-    }
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "modulePaths": [
+      "<rootDir>/src/containers/Routes/HomeRoutes"
+    ]
   },
   "babel": {
     "presets": [

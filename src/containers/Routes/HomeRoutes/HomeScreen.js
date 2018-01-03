@@ -7,18 +7,12 @@ import storage from 'helpers/localForage.helper';
 
 import * as authDuck from 'ducks/auth.duck';
 
-class HomeScreen extends Component {
+export class HomeScreen extends Component {
     constructor(props) {
         super(props);
 
         this.handleLogout = this.handleLogout.bind(this);
     }
-
-    // componentDidUpdate() {
-    //     if(this.props.authenticated) {
-    //         document.location = "/ceo";
-    //     } 
-    // }
 
     handleLogout() {
         const { AuthActions } = this.props;
