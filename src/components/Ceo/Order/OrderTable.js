@@ -94,12 +94,14 @@ class OrderTable extends Component {
         }
 
         let orderId = form.get('id');
+        console.log("submit order id = " + orderId);
 
         try {
             await OrderActions.orderShippingUpdate(shippingInfo, orderId);
             if(this.props.valid.shippingUpdate) {
-                this.addAlert('success', '배송 정보가 등록되었습니다.');
                 await OrderActions.getOrderList();
+                this.addAlert('success', '배송 정보가 등록되었습니다.');
+
             }
         } catch (e) {
             if(e) console.log(e);
@@ -118,21 +120,19 @@ class OrderTable extends Component {
             handleSubmit,
             handleEditStatus
         } = this;
+
         return datas.reverse().map((data, index) => {
             let newIndex = datas.size - index + dataIndex;
-            
-            let shippingMethod = null;
-            let shippingCompany = null;
-            let trackingNumber = null;
-            let editBtn = null;
 
-            if(data.get('shipping_method') === null || this.state.editStatus.get(newIndex-1)) {
-                shippingMethod = (
+            const shipColumn = ['shippingMethod', 'shippingCompany', 'trackingNumber'];
+
+            const editView = () => {
+                const shippingMethod = (
                     <td className="half-line">
                         <select
                             className="form-control"
                             name="shippingMethod"
-                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingMethod') : ''}
+                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[0]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
                         >
                             <option>선택</option>
@@ -141,21 +141,14 @@ class OrderTable extends Component {
                         </select>
                     </td>
                 );
-            } else {
-                shippingMethod = (
-                    <td className="half-line">{data.get('shipping_method')}</td>
-                );
-            }
 
-            if(data.get('shipping_company') === null || this.state.editStatus.get(newIndex-1)) {
-                // 배송방법 자체배송이면 select disabled
-                shippingCompany = (
+                const shippingCompany = (
                     <td className="half-line">
                         <select
-                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingMethod') === '자체배송' : false}
+                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) === '자체배송' : false}
                             className="form-control"
                             name="shippingCompany"
-                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingCompany') : ''}
+                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
                         >
                             <option>선택</option>
@@ -165,46 +158,78 @@ class OrderTable extends Component {
                         </select>
                     </td>
                 );
-            } else {
-                shippingCompany = (
-                    <td className="half-line">{data.get('shipping_company')}</td>
-                );
-            }
 
-            if(data.get('tracking_number') === null || this.state.editStatus.get(newIndex-1)) {
+
                 let placeholderText = '';
                 if(this.props.form.get('shippingMethod') === '택배') {
                     placeholderText = "운송장 번호를 입력해주세요";
                 } else if(this.props.form.get('shippingMethod') === '자체배송') {
                     placeholderText = "기사님의 연락처를 입력해주세요";
                 }
-                trackingNumber = (
+
+                const trackingNumber = (
                     <td className="number-line">
                         <input
                             className="form-control"
                             type="text"
                             name="trackingNumber"
                             placeholder={data.get('id') === this.props.form.get('id') ? placeholderText : ''}
-                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get('trackingNumber') : ''}
+                            value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[2]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
                         />
                         {this.props.status.shippingRegister.get('fetching') ? <Spinner /> : <button type="button" onClick={handleSubmit}>입력</button>}
                     </td>
                 );
-            } else {
-                trackingNumber = (
-                    <td className="half-line">{data.get('tracking_number')}</td>
-                );
-            }
 
-            // 배송 방법 입력되어 있다면 수정 버튼 생성
-            if(data.get('tracking_number') !== null || data.get('shipping_method') !== null) {
-                editBtn = (
-                    <button onClick={() => handleEditStatus(newIndex)}>수정</button>
-                )
-            } else {
-                editBtn = '';
-            }
+                return {shippingMethod, shippingCompany, trackingNumber};
+            };
+
+            const normalView = () => {
+                const shipColumn = ['shipping_method', 'shipping_company', 'tracking_number'];
+
+                const shippingMethod = (
+                    <td className="half-line">{data.get(shipColumn[0])}</td>
+                );
+                const shippingCompany = (
+                    <td className="half-line">{data.get(shipColumn[1])}</td>
+                );
+                const trackingNumber = (
+                    <td className="half-line">{data.get(shipColumn[2])}</td>
+                );
+
+                return {shippingMethod, shippingCompany, trackingNumber};
+            };
+
+            const isNeededInput = () => {
+                return data.get('shipping_method') === null || isEditMode();
+            };
+
+            const buttonView = () => {
+                const cancelButton = () => {
+                    return <span onClick={()=> handleEditStatus(newIndex)}>취소</span>;
+                };
+                const editButton = () => {
+                    let editBtn = '';
+
+                    const isModifying = () => {
+                        return data.get('tracking_number') !== null || data.get('shipping_method') !== null;
+                    };
+
+                    if(isModifying()) {
+                        editBtn = (
+                            <button onClick={() => handleEditStatus(newIndex)}>수정</button>
+                        )
+                    }
+
+                    return editBtn;
+                };
+
+                return <td className="half-line">{ isEditMode() ? cancelButton() : editButton()}</td>;
+            };
+
+            const isEditMode = () => {
+                return this.state.editStatus.get(newIndex-1);
+            };
 
             return (
                 <tr key={newIndex}>
@@ -213,12 +238,13 @@ class OrderTable extends Component {
                     <td className="number-line">{data.get('model_name')}</td>
                     <td className="half-line">{data.get('receiver_name')}</td>
                     <td className="half-line">{data.get('receiver_contact')}</td>
+
                     <td className="number-line">20170404</td>
-                    {shippingMethod}
-                    {shippingCompany}
-                    {trackingNumber}
+                    { isNeededInput() ? editView().shippingMethod : normalView().shippingMethod}
+                    { isNeededInput() ? editView().shippingCompany : normalView().shippingCompany}
+                    { isNeededInput() ? editView().trackingNumber : normalView().trackingNumber}
                     {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
-                    {<td className="half-line">{this.state.editStatus.get(newIndex-1) ? <span onClick={()=> handleEditStatus(newIndex)}>취소</span> : editBtn}</td>}
+                    { buttonView() }
                 </tr>
             );
         });
