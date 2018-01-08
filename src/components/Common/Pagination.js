@@ -7,15 +7,15 @@ class Pagination extends Component {
         items: PropTypes.array.isRequired,
         initialPage: PropTypes.number.isRequired,
         onChangePage: PropTypes.func.isRequired,
-    }
+    };
 
     static defaultProps = {
         initialPage: 1
-    }
+    };
 
     state = {
         pager: {}
-    }
+    };
 
     componentWillMount() {
         // 아이템 배열 비어있지 않을 경우 페이지 설정
@@ -45,7 +45,7 @@ class Pagination extends Component {
         
         this.setState({ pager: pager });
 
-        this.props.onChangePage(pageOfItems);
+        this.props.onChangePage(pageOfItems, items.size - pager.startIndex - 1);
     };
 
     getPage = (totalItems, currentPage, pageSize) => {
@@ -97,7 +97,7 @@ class Pagination extends Component {
             return null;
         }
         return (
-            <ul className="pagination">
+            <ul className="pagination justify-content-center">
                 <li className={pager.currentPage === 1 ? 'disabled' : ''}>
                     <a onClick={() => this.setPage(1)}>First</a>
                 </li>

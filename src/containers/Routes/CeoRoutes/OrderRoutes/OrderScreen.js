@@ -23,7 +23,8 @@ class OrderScreen extends Component {
         let exampleItems = _.range(1, 151).map(i => { return { id: i, name: 'Item ' + i }; });
         this.state = {
             exampleItems: exampleItems,
-            pageOfItems: []
+            pageOfItems: [],
+            pageOfIndex: 0
         };
 
         this.onChangePage = this.onChangePage.bind(this);
@@ -38,14 +39,14 @@ class OrderScreen extends Component {
         }
     }
 
-    onChangePage(pageOfItems) {
+    onChangePage(pageOfItems, index) {
         this.setState({
-            pageOfItems: pageOfItems
+            pageOfItems: pageOfItems,
+            pageOfIndex: index
         });
     }
 
     render() {
-        console.log(this.state.pageOfItems);
         if(this.props.status.orderList.get('fetching')) {
             return <Spinner />;
         }
@@ -53,7 +54,7 @@ class OrderScreen extends Component {
             <Order>
                 <OrderHeader />
                 <OrderContents>
-                    <OrderTable tableItems={this.state.pageOfItems} {...this.props} />
+                    <OrderTable tableItems={this.state.pageOfItems} tableIndex={this.state.pageOfIndex} {...this.props} />
                 </OrderContents>
                 <Pagination
                     items={this.props.orders}

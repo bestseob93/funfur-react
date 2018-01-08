@@ -87,7 +87,6 @@ class OrderTable extends Component {
 
         if(shippingInfo.shippingMethod === '' || typeof shippingInfo.shippingMethod !== 'string') {
             this.addAlert('error', '배송 방법을 선택해주세요!');
-
         } else if(shippingInfo.shippingCompany === '' || typeof shippingInfo.shippingCompany !== 'string') {
             this.addAlert('error', '회사명을 선택 또는 입력해주세요!');
         } else if(shippingInfo.trackingNumber === '' || typeof shippingInfo.trackingNumber !== 'string') {
@@ -97,7 +96,7 @@ class OrderTable extends Component {
         let orderId = form.get('id');
 
         try {
-            await OrderActions.orderShippingRegister(shippingInfo, orderId);
+            await OrderActions.orderShippingUpdate(shippingInfo, orderId);
             if(this.props.valid.shippingRegister) {
                 this.addAlert('success', '배송 정보가 등록되었습니다.');
                 await OrderActions.getOrderList();
@@ -113,14 +112,14 @@ class OrderTable extends Component {
       });
     }
 
-    renderTableItem(datas) {
+    renderTableItem(datas, dataIndex) {
         const {
             changeHandler,
             handleSubmit,
             handleEditStatus
         } = this;
         return datas.reverse().map((data, index) => {
-            let newIndex = datas.size - index;
+            let newIndex = datas.size - index + dataIndex;
             
             let shippingMethod = null;
             let shippingCompany = null;
@@ -255,7 +254,7 @@ class OrderTable extends Component {
                 </thead>
                 <tbody>
                     {/* 리스트 뿌려주면 되는 곳 */}
-                    {this.renderTableItem(this.props.tableItems)}
+                    {this.renderTableItem(this.props.tableItems, this.props.tableIndex)}
                 </tbody>
             </table>
         );
