@@ -97,7 +97,7 @@ class OrderTable extends Component {
 
         try {
             await OrderActions.orderShippingUpdate(shippingInfo, orderId);
-            if(this.props.valid.shippingRegister) {
+            if(this.props.valid.shippingUpdate) {
                 this.addAlert('success', '배송 정보가 등록되었습니다.');
                 await OrderActions.getOrderList();
             }
