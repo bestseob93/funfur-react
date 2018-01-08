@@ -37,16 +37,20 @@ class Pagination extends Component {
 
         pager = this.getPage(items.size, page);
 
+        if(page === pager.totalPages + 1) {
+            return ;
+        }
+
         let pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
         
         this.setState({ pager: pager });
 
         this.props.onChangePage(pageOfItems);
-    }
+    };
 
     getPage = (totalItems, currentPage, pageSize) => {
         currentPage = currentPage || 1;
-        pageSize = pageSize || 14;
+        pageSize = pageSize || 10;
 
         let totalPages = Math.ceil(totalItems / pageSize);
 

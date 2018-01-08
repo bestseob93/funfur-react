@@ -28,7 +28,7 @@ class LoginScreen extends Component {
                     router={this.context.router}
                 />
             </Login>
-        );
+        ); 
     }
 }
 

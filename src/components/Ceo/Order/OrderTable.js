@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 
 import {
     Spinner
@@ -21,7 +22,7 @@ class OrderTable extends Component {
         super(props);
 
         this.state = {
-            editStatus: false
+            editStatus: List([false])
         };
 
         this.addAlert = this.addAlert.bind(this);
@@ -86,6 +87,7 @@ class OrderTable extends Component {
 
         if(shippingInfo.shippingMethod === '' || typeof shippingInfo.shippingMethod !== 'string') {
             this.addAlert('error', '배송 방법을 선택해주세요!');
+
         } else if(shippingInfo.shippingCompany === '' || typeof shippingInfo.shippingCompany !== 'string') {
             this.addAlert('error', '회사명을 선택 또는 입력해주세요!');
         } else if(shippingInfo.trackingNumber === '' || typeof shippingInfo.trackingNumber !== 'string') {
@@ -105,14 +107,13 @@ class OrderTable extends Component {
         }
     }
 
-    handleEditStatus() {
-        this.setState({
-            editStatus: !this.state.editStatus
-        });
+    handleEditStatus(index) { 
+      this.setState({
+          editStatus: this.state.editStatus.update(index-1, val => !val)
+      });
     }
 
     renderTableItem(datas) {
-        console.log(datas);
         const {
             changeHandler,
             handleSubmit,
@@ -126,7 +127,7 @@ class OrderTable extends Component {
             let trackingNumber = null;
             let editBtn = null;
 
-            if(data.get('shipping_method') === null || this.state.editStatus) {
+            if(data.get('shipping_method') === null || this.state.editStatus.get(newIndex-1)) {
                 shippingMethod = (
                     <td className="half-line">
                         <select
@@ -147,12 +148,12 @@ class OrderTable extends Component {
                 );
             }
 
-            if(data.get('shipping_company') === null || this.state.editStatus) {
+            if(data.get('shipping_company') === null || this.state.editStatus.get(newIndex-1)) {
                 // 배송방법 자체배송이면 select disabled
                 shippingCompany = (
                     <td className="half-line">
                         <select
-                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingMethod') === '자체배송' ? true : false : false}
+                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingMethod') === '자체배송' : false}
                             className="form-control"
                             name="shippingCompany"
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get('shippingCompany') : ''}
@@ -171,7 +172,7 @@ class OrderTable extends Component {
                 );
             }
 
-            if(data.get('tracking_number') === null || this.state.editStatus) {
+            if(data.get('tracking_number') === null || this.state.editStatus.get(newIndex-1)) {
                 let placeholderText = '';
                 if(this.props.form.get('shippingMethod') === '택배') {
                     placeholderText = "운송장 번호를 입력해주세요";
@@ -200,7 +201,7 @@ class OrderTable extends Component {
             // 배송 방법 입력되어 있다면 수정 버튼 생성
             if(data.get('tracking_number') !== null || data.get('shipping_method') !== null) {
                 editBtn = (
-                    <button onClick={handleEditStatus}>수정</button>
+                    <button onClick={() => handleEditStatus(newIndex)}>수정</button>
                 )
             } else {
                 editBtn = '';
@@ -218,14 +219,13 @@ class OrderTable extends Component {
                     {shippingCompany}
                     {trackingNumber}
                     {/* TODO: 주문서 보기 누르면 배송 준비중으로 상태 변경 */}
-                    {<td className="half-line">{this.state.editStatus ? <span onClick={handleEditStatus}>취소</span> : editBtn}</td>}
+                    {<td className="half-line">{this.state.editStatus.get(newIndex-1) ? <span onClick={()=> handleEditStatus(newIndex)}>취소</span> : editBtn}</td>}
                 </tr>
             );
         });
     }
 
     render() {
-        console.log(this.props.tableItems);
         return (
             <table className="order-table ns-R">
                             {/* 토스트 컨테이너 */}
