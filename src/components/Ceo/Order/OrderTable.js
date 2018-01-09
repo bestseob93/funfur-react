@@ -130,7 +130,7 @@ class OrderTable extends Component {
                 const shippingMethod = (
                     <td className="half-line">
                         <select
-                            className="form-control"
+                            className="form-control shippingMethod"
                             name="shippingMethod"
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[0]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
@@ -146,7 +146,7 @@ class OrderTable extends Component {
                     <td className="half-line">
                         <select
                             disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) === '자체배송' : false}
-                            className="form-control"
+                            className="form-control shippingCompany"
                             name="shippingCompany"
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
@@ -170,14 +170,14 @@ class OrderTable extends Component {
                 const trackingNumber = (
                     <td className="number-line">
                         <input
-                            className="form-control"
+                            className="form-control trackingNumber"
                             type="text"
                             name="trackingNumber"
                             placeholder={data.get('id') === this.props.form.get('id') ? placeholderText : ''}
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[2]) : ''}
                             onChange={(ev) => changeHandler(data.get('id'), ev)}
                         />
-                        {this.props.status.shippingRegister.get('fetching') ? <Spinner /> : <button type="button" onClick={handleSubmit}>입력</button>}
+                        {this.props.status.shippingRegister.get('fetching') ? <Spinner /> : <button className="input" type="button" onClick={handleSubmit}>입력</button>}
                     </td>
                 );
 
@@ -206,7 +206,7 @@ class OrderTable extends Component {
 
             const buttonView = () => {
                 const cancelButton = () => {
-                    return <span onClick={()=> handleEditStatus(newIndex)}>취소</span>;
+                    return <button className="cancel" onClick={()=> handleEditStatus(newIndex)}>취소</button>;
                 };
                 const editButton = () => {
                     let editBtn = '';
@@ -217,7 +217,7 @@ class OrderTable extends Component {
 
                     if(isModifying()) {
                         editBtn = (
-                            <button onClick={() => handleEditStatus(newIndex)}>수정</button>
+                            <button className="edit" onClick={() => handleEditStatus(newIndex)}>수정</button>
                         )
                     }
 
@@ -232,7 +232,7 @@ class OrderTable extends Component {
             };
 
             return (
-                <tr key={newIndex}>
+                <tr className="body" key={newIndex}>
                     <td className="number-line">{newIndex}</td>
                     <td className="half-line">{data.get('product_order_number')}</td>
                     <td className="number-line">{data.get('model_name')}</td>
@@ -261,11 +261,11 @@ class OrderTable extends Component {
                 />
                 <thead>
                     <tr>
-                        <th rowSpan={2}>No.</th>
-                        <th colSpan={2}>제품</th>
-                        <th colSpan={3}>구매자</th>
-                        <th colSpan={3}>배송</th>
-                        <th rowSpan={2}>주문서</th>
+                        <th rowSpan={2} className="head-NO">No.</th>
+                        <th colSpan={2} className="head-product">제품</th>
+                        <th colSpan={3} className="head-buyer">구매자</th>
+                        <th colSpan={3} className="head-shipping">배송</th>
+                        <th rowSpan={2} className="head-sheet">주문서</th>
                     </tr>
                     <tr>
                         <th>주문번호</th>
@@ -273,9 +273,9 @@ class OrderTable extends Component {
                         <th>구매자</th>
                         <th>연락처</th>
                         <th>주문일</th>
-                        <th>배송방법</th>
-                        <th>택배회사</th>
-                        <th>운송장 번호</th>
+                        <th className="shippingMethod">배송방법</th>
+                        <th className="shippingCompany">택배회사</th>
+                        <th className="trackingNumber">운송장 번호</th>
                     </tr>
                 </thead>
                 <tbody>

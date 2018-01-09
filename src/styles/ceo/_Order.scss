@@ -1,6 +1,6 @@
 @media only screen and (min-width: 767px) {
     .container.order-wrapper {
-        width: 80%;
+        width: 95%;
     }
 }
 
@@ -20,6 +20,36 @@
     }
     thead {
         border: 1px solid aliceblue;
+
+        .head-NO {
+            width: 46px;
+        }
+
+        .head-product {
+            width: 213px;
+        }
+
+        .head-buyer {
+            width: 231px;
+        }
+
+        .head-shipping {
+            width: 450px;
+        }
+
+        .head-sheet {
+            width: 54px;
+        }
+
+        .shippingMethod {
+            width: 84px;
+        }
+
+        .shippingCompany {
+            width: 120px;
+        }
+
+
     }
     th {
         padding: 5px 0;
@@ -27,13 +57,50 @@
         color: #fff;
         border: 1px solid #fff;
     }
-    td {
-        padding: 10px 0;
-    }
     td.number-line {
         border-right: 1px solid #979797;
     }
     td.half-line {
         border-right: 0.5px solid #979797;
     }
+
+    tbody .body{
+        height: 50px;
+    }
+
+    .form-control {
+        height: 21px;
+        text-align: center;
+        display: inline;
+
+        &.shippingMethod {
+            width: 70px;
+        }
+
+        &.shippingCompany {
+            width: 100px;
+
+        }
+
+        &.trackingNumber {
+            width: 192px;
+            height: 30px;
+            margin-right: 10px;
+            background-color: #ededed;
+        }
+    }
+
+    button {
+        width: 40px;
+        height: 25px;
+        background-color: #ffffff;
+        border: solid 0.7px #000000;
+
+        &.input {
+            border: solid 1px #fdd831;
+            background-color: #fdd831;
+        }
+
+    }
+
 }
