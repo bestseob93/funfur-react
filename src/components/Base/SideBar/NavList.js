@@ -21,7 +21,7 @@ function NavList(props) {
         <li className={active ? index === 'navIndex-1' || index === 'navIndex-4' ? 'nav-list active icon-active' : 'nav-list active' : 'nav-list'}
             id={index === 'navIndex-1' ? 'iconIndex-0' : index === 'navIndex-4' ? 'iconIndex-9' : null}
             onClick={(li) => {
-                console.log(li.currentTarget);
+                //console.log(li.currentTarget);
                 onClick(li.currentTarget.id, index);
             }}
         >

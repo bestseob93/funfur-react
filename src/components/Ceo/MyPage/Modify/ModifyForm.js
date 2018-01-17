@@ -69,8 +69,6 @@ class ModifyForm extends Component {
             ceoEmail: form.get('ceoEmail_1') + '@' + form.get('ceoEmail_2')
         };
 
-        console.log(ceoInfo);
-
         if(ceoInfo.ceoCall === '' || ceoInfo.ceoEmail.length < 2) {
             this.addAlert('warning', '전화번호나 이메일을 입력해주세요. 변경하지 않으시려면 취소를 눌러주세요!');
         } else {

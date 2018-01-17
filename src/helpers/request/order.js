@@ -37,7 +37,6 @@ export const requestDetailShipping = (id) => {
 
 export const requestShippingRegister = (shippingInfo, id) => {
     return storage.get('token').then((token) => {
-        console.log(shippingInfo);
         return axios({
             method: 'POST',
             url: `${FUNFUR}/order_web/order_sheet/shipping/register/${id}`,
@@ -59,7 +58,6 @@ export const requestShippingRegister = (shippingInfo, id) => {
 
 export const requestShippingUpdate = (shippingInfo, id) => {
     return storage.get('token').then((token) => {
-        console.log(shippingInfo);
         return axios({
             method: 'PUT',
             url: `${FUNFUR}/order_web/order_sheet/shipping/update/${id}`,

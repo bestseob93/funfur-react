@@ -20,7 +20,7 @@ class Header extends Component {
     handleScroll(ev) {
         // let scrollTop = ev.srcElement.body.scrollTop;
         let scrollTop = ev.currentTarget.scrollY;
-        console.log(scrollTop);
+        //console.log(scrollTop);
         let isScrolling = false;
         if(scrollTop > 20) {
             isScrolling = true;

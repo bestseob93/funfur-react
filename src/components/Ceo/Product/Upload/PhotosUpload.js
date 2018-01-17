@@ -7,7 +7,8 @@ class PhotosUpload extends Component {
         super(props);
         this.state = {
             dragIndex: null,
-            newIndex: null
+            newIndex: null,
+            isAddtional: false
         };
         
         this.handleTocuhStart = this.handleTocuhStart.bind(this);
@@ -18,6 +19,7 @@ class PhotosUpload extends Component {
         this.handleFile = this.handleFile.bind(this);
         this.onOpenClick = this.onOpenClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleAddLine = this.handleAddLine.bind(this);
     }
 
     dragStart(e) {
@@ -26,17 +28,6 @@ class PhotosUpload extends Component {
         this.setState({
             dragIndex: Number(draggingIndex)
         });
-
-        console.log('----------- drag start -------------');
-        let dt = e.dataTransfer;
-        // if (dt !== undefined) {
-        //   e.dataTransfer.setData('text', e.target.innerHTML);
-        //   console.log(dt);
-        //   if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
-        //     dt.setDragImage(e.target, 0, 0);
-        //     console.log(dt);
-        //   }
-        // }
     }
 
     dragOver(e) {
@@ -65,11 +56,11 @@ class PhotosUpload extends Component {
     }
 
     handleTocuhStart(e) {
-        console.log(e.touches);
+        //console.log(e.touches);
     }
 
     handleTouchMove(e) {
-        console.log(e.touches);
+        //console.log(e.touches);
     }
 
     /* react-dropzone을 이용하여 redux의 form 업데이트 */
@@ -88,8 +79,6 @@ class PhotosUpload extends Component {
 
     handleClose(presentPhoto, productId, photoIndex, index) {
         const { FormActions, ProductActions, UiActions } = this.props;
-        console.log(photoIndex);
-        console.log(index);
         if(photoIndex === null && productId === null) {
             FormActions.formUploadRemove({
                 formName: 'product',
@@ -115,6 +104,12 @@ class PhotosUpload extends Component {
         }
     }
 
+    handleAddLine() {
+        this.setState({
+            isAddtional: !this.state.isAddtional
+        })
+    }
+
     render() {
         const {
             form
@@ -128,13 +123,12 @@ class PhotosUpload extends Component {
             handleTouchMove,
             handleFile,
             onOpenClick,
-            handleClose
+            handleClose,
+            handleAddLine
         } = this;
 
         let formValues = form.toJS();
         let renderDroppedImage = [];
-        console.log(this.props.form.toJS());
-        console.log(formValues.productImages[0]);
 
         const renderDropzoneHidden = (
             <div className="dropzone-hidden">
@@ -149,23 +143,23 @@ class PhotosUpload extends Component {
         );
 
         const renderDropzonePresent = (
-            <div className="product-box text-center">                                  
+            <div className="product-box text-center add-photo">
                 <Dropzone
                     ref={(node) => { this.dropzone = node;}}
-                    className="upload-dropzone"
+                    className="upload-dropzone present"
                     onDrop={handleFile}
                     accept="image/jpeg, image/png"
                     multiple={true}
                 >
                     <div className="product-box-contents add-product product-photo">
-                        <p><i className="fa fa-plus-square fa-2x"></i><span>대표 사진</span></p>
+                        <p className="product-inside"><span>대표 사진</span></p>
                     </div>
                 </Dropzone>
             </div>
         );
 
         const renderDropzone = (
-            <div className="product-box text-center">                                  
+            <div className="product-box text-center add-photo">
                 <Dropzone
                     ref={(node) => { this.dropzone = node;}}
                     className="upload-dropzone"
@@ -174,17 +168,14 @@ class PhotosUpload extends Component {
                     multiple={true}
                 >
                     <div className="product-box-contents add-product product-photo">
-                        <p><i className="fa fa-plus-square fa-2x"></i><span>사진 추가</span></p>
+                        <p className="product-inside"></p>
                     </div>
                 </Dropzone>
             </div>
         );
 
-
-
         if(formValues.productImages.length > 0) {
             formValues.productImages.map((value, index) => {
-                console.log(value);
                 renderDroppedImage.push((
                     <div
                         key={value.name === undefined ? value.id : value.name}
@@ -200,7 +191,7 @@ class PhotosUpload extends Component {
                         onTouchEnd={dragStop}
                     >
                         <div className="product-thumbnail case-upload">
-                            <i className="fa fa-times-circle" onClick={() => value.id !== undefined ? value.showing_photo === 'selected' ? handleClose(value.showing_photo, value.product_id, value.id, index) : handleClose(null, value.product_id, value.id, index) : handleClose(null, null, null, index)}></i>
+                            <i className="fa fa-times-circle" onClick={() => value.id !== undefined ? value.showing_photo === 'selected' ? handleClose(value.showing_photo, value.product_id, value.id, index) : handleClose(null, value.product_id, value.id, index) : handleClose(null, null, null, index)} />
                             <img
                                 className="id-image-after"
                                 key={value.name === undefined ? (value.id + value.product_id).toString() : value.name}
@@ -216,50 +207,86 @@ class PhotosUpload extends Component {
             renderDroppedImage = null;
         }
 
-        console.log(this.state.renderImages);
+        const uploadOneLinePrimitive = (index) => {
+            const isEmptyImages = (index) => {
+                return formValues.productImages[index] !== undefined;
+            };
+
+            return (
+                <div>
+                    <div className="col-md-offset-1 col-md-2 col-xs-offset-1 col-xs-5">
+                        { isEmptyImages(index) ? renderDropzoneHidden : renderDropzonePresent }
+                        { isEmptyImages(index) ? renderDroppedImage[index] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
+                        { isEmptyImages(index + 1) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 1) ? renderDroppedImage[index + 1] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
+                        { isEmptyImages(index + 2) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 2) ? renderDroppedImage[index + 2] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
+                        { isEmptyImages(index + 3) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 3) ? renderDroppedImage[index + 3] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
+                        { isEmptyImages(index + 4) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 4) ? renderDroppedImage[index + 4] : undefined }
+                    </div>
+                </div>
+            )
+        };
+
+        const uploadOneLine = (index) => {
+            const isEmptyImages = (index) => {
+                return formValues.productImages[index] !== undefined;
+            };
+
+            return (
+                <div>
+                    <div className="col-md-offset-1 col-md-2 col-xs-offset-1 col-sm-4 ">
+                        { isEmptyImages(index) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index) ? renderDroppedImage[index] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-sm-4">
+                        { isEmptyImages(index + 1) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 1) ? renderDroppedImage[index + 1] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-sm-4">
+                        { isEmptyImages(index + 2) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 2) ? renderDroppedImage[index + 2] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-sm-4">
+                        { isEmptyImages(index + 3) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 3) ? renderDroppedImage[index + 3] : undefined }
+                    </div>
+                    <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-sm-4">
+                        { isEmptyImages(index + 4) ? renderDropzoneHidden : renderDropzone }
+                        { isEmptyImages(index + 4) ? renderDroppedImage[index + 4] : undefined }
+                    </div>
+                </div>
+            )
+        };
+
+        const addtionalLine = () => {
+            return <div>
+                {uploadOneLine(10)}
+                {uploadOneLine(15)}
+            </div>
+        };
 
         return (
             <div className="row form-box">
-                <div className="col-md-offset-1 col-md-2 col-xs-offset-1 col-xs-5">
-                    { formValues.productImages[0] !== undefined ?  renderDropzoneHidden :  renderDropzonePresent }
-                    { formValues.productImages[0] !== undefined ? renderDroppedImage[0] : undefined }
+                {uploadOneLinePrimitive(0)}
+                {uploadOneLine(5)}
+
+                <div className="addAddtionalPhoto">
+                    <div className="center">
+                        <button className="no-style" onClick={handleAddLine}>사진 더 추가하기</button>
+                    </div>
                 </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
-                    { formValues.productImages[1] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[1] !== undefined ? renderDroppedImage[1] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
-                    { formValues.productImages[2] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[2] !== undefined ? renderDroppedImage[2] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
-                    { formValues.productImages[3] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[3] !== undefined ? renderDroppedImage[3] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
-                    { formValues.productImages[4] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[4] !== undefined ? renderDroppedImage[4] : undefined }
-                </div>
-                <div className="col-md-offset-1 col-md-2 col-xs-offset-0 col-xs-5">
-                    { formValues.productImages[5] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[5] !== undefined ? renderDroppedImage[5] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
-                    { formValues.productImages[6] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[6] !== undefined ? renderDroppedImage[6] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
-                    { formValues.productImages[7] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[7] !== undefined ? renderDroppedImage[7] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-1 col-xs-5">
-                    { formValues.productImages[8] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[8] !== undefined ? renderDroppedImage[8] : undefined }
-                </div>
-                <div className="col-md-offset-0 col-md-2 col-xs-offset-0 col-xs-5">
-                    { formValues.productImages[9] !== undefined ?  renderDropzoneHidden : renderDropzone }
-                    { formValues.productImages[9] !== undefined ? renderDroppedImage[9] : undefined }
-                </div>
+                {this.state.isAddtional || formValues.productImages.length > 10 ? addtionalLine() : undefined}
             </div>
         );
     }

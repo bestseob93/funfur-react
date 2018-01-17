@@ -13,7 +13,6 @@ import {
 class PolicyScreen extends Component {
     render() {
         const { match } = this.props;
-        console.log(window.location);
         return (
             <div className="container" style={{marginTop: '80px'}}>
                 <ul className="policy-nav-wrapper">

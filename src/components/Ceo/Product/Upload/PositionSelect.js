@@ -3,11 +3,9 @@ import React from 'react';
 function PositionSelect({first, changeHandler, formValue}) {
     const positionArr_1 = ['거실', '주방', '침실', '키즈/유아', '학생/서재', '인테리어 소품', '화장실'];
     const positionIndex = positionArr_1.indexOf(formValue);
-    console.log(formValue);
-    console.log(positionIndex);
+
     let positionArr_2 = [];
 
-    
     if(first) {
         return (
             <select

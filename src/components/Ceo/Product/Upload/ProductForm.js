@@ -275,7 +275,7 @@ class ProductForm extends Component {
                     });
 
                     FormActions.formReset('product');
-                    this.props.history.push('/ceo');
+                    this.props.history.push('/ceo/products');
                 }
             } catch (e) {
                 // TODO 스윗 알럿 추가
@@ -516,7 +516,6 @@ class ProductForm extends Component {
 
     renderSortTwo() {
         const { UiActions, FormActions } = this.props;
-        console.log(this.props.form.get('productPosition'));
         if(this.props.isSecondSortable) {
                 UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
                 FormActions.resetSecondSortable();
@@ -886,15 +885,14 @@ class ProductForm extends Component {
                 </div>
                 <SubTitle title="사진 업로드" />
                 <PhotosUpload {...this.props} />
-                <div className="row form-box padding-top50">
+                <div className="row form-box padding-top50 padding-bottom">
                     <div className="btn-container">
-                        <Link
-                            to="/ceo/products"
-                            className="btn btn-common btn-prev">취소하기
+                        <Link to="/ceo/products">
+                            <button className="btn btn-common btn-prev modify delete">취소하기</button>
                         </Link>
                         <button
                             type="button"
-                            className="btn btn-common btn-next"
+                            className="btn btn-common btn-next modify confirm"
                             onClick={handleSubmit}
                             disabled={this.state.btnDisabled}
                         >제품등록

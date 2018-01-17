@@ -23,14 +23,14 @@
     cursor: pointer;
 
     .product-box-contents.add-product.on-contents {
-        background: url("../img/plus.svg") no-repeat;
+        background: url("../img/icon-add-plus.svg") no-repeat;
         background-size: 20%;
         background-position: center;
     }
 
     .product-box-contents.add-product {
-        border: 1px dotted #e7eaec;
-        height: 200px;
+        border: 0;
+        height: 160px;
         p:first-child {
             margin: 80px 0;
             i {
@@ -49,12 +49,14 @@
     clear: both;
     text-align: center;
     .product-thumbnail.case-upload {
-        height: 200px !important;
+        height: 160px !important;
         background-color: #fff;
+        border-radius: 10px;
         i {
             position: absolute;
-            z-index: 1000;
-            right: 0;
+            z-index: 2;
+            right: 3px;
+            top: 3px;
         }
     }
     .product-thumbnail {
@@ -99,4 +101,60 @@
 .product-delivery-info {
     font-size: 12px;
     padding: 10px;
+}
+
+.addAddtionalPhoto {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration-line: underline;
+    position: relative;
+    display: inline-block;
+}
+
+.no-style {
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.center {
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    border: thin black;
+    border-bottom-style: solid;
+    margin: 5rem;
+    padding-bottom: 5px;
+}
+
+.padding-bottom {
+    padding-bottom: 150px !important;
+}
+
+.modify {
+    width: 200px;
+    height: 60px;
+    font-size: 20px !important;
+    letter-spacing: 3.5px;
+    text-align: center;
+    color: #ffffff;
+
+    &.confirm {
+        background-color: #fdd831;
+    }
+
+    &.delete {
+        background-color: #ffffff;
+        border-color: #757575;
+    }
+}
+
+.add-photo {
+    height: 160px;
+}
+
+p.product-inside {
+    position: relative;
+    top: 30px;
 }

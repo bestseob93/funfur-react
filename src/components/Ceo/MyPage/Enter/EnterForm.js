@@ -58,7 +58,7 @@ class EnterForm extends Component {
         } else {
             try {
                 await MyPageActions.checkPassword(password);
-                console.log(this.props.confirmed);
+
                 if(this.props.confirmed) {
                     this.props.history.push('/ceo/mypage_2');
                 }

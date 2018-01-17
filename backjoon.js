@@ -19,10 +19,10 @@ rl.question('input: ', (answer) => {
 				} else if(input/5 < 1) {
 					return 1;
 				} else if(input%5 !== 0) {
-					console.log(input);
-					console.log(input%5);
+					//console.log(input);
+					//console.log(input%5);
 					if(input%5 < 5) {
-						console.log(input%3);
+						//console.log(input%3);
 					}
 				}
 				rl.close();

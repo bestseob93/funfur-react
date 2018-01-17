@@ -13,7 +13,6 @@ import * as contactDuck from 'ducks/contact.duck';
 
 class ContactScreen extends Component {
     render() {
-        console.log(this.props.status.toJS());
         return (
             <Contact>
                 <div className="row">

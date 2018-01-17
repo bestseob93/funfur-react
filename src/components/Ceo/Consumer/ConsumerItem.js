@@ -82,7 +82,6 @@ class ConsumerItem extends Component {
     }
 
     render() {
-        console.log(this.props);
         if(this.props.status.answerPost.get('fetching')) return <Spinner />;
         else {
             return (

@@ -45,7 +45,7 @@ class Pagination extends Component {
         
         this.setState({ pager: pager });
 
-        this.props.onChangePage(pageOfItems, items.size - pager.startIndex - 1);
+        this.props.onChangePage(pageOfItems, pager.startIndex);
     };
 
     getPage = (totalItems, currentPage, pageSize) => {
@@ -88,7 +88,7 @@ class Pagination extends Component {
             endIndex: endIndex,
             pages: pages
         };
-    }
+    };
 
     render() {
         let pager = this.state.pager;

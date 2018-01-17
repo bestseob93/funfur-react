@@ -81,7 +81,7 @@ class CeoWrapper extends Component {
     // 왼쪽 border 애니메이션 처리
     handleSideMenu(iconIndex, index) {
         const { UiActions } = this.props;
-        console.log(iconIndex);
+        //console.log(iconIndex);
         if(iconIndex === 'iconIndex-9' || iconIndex === 'iconIndex-0') {
             UiActions.setIconIndex(iconIndex);
             UiActions.hideMobileMenu();

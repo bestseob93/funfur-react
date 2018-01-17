@@ -31,18 +31,10 @@ export const requestRegisterCeo = (ceoInfo) => {
     let emailOutPut = encryptIt(ceoInfo.ceoEmail);
     let idOutPut = encryptIt(ceoInfo.userId);
     let pwOutPut = encryptIt(ceoInfo.password);
-    console.log(ceoInfo);
-    console.log(typeof nameOutPut);
-    console.log(typeof phoneOutPut);
-    console.log(typeof emailOutPut);
-    console.log(typeof idOutPut);
-    console.log(typeof pwOutPut);
     return Promise.all([nameOutPut, phoneOutPut, emailOutPut, idOutPut, pwOutPut]).then((values) => {
         const idImage = Array.prototype.slice.call(ceoInfo.businessIdImage.toJS());
         let formData = new FormData();
 
-        console.log('email: ' + values[2]);
-        console.log('id: ' + values[3]);
         formData.append('companyName', ceoInfo.cpName);
         formData.append('businessId', ceoInfo.businessId);
         formData.append('business_registration', idImage[0]);
@@ -70,7 +62,6 @@ export const requestLoginCeo = (userId, pw) => {
         login_id: userId,
         password: pw
     }).then(res => {
-        console.log(res);
         storage.set('auth', {
             ceoName: res.data.ceoName,
             companyName: res.data.companyName,
@@ -83,7 +74,6 @@ export const requestLoginCeo = (userId, pw) => {
 }
 
 export const requestCheckToken = (token) => {
-    console.log(token);
     return axios({
         method: 'GET',
             url: `${FUNFUR}/auth_web/chkToken`,
@@ -92,18 +82,15 @@ export const requestCheckToken = (token) => {
             }
     })
     .then(res => {
-        console.log(res);
-        
+
         return res;
     }).catch(err => {
-        console.error(err);
         if(err) throw err;
     });
 }
 
 export const requestModifyPassword = (prevPassword, newPassword) => {
     return storage.get('token').then((token) => {
-        console.log(token);
         return axios({
             method: 'PUT',
             url: `${FUNFUR}/auth_web/modify_pw`,

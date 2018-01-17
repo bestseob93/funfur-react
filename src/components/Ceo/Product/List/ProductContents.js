@@ -16,15 +16,16 @@ class ProductContents extends Component {
         try {
             await ProductActions.productList();
         } catch (e) {
-            if(e) console.log(e);
+            if(e) {
+                //console.log(e);
+            }
         }
     }
 
     renderProductList(datas) {
-        console.log(datas);
+        //console.log(datas);
         const mappedProduct = datas.map((product) => {
-                console.log(product.id);
-                console.log(product.product_name);
+
                 const date = new Date();
                 return <ProductItem
                             key={(product.id + product.product_name + date).toString()}

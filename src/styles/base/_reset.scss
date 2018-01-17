@@ -80,6 +80,7 @@ ul {
 
 div.row.form-box {
     padding-bottom: 15px;
+    text-align: center;
     table {
       background-color: #fff;
       border: 1px solid #000;
@@ -121,10 +122,22 @@ div.row.form-box.delivery-info-box {
 }
 
 div.upload-dropzone {
-  border-width: 1px;
-  border-color: rgb(102, 102, 102);
-  border-style: dashed;
+  border: 1px dashed rgb(102, 102, 102);
   border-radius: 5px;
+  height: 160px;
+  background-size: 100%;
+  background: url("../img/icon-add-plus.svg") no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-color: white;
+
+  &.present {
+    background: url("../img/icon-add-yellowplus.svg") no-repeat;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-color: white;
+  }
+
 }
 .input-helper {
   margin-left: 27%;

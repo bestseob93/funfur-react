@@ -93,13 +93,30 @@ class ProductModifyForm extends Component {
             prManufacturer: form.get('prManufacturer') === "" ? productAndDeliver.get(0).get('manufacturer') : form.get('prManufacturer'),
             productOrigin: form.get('productOrigin') === "" ? productAndDeliver.get(0).get('origin') : form.get('productOrigin'),
             productPrice: form.get('productPrice') === "" ? productAndDeliver.get(0).get('product_price') : form.get('productPrice'),
-            productImages: form.get('productImages'),
+            productImages: form.get('productImages')
         };
 
-        console.log(productInfo);
         try {
+            if (productInfo.productImages.size > 20) {
+                UiActions.showSweetAlert({
+                    message: '상품 사진은 20개를 넘을 수 없습니다!',
+                    alertTitle: '',
+                    value: 'error'
+                });
+                toggleSubmitBtn(false);
+                return ;
+            } else if(productInfo.productImages.size < 1) {
+                UiActions.showSweetAlert({
+                    value: 'error',
+                    alertTitle: '',
+                    message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
+                });
+                toggleSubmitBtn(false);
+                return ;
+            }
+
             await ProductActions.productModify(productId[3], productInfo);
-            if(this.props.valid) {
+            if (this.props.valid) {
                 toggleSubmitBtn(false);
                 UiActions.showSweetAlert({
                     message: '제품이 수정되었습니다.',
@@ -110,7 +127,7 @@ class ProductModifyForm extends Component {
             }
         } catch (e) {
             toggleSubmitBtn(false);
-            if(e) throw e;
+            if (e) throw e;
         }
     }
     
@@ -497,17 +514,16 @@ class ProductModifyForm extends Component {
                 </div>
                 <SubTitle title="사진 업로드" />
                 <PhotosUpload {...this.props} />
-                <div className="row form-box padding-top50">
+                <div className="row form-box padding-top50 padding-bottom">
                     <div className="btn-container">
                         <button
                             type="button"
-                            style={{borderColor: 'red'}}
-                            className="btn btn-common btn-prev"
+                            className="btn btn-common btn-prev modify delete"
                             onClick={deleteAlert}>삭제하기
                         </button>
                         <button
                             type="button"
-                            className="btn btn-common btn-next"
+                            className="btn btn-common btn-next modify confirm"
                             onClick={handleSubmit}
                             disabled={this.state.btnDisabled}>수정하기
                         </button>

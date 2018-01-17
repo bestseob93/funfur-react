@@ -46,8 +46,6 @@ class App extends Component {
   // TODO ceo 직접 접근할 시 예외 처리 , catch에 넣어서 일단은 해결
   componentDidMount() {
     const { AuthActions } = this.props;
-    console.log('---------------------------');
-    console.log(window.location);
     storage.get('token').then(async (value) => {
       try {
         await AuthActions.checkToken(value);
@@ -94,7 +92,6 @@ class App extends Component {
     const { ProductActions } = this.props;
     const productId = window.location.pathname.split('/');
     
-    console.log(productId);
     try {
         await ProductActions.productRemove(productId[3]);
         if(this.props.valid) {
@@ -107,8 +104,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.authenticated);
-    console.log(this.props);
     return (
       <div>
         {/* 관리자 페이지에서 다른 헤더 or 헤더 아예 없애고.. */}

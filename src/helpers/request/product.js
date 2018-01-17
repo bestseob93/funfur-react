@@ -33,17 +33,16 @@ export const requestProductDetail = (productId) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();
 
-        console.log(productInfo.isDeliverFree);
-        console.log(productInfo);
         const productImages = productInfo.productImages.toJS();
-        console.log(productImages);
+
         productImages.forEach((file) => {
+            console.log(file);
             formData.append('productPhoto', file);
         });
         formData.append('productName', productInfo.productName);
@@ -75,7 +74,7 @@ export const requestProductUpload = (productInfo) => {
         formData.append('JeJuSanGan', productInfo.JeJuSanGan);
         formData.append('samePrice', productInfo.isCostSame);
         formData.append('proportionShipping', productInfo.proportionShipping);
-        
+
         return axios.post(`${FUNFUR}/product_web/upload`, formData, { headers: {
             Authorization: token
         }
@@ -108,11 +107,9 @@ export const requestProductModify = (productId, productInfo) => {
         let formData = new FormData();
         const productImages = productInfo.productImages.toJS();
 
-        for(let i=0; i<productImages.length; i++) {
-            if(productImages[i].id === undefined) {
-                formData.append('productPhoto', productImages[i]);
-            }
-        }
+        productImages.forEach((file) => {
+            formData.append('productPhoto', file);
+        });
 
         formData.append('productName', productInfo.productName);
         formData.append('modelName', productInfo.modelName);
@@ -135,7 +132,7 @@ export const requestProductModify = (productId, productInfo) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestProductRemove = (productId) => {
     return storage.get('token').then((token) => {

@@ -47,7 +47,7 @@ class PasswordModal extends Component {
                     name: 'errCode',
                     value: 2
                 }); // 숫자 영문 혼합 확인.
-            } else if(form.get('newPassword') === form.get('rePassword')) { 
+            } else if(form.get('newPassword') === form.get('rePassword')) {
                 try {
                     await AuthActions.modifyPassword(form.get('prevPassword'), form.get('newPassword'));
                     if(this.props.pwValid) {
@@ -104,12 +104,12 @@ class PasswordModal extends Component {
             modalVisible
         } = this.props;
 
-        const { 
+        const {
             changeHandler,
             handleSubmit,
             renderErrorMessage
         } = this;
-        
+
         return (
             <div
                 className={`modal ${modalVisible ? 'fade in animated fadeIn' : 'fade'}`}

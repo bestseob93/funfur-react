@@ -7,6 +7,8 @@
 
 .dropzone-hidden {
     display: none;
+    width: 160px;
+    height: 160px;
 }
 
 .business-id-image {
@@ -55,3 +57,13 @@
     }
 }
 
+#businessRegisterImageMessage {
+  padding-top: 50px;
+}
+
+#businessRegisterImage {
+  background: url("../img/plus.svg") no-repeat;
+  background-position-x: 50%;
+  background-position-y: 100px;
+  background-size: 60px ;
+}

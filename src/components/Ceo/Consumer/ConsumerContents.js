@@ -43,7 +43,6 @@ class ConsumerContents extends Component {
     render() {
         const { renderConsumerList } = this;
         const emptyComponent = undefined;
-        console.log(this.props);
 
         return (
             <section className="consumer-contents">

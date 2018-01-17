@@ -65,8 +65,6 @@ class OrderTable extends Component {
 
     changeHandler(id, ev) {
         const { FormActions } = this.props;
-        console.log(id);
-        console.log(ev);
 
         FormActions.orderFormChange({
             name: ev.target.name,
@@ -94,7 +92,6 @@ class OrderTable extends Component {
         }
 
         let orderId = form.get('id');
-        console.log("submit order id = " + orderId);
 
         try {
             await OrderActions.orderShippingUpdate(shippingInfo, orderId);
@@ -104,7 +101,9 @@ class OrderTable extends Component {
 
             }
         } catch (e) {
-            if(e) console.log(e);
+            if(e) {
+                //console.log(e);
+            }
         }
     }
 

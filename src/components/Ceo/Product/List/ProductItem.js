@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class ProductItem extends Component {
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return (
             <div className="col-md-3 col-xs-6">
                 <Link to={`${this.props.match.url}/${this.props.productId}`} className="product-box" style={{display: 'block'}}>

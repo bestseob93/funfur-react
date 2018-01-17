@@ -2,7 +2,6 @@ import React from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 
 function PolicyContents({contentType}) {
-    console.log(contentType);
     if(contentType === 'useterm') {
         return (
             <Scrollbars

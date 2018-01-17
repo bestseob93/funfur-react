@@ -114,7 +114,6 @@ const initialState = fromJS({
 
 /* Reducer */
 export default function reducer(state = initialState, action) {
-    console.log(action.payload);
     switch(action.type) {
         case FORM_CHANGE:
             return state.setIn([action.payload.formName, action.payload.name], fromJS(action.payload.value));

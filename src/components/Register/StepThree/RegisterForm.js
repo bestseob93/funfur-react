@@ -75,7 +75,6 @@ class RegisterForm extends Component {
 
     /* react-dropzone을 이용하여 redux의 form 업데이트 */
     handleFile(files) {
-        console.log(files);
         const { FormActions } = this.props;
         FormActions.formChange({
             formName: 'register',
@@ -145,11 +144,9 @@ class RegisterForm extends Component {
         const { AuthActions, form } = this.props;
         let self = this;
         checkBizID(form.get('businessId')).then(async (checked) => {
-            console.log(checked);
             if(checked) {
                 try {
                     await AuthActions.checkCompanyRegistration(form.get('businessId'));
-                    console.log(self.props.valid.bizId);
                     if(self.props.valid.bizId) {
                         this.addAlert('success', '인증되었습니다!');
                     }
@@ -158,7 +155,6 @@ class RegisterForm extends Component {
                     this.addAlert('error', message);
                 }
             } else {
-                console.log('hi');
                 this.addAlert('warning', '사업자 등록번호를 확인해주세요.');
             }
         }).catch(err => {
@@ -195,7 +191,6 @@ class RegisterForm extends Component {
         const { AuthActions, form } = this.props;
         ev.preventDefault(); // 클릭 외의 브라우저 행동 막음
 
-        console.log(form.get('cpName'));
         let formInfos = form.toJS();
         const pwRegex = /^[a-zA-Z0-9]{4,20}$/; // 비밀번호 정규표현식
         const chkNum = formInfos.password.search(/[0-9]/g); // 숫자 확인
@@ -259,7 +254,6 @@ class RegisterForm extends Component {
             handleSubmit
         } = this;
         const { form } = this.props;
-        console.log(form.get('businessIdImage'));
         /* 리덕스 form register에서 가져옴 */
         /* TODO: get으로 변경 */
         // let formValues = form.toJS();
@@ -321,13 +315,13 @@ class RegisterForm extends Component {
                                                                     multiple={false}>
                                                             </Dropzone>
                                                         </div> :
-                                                        <div className="business-id-image text-center">
+                                                        <div id="businessRegisterImage" className="business-id-image text-center">
                                                             <Dropzone
                                                                     ref={(node) => { this.dropzone = node;}}
                                                                     onDrop={handleFile}
                                                                     accept="image/jpeg, image/png"
                                                                     multiple={false}>
-                                                                    <p>사업자 등록증 사진을 첨부해주세요.</p>
+                                                                    <p id="businessRegisterImageMessage">사업자 등록증 사진을 첨부해주세요.</p>
                                                             </Dropzone>
                                                         </div>}
                         { form.get('businessIdImage').size > 0 ?  <div className="business-id-image flex-column">
