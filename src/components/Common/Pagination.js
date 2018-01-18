@@ -97,25 +97,27 @@ class Pagination extends Component {
             return null;
         }
         return (
+            <div className="pagination__wrapper">
             <ul className="pagination justify-content-center">
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(1)}>First</a>
-                </li>
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
+                {/*<li className={pager.currentPage === 1 ? 'disabled' : ''}>*/}
+                    {/*<a onClick={() => this.setPage(1)}>First</a>*/}
+                {/*</li>*/}
+                <li className={pager.currentPage === 1 ? 'disabled' : ''} >
+                    <a onClick={() => this.setPage(pager.currentPage - 1)} className="btn" id="previous" />
                 </li>
                 {pager.pages.map((page, index) =>
-                    <li key={index} className={pager.currentPage === page ? 'active' : ''}>
-                        <a onClick={() => this.setPage(page)}>{page}</a>
+                    <li key={index}>
+                        <a onClick={() => this.setPage(page)} className="btn pages" id={pager.currentPage === page ? `active` : ``}>{page}</a>
                     </li>
                 )}
                 <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
+                    <a onClick={() => this.setPage(pager.currentPage + 1)} className="btn" id="next" />
                 </li>
-                <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-                </li>
+                {/*<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>*/}
+                    {/*<a onClick={() => this.setPage(pager.totalPages)}>Last</a>*/}
+                {/*</li>*/}
             </ul>
+            </div>
         );
     }
 }

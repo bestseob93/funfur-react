@@ -1546,6 +1546,47 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em; } }
 
+.pagination__wrapper {
+  text-align: center;
+  margin-top: 25px; }
+  .pagination__wrapper a:active {
+    background: 0;
+    box-shadow: none; }
+  .pagination__wrapper li:active {
+    background: 0;
+    box-shadow: none; }
+  .pagination__wrapper .btn {
+    box-shadow: none;
+    height: 40px;
+    border: 0; }
+  .pagination__wrapper #active {
+    position: relative;
+    top: -6px;
+    background: 0;
+    color: #fdd831;
+    font-size: 20px;
+    box-shadow: none; }
+    .pagination__wrapper #active:hover {
+      background: 0;
+      box-shadow: none;
+      color: #fdd831;
+      font-size: 20px; }
+  .pagination__wrapper .btn.pages {
+    background: 0;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    color: #757575; }
+    .pagination__wrapper .btn.pages:hover {
+      background: 0;
+      box-shadow: none; }
+  .pagination__wrapper #previous {
+    background: url("../img/icon-paging-right.svg") no-repeat;
+    margin-right: 20px; }
+  .pagination__wrapper #next {
+    background: url("../img/icon-paging-left.svg") no-repeat;
+    margin-left: 20px; }
+
 .contact-wrapper {
   margin-top: 150px !important;
   margin-bottom: 70px; }

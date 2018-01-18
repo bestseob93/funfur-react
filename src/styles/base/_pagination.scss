@@ -1,2 +1,63 @@
 @charset "UTF-8";
 
+.pagination__wrapper {
+  text-align: center;
+  margin-top: 25px;
+
+  a:active {
+    background: 0;
+    box-shadow: none;
+  }
+
+  li:active {
+    background: 0;
+    box-shadow: none;
+  }
+
+  .btn {
+    box-shadow: none;
+    height: 40px;
+    border: 0;
+  }
+
+  #active {
+    position: relative;
+    top: -6px;
+    background: 0;
+    color: #fdd831;
+    font-size: 20px;
+    box-shadow: none;
+
+    &:hover {
+      background: 0;
+      box-shadow: none;
+      color: #fdd831;
+      font-size: 20px;
+    }
+  }
+
+  .btn.pages {
+    background: 0;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    color: #757575;
+
+    &:hover {
+      background: 0;
+      box-shadow: none;
+    }
+  }
+
+  #previous {
+    background: url("../img/icon-paging-right.svg") no-repeat;
+    margin-right: 20px;
+  }
+
+  #next {
+    background: url("../img/icon-paging-left.svg") no-repeat;
+    margin-left: 20px;
+  }
+
+
+}
