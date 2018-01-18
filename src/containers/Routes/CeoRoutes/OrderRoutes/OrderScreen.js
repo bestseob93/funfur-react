@@ -52,16 +52,6 @@ class OrderScreen extends Component {
         }
         return (
             <Order>
-                <ExchangeModal
-                    hideModal={hideModal}
-                    modalVisible={this.props.visible.modal}
-                    FormActions={this.props.FormActions}
-                    AuthActions={this.props.AuthActions}
-                    form={this.props.form}
-                    pwValid={this.props.valid.modifyPw}
-                    status={this.props.status.modifyPw}
-                />
-
                 <OrderHeader />
                 <OrderContents>
                     <OrderTable tableItems={this.state.pageOfItems} tableIndex={this.state.pageOfIndex} {...this.props} />

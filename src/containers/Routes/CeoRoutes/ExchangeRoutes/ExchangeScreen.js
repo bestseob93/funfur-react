@@ -12,7 +12,8 @@ import {
     Exchange,
     ExchangeHeader,
     ExchangeContents,
-    ExchangeTable
+    ExchangeTable,
+    ExchangeModal
 } from 'components/Ceo/Exchange';
 
 class ExchangeScreen extends Component {
@@ -21,22 +22,35 @@ class ExchangeScreen extends Component {
 
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+
+        this.state = {
+            modalVisible: false
+        };
     }
 
     showModal() {
-        this.props.UiActions.showModal();
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        });
     }
 
     hideModal() {
-        this.props.UiActions.hideModal();
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        });
     }
 
     render() {
         return (
             <Exchange>
+                <ExchangeModal
+                    hideModal={this.hideModal}
+                    modalVisible={this.state.modalVisible}
+                />
+
                 <ExchangeHeader />
                 <ExchangeContents>
-                    <ExchangeTable showModal={this.showModal} hideModal={this.hideModal} />
+                    <ExchangeTable showModal={this.showModal} />
                 </ExchangeContents>
             </Exchange>
         );
@@ -51,6 +65,10 @@ export default connect(
             orderDetailShipping: state.order.getIn(['requests', 'orderDetailShipping']),
             shippingRegister: state.order.getIn(['requests', 'shippingRegister']),
             shippingUpdate: state.order.getIn(['requests', 'shippingUpdate'])
+        },
+        visible: {
+            modal: state.ui.getIn(['visible', 'modal']),
+            mobileMenu: state.ui.getIn(['visible', 'mobileMenu'])
         },
         valid: {
             orderList: state.order.getIn(['valid', 'orderList']),

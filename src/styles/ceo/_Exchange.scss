@@ -17,6 +17,58 @@
   .handle {
     width: 85px;
   }
+}
+
+.modal-dialog.exchange {
+  margin-top: 200px;
+
+
+  .modal-header {
+    #modal-x {
+      width: 30px;
+      height: 30px;
+      background: url("../img/modal-x.svg");
+      color: black;
+    }
+  }
+
+  .modal-body {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    color: #000000;
+
+    .modal-dialog-btn {
+      width: 80px;
+      height: 40px;
+    }
+
+    #btn-complete {
+      background-color: #fdd831;
+      border: solid 1px #fdd831;
+    }
+
+    #btn-reject {
+      border: solid 1px #fdd831;
+    }
+
+    .can-return {
+      margin-top: 20px;
+      height: 70px;
+    }
+
+    .cannot-return {
+      height: 70px;
+
+    }
+
+    .message {
+      margin-right: 20px;
+    }
+
+  }
+
 
 
 }
