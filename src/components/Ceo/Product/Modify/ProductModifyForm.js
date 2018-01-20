@@ -7,7 +7,8 @@ import {
     FormLabel
 } from 'components/Common';
 import {
-    PhotosUpload
+    PhotosUpload,
+    DeliveryTableModify
 } from 'components/Ceo/Product';
 
 class ProductModifyForm extends Component {
@@ -15,13 +16,15 @@ class ProductModifyForm extends Component {
         super(props);
 
         this.state = {
-            btnDisabled: false
+            btnDisabled: false,
+            isModified: false
         };
 
         this.changeHandler = this.changeHandler.bind(this);
         this.deleteAlert = this.deleteAlert.bind(this);
         this.toggleSubmitBtn = this.toggleSubmitBtn.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
     
     componentWillMount() {
@@ -56,6 +59,22 @@ class ProductModifyForm extends Component {
             name: ev.target.name,
             value: ev.target.value
         });
+
+        this.setState({
+            isModified: !this.state.isModified
+        })
+    }
+
+    handleBlur(ev) {
+        // const { FormActions, form } = this.props;
+        // const formName = ['GangWon', 'ChungNam', 'ChungBuk', 'GyeongBuk', 'GyeongNam', 'JeonBuk', 'JeonNam', 'JeJuSanGan'];
+        // for(let i=0; i<8; i++) {
+        //     FormActions.formChange({
+        //         formName: 'product',
+        //         name: formName[i],
+        //         value: form.get('SeoulGyungki')
+        //     });
+        // }
     }
 
     deleteAlert() {
@@ -93,9 +112,24 @@ class ProductModifyForm extends Component {
             prManufacturer: form.get('prManufacturer') === "" ? productAndDeliver.get(0).get('manufacturer') : form.get('prManufacturer'),
             productOrigin: form.get('productOrigin') === "" ? productAndDeliver.get(0).get('origin') : form.get('productOrigin'),
             productPrice: form.get('productPrice') === "" ? productAndDeliver.get(0).get('product_price') : form.get('productPrice'),
-            productImages: form.get('productImages')
+            productImages: form.get('productImages'),
+
+            isDeliverFree: form.get('isDeliverFree') === form.get('isDeliverFree'),
+            SeoulGyungki: form.get('isDeliverFree') === 'free' ? '0' : form.get('SeoulGyungki'),
+            GangWon: form.get('isDeliverFree') === 'free' ? '0' : form.get('GangWon'),
+            ChungNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungNam'),
+            ChungBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungBuk'),
+            GyeongBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongBuk'),
+            GyeongNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongNam'),
+            JeonBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonBuk'),
+            JeonNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonNam'),
+            JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan'),
+            isCostSame: form.get('isCostSame') && form.get('isCostSame'),
+            proportionShipping: form.get('proportionShipping') && form.get('proportionShipping')
         };
 
+        console.log(productAndDeliver.get(0));
+        console.log(productInfo);
         try {
             if (productInfo.productImages.size > 20) {
                 UiActions.showSweetAlert({
@@ -401,66 +435,30 @@ class ProductModifyForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="배송비" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        <input
-                            type="text"
+                        <select
+                            ref={(select) => this.costSelect = select}
                             className="form-control"
                             name="isDeliverFree"
-                            value={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free') === "free" ? '무료' : '유료'}
+                            value={ this.state.isModified ? this.props.form.get('isDeliverFree') : productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free')}
+                            onChange={changeHandler}
                             required
-                            disabled
-                        />
+                        >
+                            <option value="free">무료</option>
+                            <option value="unfree">유료</option>
+                        </select>
                     </div>
                 </div>
                 {
-                    productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free') ? emptyComponent :
+                    this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
                         <div className="row form-box">
                             <FormLabel name="지역별 배송비 설정" />
-                            <table className="text-center col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                                <tbody>
-                                    <tr>
-                                        <th className="text-center">지역</th>
-                                        <th className="text-center">배송비용</th>
-                                    </tr>
-                                    <tr>
-                                        <td>서울 경기 인천</td>
-                                        <td>
-                                            <span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('seoul_gyungki')}</span>원
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>강원</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('gangwon')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>충남 세종 대전</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('chungnam')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>충북</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('chungbuk')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>경북 대구</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('gyeongbuk')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>경남 울산 부산</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('gyeongnam')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>전북</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('jeonbuk')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>전남 광주</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('jeonnam')}</span>원</td>
-                                    </tr>
-                                    <tr>
-                                        <td>제주 산간지역</td>
-                                        <td><span>{productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('jeju_sangan')}</span>원</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <DeliveryTableModify
+                                form={this.props.form}
+                                sameCost={this.props.form.get('SeoulGyungki')}
+                                changeHandler={changeHandler}
+                                handleBlur={this.handleBlur}
+                                currentValue={productDetail.productAndDeliver && productDetail.productAndDeliver.get(0)}
+                            />
                         </div>
                 }
                 <p className="row delivery-warning">

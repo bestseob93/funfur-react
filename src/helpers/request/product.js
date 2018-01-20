@@ -28,6 +28,7 @@ export const requestProductDetail = (productId) => {
                 Authorization: token
             }
         }).then(res => {
+            console.log(res);
             return res;
         }).catch(err => {
             if(err) throw err;
@@ -122,7 +123,20 @@ export const requestProductModify = (productId, productInfo) => {
         formData.append('prManufacturer', productInfo.prManufacturer);
         formData.append('productOrigin', productInfo.productOrigin);
         formData.append('productPrice', productInfo.productPrice);
+        formData.append('isDeliverFree', productInfo.isDeliverFree);
+        formData.append('SeoulGyungki', productInfo.SeoulGyungki);
+        formData.append('GangWon', productInfo.GangWon);
+        formData.append('ChungNam', productInfo.ChungNam);
+        formData.append('ChungBuk', productInfo.ChungBuk);
+        formData.append('GyeongBuk', productInfo.GyeongBuk);
+        formData.append('GyeongNam', productInfo.GyeongNam);
+        formData.append('JeonBuk', productInfo.JeonBuk);
+        formData.append('JeonNam', productInfo.JeonNam);
+        formData.append('JeJuSanGan', productInfo.JeJuSanGan);
+        formData.append('samePrice', productInfo.isCostSame);
+        formData.append('proportionShipping', productInfo.proportionShipping);
 
+        console.log(formData);
         return axios.put(`${FUNFUR}/product_web/thumbnail/${productId}`, formData, { headers: {
             Authorization: token
         }

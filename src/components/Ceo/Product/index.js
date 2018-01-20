@@ -7,6 +7,7 @@ import PositionSelect from './Upload/PositionSelect';
 import SortableSelect from './Upload/SortableSelect';
 import PhotosUpload from './Upload/PhotosUpload';
 import DeliveryTable from './Upload/DeliveryTable';
+import DeliveryTableModify from './Upload/DeliveryTableModify';
 import ProductModify from './Modify/ProductModify';
 import ProductModifyForm from './Modify/ProductModifyForm';
 
@@ -21,5 +22,6 @@ export {
     PhotosUpload,
     DeliveryTable,
     ProductModify,
-    ProductModifyForm
+    ProductModifyForm,
+    DeliveryTableModify
 };
