@@ -17,7 +17,7 @@ export const requestProductList = () => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestProductDetail = (productId) => {
     return storage.get('token').then((token) => {
@@ -85,7 +85,7 @@ export const requestProductUpload = (productInfo) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
     return storage.get('token').then((token) => {
@@ -101,7 +101,7 @@ export const requestRemoveProductDetailPhoto = (productId, photoIndex) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestProductModify = (productId, productInfo) => {
     return storage.get('token').then((token) => {
@@ -159,7 +159,7 @@ export const requestProductRemove = (productId) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestGetConsumerList = () => {
     return storage.get('token').then((token) => {
@@ -172,7 +172,7 @@ export const requestGetConsumerList = () => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestConsumerAnswer = (inquiryId, answer) => {
     return storage.get('token').then((token) => {
@@ -191,4 +191,4 @@ export const requestConsumerAnswer = (inquiryId, answer) => {
             if(err) throw err;
         });
     });
-}
+};

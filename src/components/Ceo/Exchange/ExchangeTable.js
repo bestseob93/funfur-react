@@ -18,7 +18,7 @@ class ExchangeTable extends Component {
          return (
             <tr className="exchange-table">
                 <td className="number-line no">123</td>
-                <td className="half-line order-num">20170101341293214</td>
+                <td className="half-line order-num" id="more_info">20170101341293214</td>
                 <td className="number-line product-name">AD-313</td>
                 <td className="half-line buyer">이환섭</td>
                 <td className="half-line phone-number">01024487085</td>

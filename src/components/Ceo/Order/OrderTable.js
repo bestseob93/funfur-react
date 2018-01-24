@@ -5,6 +5,8 @@ import {
     Spinner
 } from 'components/Common';
 
+import OrderSpecificInformation from './OrderSpecificInformation';
+
 var ReactToastr = require('react-toastr');
 var { ToastContainer } = ReactToastr; // This is a React Element.
 // For Non ES6...
@@ -233,7 +235,9 @@ class OrderTable extends Component {
             return (
                 <tr className="body" key={newIndex}>
                     <td className="number-line">{newIndex}</td>
-                    <td className="half-line">{data.get('product_order_number')}</td>
+                    <td className="half-line" id="more_info">
+                        {data.get('product_order_number')}
+                    </td>
                     <td className="number-line">{data.get('model_name')}</td>
                     <td className="half-line">{data.get('receiver_name')}</td>
                     <td className="half-line">{data.get('receiver_contact')}</td>

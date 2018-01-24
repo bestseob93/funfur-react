@@ -17,6 +17,11 @@
   .handle {
     width: 85px;
   }
+
+  #more_info {
+    text-decoration-line: underline;
+    color: #4990e2;
+  }
 }
 
 .modal-dialog.exchange {
@@ -66,6 +71,8 @@
     .message {
       margin-right: 20px;
     }
+
+
 
   }
 

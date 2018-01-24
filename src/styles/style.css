@@ -2332,6 +2332,9 @@ p.product-inside {
     border: solid 1px #fdd831; }
   .exchange-table .handle {
     width: 85px; }
+  .exchange-table #more_info {
+    text-decoration-line: underline;
+    color: #4990e2; }
 
 .modal-dialog.exchange {
   margin-top: 200px; }
@@ -2415,6 +2418,9 @@ p.product-inside {
     border-right: 0.5px solid #979797; }
   .order-table tbody .body {
     height: 50px; }
+    .order-table tbody .body #more_info {
+      text-decoration-line: underline;
+      color: #4990e2; }
   .order-table .form-control {
     height: 21px;
     text-align: center;
@@ -2436,6 +2442,75 @@ p.product-inside {
     .order-table button.input {
       border: solid 1px #fdd831;
       background-color: #fdd831; }
+
+.order__specific__wrapper {
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #000000;
+  width: 420px;
+  padding-bottom: 30px; }
+  .order__specific__wrapper #x {
+    background: url("../img/modal-x.svg") no-repeat;
+    width: 30px;
+    height: 30px;
+    color: black;
+    display: inline-block;
+    position: relative;
+    right: -285px;
+    top: 12px;
+    cursor: pointer; }
+  .order__specific__wrapper #print {
+    background: url("../img/icon-print.svg") no-repeat;
+    width: 42px;
+    height: 42px;
+    margin: 0;
+    float: right;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 13px;
+    cursor: pointer; }
+  .order__specific__wrapper td, .order__specific__wrapper tr, .order__specific__wrapper th {
+    border-top: 1px solid #979797;
+    border-bottom: 1px solid #979797;
+    font-weight: normal;
+    font-size: 13px; }
+  .order__specific__wrapper tr {
+    width: 100%; }
+  .order__specific__wrapper td, .order__specific__wrapper th {
+    height: 30px; }
+  .order__specific__wrapper table {
+    margin-top: 10px;
+    width: 100%; }
+  .order__specific__wrapper > div {
+    margin-top: 25px; }
+  .order__specific__wrapper > div > span {
+    padding-left: 10px; }
+  .order__specific__wrapper .title {
+    text-align: center;
+    width: 80px;
+    border-right: 1px solid #979797;
+    color: #757575; }
+    .order__specific__wrapper .title.left-border {
+      border-left: 1px solid #979797; }
+  .order__specific__wrapper .contents {
+    padding-left: 10px; }
+  .order__specific__wrapper .center {
+    text-align: center;
+    width: 100%;
+    border: 0;
+    margin: 30px 0 0;
+    padding: 0; }
+  .order__specific__wrapper #confirm {
+    background-color: #fdd831;
+    border: none;
+    font-size: 12px;
+    width: 80px;
+    height: 40px;
+    margin: 0;
+    letter-spacing: 2px;
+    outline: none; }
 
 @media only screen and (min-width: 768px) {
   .navbar-static-side {

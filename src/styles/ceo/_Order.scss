@@ -64,8 +64,13 @@
         border-right: 0.5px solid #979797;
     }
 
-    tbody .body{
+    tbody .body {
         height: 50px;
+
+        #more_info {
+            text-decoration-line: underline;
+            color: #4990e2;
+        }
     }
 
     .form-control {
@@ -103,4 +108,100 @@
 
     }
 
+}
+
+.order__specific__wrapper {
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    color: #000000;
+    width: 420px;
+    padding-bottom: 30px;
+
+    #x {
+        background: url("../img/modal-x.svg") no-repeat;
+        width: 30px;
+        height: 30px;
+        color: black;
+        display: inline-block;
+        position: relative;
+        right: -285px;
+        top: 12px;
+        cursor: pointer;
+    }
+
+    #print {
+        background: url("../img/icon-print.svg") no-repeat;
+        width: 42px;
+        height: 42px;
+        margin: 0;
+        float: right;
+        text-align: center;
+        padding-top: 40px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    td, tr, th {
+        border-top: 1px solid #979797;
+        border-bottom: 1px solid #979797;
+        font-weight: normal;
+        font-size: 13px;
+    }
+
+    tr {
+        width: 100%;
+    }
+
+    td, th {
+        height: 30px;
+    }
+
+    table {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    & > div {
+        margin-top: 25px;
+    }
+
+    & > div > span {
+        padding-left: 10px;
+    }
+
+    .title {
+        text-align: center;
+        width: 80px;
+        border-right: 1px solid #979797;
+        color: #757575;
+
+        &.left-border {
+            border-left: 1px solid #979797;
+        }
+    }
+
+    .contents {
+        padding-left: 10px;
+    }
+
+    .center {
+        text-align: center;
+        width: 100%;
+        border: 0;
+        margin: 30px 0 0;
+        padding: 0;
+    }
+
+    #confirm {
+        background-color: #fdd831;
+        border: none;
+        font-size: 12px;
+        width: 80px;
+        height: 40px;
+        margin: 0;
+        letter-spacing: 2px;
+        outline: none;
+    }
 }
