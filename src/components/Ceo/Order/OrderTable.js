@@ -123,7 +123,7 @@ class OrderTable extends Component {
         } = this;
 
         return datas.reverse().map((data, index) => {
-            let newIndex = datas.size - index + dataIndex;
+            let newIndex = index + dataIndex + 1;
 
             const shipColumn = ['shippingMethod', 'shippingCompany', 'trackingNumber'];
 
@@ -232,11 +232,15 @@ class OrderTable extends Component {
                 return this.state.editStatus.get(newIndex-1);
             };
 
+            const modalVisibleHandler = () => {
+                this.props.modalVisibleHandler();
+            };
+
             return (
                 <tr className="body" key={newIndex}>
                     <td className="number-line">{newIndex}</td>
-                    <td className="half-line" id="more_info">
-                        {data.get('product_order_number')}
+                    <td className="half-line">
+                        <span id="more_info" onClick={modalVisibleHandler}>{data.get('product_order_number')}</span>
                     </td>
                     <td className="number-line">{data.get('model_name')}</td>
                     <td className="half-line">{data.get('receiver_name')}</td>

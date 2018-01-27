@@ -12,6 +12,7 @@
     height: 25px;
     background-color: #fdd831;
     border: solid 1px #fdd831;
+    outline: none;
   }
 
   .handle {
@@ -27,6 +28,9 @@
 .modal-dialog.exchange {
   margin-top: 200px;
 
+  .close {
+    outline: none;
+  }
 
   .modal-header {
     #modal-x {
@@ -34,6 +38,7 @@
       height: 30px;
       background: url("../img/modal-x.svg");
       color: black;
+      outline: none;
     }
   }
 
@@ -47,6 +52,7 @@
     .modal-dialog-btn {
       width: 80px;
       height: 40px;
+      outline: none;
     }
 
     #btn-complete {
@@ -65,15 +71,11 @@
 
     .cannot-return {
       height: 70px;
-
     }
 
     .message {
       margin-right: 20px;
     }
-
-
-
   }
 
 

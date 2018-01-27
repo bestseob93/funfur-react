@@ -7,6 +7,7 @@ import {
     OrderHeader,
     OrderContents,
     OrderTable,
+    OrderSpecificInformation
 } from 'components/Ceo/Order';
 import {
     Pagination,
@@ -24,10 +25,12 @@ class OrderScreen extends Component {
         this.state = {
             exampleItems: exampleItems,
             pageOfItems: [],
-            pageOfIndex: 0
+            pageOfIndex: 0,
+            modalVisible: false
         };
 
         this.onChangePage = this.onChangePage.bind(this);
+        this.modalVisibleHandler = this.modalVisibleHandler.bind(this);
     }
 
     async componentDidMount() {
@@ -46,15 +49,22 @@ class OrderScreen extends Component {
         });
     }
 
+    modalVisibleHandler() {
+        this.setState({
+            modalVisible: !this.state.modalVisible
+        });
+    }
+
     render() {
         if(this.props.status.orderList.get('fetching')) {
             return <Spinner />;
         }
         return (
             <Order>
+                <OrderSpecificInformation modalVisibleHandler={this.modalVisibleHandler} modalVisible={this.state.modalVisible} />
                 <OrderHeader />
                 <OrderContents>
-                    <OrderTable tableItems={this.state.pageOfItems} tableIndex={this.state.pageOfIndex} {...this.props} />
+                    <OrderTable tableItems={this.state.pageOfItems} tableIndex={this.state.pageOfIndex} modalVisibleHandler={this.modalVisibleHandler} {...this.props} />
                 </OrderContents>
                 <Pagination
                     items={this.props.orders}

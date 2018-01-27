@@ -321,7 +321,7 @@ div.row.sub-title {
  * Copyright (c) 2017 Daniel Eden
  */
 .animated {
-  animation-duration: 1s;
+  animation-duration: 0.5s !important;
   animation-fill-mode: both; }
 
 .animated.infinite {
@@ -2329,7 +2329,8 @@ p.product-inside {
     width: 70px;
     height: 25px;
     background-color: #fdd831;
-    border: solid 1px #fdd831; }
+    border: solid 1px #fdd831;
+    outline: none; }
   .exchange-table .handle {
     width: 85px; }
   .exchange-table #more_info {
@@ -2338,11 +2339,14 @@ p.product-inside {
 
 .modal-dialog.exchange {
   margin-top: 200px; }
+  .modal-dialog.exchange .close {
+    outline: none; }
   .modal-dialog.exchange .modal-header #modal-x {
     width: 30px;
     height: 30px;
     background: url("../img/modal-x.svg");
-    color: black; }
+    color: black;
+    outline: none; }
   .modal-dialog.exchange .modal-body {
     text-align: center;
     vertical-align: middle;
@@ -2351,7 +2355,8 @@ p.product-inside {
     color: #000000; }
     .modal-dialog.exchange .modal-body .modal-dialog-btn {
       width: 80px;
-      height: 40px; }
+      height: 40px;
+      outline: none; }
     .modal-dialog.exchange .modal-body #btn-complete {
       background-color: #fdd831;
       border: solid 1px #fdd831; }
@@ -2442,6 +2447,8 @@ p.product-inside {
     .order-table button.input {
       border: solid 1px #fdd831;
       background-color: #fdd831; }
+  .order-table #more_info {
+    cursor: pointer; }
 
 .order__specific__wrapper {
   font-weight: normal;
@@ -2450,7 +2457,10 @@ p.product-inside {
   text-align: left;
   color: #000000;
   width: 420px;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  position: relative;
+  left: 15px;
+  top: -20px; }
   .order__specific__wrapper #x {
     background: url("../img/modal-x.svg") no-repeat;
     width: 30px;
@@ -2511,6 +2521,14 @@ p.product-inside {
     margin: 0;
     letter-spacing: 2px;
     outline: none; }
+
+#modal-order-specific-dialog {
+  width: 450px;
+  height: 550px; }
+
+#modal-order-specific-content {
+  width: 450px;
+  height: 550px; }
 
 @media only screen and (min-width: 768px) {
   .navbar-static-side {

@@ -449,7 +449,7 @@ class ProductModifyForm extends Component {
                     </div>
                 </div>
                 {
-                    this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
+                    (this.state.isModified ? this.props.form.get('isDeliverFree') : productDetail.productAndDeliver && productDetail.productAndDeliver.get(0).get('delivery_is_free')) === 'free' ? emptyComponent :
                         <div className="row form-box">
                             <FormLabel name="지역별 배송비 설정" />
                             <DeliveryTableModify

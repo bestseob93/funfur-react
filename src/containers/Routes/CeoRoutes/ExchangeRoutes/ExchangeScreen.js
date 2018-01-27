@@ -16,15 +16,21 @@ import {
     ExchangeModal
 } from 'components/Ceo/Exchange';
 
+import {
+    OrderSpecificInformation
+} from 'components/Ceo/Order';
+
 class ExchangeScreen extends Component {
     constructor(props) {
         super(props);
 
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.specificModalVisibleHandler = this.specificModalVisibleHandler.bind(this);
 
         this.state = {
-            modalVisible: false
+            modalVisible: false,
+            specificModalVisible: false
         };
     }
 
@@ -40,9 +46,17 @@ class ExchangeScreen extends Component {
         });
     }
 
+    specificModalVisibleHandler() {
+        this.setState({
+            specificModalVisible: !this.state.specificModalVisible
+        });
+    }
+
     render() {
         return (
             <Exchange>
+                <OrderSpecificInformation modalVisibleHandler={this.specificModalVisibleHandler} modalVisible={this.state.specificModalVisible} />
+
                 <ExchangeModal
                     hideModal={this.hideModal}
                     modalVisible={this.state.modalVisible}
@@ -50,7 +64,7 @@ class ExchangeScreen extends Component {
 
                 <ExchangeHeader />
                 <ExchangeContents>
-                    <ExchangeTable showModal={this.showModal} />
+                    <ExchangeTable specificModalVisibleHandler={this.specificModalVisibleHandler} showModal={this.showModal} />
                 </ExchangeContents>
             </Exchange>
         );
