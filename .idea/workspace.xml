@@ -3,18 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e8b03b6-1b16-4cf7-848e-c367294ee4d2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Order/OrderSpecificInformation.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Order/OrderSpecificInformation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Order/OrderTable.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Order/OrderTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Routes/CeoRoutes/ExchangeRoutes/ExchangeScreen.js" afterPath="$PROJECT_DIR$/src/containers/Routes/CeoRoutes/ExchangeRoutes/ExchangeScreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Routes/CeoRoutes/OrderRoutes/OrderScreen.js" afterPath="$PROJECT_DIR$/src/containers/Routes/CeoRoutes/OrderRoutes/OrderScreen.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ducks/order.duck.js" afterPath="$PROJECT_DIR$/src/ducks/order.duck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/localForage.helper.js" afterPath="$PROJECT_DIR$/src/helpers/localForage.helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/request/auth.js" afterPath="$PROJECT_DIR$/src/helpers/request/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/request/order.js" afterPath="$PROJECT_DIR$/src/helpers/request/order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/ceo/_Order.scss" afterPath="$PROJECT_DIR$/src/styles/ceo/_Order.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/styles/style.css" afterPath="$PROJECT_DIR$/src/styles/style.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -754,7 +742,7 @@
       <workItem from="1517289065568" duration="1092000" />
       <workItem from="1519978669539" duration="9689000" />
       <workItem from="1520338797294" duration="807000" />
-      <workItem from="1520396234647" duration="29000" />
+      <workItem from="1520396234647" duration="67000" />
     </task>
     <task id="LOCAL-00001" summary="[FIX] OrderPagination Next 이후로 넘어가는 것">
       <created>1515418944061</created>
@@ -840,11 +828,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517053646858</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="merge">
+      <created>1520396289884</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1520396289884</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91525000" />
+    <option name="totallyTimeSpent" value="91563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -925,7 +920,8 @@
     <MESSAGE value="택배가격수정가능하게" />
     <MESSAGE value="주문 상세 내역 레이아웃" />
     <MESSAGE value="주문상세내역 modal 연결" />
-    <option name="LAST_COMMIT_MESSAGE" value="주문상세내역 modal 연결" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
