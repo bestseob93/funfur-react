@@ -178,16 +178,21 @@
 
     .title {
         text-align: center;
-        width: 80px;
+        width: 90px;
         border-right: 1px solid #979797;
         color: #757575;
 
         &.left-border {
             border-left: 1px solid #979797;
         }
+
+        &.shipping {
+            height: 60px;
+        }
     }
 
     .contents {
+        width: 120px;
         padding-left: 10px;
     }
 
@@ -213,10 +218,11 @@
 
 #modal-order-specific-dialog {
     width: 450px;
-    height: 550px;
+    height: 650px;
+    top: 100px;
 }
 
 #modal-order-specific-content {
     width: 450px;
-    height: 550px;
+    height: 633px;
 }

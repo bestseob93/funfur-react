@@ -49,7 +49,16 @@ class OrderScreen extends Component {
         });
     }
 
-    modalVisibleHandler() {
+    async modalVisibleHandler(id) {
+        const { OrderActions } = this.props;
+        if (id) {
+            try {
+                await OrderActions.getOrderDetailShipping(id);
+            } catch (e) {
+                if (e) throw e;
+            }
+        }
+
         this.setState({
             modalVisible: !this.state.modalVisible
         });
@@ -61,10 +70,19 @@ class OrderScreen extends Component {
         }
         return (
             <Order>
-                <OrderSpecificInformation modalVisibleHandler={this.modalVisibleHandler} modalVisible={this.state.modalVisible} />
+                <OrderSpecificInformation
+                    modalVisibleHandler={this.modalVisibleHandler}
+                    modalVisible={this.state.modalVisible}
+                    orderSpecific={this.props.orderDetail}
+                />
                 <OrderHeader />
                 <OrderContents>
-                    <OrderTable tableItems={this.state.pageOfItems} tableIndex={this.state.pageOfIndex} modalVisibleHandler={this.modalVisibleHandler} {...this.props} />
+                    <OrderTable
+                        tableItems={this.state.pageOfItems}
+                        tableIndex={this.state.pageOfIndex}
+                        modalVisibleHandler={this.modalVisibleHandler}
+                        {...this.props}
+                    />
                 </OrderContents>
                 <Pagination
                     items={this.props.orders}

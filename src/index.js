@@ -37,7 +37,8 @@ const render = Component =>
 
 window.onload = function () {
     render(App);
-}
+};
+
 if (module.hot) {
   module.hot.accept('./containers/App', () => { 
       const NextApp = require('./containers/App').default;

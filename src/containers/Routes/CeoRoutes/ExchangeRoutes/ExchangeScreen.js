@@ -55,7 +55,11 @@ class ExchangeScreen extends Component {
     render() {
         return (
             <Exchange>
-                <OrderSpecificInformation modalVisibleHandler={this.specificModalVisibleHandler} modalVisible={this.state.specificModalVisible} />
+                {/*<OrderSpecificInformation*/}
+                    {/*modalVisibleHandler={this.specificModalVisibleHandler}*/}
+                    {/*modalVisible={this.state.specificModalVisible}*/}
+                    {/**/}
+                {/*/>*/}
 
                 <ExchangeModal
                     hideModal={this.hideModal}

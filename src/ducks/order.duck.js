@@ -50,21 +50,21 @@ const initialState = fromJS({
     },
     orders: [],
     orderDetail: {
-        productName: '',
-        buyerId: '',
-        shippingMethod: '',
-        productPrice: 0,
-        orderQuantity: 0,
-        shippingCost: 0,
+        product_name: '',
+        buyer_id: '',
+        shipping_method: '',
+        product_price: 0,
+        order_quantity: 0,
+        shipping_cost: 0,
         proportionShipping: false,
-        createdAt: '',
-        buyerName: '',
-        receiverName: '',
-        receiverContact: '',
-        receiverBasicAddress: '',
-        receiverDetailAddress: '',
-        receiverPostCode: '',
-        shippingMessage: ''
+        created_at: '',
+        buyer_name: '',
+        receiver_name: '',
+        receiver_contact: '',
+        receiver_basic_address: '',
+        receiver_detail_address: '',
+        receiver_post_code: '',
+        shipping_message: ''
     }
 });
 
@@ -79,15 +79,17 @@ export default function reducer(state = initialState, action) {
         case `${ORDER_LIST}_REJECTED`:
             return state.mergeIn(['requests', 'orderList'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'orderList'], false);
+
         case `${ORDER_DETAIL_SHIPPING}_PENDING`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.pending));
         case `${ORDER_DETAIL_SHIPPING}_FULFILLED`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.fulfilled))
-                        .set('ordersDetail', fromJS(action.payload.data.result[0]))
+                        .set('orderDetail', fromJS(action.payload.data.result[0]))
                         .setIn(['valid', 'orderDetailShipping'], true);
         case `${ORDER_DETAIL_SHIPPING}_REJECTED`:
             return state.mergeIn(['requests', 'orderDetailShipping'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'orderDetailShipping'], false);
+
         case `${ORDER_SHIPPING_REGISTER}_PENDING`:
             return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.pending));
         case `${ORDER_SHIPPING_REGISTER}_FULFILLED`:
@@ -96,6 +98,7 @@ export default function reducer(state = initialState, action) {
         case `${ORDER_SHIPPING_REGISTER}_REJECTED`:
             return state.mergeIn(['requests', 'shippingRegister'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'shippingRegister'], false);
+
         case `${ORDER_SHIPPING_UPDATE}_PENDING`:
             return state.mergeIn(['requests', 'shippingUpdate'], fromJS(requestStatus.pending));
         case `${ORDER_SHIPPING_UPDATE}_FULFILLED`:
@@ -104,6 +107,7 @@ export default function reducer(state = initialState, action) {
         case `${ORDER_SHIPPING_UPDATE}_REJECTED`:
             return state.mergeIn(['requests', 'shippingUpdate'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'shippingUpdate'], false);
+
         default:
             return state;
     }

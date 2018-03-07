@@ -2499,12 +2499,15 @@ p.product-inside {
     padding-left: 10px; }
   .order__specific__wrapper .title {
     text-align: center;
-    width: 80px;
+    width: 90px;
     border-right: 1px solid #979797;
     color: #757575; }
     .order__specific__wrapper .title.left-border {
       border-left: 1px solid #979797; }
+    .order__specific__wrapper .title.shipping {
+      height: 60px; }
   .order__specific__wrapper .contents {
+    width: 120px;
     padding-left: 10px; }
   .order__specific__wrapper .center {
     text-align: center;
@@ -2524,11 +2527,12 @@ p.product-inside {
 
 #modal-order-specific-dialog {
   width: 450px;
-  height: 550px; }
+  height: 650px;
+  top: 100px; }
 
 #modal-order-specific-content {
   width: 450px;
-  height: 550px; }
+  height: 633px; }
 
 @media only screen and (min-width: 768px) {
   .navbar-static-side {

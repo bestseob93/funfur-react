@@ -13,7 +13,7 @@ export const requestChkCompanyRegi = (companyNumber) => {
                 if(err) throw err;
             });
     });
-}
+};
 
 export const requestChkUserId = (userId) => {
     return axios.post(`${FUNFUR}/auth_web/chkUserId`, {
@@ -23,7 +23,7 @@ export const requestChkUserId = (userId) => {
     }).catch(err => {
         if(err) throw err;
     });
-}
+};
 
 export const requestRegisterCeo = (ceoInfo) => {
     let nameOutPut = encryptIt(ceoInfo.ceoName);
@@ -55,7 +55,7 @@ export const requestRegisterCeo = (ceoInfo) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestLoginCeo = (userId, pw) => {
     return axios.post(`${FUNFUR}/auth_web/signin`, {
@@ -71,7 +71,7 @@ export const requestLoginCeo = (userId, pw) => {
     }).catch(err => {
         if(err) throw err;
     });
-}
+};
 
 export const requestCheckToken = (token) => {
     return axios({

@@ -78,7 +78,7 @@ class ProductForm extends Component {
     /* 전 지역 배송비용 동일 체크박스 */
     handleCheckBox(ev) {
         const { FormActions, form } = this.props;
-        
+
         FormActions.handleCheckBox({
             formName: 'product',
             name: ev.target.name,
@@ -128,7 +128,7 @@ class ProductForm extends Component {
             btnDisabled: isDisabled
         });
     }
-    
+
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
         const { UiActions, ProductActions, FormActions, form } = this.props;
@@ -137,7 +137,7 @@ class ProductForm extends Component {
         const regNumberOnly = /^[0-9]*$/; // 숫자 체크 정규식
 
         toggleSubmitBtn(true);
-        
+
         const productInfo = {
             productName: form.get('productName'),
             productPosition: form.get('productPosition'),
@@ -260,6 +260,13 @@ class ProductForm extends Component {
                 value: 'error',
                 alertTitle: '',
                 message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
+            });
+            toggleSubmitBtn(false);
+        } else if(productInfo.firstSort_1 === '' || productInfo.secondSort_1 === '') {
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: "1차와 2차 분류를 모두 입력해주세요!"
             });
             toggleSubmitBtn(false);
         } else {
@@ -577,9 +584,9 @@ class ProductForm extends Component {
                 <div className="row form-box">
                     <FormLabel name="1차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                        { 
+                        {
                             renderFirstSort(true, this.props.form.get('productPosition')) /* 분류 값에 따라 하위 분류 */
-                        } 
+                        }
                     </div>
                 </div>
                 <div className="row form-box">
@@ -611,7 +618,7 @@ class ProductForm extends Component {
                     <div className="row form-box animated fadeInUp">
                         <FormLabel name="1차 분류" />
                         <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                            {renderFirstSort(false, this.props.form.get('productPosition_2')) /* 분류 값에 따라 하위 분류 */} 
+                            {renderFirstSort(false, this.props.form.get('productPosition_2')) /* 분류 값에 따라 하위 분류 */}
                         </div>
                     </div> :
                     emptyComponent
@@ -687,7 +694,7 @@ class ProductForm extends Component {
                     <span className="col-md-1 col-xs-1 col-xs-offset-0 col-md-offset-0" style={{padding: 0, paddingTop: 10}}>
                         cm
                     </span>
-                </div> 
+                </div>
                 <div className="row form-box">
                     <FormLabel name="사이즈(세로)" />
                     <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0" style={{paddingRight: 5}}>
@@ -719,7 +726,7 @@ class ProductForm extends Component {
                     <span className="col-md-1 col-xs-1 col-xs-offset-0 col-md-offset-0" style={{padding: 0, paddingTop: 10}}>
                         cm
                     </span>
-                </div>          
+                </div>
                 <div className="row form-box has-textarea">
                     <FormLabel name="주요 소재" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
@@ -804,7 +811,7 @@ class ProductForm extends Component {
                         />
                     </div>
                 }
-                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent : 
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
                     <p className="row">
                         <span className="col-md-3 col-xs-8 col-xs-offset-1 col-md-offset-3">* 전 지역 동일 시 체크해주세요.</span>
                         <input
@@ -818,7 +825,7 @@ class ProductForm extends Component {
                     </p>
 
                 }
-                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent : 
+                { this.props.form.get('isDeliverFree') === '' ? emptyComponent : this.props.form.get('isDeliverFree') === 'free' ? emptyComponent :
                     <p className="row">
                         <span className="col-md-3 col-xs-8 col-xs-offset-1 col-md-offset-3">* 비례 배송일 경우 체크해주세요.</span>
                         <input

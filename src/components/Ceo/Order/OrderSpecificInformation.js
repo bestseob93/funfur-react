@@ -21,7 +21,23 @@ class OrderSpecificInformation extends Component {
         printDiv.style.display = 'none';
     }
 
+
+
     render() {
+        const order = this.props.orderSpecific.toObject();
+
+        const modalVisibleHandler = () => {
+            this.props.modalVisibleHandler(null);
+        };
+
+        const orderTime = (str) => {
+            const index = str.indexOf('T');
+            const date = str.substring(0, index);
+            const time = str.substring(index+1, str.indexOf('.'));
+
+            return date + " " + time;
+        };
+
         return (
             <div
                 className={`modal ${this.props.modalVisible ? 'fade in animated fadeIn' : 'fade'}`}
@@ -34,26 +50,31 @@ class OrderSpecificInformation extends Component {
                 <div className="modal-content" id="modal-order-specific-content">
                 <div className="order__specific__wrapper">
                     <div>
-                        <span>주문 상세정보</span> <div className="icon" id="x" onClick={this.props.modalVisibleHandler}/>
+                        <span>주문 상세정보</span> <div className="icon" id="x" onClick={modalVisibleHandler}/>
 
                        <table id="specific--table">
                            <tr>
                                <td className="title">상품</td>
-                               <td className="contents">세인트 암체어</td>
+                               <td className="contents">{order.product_name}</td>
+
                                <td className="title left-border">결제방법</td>
                                <td className="contents">카드</td>
                            </tr>
                            <tr>
                                <td className="title">구매자</td>
-                               <td className="contents">홍길동</td>
+                               <td className="contents">{order.buyer_name}</td>
                                <td className="title left-border">구매자ID</td>
-                               <td className="contents">hong1234</td>
+                               <td className="contents">{order.buyer_id}</td>
                            </tr>
                            <tr>
                                <td className="title">주문수량</td>
-                               <td className="contents">143</td>
+                               <td className="contents">{order.order_quantity}</td>
                                <td className="title left-border">총 상품 금액</td>
-                               <td className="contents">141,000원</td>
+                               <td className="contents">{order.product_price}원</td>
+                           </tr>
+                           <tr>
+                               <td className="title">주문날짜</td>
+                               <td colSpan={3} className="contents">{orderTime(order.created_at)}</td>
                            </tr>
                        </table>
                     </div>
@@ -62,19 +83,23 @@ class OrderSpecificInformation extends Component {
                         <span>배송지 정보</span>
 
                         <table>
-                            <tr>
-                                <td className="title">수취인</td>
-                                <td className="contents">홍길동</td>
-                                <td className="title left-border">연락처</td>
-                                <td className="contents">010-1234-4567</td>
+                            <tr colSpan={4}>
+                                <td colSpan={1} className="title">수취인</td>
+                                <td colSpan={1} className="contents">{order.receiver_name}</td>
+                                <td colSpan={1} className="title left-border">연락처</td>
+                                <td colSpan={1} className="contents">{order.receiver_contact}</td>
                             </tr>
-                            <tr>
-                                <td className="title">배송지</td>
-                                <td className="contents">서울시 광진구 구의동</td>
+                            <tr colSpan={4}>
+                                <td colSpan={1} className="title shipping">배송지</td>
+                                <td colSpan={3} className="contents">{order.receiver_basic_address}<br />{order.receiver_detail_address}</td>
                             </tr>
-                            <tr>
+                            <tr colSpan={4}>
+                                <td colSpan={1} className="title">배송방법</td>
+                                <td colSpan={3} className="contents">{order.shipping_method}</td>
+                            </tr>
+                            <tr colSpan={4}>
                                 <td colSpan={1} className="title">배송메모</td>
-                                <td colSpan={3} className="contents">부재시에만 경비실에 맡겨주세요</td>
+                                <td colSpan={3} className="contents">{order.shipping_message}</td>
                             </tr>
                         </table>
 
@@ -96,7 +121,7 @@ class OrderSpecificInformation extends Component {
                     </div>
 
                     <div className="center">
-                        <button id="confirm" onClick={this.props.modalVisibleHandler}>확 인</button>
+                        <button id="confirm" onClick={modalVisibleHandler}>확 인</button>
                     </div>
 
                     <div className="icon" id="print" onClick={this.onPrint}>인 쇄</div>

@@ -17,7 +17,7 @@ export const requestOrderList = () => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestDetailShipping = (id) => {
     return storage.get('token').then((token) => {
@@ -33,7 +33,7 @@ export const requestDetailShipping = (id) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestShippingRegister = (shippingInfo, id) => {
     return storage.get('token').then((token) => {
@@ -54,7 +54,7 @@ export const requestShippingRegister = (shippingInfo, id) => {
             if(err) throw err;
         });
     });
-}
+};
 
 export const requestShippingUpdate = (shippingInfo, id) => {
     return storage.get('token').then((token) => {
@@ -75,4 +75,4 @@ export const requestShippingUpdate = (shippingInfo, id) => {
             if(err) throw err;
         });
     });
-}
+};

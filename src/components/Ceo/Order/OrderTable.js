@@ -233,7 +233,7 @@ class OrderTable extends Component {
             };
 
             const modalVisibleHandler = () => {
-                this.props.modalVisibleHandler();
+                this.props.modalVisibleHandler(data.get('id'));
             };
 
             return (
