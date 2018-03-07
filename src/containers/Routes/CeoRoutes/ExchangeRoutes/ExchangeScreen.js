@@ -55,11 +55,11 @@ class ExchangeScreen extends Component {
     render() {
         return (
             <Exchange>
-                {/*<OrderSpecificInformation*/}
-                    {/*modalVisibleHandler={this.specificModalVisibleHandler}*/}
-                    {/*modalVisible={this.state.specificModalVisible}*/}
-                    {/**/}
-                {/*/>*/}
+                <OrderSpecificInformation
+                    modalVisibleHandler={this.specificModalVisibleHandler}
+                    modalVisible={this.state.specificModalVisible}
+                    orderSpecific={this.props.orderDetail}
+                />
 
                 <ExchangeModal
                     hideModal={this.hideModal}
@@ -70,6 +70,9 @@ class ExchangeScreen extends Component {
                 <ExchangeContents>
                     <ExchangeTable specificModalVisibleHandler={this.specificModalVisibleHandler} showModal={this.showModal} />
                 </ExchangeContents>
+                <Pagination
+
+                />
             </Exchange>
         );
     }

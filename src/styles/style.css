@@ -2323,8 +2323,10 @@ p.product-inside {
 
 .exchange-table {
   height: 40px;
-  border: solid 1px #757575;
+  border: none;
   padding: 0; }
+  .exchange-table .no {
+    border-left: none; }
   .exchange-table .btn-yellow {
     width: 70px;
     height: 25px;
@@ -2332,10 +2334,15 @@ p.product-inside {
     border: solid 1px #fdd831;
     outline: none; }
   .exchange-table .handle {
-    width: 85px; }
+    width: 85px;
+    border-right: none; }
   .exchange-table #more_info {
     text-decoration-line: underline;
     color: #4990e2; }
+  .exchange-table td:first-child {
+    border-left: none; }
+  .exchange-table td:last-child {
+    border-right: none; }
 
 .modal-dialog.exchange {
   margin-top: 200px; }
@@ -2418,11 +2425,15 @@ p.product-inside {
     color: #fff;
     border: 1px solid #fff; }
   .order-table td.number-line {
-    border-right: 1px solid #979797; }
+    border-right: 1px solid #979797;
+    border-bottom: 1px solid #979797; }
   .order-table td.half-line {
-    border-right: 0.5px solid #979797; }
+    border-right: 0.5px solid #979797;
+    border-bottom: 0.5px solid #979797; }
+  .order-table td.half-line:last-child {
+    border-right: 0px; }
   .order-table tbody .body {
-    height: 50px; }
+    height: 40px; }
     .order-table tbody .body #more_info {
       text-decoration-line: underline;
       color: #4990e2; }

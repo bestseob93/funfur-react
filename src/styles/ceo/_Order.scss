@@ -57,13 +57,18 @@
     }
     td.number-line {
         border-right: 1px solid #979797;
+        border-bottom: 1px solid #979797;
     }
     td.half-line {
         border-right: 0.5px solid #979797;
+        border-bottom: 0.5px solid #979797;
+    }
+    td.half-line:last-child {
+        border-right: 0px;
     }
 
     tbody .body {
-        height: 50px;
+        height: 40px;
 
         #more_info {
             text-decoration-line: underline;

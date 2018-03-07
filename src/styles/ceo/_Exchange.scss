@@ -1,10 +1,10 @@
 .exchange-table {
   height: 40px;
-  border: solid 1px #757575;
+  border: none;
   padding: 0;
 
   .no {
-
+    border-left: none;
   }
 
   .btn-yellow {
@@ -17,12 +17,23 @@
 
   .handle {
     width: 85px;
+    border-right: none;
   }
 
   #more_info {
     text-decoration-line: underline;
     color: #4990e2;
   }
+
+  td:first-child {
+    border-left: none;
+  }
+
+  td:last-child {
+    border-right: none;
+  }
+
+
 }
 
 .modal-dialog.exchange {
