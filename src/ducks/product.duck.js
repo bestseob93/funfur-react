@@ -82,7 +82,10 @@ const initialState = fromJS({
     },
     valid: {
         productList: false,
-        upload: false,
+        upload: {
+            flag: false,
+            message: ''
+        },
         productDetail: false,
         modify: false,
         remove: false,
@@ -127,14 +130,17 @@ export default function reducer(state = initialState, action) {
         case `${PRODUCT_LIST}_REJECTED`:
             return state.mergeIn(['requests', 'productList'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'productList'], false);
+
         case `${PRODUCT_UPLOAD}_PENDING`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.pending));
         case `${PRODUCT_UPLOAD}_FULFILLED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.fulfilled))
-                        .setIn(['valid', 'upload'], true);
+                        .setIn(['valid', 'upload', 'flag'], true);
         case `${PRODUCT_UPLOAD}_REJECTED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.rejected))
-                        .setIn(['valid', 'upload'], false);
+                        .setIn(['valid', 'upload', 'flag'], false)
+                        .setIn(['valid', 'upload', 'message'], action.payload.data.message);
+
         case `${PRODUCT_MODIFY}_PENDING`:
             return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.pending));
         case `${PRODUCT_MODIFY}_FULFILLED`:

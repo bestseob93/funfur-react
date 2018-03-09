@@ -18,7 +18,6 @@ const rootReducer = {
     order
 };
 
-// const reducer = combineReducers(auth);
 const reducer = combineReducers(rootReducer);
 
 const middlewares = applyMiddleware(promiseMiddleware());

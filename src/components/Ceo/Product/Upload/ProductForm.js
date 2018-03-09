@@ -139,25 +139,25 @@ class ProductForm extends Component {
         toggleSubmitBtn(true);
 
         const productInfo = {
-            productName: form.get('productName'),
-            productPosition: form.get('productPosition'),
-            firstSort_1: form.get('firstSort_1'),
-            secondSort_1: form.get('secondSort_1'),
+            productName: form.get('productName') || '',
+            productPosition: form.get('productPosition') || '',
+            firstSort_1: form.get('firstSort_1') || '',
+            secondSort_1: form.get('secondSort_1') || '',
             productPosition_2: form.get('productPosition_2') || '',
             firstSort_2: form.get('firstSort_2') || '',
             secondSort_2: form.get('secondSort_2') || '',
-            modelName: form.get('modelName'),
-            modelOption: form.get('modelOption'),
-            productColor: form.get('productColor'),
-            sizeWidth: form.get('sizeWidth'),
-            sizeDepth: form.get('sizeDepth'),
-            sizeHeight: form.get('sizeHeight'),
-            mainMaterial: form.get('mainMaterial'),
-            prManufacturer: form.get('prManufacturer'),
-            productOrigin: form.get('productOrigin'),
-            productPrice: form.get('productPrice'),
-            productImages: form.get('productImages'),
-            isDeliverFree: form.get('isDeliverFree'),
+            modelName: form.get('modelName') || '',
+            modelOption: form.get('modelOption') || '',
+            productColor: form.get('productColor') || '',
+            sizeWidth: form.get('sizeWidth') || '',
+            sizeDepth: form.get('sizeDepth') || '',
+            sizeHeight: form.get('sizeHeight') || '',
+            mainMaterial: form.get('mainMaterial') || '',
+            prManufacturer: form.get('prManufacturer') || '',
+            productOrigin: form.get('productOrigin') || '',
+            productPrice: form.get('productPrice') || '',
+            productImages: form.get('productImages') || '',
+            isDeliverFree: form.get('isDeliverFree') || '',
             SeoulGyungki: form.get('isDeliverFree') === 'free' ? '0' : form.get('SeoulGyungki'),
             GangWon: form.get('isDeliverFree') === 'free' ? '0' : form.get('GangWon'),
             ChungNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungNam'),
@@ -273,7 +273,7 @@ class ProductForm extends Component {
             try {
                 await ProductActions.productUpload(productInfo);
 
-                if(this.props.valid.upload) {
+                if(this.props.valid.upload.get('flag')) {
                     toggleSubmitBtn(false);
                     UiActions.showSweetAlert({
                         value: 'success',
@@ -283,11 +283,29 @@ class ProductForm extends Component {
 
                     FormActions.formReset('product');
                     this.props.history.push('/ceo/products');
+                } else {
+                    toggleSubmitBtn(false);
+                    UiActions.showSweetAlert({
+                        value: 'error',
+                        alertTitle: '',
+                        message: this.props.valid.upload.get('message')
+                    });
+
+                    FormActions.formReset('product');
+                    this.props.history.push('/ceo/products');
                 }
             } catch (e) {
                 // TODO 스윗 알럿 추가
+                UiActions.showSweetAlert({
+                    value: 'error',
+                    alertTitle: '',
+                    message: '오류가 발생했습니다. '
+                });
+
                 if(e) {
                     toggleSubmitBtn(false);
+                    console.log("product error : ");
+                    console.log(e);
                     throw e;
                 }
             }

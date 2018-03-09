@@ -80,6 +80,8 @@ export const requestProductUpload = (productInfo) => {
             Authorization: token
         }
         }).then(res => {
+            console.log("product res");
+            console.log(res);
             return res;
         }).catch(err => {
             if(err) throw err;

@@ -24,7 +24,7 @@ export const requestCheckPassword = (password) => {
             });
         });
     });
-}
+};
 
 export const requestGetMyInfo = () => {
     return storage.get('token').then((token) => {
