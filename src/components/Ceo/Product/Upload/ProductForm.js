@@ -119,163 +119,113 @@ class ProductForm extends Component {
 
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
+        ev.preventDefault();
+        
+        const formNames = [
+            {id:'productName',        name:'제품 명',      isRequired: true},
+            {id:'productPosition',    name:'제품 위치(1)', isRequired: true},
+            {id:'firstSort_1',        name:'1차 제품 분류', isRequired: true},
+            {id:'secondSort_1',       name:'2차 제품 분류', isRequired: true},
+            {id:'firstSort_2',        name:'1차 제품 분류', isRequired: false},
+            {id:'secondSort_2',       name:'2차 제품 분류', isRequired: false},
+            {id:'modelName',          name:'모델 명',     isRequired: true},
+            {id:'modelOption',        name:'제품 옵션',    isRequired: true},
+            {id:'productColor',       name:'제품 색상',    isRequired: true},
+            {id:'sizeWidth',          name:'가로 길이',    isRequired: true},
+            {id:'sizeDepth',          name:'세로 길이',    isRequired: true},
+            {id:'sizeHeight',         name:'높이',       isRequired: true},
+            {id:'mainMaterial',       name:'주요 소재',    isRequired: true},
+            {id:'prManufacturer',     name:'제조사',      isRequired: true},
+            {id:'productOrigin',      name:'원산지',      isRequired: true},
+            {id:'productPrice',       name:'제품 가격',    isRequired: true},
+            {id:'productImages',      name:'제품 이미지',   isRequired: true},
+            {id:'isDeliverFree',      name:'배송비 유무',   isRequired: true},
+            {id:'SeoulGyungki',       name:'서울-경기',    isRequired: true},
+            {id:'GangWon',            name:'강원',       isRequired: true},
+            {id:'ChungNam',           name:'충남',       isRequired: true},
+            {id:'ChungBuk',           name:'충북',       isRequired: true},
+            {id:'GyeongBuk',          name:'경북',       isRequired: true},
+            {id:'GyeongNam',          name:'경남',       isRequired: true},
+            {id:'JeonBuk',            name:'전북',       isRequired: true},
+            {id:'JeonNam',            name:'전남',       isRequired: true},
+            {id:'JeJuSanGan',         name:'제주-산간',    isRequired: true},
+            {id:'isCostSame',         name:'배송비 같음',   isRequired: true},
+            {id:'proportionShipping', name:'비례배송',     isRequired: true},
+        ];
+
         const { UiActions, ProductActions, FormActions, form } = this.props;
+        const regNumberOnly = /^[0-9]*$/;
 
-        const regNumberOnly = /^[0-9]*$/; // 숫자 체크 정규식
+        const getRequestInfo = (formNames, store) => {
+            return formNames.map(e => ({
+                ...e,
+                value: store.get(e.id)
+            })
+        )};
+        const getValidList = requestInfo => {
+            return requestInfo.map(e => ({
+                ...e,
+                valid: e.value !== '',
+            })
+        )};
+        const checkAndAlert = validList => {
+            return validList.reduce((acc, element) => {
+                if (element.valid) {
+                    return acc;
+                } if (!element.isRequired) {
+                    return acc;
+                } else {
+                    acc.message = acc.message + "\n" + element.name;
+                    acc.valid = false;
+                    return acc;
+                }
+            }, {
+                message: '',
+                valid: true
+            })
+        };
+        const requestUpload = async (action, info) => {
+            const alertUI = (value, message) => {
+                UiActions.showSweetAlert({
+                    value: value,
+                    alertTitle: '',
+                    message: message
+                });
+            };
 
-        const productInfo = {
-            productName: form.get('productName') || '',
-            productPosition: form.get('productPosition') || '',
-            firstSort_1: form.get('firstSort_1') || '',
-            secondSort_1: form.get('secondSort_1') || '',
-            productPosition_2: form.get('productPosition_2') || '',
-            firstSort_2: form.get('firstSort_2') || '',
-            secondSort_2: form.get('secondSort_2') || '',
-            modelName: form.get('modelName') || '',
-            modelOption: form.get('modelOption') || '',
-            productColor: form.get('productColor') || '',
-            sizeWidth: form.get('sizeWidth') || '',
-            sizeDepth: form.get('sizeDepth') || '',
-            sizeHeight: form.get('sizeHeight') || '',
-            mainMaterial: form.get('mainMaterial') || '',
-            prManufacturer: form.get('prManufacturer') || '',
-            productOrigin: form.get('productOrigin') || '',
-            productPrice: form.get('productPrice') || '',
-            productImages: form.get('productImages') || '',
-            isDeliverFree: form.get('isDeliverFree') || '',
-            SeoulGyungki: form.get('isDeliverFree') === 'free' ? '0' : form.get('SeoulGyungki'),
-            GangWon: form.get('isDeliverFree') === 'free' ? '0' : form.get('GangWon'),
-            ChungNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungNam'),
-            ChungBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('ChungBuk'),
-            GyeongBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongBuk'),
-            GyeongNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('GyeongNam'),
-            JeonBuk: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonBuk'),
-            JeonNam: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeonNam'),
-            JeJuSanGan: form.get('isDeliverFree') === 'free' ? '0' : form.get('JeJuSanGan'),
-            isCostSame: form.get('isCostSame') && form.get('isCostSame'),
-            proportionShipping: form.get('proportionShipping') && form.get('proportionShipping')
+            const success = () => {
+                alertUI('success', '제품이 성공적으로 등록되었습니다!');
+                FormActions.formReset('product');
+                this.props.history.push('/ceo/products');
+            };
+            const fail = () => {
+                alertUI('error', '오류가 발생했습니다');
+                FormActions.formReset('product');
+                this.props.history.push('/ceo/products');
+            };
+
+            await action(info);
+            if (this.props.valid.upload.get('flag')) {
+                success();
+            } else {
+                fail();
+            }
         };
 
-        if(productInfo.productName === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제품명을 입력해주세요!"
-            });
-        } else if(productInfo.productPosition === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제품 위치를 설정해주세요!"
-            });
-        } else if(productInfo.modelName === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "모델명을 입력해주세요!"
-            });
-        } else if(productInfo.modelOption === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제품 옵션을 입력해주세요!"
-            });
-        } else if(productInfo.productColor === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제품 색상을 입력해주세요!"
-            });
-        } else if(productInfo.sizeWidth === '' || productInfo.sizeDepth === '' || productInfo.sizeHeight === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제품 사이즈를 입력해주세요!"
-            });
-        } else if(productInfo.mainMaterial === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "주요 소재를 입력해주세요!"
-            });
-        } else if(productInfo.prManufacturer === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "제조사를 입력해주세요!"
-            });
-        } else if(productInfo.productOrigin === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "원산지를 입력해주세요!"
-            });
-        } else if(productInfo.productPrice === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "소비자 가격을 입력해주세요!"
-            });
-        } else if(!regNumberOnly.test(productInfo.productPrice)) {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "소비자 가격은 숫자만 입력해주세요!"
-            });
-        } else if(productInfo.isDeliverFree === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "배송비를 설정해주세요!"
-            });
-        } else if(productInfo.productImages.size < 1) {
-            UiActions.showSweetAlert({
-                value: 'error',
-                alertTitle: '',
-                message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
-            });
-        } else if(productInfo.firstSort_1 === '' || productInfo.secondSort_1 === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "1차와 2차 분류를 모두 입력해주세요!"
-            });
+        const requestInfo = getRequestInfo(formNames, form);
+        const validList = getValidList(requestInfo);
+        const valid = checkAndAlert(validList);
+        if (true) {
+            console.log(requestInfo);
+            requestUpload(ProductActions.productUpload, requestInfo);
+
+
         } else {
-            try {
-                await ProductActions.productUpload(productInfo);
-
-                if(this.props.valid.upload.get('flag')) {
-                    UiActions.showSweetAlert({
-                        value: 'success',
-                        alertTitle: '',
-                        message: '제품이 성공적으로 등록되었습니다!'
-                    });
-
-                    FormActions.formReset('product');
-                    this.props.history.push('/ceo/products');
-                } else {
-                    UiActions.showSweetAlert({
-                        value: 'error',
-                        alertTitle: '',
-                        message: this.props.valid.upload.get('message')
-                    });
-
-                    FormActions.formReset('product');
-                    this.props.history.push('/ceo/products');
-                }
-            } catch (e) {
-                UiActions.showSweetAlert({
-                    value: 'error',
-                    alertTitle: '',
-                    message: '오류가 발생했습니다. '
-                });
-
-                if(e) {
-                    console.log("product error : ");
-                    console.log(e);
-                    throw e;
-                }
-            }
+            UiActions.showSweetAlert({
+                value: 'warning',
+                alertTitle: '',
+                message: valid.message + '을(를) 입력해주세요'
+            });
         }
 
     }
@@ -755,7 +705,7 @@ class ProductForm extends Component {
                     <FormLabel name="소비자가격" />
                     <div className="col-md-5 col-xs-9 col-xs-offset-1 col-md-offset-0">
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             name="productPrice"
                             placeholder="소비자 가격을 적어주세요."

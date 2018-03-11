@@ -139,7 +139,7 @@ export default function reducer(state = initialState, action) {
         case `${PRODUCT_UPLOAD}_REJECTED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.rejected))
                         .setIn(['valid', 'upload', 'flag'], false)
-                        .setIn(['valid', 'upload', 'message'], action.payload.data.message);
+                        .setIn(['valid', 'upload', 'message'], action.payload.message);
 
         case `${PRODUCT_MODIFY}_PENDING`:
             return state.mergeIn(['requests', 'modify'], fromJS(requestStatus.pending));

@@ -40,48 +40,24 @@ export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();
 
-        const productImages = productInfo.productImages.toJS();
-
-        productImages.forEach((file) => {
-            console.log(file);
-            formData.append('productPhoto', file);
+        productInfo.forEach(info => {
+            if (info.id === 'productImages') {
+                const images = info.value.toJS();
+                images.forEach(file => {
+                    formData.append('productPhoto', file);
+                });
+            } else {
+                formData.append(info.id, info.value);
+            }
         });
-        formData.append('productName', productInfo.productName);
-        formData.append('productPosition_1', productInfo.productPosition);
-        formData.append('firstSort_1', productInfo.firstSort_1);
-        formData.append('secondSort_1', productInfo.secondSort_1);
-        formData.append('productPosition_2', productInfo.productPosition_2);
-        formData.append('firstSort_2', productInfo.firstSort_2);
-        formData.append('secondSort_2', productInfo.secondSort_2);
-        formData.append('modelName', productInfo.modelName);
-        formData.append('modelOption', productInfo.modelOption);
-        formData.append('productColor', productInfo.productColor);
-        formData.append('sizeWidth', productInfo.sizeWidth);
-        formData.append('sizeDepth', productInfo.sizeDepth);
-        formData.append('sizeHeight', productInfo.sizeHeight);
-        formData.append('mainMaterial', productInfo.mainMaterial);
-        formData.append('prManufacturer', productInfo.prManufacturer);
-        formData.append('productOrigin', productInfo.productOrigin);
-        formData.append('productPrice', productInfo.productPrice);
-        formData.append('isDeliverFree', productInfo.isDeliverFree);
-        formData.append('SeoulGyungki', productInfo.SeoulGyungki);
-        formData.append('GangWon', productInfo.GangWon);
-        formData.append('ChungNam', productInfo.ChungNam);
-        formData.append('ChungBuk', productInfo.ChungBuk);
-        formData.append('GyeongBuk', productInfo.GyeongBuk);
-        formData.append('GyeongNam', productInfo.GyeongNam);
-        formData.append('JeonBuk', productInfo.JeonBuk);
-        formData.append('JeonNam', productInfo.JeonNam);
-        formData.append('JeJuSanGan', productInfo.JeJuSanGan);
-        formData.append('samePrice', productInfo.isCostSame);
-        formData.append('proportionShipping', productInfo.proportionShipping);
 
-        return axios.post(`${FUNFUR}/product_web/upload`, formData, { headers: {
-            Authorization: token
-        }
+        console.log(formData);
+
+        return axios.post(`${FUNFUR}/product_web/upload`, formData, {
+            headers: {
+                Authorization: token
+            }
         }).then(res => {
-            console.log("product res");
-            console.log(res);
             return res;
         }).catch(err => {
             if(err) throw err;
