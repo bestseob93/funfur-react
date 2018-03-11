@@ -40,10 +40,16 @@ export const requestProductUpload = (productInfo) => {
     return storage.get('token').then((token) => {
         let formData = new FormData();
 
+        // const productImages = productInfo.productImages.toJS();
+        //
+        // productImages.forEach((file) => {
+        //     console.log(file);
+        //     formData.append('productPhoto', file);
+        // });
+
         productInfo.forEach(info => {
             if (info.id === 'productImages') {
-                const images = info.value.toJS();
-                images.forEach(file => {
+                info.value.toJS().forEach(file => {
                     formData.append('productPhoto', file);
                 });
             } else {
@@ -51,7 +57,6 @@ export const requestProductUpload = (productInfo) => {
             }
         });
 
-        console.log(formData);
 
         return axios.post(`${FUNFUR}/product_web/upload`, formData, {
             headers: {

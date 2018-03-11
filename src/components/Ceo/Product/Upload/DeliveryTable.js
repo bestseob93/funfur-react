@@ -16,110 +16,110 @@ function DeliveryTable({form, sameCost, changeHandler, handleBlur, currentValue}
                     <td>서울 경기 인천</td>
                     <td><input
                             type="text"
-                            name="SeoulGyungki"
+                            name="seoulGyungki"
                             placeholder="쉼표(,) 제외"
                             value={currentVal.seoul_gyungki}
                             onChange={changeHandler}
-                            onBlur={ form.get('isCostSame') ? handleBlur : defaultValue }
+                            onBlur={ form.get('samePrice') ? handleBlur : defaultValue }
                         />원
                     </td>
                 </tr>
                 {/* 모두 동일에 체크되면 첫번째 input 떠날 때 나머지 값들 모두 서울경기와 가격 동일 */}
                 <tr>
                     <td>강원</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="GangWon"
-                            disabled={form.get('isCostSame')}
+                            name="gangwon"
+                            disabled={form.get('samePrice')}
                             value={currentVal.gangwon}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>충남 세종 대전</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="ChungNam"
-                            disabled={form.get('isCostSame')}
+                            name="chungnam"
+                            disabled={form.get('samePrice')}
                             value={currentVal.chungnam}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>충북</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="ChungBuk"
-                            disabled={form.get('isCostSame')}
+                            name="chungbuk"
+                            disabled={form.get('samePrice')}
                             value={currentVal.chungbuk}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>경북 대구</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="GyeongBuk"
-                            disabled={form.get('isCostSame')}
+                            name="gyeongbuk"
+                            disabled={form.get('samePrice')}
                             value={currentVal.gyeongbuk}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>경남 울산 부산</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="GyeongNam"
-                            disabled={form.get('isCostSame')}
+                            name="gyeongnam"
+                            disabled={form.get('samePrice')}
                             value={currentVal.gyeongnam}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>전북</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="JeonBuk"
-                            disabled={form.get('isCostSame')}
+                            name="jeonbuk"
+                            disabled={form.get('samePrice')}
                             value={currentVal.jeonbuk}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>전남 광주</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="JeonNam"
-                            disabled={form.get('isCostSame')}
+                            name="jeonnam"
+                            disabled={form.get('samePrice')}
                             value={currentVal.jeonnam}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
                 <tr>
                     <td>제주 산간지역</td>
-                        { form.get('isCostSame') ? defaultValue : <td><input
+                        { form.get('samePrice') ? defaultValue : <td><input
                             type="text"
-                            name="JeJuSanGan"
-                            disabled={form.get('isCostSame')}
+                            name="jejuSangan"
+                            disabled={form.get('samePrice')}
                             value={currentVal.jeju_sangan}
-                            placeholder={form.get('isCostSame') ? sameCost: "쉼표(,) 제외"}
+                            placeholder={form.get('samePrice') ? sameCost: "쉼표(,) 제외"}
                             onChange={changeHandler}
                         />원</td> }
-                        { form.get('isCostSame') ? <td><span>{sameCost}</span>원</td> : defaultValue }
+                        { form.get('samePrice') ? <td><span>{sameCost}</span>원</td> : defaultValue }
                 </tr>
             </tbody>
         </table>

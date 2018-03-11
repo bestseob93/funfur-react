@@ -10,7 +10,7 @@ function PositionSelect({first, changeHandler, formValue}) {
         return (
             <select
                 className="form-control"
-                name="productPosition"
+                name="productPosition_1"
                 onChange={changeHandler}
             >
                 <option>공간별 분류</option>

@@ -123,7 +123,8 @@ class ProductForm extends Component {
         
         const formNames = [
             {id:'productName',        name:'제품 명',      isRequired: true},
-            {id:'productPosition',    name:'제품 위치(1)', isRequired: true},
+            {id:'productPosition_1',  name:'제품 위치(1)', isRequired: true},
+            {id:'productPosition_2',  name:'제품 위치(2)', isRequired: true},
             {id:'firstSort_1',        name:'1차 제품 분류', isRequired: true},
             {id:'secondSort_1',       name:'2차 제품 분류', isRequired: true},
             {id:'firstSort_2',        name:'1차 제품 분류', isRequired: false},
@@ -140,16 +141,16 @@ class ProductForm extends Component {
             {id:'productPrice',       name:'제품 가격',    isRequired: true},
             {id:'productImages',      name:'제품 이미지',   isRequired: true},
             {id:'isDeliverFree',      name:'배송비 유무',   isRequired: true},
-            {id:'SeoulGyungki',       name:'서울-경기',    isRequired: true},
-            {id:'GangWon',            name:'강원',       isRequired: true},
-            {id:'ChungNam',           name:'충남',       isRequired: true},
-            {id:'ChungBuk',           name:'충북',       isRequired: true},
-            {id:'GyeongBuk',          name:'경북',       isRequired: true},
-            {id:'GyeongNam',          name:'경남',       isRequired: true},
-            {id:'JeonBuk',            name:'전북',       isRequired: true},
-            {id:'JeonNam',            name:'전남',       isRequired: true},
-            {id:'JeJuSanGan',         name:'제주-산간',    isRequired: true},
-            {id:'isCostSame',         name:'배송비 같음',   isRequired: true},
+            {id:'seoulGyungki',       name:'서울-경기',    isRequired: true},
+            {id:'gangwon',            name:'강원',       isRequired: true},
+            {id:'chungnam',           name:'충남',       isRequired: true},
+            {id:'chungbuk',           name:'충북',       isRequired: true},
+            {id:'gyeongbuk',          name:'경북',       isRequired: true},
+            {id:'gyeongnam',          name:'경남',       isRequired: true},
+            {id:'jeonbuk',            name:'전북',       isRequired: true},
+            {id:'jeonnam',            name:'전남',       isRequired: true},
+            {id:'jejuSangan',         name:'제주-산간',    isRequired: true},
+            {id:'samePrice',         name:'배송비 같음',   isRequired: true},
             {id:'proportionShipping', name:'비례배송',     isRequired: true},
         ];
 
@@ -175,6 +176,7 @@ class ProductForm extends Component {
                 } if (!element.isRequired) {
                     return acc;
                 } else {
+                    element.value = 0;
                     acc.message = acc.message + "\n" + element.name;
                     acc.valid = false;
                     return acc;
@@ -233,11 +235,11 @@ class ProductForm extends Component {
     renderPosition(isFirstSortable) {
         if(isFirstSortable) {
             return (
-                <PositionSelect first={true} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition')} />
+                <PositionSelect first={true} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition_1')} />
             );
         } else {
             return (
-                <PositionSelect first={false} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition')} />
+                <PositionSelect first={false} changeHandler={this.changeHandler} formValue={this.props.form.get('productPosition_2')} />
             );
         }
     }
@@ -520,7 +522,7 @@ class ProductForm extends Component {
                     <FormLabel name="1차 분류" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         {
-                            renderFirstSort(true, this.props.form.get('productPosition')) /* 분류 값에 따라 하위 분류 */
+                            renderFirstSort(true, this.props.form.get('productPosition_1')) /* 분류 값에 따라 하위 분류 */
                         }
                     </div>
                 </div>
@@ -740,7 +742,7 @@ class ProductForm extends Component {
                         <FormLabel name="지역별 배송비 설정" />
                         <DeliveryTable
                             form={this.props.form}
-                            sameCost={this.props.form.get('SeoulGyungki')}
+                            sameCost={this.props.form.get('seoulGyungki')}
                             changeHandler={changeHandler}
                             handleBlur={handleBlur}
                         />
@@ -752,7 +754,7 @@ class ProductForm extends Component {
                         <input
                             className="col-md-1 col-xs-1"
                             type="checkbox"
-                            name="isCostSame"
+                            name="samePrice"
                             id="isCostSame"
                             onChange={handleCheckBox}
                         />
