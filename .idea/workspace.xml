@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e8b03b6-1b16-4cf7-848e-c367294ee4d2" name="Default" comment="server 통신 이상함">
+    <list default="true" id="3e8b03b6-1b16-4cf7-848e-c367294ee4d2" name="Default" comment="Section 구현까지">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/InputField.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/SelectField.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Label.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/InputLine.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/SelectLine.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/SubTitle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Section.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/data.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTable.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js" afterPath="$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ducks/form.duck.js" afterPath="$PROJECT_DIR$/src/ducks/form.duck.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/request/product.js" afterPath="$PROJECT_DIR$/src/helpers/request/product.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,60 +38,64 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.767192">
+    <splitter split-orientation="horizontal" split-proportion="0.45836946">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ProductForm.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="578">
-                  <caret line="210" column="26" lean-forward="true" selection-start-line="210" selection-start-column="26" selection-end-line="210" selection-end-column="26" />
+                <state relative-caret-position="692">
+                  <caret line="934" column="55" lean-forward="true" selection-start-line="934" selection-start-column="55" selection-end-line="934" selection-end-column="55" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
+                    <element signature="n#!!block;n#componentWillReceiveProps#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#changeHandler#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleCheckBox#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleProportionChk#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleBlur#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleSubmit#0;n#ProductForm#0" expanded="false" />
+                    <element signature="e#4044#4189#0" expanded="false" />
+                    <element signature="e#4235#4382#0" expanded="false" />
+                    <element signature="e#4427#4951#0" expanded="false" />
+                    <element signature="e#5007#5849#0" expanded="false" />
+                    <element signature="n#!!block;n#renderPosition#0;n#ProductForm#0" expanded="false" />
                     <element signature="n#!!block;n#renderFirstSort#0;n#ProductForm#0" expanded="false" />
                     <element signature="n#!!block;n#renderSecondSort#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#renderSortTwo#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#componentWillUnmount#0;n#ProductForm#0" expanded="false" />
+                    <element signature="e#17591#35535#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DeliveryTable.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTable.js">
+          <file leaf-file-name="SubTitle.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/SubTitle.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="726">
-                  <caret line="34" column="73" lean-forward="false" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="73" />
+                <state relative-caret-position="171">
+                  <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PositionSelect.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="form.duck.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ducks/form.duck.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="182">
-                  <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="25" />
+                <state relative-caret-position="152">
+                  <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
                   <folding>
-                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#0#34#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="product.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/helpers/request/product.js">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+                <state relative-caret-position="95">
+                  <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -90,22 +104,68 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="product.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/helpers/request/product.js">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="InputLine.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/InputLine.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="625">
-                  <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+                <state relative-caret-position="247">
+                  <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Section.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Section.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="152">
+                  <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SelectLine.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/SelectLine.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="133">
+                  <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SelectField.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/SelectField.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="114">
+                  <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="vcs.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+          <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/data.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="503">
+                  <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="InputField.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/InputField.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="171">
+                  <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -114,41 +174,45 @@
           <file leaf-file-name="ProductForm.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5625">
-                  <caret line="538" column="30" lean-forward="true" selection-start-line="538" selection-start-column="30" selection-end-line="538" selection-end-column="30" />
+                <state relative-caret-position="26">
+                  <caret line="922" column="0" lean-forward="false" selection-start-line="922" selection-start-column="0" selection-end-line="922" selection-end-column="0" />
                   <folding>
-                    <marker date="1520788385547" expanded="true" signature="368:37871" ph="{...}" />
-                    <marker date="1520788385547" expanded="true" signature="393:431" ph="{...}" />
+                    <element signature="n#!!block;n#componentWillReceiveProps#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#changeHandler#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleCheckBox#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleProportionChk#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleBlur#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#handleSubmit#0;n#ProductForm#0" expanded="false" />
+                    <element signature="e#4044#4189#0" expanded="false" />
+                    <element signature="e#4235#4382#0" expanded="false" />
+                    <element signature="e#4427#4951#0" expanded="false" />
+                    <element signature="e#5007#5849#0" expanded="false" />
+                    <element signature="n#!!block;n#renderPosition#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#renderFirstSort#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#renderSecondSort#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#renderSortTwo#0;n#ProductForm#0" expanded="false" />
+                    <element signature="n#!!block;n#componentWillUnmount#0;n#ProductForm#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="product.duck.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ducks/product.duck.js">
+          <file leaf-file-name="Label.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Label.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="141" column="77" lean-forward="false" selection-start-line="141" selection-start-column="77" selection-end-line="141" selection-end-column="77" />
-                  <folding>
-                    <marker date="1520786529146" expanded="true" signature="2941:8031" ph="{...}" />
-                    <marker date="1520786529146" expanded="true" signature="2967:8029" ph="{...}" />
-                    <marker date="1520786529146" expanded="true" signature="5077:5321" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="5364:5453" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="5497:5646" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="5893:5994" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6051:6154" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6210:6312" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6354:6443" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6487:6636" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6679:6828" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="6873:6964" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7011:7234" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7280:7433" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7484:7573" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7626:7775" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7831:7980" ph="..." />
-                    <marker date="1520786529146" expanded="true" signature="7997:8023" ph="..." />
-                  </folding>
+                <state relative-caret-position="152">
+                  <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SubTitle.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/SubTitle.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="228">
+                  <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -159,9 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>info</find>
-      <find>productImages</find>
-      <find>productPhoto</find>
       <find>file</find>
       <find>this.props</find>
       <find>10</find>
@@ -189,6 +250,9 @@
       <find>productPosition_1</find>
       <find>PositionSelect</find>
       <find>isCostSame</find>
+      <find>handler</find>
+      <find>SubTitle</find>
+      <find>FormLabel</find>
     </findStrings>
     <replaceStrings>
       <replace>samePrice</replace>
@@ -210,36 +274,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/containers/Routes/PolicyRoutes/PolicyScreen.js" />
-        <option value="$PROJECT_DIR$/src/containers/Routes/NoMatchScreen.js" />
-        <option value="$PROJECT_DIR$/src/styles/register/_RegisterOne.scss" />
-        <option value="$PROJECT_DIR$/src/components/Register/StepThree/RegisterForm.js" />
-        <option value="$PROJECT_DIR$/src/styles/ceo/_CeoHome.scss" />
-        <option value="$PROJECT_DIR$/src/styles/ceo/_Sidebar.scss" />
-        <option value="$PROJECT_DIR$/src/styles/landing/_Main.scss" />
-        <option value="$PROJECT_DIR$/src/styles/register/_RegisterThree.scss" />
-        <option value="$PROJECT_DIR$/src/styles/ceo/_CeoProduct.scss" />
-        <option value="$PROJECT_DIR$/src/styles/base/_reset.scss" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/PhotosUpload.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Home/ExchangeModal.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Exchange/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Exchange/ExchangeModal.js" />
-        <option value="$PROJECT_DIR$/src/styles/base/_all.scss" />
-        <option value="$PROJECT_DIR$/src/components/Common/Pagination.js" />
-        <option value="$PROJECT_DIR$/src/styles/base/_pagination.scss" />
-        <option value="$PROJECT_DIR$/src/containers/Routes/CeoRoutes/ProductRoutes/CeoProductModify.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Product/index.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTableModify.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Order/index.js" />
-        <option value="$PROJECT_DIR$/src/styles/style.css" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Order/OrderHeader.js" />
-        <option value="$PROJECT_DIR$/src/styles/base/_animate.scss" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Modify/ProductModifyForm.js" />
-        <option value="$PROJECT_DIR$/src/helpers/request/order.js" />
-        <option value="$PROJECT_DIR$/src/helpers/request/auth.js" />
-        <option value="$PROJECT_DIR$/src/helpers/localForage.helper.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/ducks/order.duck.js" />
         <option value="$PROJECT_DIR$/src/components/Ceo/Order/OrderSpecificInformation.js" />
         <option value="$PROJECT_DIR$/src/components/Ceo/Order/OrderTable.js" />
         <option value="$PROJECT_DIR$/scripts/start.js" />
@@ -258,8 +292,38 @@
         <option value="$PROJECT_DIR$/src/ducks/product.duck.js" />
         <option value="$PROJECT_DIR$/src/helpers/request/product.js" />
         <option value="$PROJECT_DIR$/src/ducks/form.duck.js" />
-        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js" />
         <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTable.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/SubTitle.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Label.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Field.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Element/Label.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Element/Field.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/data.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field/Field.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Section.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/SubTitle.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field/SelectField.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field/InputField.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/InputLine.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/SelectLine.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/SelectLine.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/InputLine.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/SelectLine.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/SelectField.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/InputField.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/RegisterSection.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/GroupSection.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/index.js" />
+        <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Section.js" />
         <option value="$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js" />
       </list>
     </option>
@@ -274,8 +338,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="x" value="1680" />
+    <option name="y" value="-707" />
+    <option name="width" value="2560" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -353,8 +419,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -441,6 +505,51 @@
               <item name="Ceo" type="462c0819:PsiDirectoryNode" />
               <item name="Product" type="462c0819:PsiDirectoryNode" />
               <item name="Upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="funfur-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="funfur-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Ceo" type="462c0819:PsiDirectoryNode" />
+              <item name="Product" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+              <item name="Section" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="funfur-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="funfur-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Ceo" type="462c0819:PsiDirectoryNode" />
+              <item name="Product" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+              <item name="Section" type="462c0819:PsiDirectoryNode" />
+              <item name="Element" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="funfur-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="funfur-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Ceo" type="462c0819:PsiDirectoryNode" />
+              <item name="Product" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+              <item name="Section" type="462c0819:PsiDirectoryNode" />
+              <item name="Element" type="462c0819:PsiDirectoryNode" />
+              <item name="Field" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="funfur-react" type="b2602c69:ProjectViewProjectNode" />
+              <item name="funfur-react" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Ceo" type="462c0819:PsiDirectoryNode" />
+              <item name="Product" type="462c0819:PsiDirectoryNode" />
+              <item name="Upload" type="462c0819:PsiDirectoryNode" />
+              <item name="Section" type="462c0819:PsiDirectoryNode" />
+              <item name="Element" type="462c0819:PsiDirectoryNode" />
+              <item name="Line" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="funfur-react" type="b2602c69:ProjectViewProjectNode" />
@@ -568,11 +677,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -583,11 +694,18 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
-    <property name="SearchEverywhereHistoryKey" value="PasswordModal&#9;FILE&#9;file:///Users/na/Project/funfur-react/src/components/Ceo/Home/PasswordModal.js&#10;passwor&#9;null&#9;null&#10;upload-dropzone&#9;null&#9;null&#10;div.upload-dropzone&#9;null&#9;null&#10;add-product&#9;null&#9;null&#10;add-product.on-contents&#9;null&#9;null&#10;case-upload&#9;null&#9;null&#10;add-product &#9;null&#9;null&#10;form-box&#9;null&#9;null&#10;product-box&#9;null&#9;null&#10;id-image-after&#9;null&#9;null&#10;addAddtionalPhoto&#9;null&#9;null&#10;dropzone-hidden&#9;null&#9;null&#10;padding-top50&#9;null&#9;null&#10;btn-container&#9;null&#9;null&#10;auth-top-border&#9;null&#9;null&#10;modal-header&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/na/Project/funfur-react/src/components/Ceo/Product/Upload/UploadForm/Section.js&#10;PasswordModal&#9;FILE&#9;file:///Users/na/Project/funfur-react/src/components/Ceo/Home/PasswordModal.js&#10;passwor&#9;null&#9;null&#10;upload-dropzone&#9;null&#9;null&#10;div.upload-dropzone&#9;null&#9;null&#10;add-product&#9;null&#9;null&#10;add-product.on-contents&#9;null&#9;null&#10;case-upload&#9;null&#9;null&#10;add-product &#9;null&#9;null&#10;form-box&#9;null&#9;null&#10;product-box&#9;null&#9;null&#10;id-image-after&#9;null&#9;null&#10;addAddtionalPhoto&#9;null&#9;null&#10;dropzone-hidden&#9;null&#9;null&#10;padding-top50&#9;null&#9;null&#10;btn-container&#9;null&#9;null&#10;auth-top-border&#9;null&#9;null&#10;modal-header&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/Ceo/Exchange" />
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line" />
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element" />
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload" />
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section/Element/Field" />
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Section" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/Element" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -725,6 +843,7 @@
       <workItem from="1520575763556" duration="2996000" />
       <workItem from="1520594154104" duration="6088000" />
       <workItem from="1520756223870" duration="10433000" />
+      <workItem from="1520856457363" duration="7886000" />
     </task>
     <task id="LOCAL-00001" summary="[FIX] OrderPagination Next 이후로 넘어가는 것">
       <created>1515418944061</created>
@@ -838,11 +957,18 @@
       <option name="project" value="LOCAL" />
       <updated>1520766967208</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="server 통신 해결">
+      <created>1520788539450</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1520788539450</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120362000" />
+    <option name="totallyTimeSpent" value="146259000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -854,58 +980,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="1680" y="-707" width="2560" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08490566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.139413" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14774115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20545073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08490566" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13913691" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0841938" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08490566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.139413" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.083638586" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20545073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20545073" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -968,161 +1073,16 @@
     <MESSAGE value="발주서테이블, 교환반품 테이블 css통일, modal 컴포넌트 재사용 -&gt; redux 연결 필요" />
     <MESSAGE value="submit 버튼 toggle flag 삭제" />
     <MESSAGE value="server 통신 이상함" />
-    <option name="LAST_COMMIT_MESSAGE" value="server 통신 이상함" />
+    <MESSAGE value="server 통신 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="server 통신 해결" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/start.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1677">
-          <caret line="83" column="52" lean-forward="true" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Order/OrderSpecificInformation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ducks/order.duck.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="41" column="36" lean-forward="true" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/request/order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/index.async.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/CeoRoutes/index.async.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="49" lean-forward="true" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/CeoRoutes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#66#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Exchange/ExchangeModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Exchange/ExchangeContents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Exchange/Exchange.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Order/OrderTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="207" column="18" lean-forward="false" selection-start-line="207" selection-start-column="18" selection-end-line="207" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/CeoRoutes/ExchangeRoutes/ExchangeScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="56" column="22" lean-forward="false" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Exchange/ExchangeTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="51" lean-forward="false" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Routes/CeoRoutes/OrderRoutes/OrderScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="112" column="7" lean-forward="true" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/encrypt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="52" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ducks/auth.duck.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-566">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1221">
-          <caret line="169" column="1" lean-forward="false" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1148,9 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1158,9 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1168,9 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#79#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1178,6 +1129,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#2114#3969#0" expanded="false" />
+            <marker date="1520614007084" expanded="true" signature="982:1029" ph="{...}" />
+            <marker date="1520614007084" expanded="true" signature="1284:1399" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1185,6 +1141,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1206,10 +1163,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="768">
           <caret line="79" column="60" lean-forward="false" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-            <element signature="n#!!block;n#handleClose#0;n#PhotosUpload#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1217,9 +1170,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" column="3" lean-forward="false" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1227,7 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1240,28 +1189,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ducks/product.duck.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="2641">
           <caret line="141" column="77" lean-forward="false" selection-start-line="141" selection-start-column="77" selection-end-line="141" selection-end-column="77" />
-          <folding>
-            <marker date="1520786529146" expanded="true" signature="2941:8031" ph="{...}" />
-            <marker date="1520786529146" expanded="true" signature="2967:8029" ph="{...}" />
-            <marker date="1520786529146" expanded="true" signature="5077:5321" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="5364:5453" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="5497:5646" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="5893:5994" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6051:6154" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6210:6312" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6354:6443" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6487:6636" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6679:6828" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="6873:6964" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7011:7234" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7280:7433" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7484:7573" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7626:7775" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7831:7980" ph="..." />
-            <marker date="1520786529146" expanded="true" signature="7997:8023" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1269,7 +1199,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1277,14 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1301,7 +1222,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
           <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,7 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1317,7 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1325,7 +1243,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,7 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1341,7 +1257,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-656">
           <caret line="146" column="41" lean-forward="false" selection-start-line="146" selection-start-column="41" selection-end-line="146" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1353,48 +1268,229 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/request/product.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Common/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="152">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ducks/form.duck.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
+        <state relative-caret-position="-7">
           <caret line="62" column="25" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/DeliveryTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
+        <state relative-caret-position="19">
           <caret line="34" column="73" lean-forward="false" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Common/SubTitle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/request/product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/PositionSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/UploadForm/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Common/FormLabel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/prop-types/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/SortableSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Label.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="2" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/SelectField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Field/InputField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/GroupSection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/SubTitle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/SelectLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Section.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/Section/Element/Line/InputLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Ceo/Product/Upload/ProductForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="210" column="26" lean-forward="true" selection-start-line="210" selection-start-column="26" selection-end-line="210" selection-end-column="26" />
+        <state relative-caret-position="692">
+          <caret line="934" column="55" lean-forward="true" selection-start-line="934" selection-start-column="55" selection-end-line="934" selection-end-column="55" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#changeHandler#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleCheckBox#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleProportionChk#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleBlur#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#handleSubmit#0;n#ProductForm#0" expanded="false" />
+            <element signature="e#4044#4189#0" expanded="false" />
+            <element signature="e#4235#4382#0" expanded="false" />
+            <element signature="e#4427#4951#0" expanded="false" />
+            <element signature="e#5007#5849#0" expanded="false" />
+            <element signature="n#!!block;n#renderPosition#0;n#ProductForm#0" expanded="false" />
             <element signature="n#!!block;n#renderFirstSort#0;n#ProductForm#0" expanded="false" />
             <element signature="n#!!block;n#renderSecondSort#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#renderSortTwo#0;n#ProductForm#0" expanded="false" />
+            <element signature="n#!!block;n#componentWillUnmount#0;n#ProductForm#0" expanded="false" />
+            <element signature="e#17591#35535#0" expanded="false" />
           </folding>
         </state>
       </provider>

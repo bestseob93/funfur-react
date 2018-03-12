@@ -4,8 +4,8 @@ import Scrollbars from 'react-custom-scrollbars';
 
 import {
     Spinner,
-    SubTitle,
     FormLabel,
+    SubTitle
 } from 'components/Common';
 import {
     PositionSelect,
@@ -13,6 +13,11 @@ import {
     PhotosUpload,
     DeliveryTable
 } from 'components/Ceo/Product';
+import {
+    Section,
+} from './Section'
+import { formNames }from './data';
+
 
 class ProductForm extends Component {
     constructor(props) {
@@ -84,7 +89,7 @@ class ProductForm extends Component {
             if(this.props.form.get('isCostSame')) {
                 const formName = ['GangWon', 'ChungNam', 'ChungBuk', 'GyeongBuk', 'GyeongNam', 'JeonBuk', 'JeonNam', 'JeJuSanGan'];
                 for(let i=0; i<8; i++) {
-                FormActions.formChange({
+                    FormActions.formChange({
                         formName: 'product',
                         name: formName[i],
                         value: form.get('SeoulGyungki')
@@ -120,55 +125,22 @@ class ProductForm extends Component {
     /* 제품 등록 요청 */
     async handleSubmit(ev) {
         ev.preventDefault();
-        
-        const formNames = [
-            {id:'productName',        name:'제품 명',      isRequired: true},
-            {id:'productPosition_1',  name:'제품 위치(1)', isRequired: true},
-            {id:'productPosition_2',  name:'제품 위치(2)', isRequired: true},
-            {id:'firstSort_1',        name:'1차 제품 분류', isRequired: true},
-            {id:'secondSort_1',       name:'2차 제품 분류', isRequired: true},
-            {id:'firstSort_2',        name:'1차 제품 분류', isRequired: false},
-            {id:'secondSort_2',       name:'2차 제품 분류', isRequired: false},
-            {id:'modelName',          name:'모델 명',     isRequired: true},
-            {id:'modelOption',        name:'제품 옵션',    isRequired: true},
-            {id:'productColor',       name:'제품 색상',    isRequired: true},
-            {id:'sizeWidth',          name:'가로 길이',    isRequired: true},
-            {id:'sizeDepth',          name:'세로 길이',    isRequired: true},
-            {id:'sizeHeight',         name:'높이',       isRequired: true},
-            {id:'mainMaterial',       name:'주요 소재',    isRequired: true},
-            {id:'prManufacturer',     name:'제조사',      isRequired: true},
-            {id:'productOrigin',      name:'원산지',      isRequired: true},
-            {id:'productPrice',       name:'제품 가격',    isRequired: true},
-            {id:'productImages',      name:'제품 이미지',   isRequired: true},
-            {id:'isDeliverFree',      name:'배송비 유무',   isRequired: true},
-            {id:'seoulGyungki',       name:'서울-경기',    isRequired: true},
-            {id:'gangwon',            name:'강원',       isRequired: true},
-            {id:'chungnam',           name:'충남',       isRequired: true},
-            {id:'chungbuk',           name:'충북',       isRequired: true},
-            {id:'gyeongbuk',          name:'경북',       isRequired: true},
-            {id:'gyeongnam',          name:'경남',       isRequired: true},
-            {id:'jeonbuk',            name:'전북',       isRequired: true},
-            {id:'jeonnam',            name:'전남',       isRequired: true},
-            {id:'jejuSangan',         name:'제주-산간',    isRequired: true},
-            {id:'samePrice',         name:'배송비 같음',   isRequired: true},
-            {id:'proportionShipping', name:'비례배송',     isRequired: true},
-        ];
 
         const { UiActions, ProductActions, FormActions, form } = this.props;
         const regNumberOnly = /^[0-9]*$/;
 
         const getRequestInfo = (formNames, store) => {
             return formNames.map(e => ({
-                ...e,
-                value: store.get(e.id)
-            })
-        )};
+                    ...e,
+                    value: store.get(e.id)
+                })
+            )};
         const getValidList = requestInfo => {
             return requestInfo.map(e => ({
-                ...e,
-                valid: e.value !== '',
-            })
-        )};
+                    ...e,
+                    valid: e.value !== '',
+                })
+            )};
         const checkAndAlert = validList => {
             return validList.reduce((acc, element) => {
                 if (element.valid) {
@@ -217,6 +189,8 @@ class ProductForm extends Component {
         const requestInfo = getRequestInfo(formNames, form);
         const validList = getValidList(requestInfo);
         const valid = checkAndAlert(validList);
+
+
         if (true) {
             console.log(requestInfo);
             requestUpload(ProductActions.productUpload, requestInfo);
@@ -461,8 +435,8 @@ class ProductForm extends Component {
     renderSortTwo() {
         const { UiActions, FormActions } = this.props;
         if(this.props.isSecondSortable) {
-                UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
-                FormActions.resetSecondSortable();
+            UiActions.removeSecondSortable();  // - 누르면 두 번째 위치 추가 삭제.
+            FormActions.resetSecondSortable();
         } else {
             if(this.props.form.get('productPosition') === '') {
                 alert("첫번째 위치를 먼저 추가해주세요!");
@@ -491,8 +465,7 @@ class ProductForm extends Component {
         } = this;
 
         const emptyComponent = undefined;
-
-        return (
+        const legacy = (
             <div>
                 {/* 스피너 */}
                 { this.props.status.upload.get('fetching') && (<Spinner/>) }
@@ -510,9 +483,10 @@ class ProductForm extends Component {
                         />
                     </div>
                 </div>
+
+
                 <SubTitle title="제품 분류" />
                 <div className="row form-box">
-                    {/* TODO: 동적으로 바꾸고, 첫번째에 선택된 값 배열에서 빼기 */}
                     <FormLabel name="위치" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
                         {renderPosition(true)}
@@ -536,10 +510,10 @@ class ProductForm extends Component {
                 </div>
                 <div className="row text-center">
                     <p><i
-                            className={`fa ${this.props.isSecondSortable ? 'fa-minus-circle' :'fa-plus-circle'} fa-2x`}
-                            style={{cursor: 'pointer'}}
-                            onClick={renderSortTwo}>
-                        </i>
+                        className={`fa ${this.props.isSecondSortable ? 'fa-minus-circle' :'fa-plus-circle'} fa-2x`}
+                        style={{cursor: 'pointer'}}
+                        onClick={renderSortTwo}>
+                    </i>
                     </p>
                 </div>
                 {this.props.isSecondSortable ?
@@ -569,18 +543,20 @@ class ProductForm extends Component {
                     </div> :
                     emptyComponent
                 }
+
+
                 <SubTitle title="제품 정보" />
                 <div className="row form-box">
                     <FormLabel name="모델명" />
                     <div className="col-md-6 col-xs-10 col-xs-offset-1 col-md-offset-0">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="modelName"
-                                placeholder="-을 제외한 모델명을 적어주세요."
-                                required
-                                onChange={changeHandler}
-                            />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="modelName"
+                            placeholder="-을 제외한 모델명을 적어주세요."
+                            required
+                            onChange={changeHandler}
+                        />
                     </div>
                 </div>
                 <div className="row form-box">
@@ -719,6 +695,9 @@ class ProductForm extends Component {
                         원
                     </span>
                 </div>
+
+
+
                 <SubTitle title="배송 정보" />
                 <div className="row form-box">
                     <FormLabel name="배송비" />
@@ -808,7 +787,7 @@ class ProductForm extends Component {
                                 <p>* 고객변심에 의한 교환, 반품일 경우 왕복배송비는 고객님 부담입니다.</p>
                                 <p>* 현장에서 확인되는 환경적 요인에 의한 배송불가의 경우에도 왕복배송비가 부담됩니다.</p>
                                 <p>* 상품의 하자가 아닌 환불은 상품회수 및 왕복배송비용 입금확인 후 진행됩니다. 왕복배송비용은 상품별로 다르므로 반드시 업체에 확인바랍니다.</p>
-                            
+
                                 <b>교환, 반품이 불가능한 경우</b>
                                 <p>* 초기 배송 시 발견되지 않은 외형 파손에 대해서는 교환 및 반품이 불가능합니다. (반드시 배송기사와 함께 상품을 확인해주세요)</p>
                                 <p>* 상품을 배송하여 박스가 심히 훼손되었거나 조립 및 설치 후 재판매가 불가능한 상태의 경우 교환, 반품이 불가능합니다.</p>
@@ -817,7 +796,7 @@ class ProductForm extends Component {
                                 <p>* 조립 설치품 (배송 후 조립 또는 설치가 필요한 제품) 은 조립 설치 후에 교환/반품이 불가합니다.</p>
                                 <p>* 매트리스는 제품의 위생 관리상 포자 개봉 및 사용후에는 원칙적으로 교환/환불이 불가합니다.</p>
                                 <p>* 붙박이장의 특성상 설치 후 교환/반품이 불가합니다. (단, 제품하자의 경우는 제외)</p>
-                             
+
                                 <b>AS안내</b>
                                 <p>* 상품의 기술적인 하자에 한하여 A/S가 가능합니다.</p>
                                 <p>* 고객 부주의로 인한 A/S는 별도의 비용을 부담 하셔야 합니다.</p>
@@ -827,6 +806,9 @@ class ProductForm extends Component {
                         </Scrollbars>
                     </div>
                 </div>
+
+
+
                 <SubTitle title="사진 업로드" />
                 <PhotosUpload {...this.props} />
                 <div className="row form-box padding-top50 padding-bottom">
@@ -842,6 +824,126 @@ class ProductForm extends Component {
                         </button>
                     </div>
                 </div>
+            </div>
+        );
+
+
+        /////////
+        const selectInputInfo =
+            [
+                {
+                    subTitle: {
+                        title: '제목1'
+                    },
+                    lines: [
+                        {
+                            type: 'input',
+                            label: {
+                                name: '라벨1'
+                            },
+                            field: {
+                                type: 'text',
+                                name: 'productName',
+                                placeholder: '입력해주세요',
+                                isRequired: true,
+                            }
+                        }
+
+                    ]
+                },
+                {
+                    subTitle: {
+                        title: '제목2'
+                    },
+                    lines: [
+                        {
+                            type: 'select',
+                            label: {
+                                name: '라벨1'
+                            },
+                            field: {
+                                name: 'select1',
+                                placeholder: '옵션을 선택해주세요',
+                                isRequired: true,
+                                options: [
+                                    '거실',
+                                    '주방',
+                                    '침실',
+                                    '키즈/유아',
+                                    '학생/서재',
+                                    '인테리어 소품',
+                                    '화장실'
+                                ]
+                            }
+                        },
+                        {
+                            type: 'select',
+                            label: {
+                                name: '라벨1'
+                            },
+                            field: {
+                                name: 'select1',
+                                placeholder: '옵션을 선택해주세요',
+                                isRequired: true,
+                                options: [
+                                    '거실',
+                                    '주방',
+                                    '침실',
+                                    '키즈/유아',
+                                    '학생/서재',
+                                    '인테리어 소품',
+                                    '화장실'
+                                ]
+                            }
+                        },
+                        {
+                            type: 'select',
+                            label: {
+                                name: '라벨1'
+                            },
+                            field: {
+                                name: 'select1',
+                                placeholder: '옵션을 선택해주세요',
+                                isRequired: true,
+                                options: [
+                                    '거실',
+                                    '주방',
+                                    '침실',
+                                    '키즈/유아',
+                                    '학생/서재',
+                                    '인테리어 소품',
+                                    '화장실'
+                                ]
+                            }
+                        },
+                    ]
+                }
+            ]
+        ;
+
+
+        const saveForm = (form, {name, value}) => {
+            form.push({name, value});
+        };
+        const getFetchObject = (form, callback) => ({
+            form: form,
+            callback: callback
+        });
+        let form = [];
+        const fetchObject = getFetchObject(form, saveForm);
+
+        const renderSections = (list, fetchObject) => {
+            return list.map(info => <Section {...info} fetchObject={fetchObject} />);
+        };
+
+
+        //TODO selectSection 선택하는거 앞의 선택 결과에 따라 뒤의 option 을 다르게 보여주기
+        const show = () => console.log(form);
+        return (
+            <div className='container-fluid'>
+                {renderSections(selectInputInfo, fetchObject)}
+
+                <input type='submit' onClick={show} />
             </div>
         );
     }
