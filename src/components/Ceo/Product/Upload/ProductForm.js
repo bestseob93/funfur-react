@@ -262,13 +262,6 @@ class ProductForm extends Component {
                 message: "사진은 반드시 1장 이상 업로드 해주셔야합니다!"
             });
             toggleSubmitBtn(false);
-        } else if(productInfo.firstSort_1 === '' || productInfo.secondSort_1 === '') {
-            UiActions.showSweetAlert({
-                value: 'warning',
-                alertTitle: '',
-                message: "1차와 2차 분류를 모두 입력해주세요!"
-            });
-            toggleSubmitBtn(false);
         } else {
             try {
                 await ProductActions.productUpload(productInfo);
