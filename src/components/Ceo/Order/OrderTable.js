@@ -84,24 +84,29 @@ class OrderTable extends Component {
             shippingCompany: form.get('shippingCompany'),
             trackingNumber: form.get('trackingNumber')
         };
+        const regNumberOnly = /^[0-9-]*$/; // 숫자 체크 정규식
 
         if(shippingInfo.shippingMethod === '' || typeof shippingInfo.shippingMethod !== 'string') {
             this.addAlert('error', '배송 방법을 선택해주세요!');
+            return ;
         } else if(shippingInfo.shippingCompany === '' || typeof shippingInfo.shippingCompany !== 'string') {
             this.addAlert('error', '회사명을 선택 또는 입력해주세요!');
+            return ;
         } else if(shippingInfo.trackingNumber === '' || typeof shippingInfo.trackingNumber !== 'string') {
             this.addAlert('error', '운송장 번호를 입력해주세요!');
+            return ;
+        } else if (!regNumberOnly.test(shippingInfo.trackingNumber)) {
+            this.addAlert('error', '운송장 번호에는 숫자 및 하이픈(-)만 입력해주세요!');
+            return ;
         }
 
         let orderId = form.get('id');
 
         try {
             await OrderActions.orderShippingUpdate(shippingInfo, orderId);
-            if(this.props.valid.shippingUpdate) {
-                await OrderActions.getOrderList();
-                this.addAlert('success', '배송 정보가 등록되었습니다.');
-
-            }
+            await OrderActions.getOrderList();
+            this.addAlert('success', '배송 정보가 등록되었습니다.');
+            return ;
         } catch (e) {
             if(e) {
                 //console.log(e);
@@ -146,7 +151,7 @@ class OrderTable extends Component {
                 const shippingCompany = (
                     <td className="half-line">
                         <select
-                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) === '자체배송' : false}
+                            disabled={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[0]) === '자체배송' : false}
                             className="form-control shippingCompany"
                             name="shippingCompany"
                             value={data.get('id') === this.props.form.get('id') ? this.props.form.get(shipColumn[1]) : ''}
@@ -166,6 +171,11 @@ class OrderTable extends Component {
                     placeholderText = "운송장 번호를 입력해주세요";
                 } else if(this.props.form.get('shippingMethod') === '자체배송') {
                     placeholderText = "기사님의 연락처를 입력해주세요";
+                    this.props.FormActions.formChange({
+                        formName: 'orders',
+                        name: 'shippingCompany',
+                        value: '자체배송'
+                    });
                 }
 
                 const trackingNumber = (
