@@ -71,7 +71,6 @@ module.exports = function(proxy, allowedHost) {
     https: protocol === 'https',
     host: host,
     open: true,
-    openPage: "/",
     overlay: false,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.

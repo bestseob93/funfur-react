@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@quickbaseoss/babel-plugin-styled-components-css-namespace": "0.0.10",
+    "@types/react": "^15.5.4",
+    "@types/react-dom": "^15.5.4",
     "animate.css": "^3.5.2",
+    "antd": "^3.4.0",
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "dotenv": "^4.0.0",
     "enzyme": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "fork-ts-checker-webpack-plugin": "^0.4.1",
     "immutable": "^3.8.1",
     "jquery": "^3.2.1",
     "localforage": "^1.5.0",
@@ -29,10 +34,15 @@
     "redux-promise-middleware": "4.2.1",
     "sass-loader": "^6.0.6",
     "sweetalert-react": "^0.4.10",
+    "tsconfig-paths-webpack-plugin": "^3.0.3",
+    "tslint": "^5.9.1",
+    "tslint-react": "^3.5.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "@types/node": "^9.6.1",
     "autoprefixer": "7.1.0",
+    "awesome-typescript-loader": "^4.0.1",
     "axios-mock-adapter": "^1.10.0",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
@@ -59,6 +69,8 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
     "node-sass-chokidar": "^0.0.2",
     "npm-run-all": "^4.0.2",
     "object-assign": "4.1.1",
@@ -68,10 +80,13 @@
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
     "react-hot-loader": "next",
-    "react-test-renderer": "^15.6.2",
+    "react-test-renderer": "^15.5.4",
     "redux-mock-store": "^1.4.0",
+    "source-map-loader": "^0.2.3",
     "style-loader": "0.17.0",
     "sw-precache-webpack-plugin": "0.9.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.8.1",
     "url-loader": "0.5.8",
     "webpack": "2.6.1",
     "webpack-dev-server": "2.4.5",
@@ -96,12 +111,13 @@
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
@@ -117,6 +133,15 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": true
+        }
+      ]
     ]
   },
   "eslintConfig": {

@@ -91,7 +91,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
     alias: {
       
       // Support React Native Web
@@ -117,6 +117,11 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
+          test: /\.(ts|tsx)$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
+      },
+      {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
         use: [
@@ -141,7 +146,7 @@ module.exports = {
       {
         exclude: [
           /\.html$/,
-          /\.(js|jsx)$/,
+          /\.(js|jsx|ts|tsx)$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,

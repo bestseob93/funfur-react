@@ -5,8 +5,6 @@ import {
     Spinner
 } from 'components/Common';
 
-import OrderSpecificInformation from './OrderSpecificInformation';
-
 var ReactToastr = require('react-toastr');
 var { ToastContainer } = ReactToastr; // This is a React Element.
 // For Non ES6...

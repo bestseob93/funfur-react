@@ -12,6 +12,10 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -85,9 +89,19 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: [
+        '.mjs',
+        '.web.ts',
+        '.ts',
+        '.web.tsx',
+        '.tsx',
+        '.web.js',
+        '.js',
+        '.json',
+        '.web.jsx',
+        '.jsx'
+    ],
     alias: {
-      
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -98,7 +112,8 @@ module.exports = {
       // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
       // please link the files into your node_modules/ and let module-resolution kick in.
       // Make sure your source files are compiled, as they will not be processed in any way.
-      new ModuleScopePlugin(paths.appSrc),
+      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+      new TsconfigPathsPlugin({ configFile: paths.appTsConfig })
     ],
   },
   module: {
@@ -111,7 +126,7 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         use: [
           {
@@ -119,10 +134,23 @@ module.exports = {
               formatter: eslintFormatter,
               
             },
-            loader: require.resolve('eslint-loader'),
+            loader: require.resolve('source-map-loader'),
           },
         ],
         include: paths.appSrc,
+      },
+      {
+        test: /\.(ts|tsx)?$/,
+        include: paths.appSrc,
+        use: [
+            {
+                loader: require.resolve('ts-loader'),
+                options: {
+                    transpileOnly: true
+                }
+            }
+        ],
+        exclude: /node_modules/
       },
       // ** ADDING/UPDATING LOADERS **
       // The "file" loader handles all assets unless explicitly excluded.
@@ -136,7 +164,7 @@ module.exports = {
       {
         exclude: [
           /\.html$/,
-          /\.(js|jsx)$/,
+          /\.(js|jsx|ts|tsx)$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,
@@ -173,7 +201,8 @@ module.exports = {
           cacheDirectory: true,
           plugins: [
             'react-hot-loader/babel'
-          ]
+          ],
+          compact: true
         },
       },
       // "postcss" loader applies autoprefixer to our CSS.
@@ -294,13 +323,21 @@ module.exports = {
             'window.$': 'jquery'
 
         }),
+      new ForkTsCheckerWebpackPlugin({
+          async: false,
+          watch: paths.appSrc,
+          tsconfig: paths.appTsConfig,
+          tslint: paths.appTsLint,
+      }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
+      dgram: 'empty',
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      child_process: 'empty',
   },
   // Turn off performance hints during development because we don't do any
   // splitting or minification in interest of speed. These warnings become
