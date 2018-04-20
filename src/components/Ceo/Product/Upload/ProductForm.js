@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import storage from "helpers/localForage.helper";
 
-const FUNFUR = process.env.REACT_APP_URL;
+const FUNFUR = process.env.REACT_APP_URL + "/api/v1";
 
 class ProductForm extends Component {
   constructor(props) {
