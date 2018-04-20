@@ -81,10 +81,9 @@ export const requestLoginCeo = (userId, pw) => {
         ceoName: res.data.ceoName,
         companyName: res.data.companyName,
         loginId: res.data.loginId,
-        token: res.data.token
       });
+      storage.set("token", res.data.token);
 
-      console.log("token", res.data.token);
       return res;
     })
     .catch(err => {

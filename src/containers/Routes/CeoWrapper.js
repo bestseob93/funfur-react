@@ -44,10 +44,8 @@ class CeoWrapper extends Component {
     this.handleHamburgerPress = this.handleHamburgerPress.bind(this);
   }
 
-  componentWillReceiveProps() {
+  componentDidUpdate() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
-
-    storage.get("token").then(async res => console.log("str token",res));
 
     storage
       .get("token")
@@ -59,12 +57,21 @@ class CeoWrapper extends Component {
               console.log("세선만료. 로그아웃 진행", value);
               AuthActions.authLogout();
               storage.remove("auth");
+              storage.remove("token");
 
               document.location = "/";
             }
           });
         } catch (e) {
           console.log("ceoWrapper check token 오류발생", e);
+          window.bugsnagClient.notify(new Error("제품 업로드 에러 - 토큰"), {
+            severity: "error",
+            user: window.bugsnagClient.user,
+            context: "Ceo Wrapper checkToken 오류",
+            strageValue: value,
+            error: e,
+            storage: storage
+          });
           //document.location="/";
           // pathname이 /ceo 로 시작하는지 검사.
           // const pathNameRegx = /^\/ceo/g;
