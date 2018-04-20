@@ -84,7 +84,7 @@ export const requestProductUpload = (productInfo) => {
             console.log(res);
             return res;
         }).catch(err => {
-            if(err) throw err;
+            return err;
         });
     });
 };

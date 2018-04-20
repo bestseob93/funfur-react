@@ -132,7 +132,8 @@ export default function reducer(state = initialState, action) {
                         .setIn(['valid', 'productList'], false);
 
         case `${PRODUCT_UPLOAD}_PENDING`:
-            return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.pending));
+            return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.pending))
+                        .setIn(['valid', 'upload', 'flag'], false);
         case `${PRODUCT_UPLOAD}_FULFILLED`:
             return state.mergeIn(['requests', 'upload'], fromJS(requestStatus.fulfilled))
                         .setIn(['valid', 'upload', 'flag'], true);
