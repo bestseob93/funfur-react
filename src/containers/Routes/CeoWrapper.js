@@ -47,15 +47,17 @@ class CeoWrapper extends Component {
   componentDidMount() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
 
+    storage.get("token").then(async res => console.log("str token",res));
+
     storage
       .get("token")
       .then(async value => {
         try {
           await AuthActions.checkToken(value).then(res => {
-            if (res.status !== 200) {
+            console.log("response", res);
+            if (res.status === 401 || res.status === 404) {
               console.log("세선만료. 로그아웃 진행", value);
               AuthActions.authLogout();
-              storage.remove("token");
               storage.remove("auth");
 
               document.location = "/";

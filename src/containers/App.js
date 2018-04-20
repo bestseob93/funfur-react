@@ -63,15 +63,15 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     // https://github.com/react-ga/react-ga/issues/122
-    if (
-      this.props.location.pathname !== nextProps.location.pathname ||
-      this.props.location.search !== nextProps.location.search
-    ) {
-      this.sendPageChange(
-        nextProps.location.pathname,
-        nextProps.location.search
-      );
-    }
+    // if (
+    //   this.props.location.pathname !== nextProps.location.pathname ||
+    //   this.props.location.search !== nextProps.location.search
+    // ) {
+    //   this.sendPageChange(
+    //     nextProps.location.pathname,
+    //     nextProps.location.search
+    //   );
+    // }
   }
 
   sendPageChange(pathname, search = "") {
