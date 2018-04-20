@@ -44,7 +44,7 @@ class CeoWrapper extends Component {
     this.handleHamburgerPress = this.handleHamburgerPress.bind(this);
   }
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
 
     storage.get("token").then(async res => console.log("str token",res));
