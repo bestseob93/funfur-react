@@ -44,6 +44,10 @@ class CeoWrapper extends Component {
     this.handleHamburgerPress = this.handleHamburgerPress.bind(this);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.location.key !== nextProps.location.key;
+  }
+
   componentDidUpdate() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
 
@@ -52,7 +56,7 @@ class CeoWrapper extends Component {
       .then(async value => {
         try {
           await AuthActions.checkToken(value).then(res => {
-            console.log("response", res);
+            console.log("check token", res);
             if (res.status === 401 || res.status === 404) {
               console.log("세선만료. 로그아웃 진행", value);
               AuthActions.authLogout();

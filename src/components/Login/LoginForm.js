@@ -71,9 +71,6 @@ class LoginForm extends Component {
       this.pwInput.focus();
     } else {
       try {
-        console.log("user", form.get("userId"));
-        console.log("pw", form.get("password"));
-
         await AuthActions.loginCeo(form.get("userId"), form.get("password"));
         if (this.props.valid.login) {
           window.userID = form.get("userId");

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const FUNFUR = "/api/v1";
+const FUNFUR = process.env.REACT_APP_URL + "/api/v1";
 
 export const requestSendContact = (contactInfo) => {
     return axios.post(`${FUNFUR}/contact_web`, {
