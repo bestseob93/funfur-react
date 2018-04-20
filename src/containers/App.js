@@ -36,29 +36,29 @@ class App extends Component {
 
   // TODO ceo 직접 접근할 시 예외 처리 , catch에 넣어서 일단은 해결
   componentDidMount() {
-    const { AuthActions } = this.props;
-    storage
-      .get("token")
-      .then(async value => {
-        try {
-          await AuthActions.checkToken(value);
-        } catch (e) {
-          //document.location="/";
-          // pathname이 /ceo 로 시작하는지 검사.
-          const pathNameRegx = /^\/ceo/g;
+    // const { AuthActions } = this.props;
+    // storage
+    //   .get("token")
+    //   .then(async value => {
+    //     try {
+    //       await AuthActions.checkToken(value);
+    //     } catch (e) {
+    //       //document.location="/";
+    //       // pathname이 /ceo 로 시작하는지 검사.
+    //       const pathNameRegx = /^\/ceo/g;
 
-          // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
-          if (
-            !this.props.authenticated &&
-            window.location.pathname.search(pathNameRegx) === 0
-          ) {
-            document.location = "/";
-          }
-        }
-      })
-      .catch(err => {
-        if (err) throw err;
-      });
+    //       // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
+    //       if (
+    //         !this.props.authenticated &&
+    //         window.location.pathname.search(pathNameRegx) === 0
+    //       ) {
+    //         document.location = "/";
+    //       }
+    //     }
+    //   })
+    //   .catch(err => {
+    //     if (err) throw err;
+    //   });
   }
 
   componentWillReceiveProps(nextProps) {
