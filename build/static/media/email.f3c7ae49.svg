@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="22px" viewBox="0 0 30 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>xxxhdpi/email</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.44">
+        <g id="3.0-home" transform="translate(-756.000000, -1102.000000)">
+            <g id="email" transform="translate(755.000000, 1097.000000)">
+                <g id="mail">
+                    <rect id="cont" fill="#181818" opacity="0" x="0" y="0" width="32" height="32"></rect>
+                    <path d="M4.19161867,5.81818182 C3.08163651,5.81818182 2.18181818,6.71945715 2.18181818,7.82645606 L2.18181818,24.1735439 C2.18181818,25.2826832 3.07002872,26.1818182 4.19161867,26.1818182 L27.8083813,26.1818182 C28.9183635,26.1818182 29.8181818,25.2805429 29.8181818,24.1735439 L29.8181818,7.82645606 C29.8181818,6.71731682 28.9299713,5.81818182 27.8083813,5.81818182 L4.19161867,5.81818182 Z" id="Path-31" stroke="#000000"></path>
+                    <path d="M5.09090909,8.72727273 L13.1764509,16.8128145 C14.735854,18.3722176 17.2727617,18.363602 18.8235491,16.8128145 L26.9090909,8.72727273" id="Path-82" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M5.09090909,19.6363636 L10.1818182,14.5454545" id="Path-83" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M26.9090909,19.6363636 L21.8181818,14.5454545" id="Path-83-Copy" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

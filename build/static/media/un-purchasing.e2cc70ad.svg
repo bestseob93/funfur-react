@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="66px" viewBox="0 0 64 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>xxxhdpi/un-purchasing</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M14.0600195,14.4752823 C13.8856099,13.3811456 14.6403704,12.4941725 15.7509986,12.4941725 L62.1357939,12.4941725 C63.2441054,12.4941725 64.0019327,13.3764393 63.826773,14.4752823 L58.8818342,45.4967457 C58.7074246,46.5908824 57.6726079,47.4778555 56.5659038,47.4778555 L21.3208887,47.4778555 C20.2162452,47.4778555 19.1801181,46.5955887 19.0049583,45.4967457 L14.0600195,14.4752823 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="49.8169702" height="34.983683" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="37.7397692" y="21.9928632" width="0.706161122" height="17.226005" rx="0.353080561"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="1" height="17.226005" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="37.5319937" y="21.9928632" width="0.706161122" height="17.226005" rx="0.353080561"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="1" height="17.226005" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.0-home" transform="translate(-446.000000, -451.000000)" stroke="#000000">
+            <g id="un-purchasing" transform="translate(446.000000, 452.000000)">
+                <g id="Group">
+                    <ellipse id="Oval-3" fill="#FFFFFF" cx="28.0754717" cy="59.3146853" rx="4.52830189" ry="4.68531469"></ellipse>
+                    <ellipse id="Oval-3" fill="#FFFFFF" cx="48" cy="59.3146853" rx="4.52830189" ry="4.68531469"></ellipse>
+                    <use id="Rectangle" mask="url(#mask-2)" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <use id="Rectangle-3" mask="url(#mask-4)" stroke-width="2" transform="translate(38.239769, 30.605866) rotate(-45.000000) translate(-38.239769, -30.605866) " xlink:href="#path-3"></use>
+                    <use id="Rectangle-3" mask="url(#mask-6)" stroke-width="2" transform="translate(38.031994, 30.605866) scale(-1, 1) rotate(-45.000000) translate(-38.031994, -30.605866) " xlink:href="#path-5"></use>
+                    <path d="M0,0 L6.09294072,0 C6.64599806,0 7.53545387,0.0887268188 8.07054573,0.238040629 C8.07054573,0.238040629 7.9979389,0.123986155 9.05660377,0.624708625 C10.1152686,1.12543109 10.4147414,1.42561603 10.8679245,1.87412587 C12.1003561,3.09384845 12.6792453,6.4032634 12.6792453,6.4032634 L14.1886792,12.8065268" id="Line" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
