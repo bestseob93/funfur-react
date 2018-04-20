@@ -1012,7 +1012,7 @@ class ProductForm extends Component {
               type="text"
               className="form-control"
               name="modelName"
-              placeholder="-을 제외한 모델명을 적어주세요."
+              placeholder="모델명을 적어주세요."
               required
               onChange={changeHandler}
             />
