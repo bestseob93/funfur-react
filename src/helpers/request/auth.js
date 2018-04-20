@@ -75,7 +75,7 @@ export const requestLoginCeo = (userId, pw) => {
 
 export const requestCheckToken = (token) => {
     return axios({
-        method: 'GET',
+        method: 'GET', 
             url: `${FUNFUR}/auth_web/chkToken`,
             headers: {
                 Authorization: token

@@ -47,6 +47,38 @@ class CeoWrapper extends Component {
   componentDidMount() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
 
+    storage
+      .get("token")
+      .then(async value => {
+        try {
+          await AuthActions.checkToken(value).then(res => {
+            if (res.status !== 200) {
+              console.log("세선만료. 로그아웃 진행", value);
+              AuthActions.authLogout();
+              storage.remove("token");
+              storage.remove("auth");
+
+              document.location = "/";
+            }
+          });
+        } catch (e) {
+          //document.location="/";
+          // pathname이 /ceo 로 시작하는지 검사.
+          const pathNameRegx = /^\/ceo/g;
+
+          // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
+          if (
+            !this.props.authenticated &&
+            window.location.pathname.search(pathNameRegx) === 0
+          ) {
+            document.location = "/";
+          }
+        }
+      })
+      .catch(err => {
+        if (err) throw err;
+      });
+
     // TODO. 리프레쉬 해도 localforage에 있는 프로필 가져오기.
     const { AuthActions } = this.props;
     storage

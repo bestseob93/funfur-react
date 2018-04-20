@@ -357,6 +357,24 @@ class ProductForm extends Component {
                 return res;
               })
               .catch(err => {
+                window.bugsnagClient.notify(new Error("제품 업로드 에러 - 토큰"), {
+                  metaData: {
+                    productInfo: productInfo,
+                    formState_upload: this.props.status.upload.toJS(),
+                    props: this.props,
+                    device: navigator,
+                    error: err,
+                    token: token
+                  },
+                  severity: "error",
+                  beforeSend: function(report) {
+                    if (report.user.id === "a") report.ignore();
+                  },
+                  user: window.bugsnagClient.user,
+                  context: "ProductForm Upload error"
+                });
+
+
                 return err;
               });
           });
@@ -386,7 +404,7 @@ class ProductForm extends Component {
                 formState_upload: this.props.status.upload.toJS(),
                 props: this.props,
                 device: navigator,
-                error: err
+                error: err,
               },
               severity: "error",
               beforeSend: function(report) {

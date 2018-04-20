@@ -88,7 +88,7 @@ class App extends Component {
     storage.remove("auth");
   }
 
-  async handleProductDelete() {
+  async handleProductDelete() { 
     const { ProductActions } = this.props;
     const productId = window.location.pathname.split("/");
 
