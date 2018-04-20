@@ -1,7 +1,7 @@
 import axios from 'axios';
 import storage from '../localForage.helper';
 
-const FUNFUR = process.env.REACT_APP_URL | "/api/v1";
+const FUNFUR =  "/api/v1";
 
 export const requestOrderList = () => {
     return storage.get('token').then((token) => {

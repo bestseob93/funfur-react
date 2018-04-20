@@ -2,7 +2,7 @@ import axios from 'axios';
 import { encryptIt } from '../encrypt';
 import storage from '../localForage.helper';
 
-const FUNFUR = process.env.REACT_APP_URL | "/api/v1";
+const FUNFUR = "/api/v1";
 
 export const requestCheckPassword = (password) => {
     let passwordOutPut = encryptIt(password);
