@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Spinner } from "components/Common";
 import storage from "helpers/localForage.helper";
 
+import LocalForage from "localforage";
+
 var ReactToastr = require("react-toastr");
 var { ToastContainer } = ReactToastr; // This is a React Element.
 // For Non ES6...
@@ -71,13 +73,28 @@ class LoginForm extends Component {
       this.pwInput.focus();
     } else {
       try {
-        await AuthActions.loginCeo(form.get("userId"), form.get("password"));
-        if (this.props.valid.login) {
-          window.userID = form.get("userId");
+        await AuthActions.loginCeo(
+          form.get("userId"),
+          form.get("password")
+        ).then(res => {
+          LocalForage.clear()
+            .then(() => {
+              return res.value.data;
+            })
+            .then(data => {
+              LocalForage.setItem("auth", {
+                ceoName: data.ceoName,
+                companyName: data.companyName
+              });
 
-          storage.set("token", this.props.status.token);
-          this.props.router.history.push("/ceo");
-        }
+              return data;
+            })
+            .then(data => {
+              LocalForage.setItem("token", data.token).then(() =>
+                this.props.router.history.push("/ceo")
+              );
+            });
+        });
       } catch (e) {
         if (e) {
           this.addAlert("error", "아이디나 패스워드를 확인해주세요!");

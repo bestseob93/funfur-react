@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
+import LocalForage from "localforage";
+
 import {
   CeoHome,
   CeoSellingProduct,
@@ -48,25 +50,27 @@ class CeoWrapper extends Component {
     return this.props.location.key !== nextProps.location.key;
   }
 
-  componentDidUpdate() {
-    this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
+  checkAndSetToken = (LocalForage, AuthActions) => {
+    LocalForage.getItem("token").then(value => {
+      // const { AuthActions } = this.props;
 
-    storage
-      .get("token")
-      .then(async value => {
-        try {
-          await AuthActions.checkToken(value).then(res => {
-            console.log("check token", res);
-            if (res.status === 401 || res.status === 404) {
-              console.log("세선만료. 로그아웃 진행", value);
-              AuthActions.authLogout();
-              storage.remove("auth");
-              storage.remove("token");
-
-              document.location = "/";
-            }
-          });
-        } catch (e) {
+      AuthActions.checkToken(value)
+        .then(res => {
+          if (res.status === 401 || res.status === 404) {
+            // LocalForage.clear().then(() => AuthActions.authLogout());
+            // setTimeout(() => (document.location = "/"), 2000);
+            throw new Error("not authorized");
+          }
+          LocalForage.getItem("auth")
+            .then(value => {
+              console.log("aaa-a", value);
+              AuthActions.setProfile(value);
+            })
+            .catch(e => {
+              if (e) throw e;
+            });
+        })
+        .catch(e => {
           console.log("ceoWrapper check token 오류발생", e);
           window.bugsnagClient.notify(new Error("제품 업로드 에러 - 토큰"), {
             severity: "error",
@@ -76,33 +80,14 @@ class CeoWrapper extends Component {
             error: e,
             storage: storage
           });
-          //document.location="/";
-          // pathname이 /ceo 로 시작하는지 검사.
-          // const pathNameRegx = /^\/ceo/g;
 
-          // // // 로그인 안되어 있는데, ceo 페이지 진입 시 홈으로 강제 이동
-          // if (
-          //   !this.props.authenticated &&
-          //   window.location.pathname.search(pathNameRegx) === 0
-          // ) {
-          //   document.location = "/";
-          // }
-        }
-      })
-      .catch(err => {
-        if (err) throw err;
-      });
+          setTimeout(() => {
+            document.location = "/";
+          }, 100);
+        });
+    });
 
     // TODO. 리프레쉬 해도 localforage에 있는 프로필 가져오기.
-    const { AuthActions } = this.props;
-    storage
-      .get("auth")
-      .then(async value => {
-        await AuthActions.setProfile(value);
-      })
-      .catch(e => {
-        if (e) throw e;
-      });
 
     const auth = this.props.authInfo.toJS();
     window.bugsnagClient.user = {
@@ -110,6 +95,15 @@ class CeoWrapper extends Component {
       companyName: auth.companyName,
       id: window.userID
     };
+  };
+
+  componentDidMount() {
+    this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
+    this.checkAndSetToken(LocalForage, this.props.AuthActions);
+  }
+
+  componentDidUpdate() {
+    this.checkAndSetToken(LocalForage, this.props.AuthActions);
   }
 
   componentWillUnmount() {
