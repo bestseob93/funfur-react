@@ -63,7 +63,6 @@ class CeoWrapper extends Component {
           }
           LocalForage.getItem("auth")
             .then(value => {
-              console.log("aaa-a", value);
               AuthActions.setProfile(value);
             })
             .catch(e => {
@@ -71,7 +70,6 @@ class CeoWrapper extends Component {
             });
         })
         .catch(e => {
-          console.log("ceoWrapper check token 오류발생", e);
           window.bugsnagClient.notify(new Error("제품 업로드 에러 - 토큰"), {
             severity: "error",
             user: window.bugsnagClient.user,

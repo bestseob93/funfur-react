@@ -307,11 +307,17 @@ class ProductForm extends Component {
             let formData = new FormData();
 
             const productImages = productInfo.productImages.toJS();
-
+            let totalImageSize = 0;
             productImages.forEach(file => {
-              console.log(file);
+              totalImageSize += file.size;
               formData.append("productPhoto", file);
             });
+
+            if (totalImageSize > 20 * 1024 * 1024) {
+              return {status: 412};
+            }
+            
+            console.log("no display")
             formData.append("productName", productInfo.productName);
             formData.append("productPosition_1", productInfo.productPosition);
             formData.append("firstSort_1", productInfo.firstSort_1);
@@ -374,7 +380,6 @@ class ProductForm extends Component {
                   context: "ProductForm Upload error"
                 });
 
-
                 return err;
               });
           });
@@ -382,8 +387,17 @@ class ProductForm extends Component {
 
         requestProductUpload(productInfo)
           .then(res => {
+            if (res.status === 412) {
+              UiActions.showSweetAlert({
+                value: "warning",
+                alertTitle: "",
+                message: "전체 사진 크기는 20MB를 넘을 수 없습니다!"
+              });
+              toggleSubmitBtn(false);
+              return ;
+            }
+
             if (res.status !== 200) {
-              console.log(res);
               throw new Error(res);
             }
 
@@ -414,11 +428,20 @@ class ProductForm extends Component {
               context: "ProductForm Upload error"
             });
 
-            console.log(navigator);
+            if (err.status === 413) {
+              UiActions.showSweetAlert({
+                value: "error",
+                alertTitle: "",
+                alertMessage: "text",
+                message: "사진의 용량이 너무 큽니다"
+              });
+              return ;
+            }
+
             UiActions.showSweetAlert({
               value: "error",
               alertTitle: "",
-              alertMessage: "tesxt",
+              alertMessage: "text",
               message: "오류가 발생했습니다"
             });
           });
