@@ -69,7 +69,7 @@ export const requestRegisterCeo = ceoInfo => {
       });
   });
 };
-
+ 
 export const requestLoginCeo = (userId, pw) => {
   return axios
     .post(`${FUNFUR}/auth_web/signin`, {

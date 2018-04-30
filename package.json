@@ -12,6 +12,8 @@
     "immutable": "^3.8.1",
     "jquery": "^3.2.1",
     "localforage": "^1.5.0",
+    "mobx": "^4.2.0",
+    "mobx-react": "^5.0.0",
     "moment": "^2.18.1",
     "react": "^15.5.4",
     "react-custom-scrollbars": "^4.1.2",
@@ -28,6 +30,7 @@
     "redux-actions": "^2.0.3",
     "redux-promise-middleware": "4.2.1",
     "sass-loader": "^6.0.6",
+    "store": "^2.0.12",
     "sweetalert-react": "^0.4.10",
     "underscore": "^1.8.3"
   },
