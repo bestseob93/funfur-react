@@ -4,6 +4,9 @@ import { Spinner } from "components/Common";
 import storage from "helpers/localForage.helper";
 
 import LocalForage from "localforage";
+import store from "store";
+
+import authState from "states/authState";
 
 var ReactToastr = require("react-toastr");
 var { ToastContainer } = ReactToastr; // This is a React Element.
@@ -77,6 +80,15 @@ class LoginForm extends Component {
           form.get("userId"),
           form.get("password")
         ).then(res => {
+          const token = res.value.data.token;
+          const ceoName = res.value.data.ceoName;
+          const companyName = res.value.data.companyName;
+
+          authState.setToken(token);
+          store.clearAll();
+          store.set("token", token);
+          store.set("info", { ceoName, companyName });
+
           LocalForage.clear()
             .then(() => {
               return res.value.data;

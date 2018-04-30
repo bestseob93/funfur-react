@@ -10,7 +10,7 @@ const defaultProps = {
         ceoName: '사장님 성함',
         companyName: '회사명'
     }
-};
+}; 
 
 function NavHeader({authInfo}) {
     const { ceoName, companyName } = authInfo;

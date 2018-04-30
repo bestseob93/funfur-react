@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import LocalForage from "localforage";
+import store from "store";
 
 import {
   CeoHome,
@@ -36,6 +37,12 @@ const contextTypes = {
 class CeoWrapper extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      info: {
+        ceoName: "",
+        companyName: ""
+      }
+    };
 
     this.handleUiAction = this.handleUiAction.bind(this);
     this.handleSideMenu = this.handleSideMenu.bind(this);
@@ -95,17 +102,49 @@ class CeoWrapper extends Component {
     };
   };
 
+  checkTokenStore = () => {
+    const token = store.get("token");
+    this.props.AuthActions.checkToken(token)
+      .then(res => {
+        if (res.value.status !== 200) {
+          throw new Error("not valid");
+        }
+      })
+      .catch(e => {
+        this.props.history.push("/login");
+
+        store.clearAll();
+        this.props.UiActions.showSweetAlert({
+          message: "세션이 만료되었습니다. 재로그인 해주세요.",
+          alertTitle: "",
+          value: "warning"
+        });
+      });
+  };
+
   componentDidMount() {
     this.handleUiAction(true); // ceo 페이지 마운트 시 기존 헤더 / 푸터 하이드
-    this.checkAndSetToken(LocalForage, this.props.AuthActions);
+    this.checkTokenStore();
+
+    const info = store.get("info");
+    this.setState({ info });
   }
 
   componentDidUpdate() {
-    this.checkAndSetToken(LocalForage, this.props.AuthActions);
+    this.checkTokenStore();
+    const info = store.get("info");
+    this.setState({ info });
+  }
+
+  componentWillMount() {
+    this.checkTokenStore();    
+    const info = store.get("info");
+    this.setState({ info });
   }
 
   componentWillUnmount() {
     this.handleUiAction(false); // ceo 페이지 언마운트 시 기존 헤더 / 푸터 쇼
+    store.clearAll();
   }
 
   // ceo 페이지 들어올 시 기존 header / footer 컨트롤
@@ -200,7 +239,7 @@ class CeoWrapper extends Component {
           onIconActiveClick={onIconActiveClick}
           listIndex={this.props.listIndex}
           iconIndex={this.props.iconIndex}
-          authInfo={this.props.authInfo.toJS()}
+          authInfo={this.state.info}
           mobileVisible={this.props.visible.mobileMenu}
         />
         <div className="ceo-page-wrapper">

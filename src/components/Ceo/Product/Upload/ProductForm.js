@@ -11,6 +11,7 @@ import {
 } from "components/Ceo/Product";
 
 import axios from "axios";
+import store from "store";
 import storage from "helpers/localForage.helper";
 
 const FUNFUR = process.env.REACT_APP_URL + "/api/v1";
@@ -304,6 +305,20 @@ class ProductForm extends Component {
       try {
         const requestProductUpload = productInfo => {
           return storage.get("token").then(token => {
+            if (!token) {
+              token = store.get("token");
+            }
+
+            if (!token) {
+              this.props.history.push("/login");              
+              this.props.UiActions.showSweetAlert({
+                message: "세션이 만료되었습니다. 재로그인 해주세요.",
+                alertTitle: "",
+                value: "warning"
+              });
+              return {status: 400};
+            }
+            
             let formData = new FormData();
 
             const productImages = productInfo.productImages.toJS();
@@ -350,7 +365,7 @@ class ProductForm extends Component {
               "proportionShipping",
               productInfo.proportionShipping
             );
-
+            
             return axios
               .post(`${FUNFUR}/product_web/upload`, formData, {
                 headers: {

@@ -40,8 +40,8 @@ window.onload = function () {
 };
 
 if (module.hot) {
-  module.hot.accept('./containers/App', () => { 
-      const NextApp = require('./containers/App').default;
+  module.hot.accept('./containers/AppMobx', () => { 
+      const NextApp = require('./containers/AppMobx').default;
       render(NextApp) })
 }
 
