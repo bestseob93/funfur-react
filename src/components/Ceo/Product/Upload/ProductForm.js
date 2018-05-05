@@ -16,6 +16,8 @@ import storage from "helpers/localForage.helper";
 import ImageCompressor from "image-compressor.js";
 import async from "async";
 
+import authState from "states/authState";
+
 const FUNFUR = process.env.REACT_APP_URL + "/api/v1";
 
 class ProductForm extends Component {
@@ -309,6 +311,10 @@ class ProductForm extends Component {
       try {
         const requestProductUpload = productInfo => {
           return storage.get("token").then(token => {
+            if (!token) {
+              token = authState.getToken();
+            }
+
             if (!token) {
               token = store.get("token");
             }
@@ -997,6 +1003,12 @@ class ProductForm extends Component {
           name: "productImages",
           value: newImages
         });
+        this.props.UiActions.showSweetAlert({
+          value: "success",
+          alertTitle: "",
+          alertMessage: "text",
+          message: "압축이 완료되었습니다."
+        });
       }
     );
   };
@@ -1477,7 +1489,7 @@ class ProductForm extends Component {
           현재 파일 크기 : {calculateImageSize()}MB
         </span>
         <span id="isCompress">
-          <button onClick={this.compressHandler}>전체 이미지 압축하기</button>
+          <button onClick={this.compressHandler} className="btn">전체 이미지 압축하기</button>
         </span>
         <PhotosUpload {...this.props} />
         <div className="row form-box padding-top50 padding-bottom">
@@ -1493,7 +1505,7 @@ class ProductForm extends Component {
               onClick={handleSubmit}
               disabled={this.state.btnDisabled}
             >
-              제품등록a
+              제품등록
             </button>
           </div>
         </div>

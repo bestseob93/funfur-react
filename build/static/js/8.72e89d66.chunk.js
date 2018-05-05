@@ -1,0 +1,2 @@
+webpackJsonp([8],{1164:function(e,t,a){"use strict";function n(){return c.a.createElement("div",{className:"auth-top-border container _mb",style:{height:"100%",overflow:"visible"}},c.a.createElement("h2",{className:"text-center"},"아직 준비 중이에요!"),c.a.createElement("img",{style:{margin:"0 auto",display:"block",width:"700px"},src:a(1270),alt:"404"}))}Object.defineProperty(t,"__esModule",{value:!0});var r=a(2),c=a.n(r);t.default=n},1270:function(e,t,a){e.exports=a.p+"static/media/notfound.edbf7040.png"}});
+//# sourceMappingURL=8.72e89d66.chunk.js.map
