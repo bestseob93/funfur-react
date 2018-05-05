@@ -13,6 +13,8 @@ import {
 import axios from "axios";
 import store from "store";
 import storage from "helpers/localForage.helper";
+import ImageCompressor from "image-compressor.js";
+import async from "async";
 
 const FUNFUR = process.env.REACT_APP_URL + "/api/v1";
 
@@ -21,7 +23,8 @@ class ProductForm extends Component {
     super(props);
 
     this.state = {
-      btnDisabled: false
+      btnDisabled: false,
+      isCompressing: false
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -34,6 +37,7 @@ class ProductForm extends Component {
     this.renderFirstSort = this.renderFirstSort.bind(this);
     this.renderSecondSort = this.renderSecondSort.bind(this);
     this.renderSortTwo = this.renderSortTwo.bind(this);
+    this.calculateImageSize = this.calculateImageSize.bind(this);
   }
 
   componentDidMount() {
@@ -310,15 +314,15 @@ class ProductForm extends Component {
             }
 
             if (!token) {
-              this.props.history.push("/login");              
+              this.props.history.push("/login");
               this.props.UiActions.showSweetAlert({
                 message: "세션이 만료되었습니다. 재로그인 해주세요.",
                 alertTitle: "",
                 value: "warning"
               });
-              return {status: 400};
+              return { status: 400 };
             }
-            
+
             let formData = new FormData();
 
             const productImages = productInfo.productImages.toJS();
@@ -329,10 +333,9 @@ class ProductForm extends Component {
             });
 
             if (totalImageSize > 20 * 1024 * 1024) {
-              return {status: 412};
+              return { status: 412 };
             }
-            
-            console.log("no display")
+
             formData.append("productName", productInfo.productName);
             formData.append("productPosition_1", productInfo.productPosition);
             formData.append("firstSort_1", productInfo.firstSort_1);
@@ -365,7 +368,7 @@ class ProductForm extends Component {
               "proportionShipping",
               productInfo.proportionShipping
             );
-            
+
             return axios
               .post(`${FUNFUR}/product_web/upload`, formData, {
                 headers: {
@@ -378,22 +381,25 @@ class ProductForm extends Component {
                 return res;
               })
               .catch(err => {
-                window.bugsnagClient.notify(new Error("제품 업로드 에러 - 토큰"), {
-                  metaData: {
-                    productInfo: productInfo,
-                    formState_upload: this.props.status.upload.toJS(),
-                    props: this.props,
-                    device: navigator,
-                    error: err,
-                    token: token
-                  },
-                  severity: "error",
-                  beforeSend: function(report) {
-                    if (report.user.id === "a") report.ignore();
-                  },
-                  user: window.bugsnagClient.user,
-                  context: "ProductForm Upload error"
-                });
+                window.bugsnagClient.notify(
+                  new Error("제품 업로드 에러 - 토큰"),
+                  {
+                    metaData: {
+                      productInfo: productInfo,
+                      formState_upload: this.props.status.upload.toJS(),
+                      props: this.props,
+                      device: navigator,
+                      error: err,
+                      token: token
+                    },
+                    severity: "error",
+                    beforeSend: function(report) {
+                      if (report.user.id === "a") report.ignore();
+                    },
+                    user: window.bugsnagClient.user,
+                    context: "ProductForm Upload error"
+                  }
+                );
 
                 return err;
               });
@@ -409,7 +415,7 @@ class ProductForm extends Component {
                 message: "전체 사진 크기는 20MB를 넘을 수 없습니다!"
               });
               toggleSubmitBtn(false);
-              return ;
+              return;
             }
 
             if (res.status !== 200) {
@@ -433,7 +439,7 @@ class ProductForm extends Component {
                 formState_upload: this.props.status.upload.toJS(),
                 props: this.props,
                 device: navigator,
-                error: err,
+                error: err
               },
               severity: "error",
               beforeSend: function(report) {
@@ -450,7 +456,7 @@ class ProductForm extends Component {
                 alertMessage: "text",
                 message: "사진의 용량이 너무 큽니다"
               });
-              return ;
+              return;
             }
 
             UiActions.showSweetAlert({
@@ -939,7 +945,61 @@ class ProductForm extends Component {
     const { FormActions } = this.props;
     // TODO: Form Rest
   }
+  calculateImageSize() {
+    let totalSize = 0;
+    this.props.form
+      .toJS()
+      .productImages.forEach(img => (totalSize += img.size));
 
+    const MB = (totalSize / 1024 / 1024).toFixed(2);
+
+    if (MB > 20) {
+      return <span id="current_file_size--oversize">{MB}</span>;
+    }
+
+    return MB;
+  }
+
+  compressHandler = () => {
+    const { FormActions } = this.props;
+    const imageCompressor = new ImageCompressor();
+    let newImages = [];
+
+    const compressHelper = (file, option) =>
+      imageCompressor
+        .compress(file, option)
+        .then(img => img)
+        .catch(err => {
+          // Handle the error
+        });
+
+    this.setState({
+      isCompressing: true
+    });
+    async.each(
+      this.props.form.toJS().productImages,
+      (img, callback) => {
+        const option = {
+          quality: 0.6
+        };
+
+        compressHelper(img, option).then(compressedImg => {
+          newImages.push(compressedImg);
+          callback();
+        });
+      },
+      done => {
+        this.setState({
+          isCompressing: false
+        });
+        FormActions.formUploadChange({
+          formName: "product",
+          name: "productImages",
+          value: newImages
+        });
+      }
+    );
+  };
   render() {
     const {
       changeHandler,
@@ -950,7 +1010,8 @@ class ProductForm extends Component {
       renderPosition,
       renderFirstSort,
       renderSecondSort,
-      renderSortTwo
+      renderSortTwo,
+      calculateImageSize
     } = this;
 
     const emptyComponent = undefined;
@@ -959,6 +1020,7 @@ class ProductForm extends Component {
       <div>
         {/* 스피너 */}
         {this.props.status.upload.get("fetching") && <Spinner />}
+        {this.state.isCompressing && <Spinner />}
         <SubTitle title="제품 등록" />
         <div className="row form-box">
           <FormLabel name="제품명" />
@@ -1411,6 +1473,12 @@ class ProductForm extends Component {
           </div>
         </div>
         <SubTitle title="사진 업로드" />
+        <span id="current_file_size">
+          현재 파일 크기 : {calculateImageSize()}MB
+        </span>
+        <span id="isCompress">
+          <button onClick={this.compressHandler}>전체 이미지 압축하기</button>
+        </span>
         <PhotosUpload {...this.props} />
         <div className="row form-box padding-top50 padding-bottom">
           <div className="btn-container">
@@ -1425,7 +1493,7 @@ class ProductForm extends Component {
               onClick={handleSubmit}
               disabled={this.state.btnDisabled}
             >
-              제품등록
+              제품등록a
             </button>
           </div>
         </div>

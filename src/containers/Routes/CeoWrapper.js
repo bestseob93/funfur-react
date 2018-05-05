@@ -88,6 +88,7 @@ class CeoWrapper extends Component {
 
           setTimeout(() => {
             document.location = "/";
+            this.props.history.push("/");
           }, 100);
         });
     });

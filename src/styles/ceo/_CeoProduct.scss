@@ -163,3 +163,23 @@ p.product-inside {
     width: 500px;
     height: 800px;
 }
+
+#current_file_size {
+    font-size: 1.8rem;
+    margin-left: 300px;
+    position: relative;
+    top: -55px;
+    left: 20px;
+}
+
+#current_file_size--oversize {
+    background: crimson;
+    color: black;
+}
+
+#isCompress {
+    font-size: 1.8rem;
+    margin-left: 300px;
+    position: relative;
+    top: -55px;
+}
